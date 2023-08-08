@@ -1,0 +1,4 @@
+- {{youtube https://www.youtube.com/watch?v=b9Ib9UgIJJ8}}
+	- [[MortentHansen]][[Management]]
+	-
+-

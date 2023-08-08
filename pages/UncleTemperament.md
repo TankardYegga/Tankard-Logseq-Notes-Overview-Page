@@ -1,0 +1,23 @@
+- # Intention
+  collapsed:: true
+	- 自己喜欢的气质，代表了自己想要努力的方向
+- # Pictures
+	- ![image.png](../assets/image_1672914641094_0.png)
+	- ![image.png](../assets/image_1672922478414_0.png)
+	- ![Snipaste_2022-07-10_13-01-29.png](../assets/Snipaste_2022-07-10_13-01-29_1673800683735_0.png)
+	- ![Snipaste_2022-04-26_14-59-32.png](../assets/Snipaste_2022-04-26_14-59-32_1673800693229_0.png)
+	- https://www.sppm.tsinghua.edu.cn/info/1208/7507.htm
+		- ![image.png](../assets/image_1673804337085_0.png)
+		- ![image.png](../assets/image_1673804379076_0.png)
+		- ![image.png](../assets/image_1673804402414_0.png)
+		- [[TimRoth]] [[Celebrities]]
+		  collapsed:: true
+			- ![image.png](../assets/image_1674562236364_0.png)
+			- ![image.png](../assets/image_1674562538713_0.png)
+			-
+		- ![image.png](../assets/image_1680276352944_0.png)
+		- ![image.png](../assets/image_1683286210143_0.png)
+		- ![image.png](../assets/image_1685607302764_0.png)
+		- ![image.png](../assets/image_1687864237505_0.png)
+		-
+-

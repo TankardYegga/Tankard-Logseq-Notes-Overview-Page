@@ -1,0 +1,7 @@
+- 给好的帖子回复优质答案，别人给你大米
+- 攒分指南：
+	- https://www.1point3acres.com/bbs/forum-74-1.html
+- https://www.1point3acres.com/bbs/thread-473358-1-1.html
+- https://blog.csdn.net/jinbangshi9469/article/details/96105341
+- http://www.bithub00.com/2019/09/11/%E4%B8%80%E4%BA%A9%E4%B8%89%E5%88%86%E5%9C%B0/
+-

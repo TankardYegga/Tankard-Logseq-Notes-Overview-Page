@@ -1,0 +1,25 @@
+- [[潜意识]] 是 [[意识冰山]] 中 埋在海底的 一角，如果 不及时 对这些潜意识 进行干预：
+	- 对自我[[消极的(Negative)]]一面，  会 演变成 抑郁倾向；
+	- 对别人[[愤怒的(Angry)]]的一面，  会 演变成 [[仇恨(Hatred)]]倾向；
+	- 对时间[[焦虑的(Anxious)]]一面， 会 演变成 [[压力(Pressure)]]、[[反社会(AntiSociety)]]、[[暴怒(Fury)]]、[[自残(SelfHarm)]]、[[冲动(Impulse)]]
+	-
+	-
+- 如何解决[[潜意识]]里存在的问题？ [[CurrentIssues]]
+	- 写下 [[冥想(Meditation)]]时经常出现的 [[关键字]]
+	- 当有空了，就可以进行[[回想(Recall)]]
+	-
+-
+- [[JustDoIt]]
+	- 我潜意识的坏家伙：
+		- [[Jan 27th, 2023]]
+			- TODO junit测试怎么都有bug
+			- TODO loosely connected with my mom, my dad and my sisters
+			- TODO leetcode题根本刷不完，也不知道按照什么计划去刷，因为时间来不及了
+			- TODO 项目根本没有时间搞定
+			- TODO 老板一直催我写论文，论文也没时间投出去
+			-
+	-
+	-
+-
+	-
+-

@@ -1,0 +1,45 @@
+- [[#red]]==Goals to be arranged:==
+  :LOGBOOK:
+  CLOCK: [2023-01-07 Sat 17:25:18]
+  :END:
+	- [[ShortTermGoals]]
+	  collapsed:: true
+		- TODO 10天内完成google编程之夏的一个项目
+		- TODO 截止到2月底刷完300道Leetcode题
+			- TODO 刷完labuladong关于二叉树的所有题目
+		- TODO 了解日本人的工匠精神是怎么做到的 [[Japan]][[CraftsmanSpirit]] [[ThemeRethink]]
+		- TODO 如何让自己变得更有创造性和创意 [[Creative]][[ThemeRethink]]
+		- TODO 完成“我写作问题的十宗罪” [[MyWeChatFeeds]]
+		- TODO 学习B站南大的《程序分析》那门课程
+	- [[LongTermGoals]]
+		- [[2023]]
+			- TODO 学会如何和别人聊天
+			- TODO 去鼓楼医院看神经衰弱
+			- TODO 去中大医院拔牙和洗牙，问清楚李竞宇怎么报销
+			- TODO 利用自己的知识来赚到第一桶金
+				- TODO 实习赚钱三个月的钱
+				- TODO 探索股票投资来赚一笔钱
+			- TODO 做到能够专注地、投入地、纠错地投入四个实践
+				- TODO 利用自媒体的赚钱实践
+				- TODO 写代码的专业实践
+				- TODO 期刊论文投稿的实践
+				- TODO B站趣味读书账号的第一个视频发布
+					- 主要是讲 [[Unfolding the Napkin]]这本书
+					- 怎么读计算机的书
+					- 可以改成向一些很专业的视频或者IP投稿
+				- TODO 口才锻炼实践：参加南京的线下读书会或者登山活动
+			- TODO 将代码质量和代码数量都提升一个档次
+			- TODO 能够尽可能地使用英文文档来学习和工作
+			- TODO 提升中文和英文的写作能力
+			- TODO 认真地去交往一些朋友，去稳固和改善一些已有的人际关系
+			- TODO 跑步20公里
+	- [[MidTermGoals]]
+		-
+			-
+			-
+			-
+				-
+			-
+			-
+-
+-

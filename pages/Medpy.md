@@ -1,0 +1,8 @@
+- https://loli.github.io/medpy/index.html
+- Hausdorff distance应该是[0，+∞），距离越小越好
+- Jaccard coefficient系数用于衡量两个集合的重叠程度，范围在[0, 1]，0表示完全没有重叠，1表示完全重叠
+- https://blog.csdn.net/qq_33854260/article/details/115000187
+	- average surface distance （ASD, 平均表面距离）
+	- Average symmetric surface distance是平均对称表面距离
+	- ASD是平均表面距离（P到G的单向表面距离的平均值），而ASSD是对称平均表面距离（【P到G的平均表面距离+G到P的平均表面距离】/2）
+-

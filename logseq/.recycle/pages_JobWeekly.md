@@ -1,0 +1,2 @@
+- MessageAnalysis
+  template:: MessageAnalysis

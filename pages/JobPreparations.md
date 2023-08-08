@@ -1,0 +1,18 @@
+- [[fintech(FinanceTechnology)]]
+	- 如何使用编程工具来实现数学当中的底层逻辑，从而真正解决问题
+	-
+-
+- [[SoftwareEngineer]]
+  collapsed:: true
+	- ![326ac5414c2efbbd0522c34831a99939.jpg](../assets/326ac5414c2efbbd0522c34831a99939_1676885903867_0.jpg)
+	- ![image.png](../assets/image_1676885923240_0.png)
+	- ![image.png](../assets/image_1676885952892_0.png)
+	- ![image.png](../assets/image_1676886052395_0.png)
+	- ![image.png](../assets/image_1676886192339_0.png)
+	- ![image.png](../assets/image_1676894332905_0.png)
+	- ![image.png](../assets/image_1676894512410_0.png)
+	-
+- [[CreativeWriter]]
+-
+-
+-

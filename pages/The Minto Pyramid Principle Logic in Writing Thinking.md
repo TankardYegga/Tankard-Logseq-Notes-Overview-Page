@@ -1,0 +1,1 @@
+- ![The Minto Pyramid Principle Logic in Writing Thinking (Barbara Minto) (z-lib.org).pdf](../assets/The_Minto_Pyramid_Principle_Logic_in_Writing_Thinking_(Barbara_Minto)_(z-lib.org)_1665893164870_0.pdf)

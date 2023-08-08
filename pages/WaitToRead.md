@@ -1,0 +1,11 @@
+- # Purpose
+- 平时发现的一些很好的网站或者文章，但是没有时间可以去看，先暂时存在这里，等其他事情专注地做完，再来细看
+- # WaitList
+- https://www.lidingzeyu.com/asking-why
+- https://www.lidingzeyu.com/research-discussion-with-liyi-wei/
+- 海贼王
+	- https://www.naifei.org/voddetail/81255.html
+- 爱死机全季及其鉴赏
+- https://www.famousscientists.org/scientists-harsh-begin/
+-
+-

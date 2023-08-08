@@ -1,0 +1,1 @@
+- ![Dale Carnegie-How to win friends and influence people-Simon and Schuster (1981).pdf](../assets/Dale_Carnegie-How_to_win_friends_and_influence_people-Simon_and_Schuster_(1981)_1668994699026_0.pdf)

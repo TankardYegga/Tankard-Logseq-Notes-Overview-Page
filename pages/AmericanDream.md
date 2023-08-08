@@ -1,0 +1,3 @@
+- "it passed from generation to generation, that God given promise: that all are equal all are free everyone deserve to pursuit their full measure of happiness."
+-
+-

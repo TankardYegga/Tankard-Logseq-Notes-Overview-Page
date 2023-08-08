@@ -1,0 +1,9 @@
+- spring中的FactoryBean和BeanFactory分别是做什么的？
+- spring中的BeanFactoryPostProcessor和BeanPostProcessor有什么区别？
+- 基于Cglib和基于JDK的两种实例化策略对含有入参构造函数的Bean进行实例化，这两者的具体区别是什么？
+- mybatis中的 # 和 {} 有什么区别？
+- 适配器模式是什么？
+- 组合模式是什么？
+- 策略模式是什么？
+- 模板模式是什么？
+-

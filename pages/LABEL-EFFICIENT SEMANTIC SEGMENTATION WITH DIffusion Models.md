@@ -1,0 +1,4 @@
+- ![LABEL-EFFICIENT SEMANTIC SEGMENTATION WITH DIffusion Models.pdf](../assets/LABEL-EFFICIENT_SEMANTIC_SEGMENTATION_WITH_DIffusion_Models_1667282675277_0.pdf)
+- CODE:
+	- https://github.com/yandex-research/ddpm-segmentation
+-

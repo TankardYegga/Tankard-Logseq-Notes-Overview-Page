@@ -1,0 +1,1 @@
+- ![Thinking, Fast and Slow (Daniel Kahneman) (z-lib.org).pdf](../assets/Thinking,_Fast_and_Slow_(Daniel_Kahneman)_(z-lib.org)_1665892592237_0.pdf)

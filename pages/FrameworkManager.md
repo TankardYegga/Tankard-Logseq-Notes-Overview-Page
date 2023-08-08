@@ -1,0 +1,6 @@
+- 🦕 对自己学习、休闲娱乐以及工作的过程进行总结，思考出自己现有的、不成型的框架是什么，以及如何去完善该框架
+- 💫 [[LearningFramework]]
+- 🧊 [[RelaxationFramework]]
+- 🧵[[WorkingFramework]]
+-
+-

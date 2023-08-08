@@ -1,0 +1,3 @@
+- ![Exploring Social Psychology (David G. Myers, Jean M. Twenge) (z-lib.org).pdf](../assets/Exploring_Social_Psychology_(David_G._Myers,_Jean_M._Twenge)_(z-lib.org)_1665897462023_0.pdf)
+-
+-

@@ -1,0 +1,11 @@
+file-path:: ../assets/2021_Breast_ultrasound_tumor_image_classification_using_image_decomposition_and_fusion_based_on_adaptive_multi-model_spatial_feature_fusion_1670402909546_0.pdf
+file:: [2021_Breast_ultrasound_tumor_image_classification_using_image_decomposition_and_fusion_based_on_adaptive_multi-model_spatial_feature_fusion_1670402909546_0.pdf](../assets/2021_Breast_ultrasound_tumor_image_classification_using_image_decomposition_and_fusion_based_on_adaptive_multi-model_spatial_feature_fusion_1670402909546_0.pdf)
+title:: hls__2021_Breast_ultrasound_tumor_image_classification_using_image_decomposition_and_fusion_based_on_adaptive_multi-model_spatial_feature_fusion_1670402909546_0
+
+- Ultrasonographyiswidelyusedintheearlydetectionofbreastdiseasesbecauseofitspainlessandcon-venientoperationandefficientreal-timeperformance
+  ls-type:: annotation
+  hl-page:: 1
+  id:: 63908135-e93f-45c7-9750-183d3510d8bd
+  collapsed:: true
+	- 超声进行筛查的优点
+	-

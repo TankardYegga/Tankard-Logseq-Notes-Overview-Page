@@ -1,0 +1,18 @@
+- # Purpose
+- 有很多你已经建立起来的知识，有很多你已经熟悉的人，你很多你已经惯见的事物（工具、器材、建筑物、食物），尝试在这里进一步去了解这些事物、进一步去构建联系
+- # RealtionFurtherWithMyFamliy
+-
+-
+- # RelationFurtherWithCode
+-
+-
+-
+- # RelationFurtherWithMyFriends
+-
+-
+-
+- # RelationFurtherWithBusinessAndEcononomy
+-
+-
+-
+-

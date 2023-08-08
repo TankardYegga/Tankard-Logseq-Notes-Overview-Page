@@ -1,0 +1,53 @@
+- The benefits of collecting reading notes in a PKM
+	- The main benefits I see are:
+	  + 1. recap learnings from the book
+	  + 2. improve your synthesis, linking it to experiences and insights
+	  + 3. rediscover insights serendipitously (意外地)
+	- It may also help you improve filtering which books you want to read. How?
+	  + 1. The system imposes a "cost" on your reading
+	  + 2. You become more selective
+- Questions to ask yourself before deciding on a  system
+  collapsed:: true
+	- Why? To inform how much effort you should put into this.
+	- What is the output for me?
+	  * Pure retrieval (low effort, some tagging)
+	  * Output for a newsletter (medium effort)
+	  * Knowledge synthesis (high effort)
+	- Do I just want to enjoy the book and have a relaxing read?
+	- How can I make this low friction / pleasant ?
+	      *   Thinking about ease of access / rediscoverable
+	      *   Formatting
+	- My two cents on reading and productivity
+	  * Beware of toxic behavior
+	  * The idea of a "should read" checklist is a fallacy （谬论）
+	   + yeah, there is an achievement aspect that comes from reading books, but unto what end (但是到什么程度呢)
+- Thinking about frameworks - what are others using ?
+	- A few of the workflows that I've seen have similar parallels around capture and organizing.
+		- [[Tiago Forte]] - C. O. D. E. Collect, Organize, Distill, Express
+			- And the progressive summarisation methodology
+		- [[Thomas Frank]] - Read, Highlight, Record, Synthesis
+		- [[Ali Abdaal]] -  "Magical Insight logging framework" -> Consumption, Integration, Second Brain (again, more of a capture process)
+	- The distinction between collecting and connecting
+		- Thanks to Curtis McHale (and probably Nick Milo in an older video) - watch out for "collectors fallacy"
+		- Collecting - resources with no output or further use.
+		- Connecting - connect ideas and builds upon them to create value.
+- Entering notes into a PJM system
+	- Capture
+		- Writing words in your own
+			- Generally improved synthesis
+			- Forces you to challenge the ideas, not just to copy them
+		- Highlight and export
+			- Kindle
+			- Readwise - amazing aggregator
+			- Raindrop.i.o, Instapaper, Pocket
+	- Organising and synthesizing (getting into examples)
+		- Different workflows that I have used:
+			- Writing in the same page
+				- Using [[Observations]]
+				- Pros: still inherits the tag above it
+			- Writing in a separate page
+			- Making individual atomic notes
+	- It's always a trade-off between time and effort!
+-
+- {{query #动态规划}}
+  query-table:: true

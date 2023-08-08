@@ -1,0 +1,10 @@
+- TODO 达到英语母语者一样熟练的英语水平
+	- TODO  看英文电影无须字幕能听懂80%以上，理解剧情内容
+	- TODO 无需准备而能够随时随地展开英语对话，包括打电话、街头交流、购物、工作汇报这四大核心场景
+	- TODO 在公众面前完成一场出色的PPT presentation
+	- TODO 写出native speaker分辨不清楚作者国度的英文文章
+	- TODO 能完成一个small cs program leader日常工作场景中的所有对话
+- TODO 一名真正出色的软件工程师
+	- TODO 完成3个大型项目的开发
+	-
+- TODO

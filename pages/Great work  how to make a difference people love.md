@@ -1,0 +1,1 @@
+- ![Great work  how to make a difference people love (David Sturt) (z-lib.org).pdf](../assets/Great_work_how_to_make_a_difference_people_love_(David_Sturt)_(z-lib.org)_1666012857714_0.pdf)

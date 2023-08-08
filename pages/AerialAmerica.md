@@ -1,0 +1,3 @@
+- # Season1-Episode1
+- America is a land of risk-takers. From the men who brought flights to the masses To the woman who spent her life pushing the limits. It is a land of innovation from a colony some hoped could exist on Mars To a city others thought would be a blueprint for the future. This is a place where good ideas have made millionaires and g good golf swing produced a billionaire. From self-made men(白手起家的人) to manmade products, these are big thinkers, big dreams, and big things that only could be made in the U.S.A.
+- In the evergreens Washington State,

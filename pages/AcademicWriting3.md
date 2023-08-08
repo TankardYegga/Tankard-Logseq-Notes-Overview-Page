@@ -1,0 +1,4 @@
+- ![研究生英语 学术论文写作 金晶编.pdf](../assets/研究生英语_学术论文写作_金晶编_1653213957016_0.pdf)
+- 108页的小短文改写成结论
+- relocate some instructions outdoors 将一些指导活动转移到户外
+- situate science learning in the outdoors 将科学学习放在户外进行

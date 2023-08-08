@@ -1,0 +1,7 @@
+title:: A multi-view deep learning architecture for classification of breast microcalcifications. ISBI 2016: 726-730
+
+- In this paper we address the problem of differentiating between malignant and benign tumors based on their appearance in the CC and MLO mammography views. Classification of clustered breast microcalcifications into benign and malignant categories is an extremely challenging task for computerized algorithms and expert radiologists alike. We describe a deep-learning classification method that is based on two view-level decisions, implemented by two neural networks, followed by a single-neuron layer that combines the viewlevel decisions into a global decision that mimics the biopsy results. Our method is evaluated on a large multi-view dataset extracted from the standardized digital database for screening mammography (DDSM). Experimental results show that our network structure significantly improves on previously suggested methods.
+- 在本文中，我们解决了基于其在 CC 和 MLO 乳房 X 线摄影视图中的外观来区分恶性和良性肿瘤的问题。 对于计算机算法和放射科专家来说，将聚集性乳腺微钙化分为良性和恶性类别是一项极具挑战性的任务。 我们**描述了一种深度学习分类方法，该方法基于两个视图级决策，由两个神经网络实现，然后是一个单神经元层，将视图级决策组合成一个模拟活检结果的全局决策**。 我们的方法是在从标准化数字数据库中提取的大型多视图数据集上进行评估的，用于筛查乳房 X 线摄影术 (DDSM)。 实验结果表明，我们的网络结构显着改进了以前建议的方法。
+- combine the two view-level decisions implemented by two neural networks into a global decision that mimics the biopsy results.
+-
+-

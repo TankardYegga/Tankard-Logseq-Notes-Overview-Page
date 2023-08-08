@@ -1,0 +1,4 @@
+- ![Abelson & Sussman：Structure and Interpretation of Computer Programs@1996 (第2版).pdf](../assets/Abelson_&_Sussman：Structure_and_Interpretation_of_Computer_Programs@1996_(第2版)_1671027265623_0.pdf)
+-
+- ![Abelson & Sussman：计算机程序的构造和解释@2004 (第2版 扫描版).pdf](../assets/Abelson_&_Sussman：计算机程序的构造和解释@2004_(第2版_扫描版)_1671027333107_0.pdf)
+-

@@ -1,0 +1,34 @@
+- 大纲是：
+	- 调查问卷
+		- 问卷的设计（问卷的内容怎么设计、格式怎么设计、问卷怎么进行修正）
+		- 问卷的分发（分发的目标人群、分发的时间段、分发的具体方式（微信qq朋友圈))
+		- 问卷的收回（怎么进行过滤）
+	- 人物采访
+		- 采访的对象、时间、地点、内容、时长（在午饭时间去研究生食堂门口、花费5-10分钟采访1-2人、开放性问题）
+			- 移动支付中有什么特别困扰你的地方？
+			- 大胆预测下移动支付在风险预防方面将来的发展方向是什么？
+		- 采访的注意事项 （遵循自愿原则、保护好采访数据不外泄）
+		- 采访结果的记录方式（先录音然后文字整理重点)
+		- 数据：
+			- 1）移动支付必须联网才能使用；建立去中心化的在线支付系统，最大程度提高加密程度
+			- 2）移动支付使用过程繁琐，没有人工服务方便，对于老年用户不利；提高语音机器人的智能程度，以最大程度模拟人工服务体验
+			- 3）移动支付平台过多，多个平台之间的交互很麻烦；发展技术来简化各个平台之间的接口
+- 4 Method
+	- 4.1 Participants
+		- The current research was aimed at all postgraduate students of Southeast University who were easily accessible and relatively credible in the context of the covid-19 epidemic. The entire procedure of the experiment was carried out by six members of our course team in which each of us received great guidance from our helpful teacher assistant.
+	- 4.2 Data Collection
+		- In order to enrich the diversity of the data, collection tools in offline and online settings were both carefully designed.
+		- 4.1.1 Online Questioniares
+			- Three steps were enforced to promote the rationality and validity of the produced questionnaire. To begin with,  the survey was centered on the five dimensions displayed in table 1, where specific items of each were mainly drawn from literature sources and ready-made templates. The first dimension was about demographic variables which acted as controlling factors for the final result analysis; the second and the third were the core parts investigating the very details of risk and convenience that people may have perceived when using mobile payments; the fourth was individual usage experience reflecting the status quo; the last was termed as open questions which tried to expose hidden but meaningful topics. Then secondly, the typography was semi-automatically finished with the aid of the website https://www.wjx.cn/ where headers, questions, and answer areas are all movable and customizable controls. All questions except open questions were set as single-choice and mandatory. After that, the questionnaire was pre-examined by 10 master's students majoring in social science or English literature to provide significant feedback on legibility, simplicity, and preciseness.
+			- The Snowball sampling technique, which is, in essence, a kind of means somewhere between random sampling and non-random sampling, was adopted during the distribution of the questionnaire. The link address https://www.wjx.cn/vj/rWzKTck.aspx and the QR code were generated with a unique identifier relevant to the account and questionnaire; later they were shared with our inner-group members, and then were continued to be shared in Qzone (so-called QQ space) and WeChat moments of every single member. The number of students involved was just growing from 0 to 103 in the first week of May through the snowball effect of online social networks. And the access channel was closed eventually on May 7th to stop the target population from becoming impure.
+		- 4.1.2 Offline Interviews
+			- Offline interviews were conducted during the lunch rush at the main entrance of the campus cafeteria, which took an average of 5 minutes in a group size of 5. Two inspiring questions were proposed: what particularly bothers you about mobile payments;
+			  what your prediction is for the development direction of mobile payment in risk prevention. The interview results were initially made into voice records and then converted to written manuscript. It was worth noting that the interview was completely voluntary and an effort to protect interview data from leakage was a must.
+	- 4.3 Data Processing
+		- The questionnaires were required to be filtered manually to further enhance the data quality.  Questionnaire participants who had inconsistent answers before and after, or who had never used mobile payment can be considered irrelevant, therefore their corresponding questionnaires were discarded directly.
+		- Regarding interviews, they were categorized first, and then those with new insights were selected.
+-
+- For the convenience of research,  the scope of the research subject was narrowed down to graduate students on the campus. A mixed collection strategy combing online questionnaires with offline interviews was then employed to expand the question space. An independent relationship model was built on the dimensions of questions. After feeding the data to the model, results were calculated by applying the PLS method. The specific process of the methodology is elaborated on below.
+-
+-
+-

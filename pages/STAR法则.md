@@ -1,0 +1,5 @@
+- S: Situation 情境
+- T: Task
+- A: Action
+- R: Result
+-

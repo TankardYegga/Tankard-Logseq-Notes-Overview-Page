@@ -1,0 +1,68 @@
+- ![image.png](../assets/image_1652859972788_0.png)
+	- per的含义：
+		- through, completely 全部
+		- 贬义：**就是会对后面的单词产生贬义色彩**。perimeter表示全部测量，所以是周长
+	- re的含义：1. repeat：重复  2.back：
+	- dis的含义：1.no  2.away apart
+	- di的含义：穿过。**diameter表示穿过去测量，所以是直径；dialogue表示你的话语和我的话语相互穿过、你一句我一句，所以表示对话**。diameter的重音在a上面。
+	- tele表示距离、远，telemeter表示遥测仪
+	- odo = od(o) 表示道路，odometer表示里程表
+	- dromo = to run, 表示速度计
+	- opt表示光学，optometer表示视力计，optometrist表示验光师
+	- geo表示地理，在测量地理的过程中发现了勾股定理，也就是发现了几何
+	- decameter表示10米，decimeter表示10分之一米也就是分米。decade十年
+	- centimeter表示100之一米也就是厘米，hectometer表示100米
+	- kilometer表示1000米，millimeter表示1000分之一米也就是毫米。million百万 = 1000个1000
+	- bar表示阻止，barometer表示气压计、晴雨表
+	- alt表示高度，altimeter表示飞行器的高度计
+	- density表示密度，densimeter表示密度计
+	- therm = werm = warm ,  thermometer表示温度计
+	-
+- ![image.png](../assets/image_1652860620517_0.png)
+	- 阻止声音出来的人：男中音 baritone
+	- 阻止坏事情发生的人：律师/诉讼律师 barrister
+	- 精神上受到阻止的人：尴尬 embarrassed
+- ![image.png](../assets/image_1652860866893_0.png)
+	- relegate: re表示回来，所以表示降级流放
+- ![image.png](../assets/image_1652860933707_0.png)
+	- script表示写
+	- man原本是男人，这里作为词根表示手的含义，用手写的东西就是手稿。**这里的u是元音连字符。**
+	- a表示强调，ascribe表示一直写，所以是归功于。ascribe sth to sb 把某东西归功于某人
+	- in表示向下，向下写就表示记下
+	- circum可以类比circle或者cycle，表示圈子，绕着圈子写就是限制。孙悟空给唐僧画了个圈，限制了唐僧和猪八戒的活动范围
+	- con表示一起，大家一块写就表示强行征召
+	- pre表示在前面，写在前面的东西就是规定，医生在做手术前面的操作就是在纸上写药房进行开药
+	- sub在下面，将一部分财产写在别人的银行账号下面就是捐款，在自媒体账号的评论区下面写文字评论（或者说是点击账号下面的“关注”或者“小铃铛”）就是订阅
+	- transcribe中的tran表示变换，变换着写就是在抄写、转录，其名词是transcript成绩单
+- ![image.png](../assets/image_1652862578552_0.png)
+  id:: 6284ae4f-0092-4408-8e27-eab43e6b8b25
+	- dis分开想，表示争论
+	- im使得，使得某个人想，表示归结于、归罪于、归咎于
+	- com一起想，表示计算
+- ![image.png](../assets/image_1652862680329_0.png)
+	- envious一直盯着你看，表示嫉妒
+- ![image.png](../assets/image_1652957123694_0.png)
+	- super在位置上表示“在上面”，trans表示变换位置（transform）, under表示在什么什么底下
+	- uni表示“单一”， uniform制服、unique独一无二的、united表示联合成一块的；bi、di、twi、du都表示二：【1】bicyle也就是两个圈，两个轮子也就是自行车【2】di之所以表示二是因为d和b是成镜像关系的字母，最早起源的时候d和b就是一个字符，divide表示分成两块，也就是划分，【3】twi来自单词two, twice、twins，twilight两个光表示黎明、傍晚、暮光之城【4】du，印度人说一二三发音是one du three, dual是双重的，duel是决斗（两个人打架）、duet是二重唱二重奏；centi表示百；milli表示千；mono表示单一，monday是星期一; in order to keep the peace around the world, we require multi-national cooperation;
+	- hyper在程度上也表示过分，发音很像high, hyper-tension是高张力、高血压；well表示好、还不错地， well-educated表示受到良好教育地
+	- co表示合作；mal表示坏的，mis表示错的，maltreat表示不好地对待也就是虐待，mistake表示错误，错事并不一定是坏事，比如打破了水杯是一件错事但不是一件坏事；self表示自己地，self-employed表示自己雇佣自己地
+	- anti表示反对，antibody抗体、antibiotic抗生素；counter也表示反对；pro表示支持，pros支持点；
+- ![image.png](../assets/image_1652964421658_0.png)
+	- legislate立法、create；fish钓鱼、finish完成；satisfy、identify; watch、reach;stregthen、waken; realize; surprise
+	- ant是一个非常像形容词但实际是名词的后缀，比如servant服务员、pendant挂坠；ary也是名词，比如anniversary周年纪念日；let表示小的东西，比如bullet子弹、booklet小册子；
+- ![image.png](../assets/image_1652964964123_0.png)
+	- sym表示same, 一样测量结果的就是对称的；a是否定前缀，表示不对称的
+- ![image.png](../assets/image_1652975623668_0.png)
+	- dung在美剧里经常出现，是屎的意思，dingy含义是肮脏的
+	- trough是槽子、水槽，dinghy中的gh来自trough中的gh，其含义是一艘小帆船
+-
+-
+- # 三种换字方法
+- ![image.png](../assets/image_1653035644073_0.png)
+	- y是半元音，sym = same
+	- wrack和wreck都表示废墟
+	- 先有动词后有名词，所以先sing后song, i排在o前面
+- ![image.png](../assets/image_1653055246701_0.png)
+	- 一共七组，组内替换，组件不能替换
+- ![image.png](../assets/image_1653055610072_0.png)
+	-

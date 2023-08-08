@@ -1,0 +1,557 @@
+{:blocks (
+{:block/created-at 1680140811726
+:block/properties 
+{:ls-type :whiteboard-shape
+:logseq.tldraw.shape 
+{:isSizeLocked false
+:stroke "gray"
+:rotation 0
+:borderRadius 0
+:index 3
+:scale [1 1]
+:fill "gray"
+:type "text"
+:size [268 46.000030517578125]
+:fontFamily "var(--ls-font-family)"
+:strokeType "line"
+:strokeWidth 2
+:opacity 1
+:id "35fe89c0-ce9b-11ed-8c2f-6b704b944524"
+:padding 4
+:fontWeight 700
+:noFill true
+:point [382.16668701171875 216.83327102661133]
+:lineHeight 1.2
+:fontSize 20
+:parentId "6424e748-ab9f-491f-a1a5-f75876b7d556"
+:nonce 1680140154530
+:italic false
+:text "My Road for Programming"}}
+:block/updated-at 1680140811726} 
+{:block/created-at 1680140811726
+:block/properties 
+{:ls-type :whiteboard-shape
+:logseq.tldraw.shape 
+{:stroke "yellow"
+:borderRadius 2
+:index 4
+:scale [1 1]
+:fill "yellow"
+:type "box"
+:size [223.66668701171875 27.666656494140625]
+:strokeType "line"
+:strokeWidth 2
+:opacity 1
+:label "是否热爱技术"
+:id "51153330-ce9b-11ed-8c2f-6b704b944524"
+:fontWeight 400
+:noFill false
+:point [141.5 318.8333320617676]
+:fontSize 20
+:parentId "6424e748-ab9f-491f-a1a5-f75876b7d556"
+:nonce 1680140199726
+:italic false}}
+:block/updated-at 1680140811726} 
+{:block/created-at 1680140811726
+:block/properties 
+{:ls-type :whiteboard-shape
+:logseq.tldraw.shape 
+{:stroke "yellow"
+:borderRadius 2
+:index 5
+:scale [1 1]
+:fill "yellow"
+:type "box"
+:size [203 30.333343505859375]
+:strokeType "line"
+:strokeWidth 2
+:opacity 1
+:label "是否热爱研究"
+:id "625bceb0-ce9b-11ed-8c2f-6b704b944524"
+:fontWeight 400
+:noFill false
+:point [412.16668701171875 318.16667556762695]
+:fontSize 20
+:parentId "6424e748-ab9f-491f-a1a5-f75876b7d556"
+:nonce 1680140228435
+:italic false}}
+:block/updated-at 1680140811726} 
+{:block/created-at 1680140811726
+:block/properties 
+{:ls-type :whiteboard-shape
+:logseq.tldraw.shape 
+{:stroke "yellow"
+:borderRadius 2
+:index 6
+:scale [1 1]
+:fill "yellow"
+:type "box"
+:size [178.3333740234375 31.66668701171875]
+:strokeType "line"
+:strokeWidth 2
+:opacity 1
+:label "是否喜欢业务"
+:id "69bed440-ce9b-11ed-8c2f-6b704b944524"
+:fontWeight 400
+:noFill false
+:point [667.5 316.8333320617676]
+:fontSize 20
+:parentId "6424e748-ab9f-491f-a1a5-f75876b7d556"
+:nonce 1680140240817
+:italic false}}
+:block/updated-at 1680140811726} 
+{:block/created-at 1680140811726
+:block/properties 
+{:ls-type :whiteboard-shape
+:logseq.tldraw.shape 
+{:stroke "green"
+:rotation 0
+:borderRadius 2
+:index 7
+:scale [1 1]
+:fill "green"
+:type "box"
+:size [195 53.000030517578125]
+:strokeType "line"
+:strokeWidth 2
+:opacity 1
+:label "JAVA中间件的设计与开发"
+:id "88321630-ce9b-11ed-8c2f-6b704b944524"
+:fontWeight 400
+:noFill false
+:point [160.16668701171875 448.8333930969238]
+:fontSize 20
+:parentId "6424e748-ab9f-491f-a1a5-f75876b7d556"
+:nonce 1680140292387
+:italic false}}
+:block/updated-at 1680140811726} 
+{:block/created-at 1680140811726
+:block/properties 
+{:ls-type :whiteboard-shape
+:logseq.tldraw.shape 
+{:stroke "green"
+:rotation 0
+:borderRadius 2
+:index 8
+:scale [1 1]
+:fill "green"
+:type "box"
+:size [197.66665649414062 54.999969482421875]
+:strokeType "line"
+:strokeWidth 2
+:opacity 1
+:label "RPC等分布式相关的技术"
+:id "9a070f00-ce9b-11ed-8c2f-6b704b944524"
+:fontWeight 400
+:noFill false
+:point [158.83334350585938 388.1667366027832]
+:fontSize 20
+:parentId "6424e748-ab9f-491f-a1a5-f75876b7d556"
+:nonce 1680140322090
+:italic false}}
+:block/updated-at 1680140811726} 
+{:block/created-at 1680140811726
+:block/properties 
+{:ls-type :whiteboard-shape
+:logseq.tldraw.shape 
+{:stroke "green"
+:rotation 0
+:borderRadius 2
+:index 9
+:scale [1 1]
+:fill "green"
+:type "box"
+:size [147.66665649414062 39.66668701171875]
+:strokeType "line"
+:strokeWidth 2
+:opacity 1
+:label "字节码编程"
+:id "b8bd7470-ce9b-11ed-8c2f-6b704b944524"
+:fontWeight 400
+:noFill false
+:point [189.50009155273438 581.5000190734863]
+:fontSize 20
+:parentId "6424e748-ab9f-491f-a1a5-f75876b7d556"
+:nonce 1680140373708
+:italic false}}
+:block/updated-at 1680140811726} 
+{:block/created-at 1680140811726
+:block/properties 
+{:ls-type :whiteboard-shape
+:logseq.tldraw.shape 
+{:stroke "green"
+:borderRadius 2
+:index 10
+:scale [1 1]
+:fill "green"
+:type "box"
+:size [145.66665649414062 36.3333740234375]
+:strokeType "line"
+:strokeWidth 2
+:opacity 1
+:label "JVM虚拟化技术"
+:id "df2f5fb0-ce9b-11ed-8c2f-6b704b944524"
+:fontWeight 400
+:noFill false
+:point [191.50003051757812 633.5000190734863]
+:fontSize 20
+:parentId "6424e748-ab9f-491f-a1a5-f75876b7d556"
+:nonce 1680140437956
+:italic false}}
+:block/updated-at 1680140811726} 
+{:block/created-at 1680140811726
+:block/properties 
+{:ls-type :whiteboard-shape
+:logseq.tldraw.shape 
+{:stroke "green"
+:borderRadius 2
+:index 11
+:scale [1 1]
+:fill "green"
+:type "box"
+:size [196.33334350585938 49]
+:strokeType "line"
+:strokeWidth 2
+:opacity 1
+:label "微服务体系"
+:id "e78e2a60-ce9b-11ed-8c2f-6b704b944524"
+:fontWeight 400
+:noFill false
+:point [158.83334350585938 512.1667060852051]
+:fontSize 20
+:parentId "6424e748-ab9f-491f-a1a5-f75876b7d556"
+:nonce 1680140451907
+:italic false}}
+:block/updated-at 1680140811726} 
+{:block/created-at 1680140811726
+:block/properties 
+{:ls-type :whiteboard-shape
+:logseq.tldraw.shape 
+{:stroke "green"
+:rotation 0
+:borderRadius 2
+:index 12
+:scale [1 1]
+:fill "green"
+:type "box"
+:size [170.3333740234375 37.66668701171875]
+:strokeType "line"
+:strokeWidth 2
+:opacity 1
+:label "分布式与web3"
+:id "fa5dfdf0-ce9b-11ed-8c2f-6b704b944524"
+:fontWeight 400
+:noFill false
+:point [685.5 404.1667060852051]
+:fontSize 20
+:parentId "6424e748-ab9f-491f-a1a5-f75876b7d556"
+:nonce 1680140483578
+:italic false}}
+:block/updated-at 1680140811726} 
+{:block/created-at 1680140811726
+:block/properties 
+{:ls-type :whiteboard-shape
+:logseq.tldraw.shape 
+{:stroke "green"
+:borderRadius 2
+:index 13
+:scale [1 1]
+:fill "green"
+:type "box"
+:size [183.00006103515625 35.66668701171875]
+:strokeType "line"
+:strokeWidth 2
+:opacity 1
+:label "分布式与金融平台"
+:id "03db5800-ce9c-11ed-8c2f-6b704b944524"
+:fontWeight 400
+:noFill false
+:point [682.1666870117188 464.8333320617676]
+:fontSize 20
+:parentId "6424e748-ab9f-491f-a1a5-f75876b7d556"
+:nonce 1680140499374
+:italic false}}
+:block/updated-at 1680140811726} 
+{:block/created-at 1680140811726
+:block/properties 
+{:ls-type :whiteboard-shape
+:logseq.tldraw.shape 
+{:stroke "green"
+:borderRadius 2
+:index 14
+:scale [1 1]
+:fill "green"
+:type "box"
+:size [186.3333740234375 37]
+:strokeType "line"
+:strokeWidth 2
+:opacity 1
+:label "分布式与机器学习平台"
+:id "0e461f50-ce9c-11ed-8c2f-6b704b944524"
+:fontWeight 400
+:noFill false
+:point [680.166748046875 528.8333320617676]
+:fontSize 20
+:parentId "6424e748-ab9f-491f-a1a5-f75876b7d556"
+:nonce 1680140516914
+:italic false}}
+:block/updated-at 1680140811726} 
+{:block/created-at 1680140811726
+:block/properties 
+{:ls-type :whiteboard-shape
+:logseq.tldraw.shape 
+{:stroke "green"
+:borderRadius 2
+:index 15
+:scale [1 1]
+:fill "green"
+:type "box"
+:size [184.33331298828125 37.666656494140625]
+:strokeType "line"
+:strokeWidth 2
+:opacity 1
+:label "分布式计算"
+:id "5094c320-ce9c-11ed-8c2f-6b704b944524"
+:fontWeight 400
+:noFill false
+:point [425.5 394.8333435058594]
+:fontSize 20
+:parentId "6424e748-ab9f-491f-a1a5-f75876b7d556"
+:nonce 1680140628151
+:italic false}}
+:block/updated-at 1680140811726} 
+{:block/created-at 1680140811726
+:block/properties 
+{:ls-type :whiteboard-shape
+:logseq.tldraw.shape 
+{:stroke "green"
+:borderRadius 2
+:index 16
+:scale [1 1]
+:fill "green"
+:type "box"
+:size [183.66668701171875 38.3333740234375]
+:strokeType "line"
+:strokeWidth 2
+:opacity 1
+:label "分布式算法"
+:id "650f3970-ce9c-11ed-8c2f-6b704b944524"
+:fontWeight 400
+:noFill false
+:point [430.16668701171875 454.8333320617676]
+:fontSize 20
+:parentId "6424e748-ab9f-491f-a1a5-f75876b7d556"
+:nonce 1680140662530
+:italic false}}
+:block/updated-at 1680140811726} 
+{:block/created-at 1680140811726
+:block/properties 
+{:ls-type :whiteboard-shape
+:logseq.tldraw.shape 
+{:stroke "gray"
+:index 17
+:scale [1 1]
+:scaleLevel "xs"
+:fill "gray"
+:type "line"
+:strokeType "line"
+:strokeWidth 1
+:opacity 1
+:label ""
+:id "78d49092-ce9c-11ed-8c2f-6b704b944524"
+:fontWeight 400
+:noFill true
+:point [263.83 263.83]
+:fontSize 10
+:handles 
+{:start 
+{:id "start"
+:canBind true
+:point [169.75 0]
+:bindingId "78d49090-ce9c-11ed-8c2f-6b704b944524"}
+:end 
+{:id "end"
+:canBind true
+:point [0 49.33]
+:bindingId nil}}
+:decorations 
+{:end "arrow"}
+:parentId "6424e748-ab9f-491f-a1a5-f75876b7d556"
+:nonce 1680140695639
+:italic false}}
+:block/updated-at 1680140811726} 
+{:block/created-at 1680140811726
+:block/properties 
+{:ls-type :whiteboard-shape
+:logseq.tldraw.shape 
+{:stroke "gray"
+:index 18
+:scale [1 1]
+:scaleLevel "xs"
+:fill "gray"
+:type "line"
+:strokeType "line"
+:strokeWidth 1
+:opacity 1
+:label ""
+:id "861470e2-ce9c-11ed-8c2f-6b704b944524"
+:fontWeight 400
+:noFill true
+:point [510.2 263.5]
+:fontSize 10
+:handles 
+{:start 
+{:id "start"
+:canBind true
+:point [1.97 0]}
+:end 
+{:id "end"
+:canBind true
+:point [0 50.67]
+:bindingId "861470e1-ce9c-11ed-8c2f-6b704b944524"}}
+:decorations 
+{:end "arrow"}
+:parentId "6424e748-ab9f-491f-a1a5-f75876b7d556"
+:nonce 1680140717835
+:italic false}}
+:block/updated-at 1680140811726} 
+{:block/created-at 1680140811725
+:block/properties 
+{:ls-type :whiteboard-shape
+:logseq.tldraw.shape 
+{:stroke "gray"
+:index 19
+:scale [1 1]
+:scaleLevel "xs"
+:fill "gray"
+:type "line"
+:strokeType "line"
+:strokeWidth 1
+:opacity 1
+:label ""
+:id "96a550f2-ce9c-11ed-8c2f-6b704b944524"
+:fontWeight 400
+:noFill true
+:point [600.8333740234375 266.8333320617676 0.5]
+:fontSize 10
+:handles 
+{:start 
+{:id "start"
+:canBind true
+:point [0 0]}
+:end 
+{:id "end"
+:canBind true
+:point [169.67 45]
+:bindingId nil}}
+:decorations 
+{:end "arrow"}
+:parentId "6424e748-ab9f-491f-a1a5-f75876b7d556"
+:nonce 1680140745629
+:italic false}}
+:block/updated-at 1680140811725} 
+{:block/created-at 1680140811726
+:block/properties 
+{:ls-type :whiteboard-shape
+:logseq.tldraw.shape 
+{:stroke "gray"
+:borderRadius 2
+:index 2
+:scale [1 1]
+:fill "gray"
+:type "box"
+:size [257.0000305175781 329]
+:strokeType "line"
+:strokeWidth 2
+:opacity 1
+:label ""
+:id "9cb96850-ce9c-11ed-8c2f-6b704b944524"
+:fontWeight 400
+:noFill false
+:point [125.50003051757812 373.4999580383301]
+:fontSize 20
+:parentId "6424e748-ab9f-491f-a1a5-f75876b7d556"
+:nonce 1680140755856
+:italic false}}
+:block/updated-at 1680140811726} 
+{:block/created-at 1680140811726
+:block/properties 
+{:ls-type :whiteboard-shape
+:logseq.tldraw.shape 
+{:stroke "gray"
+:borderRadius 2
+:index 1
+:scale [1 1]
+:fill "gray"
+:type "box"
+:size [236.33331298828125 327.6666564941406]
+:strokeType "line"
+:strokeWidth 2
+:opacity 1
+:label ""
+:id "a82e2590-ce9c-11ed-8c2f-6b704b944524"
+:fontWeight 400
+:noFill false
+:point [406.8333740234375 371.50004959106445]
+:fontSize 20
+:parentId "6424e748-ab9f-491f-a1a5-f75876b7d556"
+:nonce 1680140775109
+:italic false}}
+:block/updated-at 1680140811726} 
+{:block/created-at 1680140811726
+:block/properties 
+{:ls-type :whiteboard-shape
+:logseq.tldraw.shape 
+{:stroke "gray"
+:rotation 0
+:borderRadius 2
+:index 0
+:scale [1 1]
+:fill "gray"
+:type "box"
+:size [236.3333740234375 327]
+:strokeType "line"
+:strokeWidth 2
+:opacity 1
+:label ""
+:id "b48ea260-ce9c-11ed-8c2f-6b704b944524"
+:fontWeight 400
+:noFill false
+:point [659.5 372.8333740234375]
+:fontSize 20
+:parentId "6424e748-ab9f-491f-a1a5-f75876b7d556"
+:nonce 1680140795911
+:italic false}}
+:block/updated-at 1680140811726})
+:pages (
+{:block/uuid #uuid "6424e748-ab9f-491f-a1a5-f75876b7d556"
+:block/properties 
+{:ls-type :whiteboard-page
+:logseq.tldraw.page 
+{:id "6424e748-ab9f-491f-a1a5-f75876b7d556"
+:name "myroad"
+:bindings 
+{:78d49090-ce9c-11ed-8c2f-6b704b944524 
+{:id "78d49090-ce9c-11ed-8c2f-6b704b944524"
+:type "line"
+:fromId "78d49092-ce9c-11ed-8c2f-6b704b944524"
+:toId "35fe89c0-ce9b-11ed-8c2f-6b704b944524"
+:handleId "start"
+:point [0.5 0.5]
+:distance 4}
+:861470e1-ce9c-11ed-8c2f-6b704b944524 
+{:id "861470e1-ce9c-11ed-8c2f-6b704b944524"
+:type "line"
+:fromId "861470e2-ce9c-11ed-8c2f-6b704b944524"
+:toId "625bceb0-ce9b-11ed-8c2f-6b704b944524"
+:handleId "end"
+:point [0.48 0.51]
+:distance 4}}
+:nonce 1
+:assets []
+:shapes-index ("b48ea260-ce9c-11ed-8c2f-6b704b944524" "a82e2590-ce9c-11ed-8c2f-6b704b944524" "9cb96850-ce9c-11ed-8c2f-6b704b944524" "35fe89c0-ce9b-11ed-8c2f-6b704b944524" "51153330-ce9b-11ed-8c2f-6b704b944524" "625bceb0-ce9b-11ed-8c2f-6b704b944524" "69bed440-ce9b-11ed-8c2f-6b704b944524" "88321630-ce9b-11ed-8c2f-6b704b944524" "9a070f00-ce9b-11ed-8c2f-6b704b944524" "b8bd7470-ce9b-11ed-8c2f-6b704b944524" "df2f5fb0-ce9b-11ed-8c2f-6b704b944524" "e78e2a60-ce9b-11ed-8c2f-6b704b944524" "fa5dfdf0-ce9b-11ed-8c2f-6b704b944524" "03db5800-ce9c-11ed-8c2f-6b704b944524" "0e461f50-ce9c-11ed-8c2f-6b704b944524" "5094c320-ce9c-11ed-8c2f-6b704b944524" "650f3970-ce9c-11ed-8c2f-6b704b944524" "78d49092-ce9c-11ed-8c2f-6b704b944524" "861470e2-ce9c-11ed-8c2f-6b704b944524" "96a550f2-ce9c-11ed-8c2f-6b704b944524")}}
+:block/updated-at 1680140811725
+:block/created-at 1680140104010
+:block/type "whiteboard"
+:block/name "myroad"
+:block/original-name "MyRoad"})}

@@ -1,0 +1,7 @@
+- 🛤️[[CelebrityFailuresManager]]
+	- intro: 对各种名人或者经典的未能完成事件进行分析
+- 😈[[OrdinaryFailuresManager]]
+	- intro: 对身边人未能完成的事情进行分析
+- 🥎[[MyFailuresManager]] [[self]]
+	- intro: 对自己未能完成的事情进行分析
+	-

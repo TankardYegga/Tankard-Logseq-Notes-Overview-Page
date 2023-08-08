@@ -1,0 +1,189 @@
+- [[breast]] [[ultrasound]] [[segmentation]][[fusion]] [[important-paper]]
+	- [[CF2-Net: Coarse-to-Fine Fusion Convolutional Network for Breast Ultrasound Image Segmentation]]
+-
+- [[breast]] [[ultrasound]] [[segmentation]] [[classfication]][[attention]][[important-paper]][[background-well-written]]
+	- [[Segmentation information with attention integration for classification of breast tumor in ultrasound image]]
+-
+- [[breast]] [[ultrasound]] [[classfication]][[multi-input]] [[important-paper]]
+	- [[Breast ultrasound tumor image classification using image decomposition and fusion based on adaptive multi-model spatial feature fusion]]
+-
+- [[detection]][[fusion]]
+	- [[Learning spatial fusion for single-shot object detection, (2019)]]
+-
+- [[breast]] [[segmentation]] [[ultrasound]] [[boundary-aware]] [[important-paper]]
+	- [[Global guidance network for breast lesion segmentation in ultrasound images]]
+-
+- [[Multi-Modal Graph Learning for Disease Prediction(TMI)]]
+-
+- [[Edge]][[ICCV]]
+	- [[2021 [ICCV] Pixel Difference Networks for Efficient Edge Detection]]
+-
+- [[CVPR]]
+	- [[2017 [CVPR] Local Binary Convolutional Neural Networks]]
+-
+- [[MICCAI]][[brain]][[contrast-learning]]
+	- [[2022 [MICCAI] Joint Prediction of Meningioma Grade and Brain Invasion via Task-Aware Contrastive Learning]]
+-
+- [[MICCAI]]
+	- [[2022 [MICCAI] Learning Robust Representation for Joint Grading of Ophthalmic Diseases via Adaptive Curriculum and Feature Disentanglement]]
+-
+- [[breast]] [[ultrasound]]
+	- [[2022 Breast Tumor Classification Based on MRI-US Images by Disentangling Modality Features]]
+-
+- [[multi-task]][[survey]]
+	- [[2021 Multi-task learning for dense prediction tasks - A survey]]
+-
+- [[multi-modal]] [[survey]]
+	- [[2019 Multimodal Machine Learning - A Survey and Taxonomy]]
+-
+- [[Co-teaching: Robust training of deep neural networks with extremely noisy labels,]]
+-
+- [[breast]][[classfication]]
+	- [[Hybrid Approach of Relation Network and Localized Graph Convolutional Filtering for Breast Cancer Subtype Classification. IJCAI 2018]]
+-
+- [[breast]] [[mammograms]] [[detection]]
+	- [[Cascaded Generative and Discriminative Learning for Microcalcification Detection in Breast Mammograms. CVPR 2019]]
+-
+- [[DeepLearning]] [[breast]]
+	- [[Breast Microcalcification Diagnosis Using Deep Convolutional Neural Network from Digital Mammograms. Comput. Math. Methods Medicine 2019: 2717454:1-2717454:10 (2019)]]
+-
+- [[detection]] [[DeepLearning]]
+	- [[Computer-aided detection and diagnosis of microcalcification clusters  (2020)]]
+-
+- [[MICCAI]][[2022]] [[diffusion]]
+	- [[LambdaUNet: 2.5D Stroke Lesion Segmentation of Diffusion-Weighted MR Images]]
+-
+- [[MICCAI]][[2021]] [[diffusion]]
+	- [[LambdaUNet: 2.5D Stroke Lesion Segmentation of Diffusion-Weighted MR Images]]
+-
+- [[MICCAI]][[2006]] [[ultrasound]] [[diffusion]]
+	- [[Multiscale Nonlinear Diffusion and Shock Filter for Ultrasound Image Enhancement]]
+-
+- [[ICLR]][[2022]] [[diffusion]] [[segmentation]]
+	- [[LABEL-EFFICIENT SEMANTIC SEGMENTATION WITH DIffusion Models]]
+-
+-
+-
+- [[Combining VGG16, Mask R-CNN and Inception V3 to identify the benign and malignant of breast microcalcification clusters. iFUZZY 2020]]
+-
+- [[A Mixture of Views Network With Applications to the Classification of Breast Microcalcifications. ISBI 2019: 1065-1069]]
+-
+- [[A multi-view deep learning architecture for classification of breast microcalcifications. ISBI 2016: 726-730]]
+-
+- [[Ensemble of convolutional neural networks for classification of breast microcalcification from mammograms. EMBC 2017: 689-692]]
+-
+- [[	S. R. Sannasi Chakravarthy, Harikumar Rajaguru:Detection and classification of microcalcification from digital mammograms with firefly algorithm, extreme learning machine and non-linear regression models: A comparison. Int. J. Imaging Syst. Technol. 30(1): 126-146 (2020)]]
+-
+- [[Fanizzi, Annarita, et al. "Ensemble discrete wavelet transform and gray-level co-occurrence matrix for microcalcification cluster classification in digital mammography." Applied Sciences 9.24 (2019): 5388.]]
+-
+- [[Evaluation of Graph Topological Features in Digitized Mammogram for Microcalcification Cluster Classification. DICTA 2018: 1-7]]
+-
+- [[Automatic classification of clustered microcalcifications in digitized mammogram using ensemble learning. IWBI 2018: 1071816]]
+-
+- [[Classification of Microcalcification Clusters in Digital Mammograms Using a Stack Generalization Based Classifier. J. Imaging 5(9): 76 (2019)]]
+-
+- [[ISBI 2019:1061-1064 Limiting Level of False-Positive Detections in Classification of Microcalcification Clusters in Mammograms. ]]
+-
+- [[Modeling and Classifying Breast Tissue Density in Mammograms. CVPR (2) 2006]]
+-
+- [[Breast cancer: Classification of suspicious regions in digital mammograms based on capsule network. Biomed. Signal Process. Control. 76: 103696 (2022)]]
+-
+- [[multi-task]]
+	- [[A Novelty Detection Approach to Classification of Breast Tissue Containing Microcalcifications. RACS 2017: 100-103]]
+-
+- [[multi-task]]
+	- [[Self-adverisal learning for Detection of Clustered Microcalcifications in Mammograms]]
+-
+- [[ultrasound]]
+	- [[Automated Heart Wall Motion Abnormality Detection from Ultrasound Images Using Bayesian Networks. IJCAI 2007]]
+-
+- [[ICASSP-2022-BOUNDARY-AWARE BIAS LOSS FOR TRANSFORMER-BASED AERIAL IMAGE SEGMENTATION MODEL]]
+-
+- [[ICASSP-2022-A NOVEL CONVOLUTIONAL NEURAL NETWORK BASED ON ADAPTIVE MULTI-SCALE AGGREGATION AND BOUNDARY-AWARE FOR LATERAL VENTRICLE SEGMENTATION ON MR IMAGES]]
+-
+- [[boundary-aware]]
+	- [[Boundary IoU: improving object-centric image segmentation evaluation]]
+-
+- [[DeepLearning]] [[segmentation]] [[important-paper]]
+	- [[Ultrasound Image Segmentation: A Deeply Supervised Network With Attention to Boundaries]]
+-
+- [[MICCAI]] [[ultrasound]][[uncertainty-aware]] [[segmentation]] [[boundary-aware]] [[important-paper]]
+	- [[MICCAI-2022-Uncertainty-aware Cascade Network for Ultrasound Image Segmentation with Ambiguous Boundary]]
+-
+- [[boundary-aware]][[GCN]] [[segmentation]]
+	- [[BI-GCN: Boundary-Aware Input-Dependent Graph Convolution Network for Biomedical Image Segmentation]]
+-
+- [[GCN]][[ICPR]][[GCN]] [[boundary-aware]] [[important-paper]]
+	- [[icpr-2020-Boundary-aware Graph Convolution]]
+-
+- [[Biological Instance Segmentation with a Superpixel-Guided Graph]]
+-
+- [[Scale-Aware Graph Neural Network for Few-Shot Semantic Segmentation. CVPR 2021]]
+-
+- [[BIBM-2021-BGRA-Net: Boundary-Guided and Region-Aware Convolutional Neural Network for the Segmentation of Breast Ultrasound Images]]
+-
+- [[boundary-aware]] [[multi-task]] [[ultrasound]]
+	- [[BIBM-2020-Boundary-aware Segmentation Network Using Multi-Task Enhancement for Ultrasound Image]]
+-
+- [[boundary-aware]] [[breast]] [[ultrasound]]
+	- [[EMBC-2019-Boundary-aware Semi-supervised Deep Learning for Breast Ultrasound Computer-Aided Diagnosis]]
+-
+- [[boundary-aware]][[loss]]
+	- [[BMVC-2021-Introducing the Boundary-Aware loss for deep image segmentation]]
+-
+- [[loss]] [[important-paper]]
+	- [[CVPR-2021-InverseForm: A Loss Function for Structured Boundary-Aware Segmentation]]
+-
+- [[GCN]] [[boundary-aware]] [[segmentation]][[bilateral]] [[important-paper]]
+	- [[ICCV-2021-Graph-BAS3Net: Boundary-Aware Semi-Supervised Segmentation Network with Bilateral Graph Convolution]]
+-
+- [[MICCAI]] [[segmentation]] [[boundary-aware]] [[important-paper]]
+	- [[MICCAI-2021-Boundary-Aware Transformers for Skin Lesion Segmentation]]
+-
+- [[boundary-aware]] [[segmentation]] [[important-paper]]
+	- [[Boundary-aware Graph Reasoning for Semantic Segmentation]]
+-
+	- [[edge-aware]][[diffusion]][[point-cloud]] [[segmentation]] [[important-paper]]
+		- [[Interpretable Edge Enhancement and Suppression Learning for 3D Point Cloud Segmentation]]
+-
+- [[important-paper]]
+	- [[MICCAI-2020-CNN-GCN Aggregation Enabled Boundary Regression for Biomedical Image Segmentation]]
+-
+- [[important-paper]]
+	- [[MICCAI-2020-Boundary-Aware Network for Kidney Tumor Segmentation]]
+-
+- [[CVPR-2020-Joint Semantic Segmentation and Boundary Detection Using Iterative Pyramid Contexts]]
+-
+- [[CVPR-2020-Structure Boundary Preserving Segmentation for Medical Image With Ambiguous Boundary]]
+-
+- [[Contrastive Rendering for Ultrasound Image Segmentation]]
+-
+- [[Ultrasound Image Segmentation: A Deeply Supervised Network With Attention to Boundaries]]
+-
+- [[Medical]] [[segmentation]] [[important-paper]]
+	- [[C2FTrans: Coarse-to-Fine Transformers for Medical Image Segmentation]]
+-
+- [[GCN]][[diffusion]]
+	- [[Diffusion-Convolutional Neural Networks]]
+-
+-
+- [[Jan 2nd, 2023]]
+	- [[Residual Feedback Network for BreastLesion Segmentation in Ultrasound Image]]
+	-
+- [[Feb 6th, 2023]]
+	- [[ANYTIME DENSE PREDICTION WITH CONFIDENCE ADAPTIVITY]]
+-
+- [[Feb 27th, 2023]]
+	- [[Understanding  Uncertainty Map in Vision with Statistical Testing]]
+	- [[A Continual Learning Framework for  Uncertainty Aware Interactive Image Segmentation]]
+	- 提出了一种新的评估不确定性的方法：当一个像素的分割结果不一致时，它的相对不确定性就高
+-
+- [[Mar 6th, 2023]]
+	- [[UACANet: Uncertainty Augmented Context Attention for PolypSegmentation]]
+-
+- [[Mar 27th, 2023]]
+	- [[nnUnet]]
+-
+- [[Apr 30th, 2023]]
+	- [[UltraGAN: Ultrasound Enhancement Through Adversarial Generation]]
+	-

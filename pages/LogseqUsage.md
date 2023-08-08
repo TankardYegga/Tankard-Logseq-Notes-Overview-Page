@@ -1,0 +1,11 @@
+- 移动位置后只需要重新re-index即可恢复原始数据
+- 插件下载极慢：
+	- https://cn.logseq.com/t/topic/2489/2
+- 将内容同步到TankardYegga.github.io:
+	- https://docs.logseq.com/#/page/publishing%20(desktop%20app%20only)
+	- https://zhuanlan.zhihu.com/p/344165645
+	- 我的 [[Tankard'sBlogOverview]]
+		- https://tankard-yegga-github-io.vercel.app/#/page/Tankard'sBlogOverview
+		- https://tankardyegga.github.io/
+- 尚不清楚SideBar的作用？
+-

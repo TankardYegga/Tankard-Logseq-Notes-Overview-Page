@@ -1,0 +1,1 @@
+- ![Fooled by Randomness. pdf.pdf](../assets/Fooled_by_Randomness._pdf_1670313601734_0.pdf)

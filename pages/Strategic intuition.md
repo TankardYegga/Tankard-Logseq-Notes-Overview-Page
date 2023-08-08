@@ -1,0 +1,2 @@
+- ![William R. Duggan - Strategic intuition_ the creative spark in human achievement  -Columbia University Press (2007).pdf](../assets/William_R._Duggan_-_Strategic_intuition_the_creative_spark_in_human_achievement_-Columbia_University_Press_(2007)_1687682601751_0.pdf)
+-

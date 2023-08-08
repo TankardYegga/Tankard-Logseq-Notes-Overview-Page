@@ -1,0 +1,49 @@
+title:: AcademicWriting5
+
+- I would like to thank a lot of people for the successful completion of this assertation.
+- My great gratitude first goes to my academic supervisor, Professor Yang Chen, for his enthusiastic help, continued encouragement, and professional guidance during the three years of academic research.  Without his pushing me forward, I could not have made so many achievements and completed my graduation project so successfully. His strong capability in social networking and transaction management is another precious wealth that will benefit me for the whole of my life. Also, his high-quality character especially respect for students' choices will affect me in future life.
+- I would like to extend my special thanks to all the other professional educators in the Imaging Science Laboratory, including Professor Chunfeng Yang, Professor Jiasong Wu, and Professor Huazhong Shu, who offer great help both in the fulfillment of my thesis and the planning of my career development.
+- I also would like to express my thanks to my friends especially my roommates for their support in different ways such as mutual discussion on scholar issues, tolerance for my sometimes improper behavior, and pats on my back.
+-
+- Graph 1 above shows the development of the sales amount in a week, in which the horizontal axis ranges from Monday to Sunday in line with the international standard IS0 8601, and the vertical axis represents pure unitless sales figures ( i.e. the number of goods sold out) with an interval of 500. Details about the company, time, and place were not provided here due to the need for privacy protection.
+- From the line chart, we can see that the sales amount experienced a process of rising gradually,  then falling rapidly on weekdays and finally growing sharply in weekends. There are two peaks, one is reached on Wednesday with a value of 1660 and another is reached on Saturday with a maximum value of 1920. In addition, the number is much higher on weekends than on weekdays in the whole picture.
+- To sum up,  people tend to purchase more on weekends than on weekdays caused obviously by the free time available in the two periods. It was interesting to find that Wednesday is the peak shopping period of the weekday.
+-
+- 总结：
+	- 现象：
+		- 不管第二外语的熟练度如何，僵化的测试系统都会在心理上影响学生
+		- 在测试任何阶段的焦虑对于更好的表现有影响，特别是考试前和考试中
+		- 考试后的焦虑若被带到其他考试，也会有影响；
+		- 会造成教育测量的系统性误判，影响教育分流和就业选拔过程
+	- 原因分析：
+		- 老师在缓解焦虑方面目前没有发挥作用
+			- 老师没有意识到这是一个问题
+			- 教学大纲并未对此做出规定，对这些进行处理需要付出额外的时间和精力
+	- 建议：
+		- 数字测试分数应当被评级系统所替代，这将减少学生之间和老师之间的竞争
+			- 需要面向技能的测试方法
+		- 允许学生参与测试的开发，将对学生学习第二外语产生正面影响
+		- 关于减少测试焦虑的不利影响，老师和法律制定者应该增加重视
+- The research had a major finding that students tended to be affected easily on the psychological level regardless of their proficiency level in a second language due to the rigidity of existing testing systems. The process of test can be categorized chronologically into pre-test, testing, and post-test stage, in which the first and second stages are in a direct link with testing results, and the last stage may have a negative impact when anxieties are passed between exams. The small miscalculations on individual academic performance would interfere greatly with the process of education streaming and employee recruiting.
+- The guiding role that teachers are supposed to play in easing anxiety was not born. On one hand, recognition of this problem was not made by most teachers; on the other hand, extra efforts and time out of regulated syllabus coping with the issue were unwillingly devoted.
+- Some suggestions were proposed to solve these challenges.  Firstly, the replacement of numerical scoring with a grading strategy is needed to reduce the competition within the groups of students or parents; then direct participation in the development of the test items is allowed to increase students' motivation of learning; finally, more attention should be paid by teachers and lawmakers to the control of adverse effects of test anxiety.
+- Further research on the methodology of improving the testing mechanism and managing test anxieties is worth exploring.
+-
+- In this regard,
+- Briefly
+- Note that
+- leverage
+- After that
+- Moreover
+- tend to
+- in this section
+- in our method
+- Two examples are shown to illustrate ...
+- we argue that
+- inner dependencies
+-
+-
+-
+- Hello, I'm Liuwen Zou. I am responsible for the data collection part of the method section. Three steps here to walk through the procedure of data collection. In the first step, we identified all post graduates in southeast university as the subject. The group has certain life experiences, meaning a higher involvement in the risk phenomena; they're open minded to give more comprehensive opinions. Then two tools were employed in step 2 to perform the data collection. The first one is online questionnaire. The design, the revision and the production and distribution were the core three sub steps. We combined literacy resources and ready made templates to form the four dimensions to be considered, which are demographic variables perceived risk, perceived convenience and self efficacy.   The online sheet was spread out through the snowball effect of social network.  The second one is off line street interview. Two open questions were proposed:  the particularly bothering part,  the prediction for technology trends.  It was during the lunch rush at the main entrance of the cafeteria we done this.  Extra attention was was paid to other requirements such as completely voluntary,  results converted to manuscript finally.  After that, we processed the data.  For questionnaire, we removed irrelevant results,  103 were selected.  Four manuscripts, only those with enlightening values, which in our case, 3 out of 10 were selected. When coming to my writing schema， four basic principles, three source of help and two special attention. Remember to write the content in an easy-to 
+  -understand way and make an evaluation.
+-

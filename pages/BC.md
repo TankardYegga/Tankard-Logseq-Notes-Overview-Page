@@ -1,0 +1,7 @@
+- [[BCPNP]]
+	- https://www.welcomebc.ca/Immigrate-to-B-C/documents/BC-PNP-IPG-EEBC-IPG-Eligible-Programs-of-Study.aspx
+- https://www.welcomebc.ca/In-Your-Language/documents/T45285_ChineseSimplified.aspx
+- [[GeographyInfo]]
+	- https://gisgeography.com/british-columbia-map/
+	- 正如车牌上的格言 "美丽的不列颠哥伦比亚省"，它被郁郁葱葱的公园、荒野和加拿大落基山脉所包围。它的东部与阿尔伯塔省、育空地区和西北地区接壤，南部与华盛顿州、爱达荷州和蒙大拿州相邻。**尽管维多利亚是不列颠哥伦比亚省的首府**，但温哥华是人口最多的地方，有200多万人。总的来说，它是加拿大第三大的都市区。其他主要城市有维多利亚、基洛纳和阿博茨福德，是接下来最大的城区。
+	-

@@ -1,0 +1,6 @@
+- ![image.png](../assets/image_1652957123694_0.png)
+	- super在位置上表示“在上面”，trans表示变换位置（transform）, under表示在什么什么底下
+	- uni表示“单一”， uniform制服、unique独一无二的、united表示联合成一块的；bi、di、twi、du都表示二：【1】bicyle也就是两个圈，两个轮子也就是自行车【2】di之所以表示二是因为d和b是成镜像关系的字母，最早起源的时候d和b就是一个字符，divide表示分成两块，也就是划分，【3】twi来自单词two, twice、twins，twilight两个光表示黎明、傍晚、暮光之城【4】du，印度人说一二三发音是one du three, dual是双重的，duel是决斗（两个人打架）、duet是二重唱二重奏；centi表示百；milli表示千；mono表示单一，monday是星期一; in order to keep the peace around the world, we require multi-national cooperation;
+	- hyper在程度上也表示过分，发音很像high, hyper-tension是高张力、高血压；well表示好、还不错地， well-educated表示受到良好教育地
+	- co表示合作；mal表示坏的，mis表示错的，maltreat表示不好地对待也就是虐待，mistake表示错误，错事并不一定是坏事，比如打破了水杯是一件错事但不是一件坏事；self表示自己地，self-employed表示自己雇佣自己地
+	- anti表示反对，antibody抗体、antibiotic抗生素；counter也表示反对；pro表示支持，pros支持点；

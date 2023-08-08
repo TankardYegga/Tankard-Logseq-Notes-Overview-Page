@@ -1,0 +1,4 @@
+- # write at the beginning
+- 与其要求自己做到这做到那，不如避免去做一些让自己不够满意的事
+- # Sequence Recording
+-

@@ -1,0 +1,7 @@
+title:: A Mixture of Views Network With Applications to the Classification of Breast Microcalcifications. ISBI 2019: 1065-1069
+
+- In this paper, we examine data fusion methods for multiview data classification. We present a decision concept that explicitly takes into account the input multi-view structure, where for each case there is a different subset of relevant views. This data fusion concept,
+  which we dub Mixture of Views, is implemented by a special purpose neural network architecture. It is demonstrated on the task of classifying breast microcalcifications as benign or malignant based on CC and MLO mammography views. The single view decisions are combined by a data-driven decision, according to the relevance of each view in a given case,
+  into a global decision. The method is evaluated on a large multi-view dataset extracted from the standardized digital database for screening mammography (DDSM). The experimental results show that our method outperforms previously suggested fusion methods.
+- 在本文中，**我们研究了多视图数据分类的数据融合方法。这种数据融合概念，我们称之为混合视图，是由一种特殊用途的神经网络架构实现的**。 它在基于 CC 和 MLO 乳房 X 线摄影视图将乳房微钙化分类为良性或恶性的任务中得到证实。 根据给定案例中每个视图的相关性，单个视图决策由数据驱动的决策组合成全局决策。 该方法在从标准化数字数据库中提取的大型多视图数据集上进行评估，用于筛查乳房 X 光检查 (DDSM)。 实验结果表明，我们的方法优于以前建议的融合方法。
+-

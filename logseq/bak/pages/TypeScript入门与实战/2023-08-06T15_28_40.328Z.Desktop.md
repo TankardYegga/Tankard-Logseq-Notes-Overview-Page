@@ -1,0 +1,20 @@
+public:: true
+tags:: 书
+分类:: [[计算机-编程设计]]
+作者:: [[钟胜平编著]]
+出版社:: [[机械工业出版社]]
+出版日期:: [[Nov 1st, 2020]]
+ISBN:: 9787111669722
+已读完:: 否
+来源:: [[微信读书]]
+书籍id:: 35433566
+版本:: 509661387
+封面:: ![](https://weread-1258476243.file.myqcloud.com/weread/cover/75/YueWen_35433566/s_YueWen_35433566.jpg){:width 80}
+
+- [[简介]]
+  heading:: true
+  部分:: 简介
+	- TypeScript是一个开源的、跨平台且带有类型系统的avaScript超集，可以编译为纯JavaScript，然后运行在任意浏览器和其他环境中，使开发者可以使用一些未来JavaScript标准（ECMAScript 6和7）中的特性。TypeScript为JavaScript添加了可选的静态类型、类和模块，可使大型JavaScript应用使用更好的工具，并保持更清晰的结构。本书系统化介绍TypeScript程序设计，包括四大部分。第一篇“初识TypeScript”介绍TypeScript与JavaScript的关系以及快速开始编写第一个TypeScript程序，第二篇“TypeScript语言概览”介绍TypeScript语言基础、迭代器与生成器、装饰器、命名空间、模块等。第三篇“TypeScript类型系统”介绍TypeScript类型，如面量、枚举、非Nullable、非Nullable等，还介绍了更多高级类型，如联合、交叉、索引、映射对象、泛型、类类型、接口、类型别名、多态的this、有条件类型、类型查询、类型断言等，最后介绍类型更深入内容，如类型声明合并、类型推论、类型兼容性、外部类型声明、编写声明文件等。第四篇“TypeScript应用”通过综合案例介绍TypeScript的配置管理、开发技巧等。
+- [[笔记]]
+  heading:: true
+  部分:: 笔记

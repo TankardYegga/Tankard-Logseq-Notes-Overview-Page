@@ -1,0 +1,7 @@
+- # Ambition
+	- rebuild the link between daily learning and knowledge system already possessed.
+- # ReLinking Items
+	- [[MixedKnowledge]]
+	- [[DialogueLearning]]
+	- [[WeChatPublicContentReorganization]]
+	-
