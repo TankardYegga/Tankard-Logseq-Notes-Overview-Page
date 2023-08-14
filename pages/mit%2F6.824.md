@@ -1172,12 +1172,56 @@ id:: 64d0a734-57b6-4e01-9774-71ff7ac30109
 			- defer返回的结果是在function return之前的那个点执行，而不是在basic block return之前的那个点
 		- ![image.png](../assets/image_1691979508070_0.png)
 			- 继续补充zookeeper logs的知识
-	- Zookeeper的场景回顾？
+	- Zookeeper的场景回顾 以及 zookeeper lock相关的内容 有哪些呢？
+	  collapsed:: true
 		- ![image.png](../assets/image_1691980004647_0.png)
 			- 上图中的圆圈代表的是Zookeeper Service, 使用tree结构来存储state；client向zookeeper service发送create命令，operation先进入service，service将使用底层的replication library ZAB，ZAB使得operation在不同的server之间进行通信，最后zookeeper service apply this operation并把结果返回给client
 			- Zookeeper允许每个服务器或者说peer接受read请求，这使得集群的读性能可以随着服务器数量的增加而提高，但是这种思路的flip side就是它放弃了linearizablitity。在raft中无法让每个服务器都执行read的原因是，不是每个服务器都见到了最新的更新操作，比如9个机器组成的集群，可能只有5/9 见到了最新的写操作；在zookeeper中也会面临同样的问题，这通过改变correctness guarantee来解决，这个correctness guarantee对于 “写 关注于configuration或者coordination的set of programs”来说是非常有用的; zookeeper is really intended for the master or coordinator rule, 它提供了一系列的primitive来使得这个目的doable，主要涉及atomic increment和lock两个方面，上一节课主要讲述了atomic increment相关的内容，这一节主要讨论lock相关
 		- ![image.png](../assets/image_1691981898785_0.png)
-			- 第一个关于lock的是acquire operation：上图中的while块给出了对应的伪代码。首先，创建名为“lf”的log file，并将ephemeral设置为true，如果创建成功并且成功获得了lock，那么就会退出for loop，如果没有的话，那么就
-		-
+			- 第一个关于lock的是acquire operation：上图中的while块给出了对应的伪代码。首先，创建名为“lf”的log file，并将ephemeral设置为true，如果创建成功并且成功获得了log，那么就会退出for loop；如果没有创建文件的话，那么就判断exits( "fl", watch),  其中的watch被设置为true，很显然我们必然知道这里的“fl”文件是不被当前进程所创建成功的（其他的某一个进程率先创建了“fl”文件，当其他的这个进程创建完成后，当前进程的exits判断就为true），这里主要是为了设置watch，当file actually disappear时watch将会go off，client会收到一个关于file disappear的notification，所以我们在这里需要做的就只是等待notification
+			- 第二个关于lock的是release operation：只需要向zookeeper service发送一个delete “lf”这个log file的operation。当这个删除的operation被发送给zookeeper service之后，会使得所有的文件都go away，会fire  the watch, 会使得所有的客户端都等待通知，一旦得到通知，它们就会进行重试，其中的一个客户端会重试成功，我们将会获得log file或者创建log file, 而其他的客户端将会call exists并且将会等待notification
+			  collapsed:: true
+				- ![image.png](../assets/image_1691984095211_0.png)
+			- Zookeeper的semantic是足够good的，体现在：linearizability for write operations + rules when notifications go off.  这实际上实现了一个faithful的lock，因为当有很多的客户端同时尝试去获得lock时，只有一个客户端将会获得这把lock，而当lock的release完成后，或者当文件被删除后，下一轮中只有一个客户端将会获得这把lock，所以build this foundational primitives and use these primitives that zookeeper offers是有趣的，
+			- 除了这里的watch的角色，另一个重要的角色是：ephemeral
+				- 当客户端cause release之前就crash或者fail了，会发生什么呢？ephemeral files的semantic是：如果zookeeper service已经decide到客户端已经crash了，那么它会执行这个操作，它会代表客户端来remove这个文件，所以即便客户端crash或者fail，zookeeper server decides that at some point the client is done,  那么我们就会移除当前名为“rf”的log file，这会造成notifications将会被发送给其他正在等待的客户端。所以，它是以powerful abstraction来build的primitives，这将在应用中非常有用
+			- 这种实现的downside有哪些呢？
+				- 其中一个被称作“herding effect”：假设你有1000个客户端想去grab the log file 或者 make the log file acquire lock，其中只有一个会成功，其余的999都会去call exists并且等待notification，那么当一个客户端release the file lock或者delete the file，999个客户端会进行重试来获得这把lock，当然只有一个会成功，剩下的998个客户端将会继续重试；每一轮的file disappearance将会造成huge traffic，也就是会bombard zookeeper service，所以这是一个undesirable property。
+				- 这是一个很实际的问题，不管是在小型的多核机器上，还是在当前的这样一种网络消息不是free的设定下。但是，Zookeeper提供的primitive可以使得你构建一个不需要suffer from herding effect的lock：
+					- ![image.png](../assets/image_1691988946918_0.png)
+						- 为什么这个lock会更好呢？
+							- 之前没有得到lock的所有客户端都需要重试，但是这里这些客户端形成了一个line，可以get the log one by one。
+							- 该lock与之前的lock在很多方面有区别，可以参考伪代码中使用primitive进行的实现：
+							  collapsed:: true
+								- create中增加了一个sequential的flag，这意味着在创建文件时，文件的名称包含了顺序的序号，比如第一个文件是lock-0，下一个文件就是lock-1；create命令返回的结果n代表已经创建的文件数量，比如创建lock-0文件的客户端会返回0，创建lock-1文件的客户端会返回1
+									- ![image.png](../assets/image_1691989669527_0.png)
+								- getChildren返回的是创建文件的目录下的所有文件，在这里也就是会返回1000个file或者1000个Znode
+								- 如果n是C中的lowest node，那么意味我们get the lock，比如第一行代码我们返回了0，那么当前客户端是第一个创建lock文件的，那么后续的其他客户端将会创建lock-1、lock-2、lock-3、lock-4等，那么0必然是C中的lowest Znode，所以lock-0首先获得lock；如果不是，那么得不到lock，那么首先找到C中排序刚好在n之前的Znode p，然后put watch on p， 比如当前是创建lock-10文件的客户端，那么n = 10，对应的p就是lock-9的Znode，这也就是说每个客户端都会在previous session上have a watch
+								- 所以，这些lock形成了一个line，当log-i的lock被释放时，那么log-(i+1)文件对应的客户端将会唯一地得到这个lock
+								- zookeeper是怎么判断出客户端已经failed然后因此释放了ephemeral lock呢？
+									- client和zookeeper service之间存在一个session，zookeeper service和client之间会相互发送heartbeats。如果zookeeper service有一段时间没有监听到来自客户端的heartbeat时，那么它就会决定客户端宕机了，就会关闭掉当前的session；客户端可能会尝试给session发送消息，但是session关闭了，所以消息会丢失，任何在那个session之间创建的file都会被删除；当network reconvene或者reveal后，客户端会给那个session重新发送消息，zookeeper servers会说“这些session已经不再存在了，你得重试或者重新启动一个new session”
+								-
+							- 这种特殊类型的lock在multi-core programming中被叫做ticket locks，zookeeper提供的primitive足够powerful，使得我们能够构建这样的lock
+						- 需要注意的是zookeeper lock和go locks or mutexes具有完全不同的语义，它们不如go locks那样strong，是吗？
+							- 是的，当lock holder fail了，那么zookeeper能够决定lock holder确实已经真的fail了，那么我们有可能会看到一些intermediate state。locks的whole rule是关于某个critical session，一些不变量（invariant）为true，当当前进程 go through the  critical session时，那个invariant可能不为true，但是在最后会重建invariants，在这里的情况像是，一个客户端要求lock、does some steps，然后zookeeper会决定：客户端决定要decline the crash and basically revokes lock，系统可能会处于某些intermediate state中，因为那个invariant的return值（return on that invariant）不是true，所以“这些lock files保证critical section的atomicity”并不是真实情况 [[存疑]]
+						- 那么，zookeeper locks在哪些场景（use cases）下是有用的呢？
+							- leader election：
+								- 所有的客户端都想要创建lock file，其中只有一个客户端会成功，成功的那个客户端会成为leader，这个leader在必要时会clean up所有的intermediate state，或者使用ready trick来进行atomic updates （对特定文件进行一系列的写入，但是只在very end来暴露这个文件，这会使得一系列的写入操作变得更加transactional）
+							- soft locks：
+								- 我们有一个map reduce style中的worker，我们想要使得每个worker执行特定的map task只执行一次，一种完成此类“arrangement”任务的方式是针对那个特定的文件 take the lock out， run the computation，然后一旦mapper完成，就去release log files;  so this will cost one mapper in the common case to execute the particular task
+								- 如果在这个过程中mapper fail了，lock将会被release，我们再次执行它，因为someone else将会获得这把锁。在mapreduce的case中重复执行两次任务是可以的，尽管在通常情况下性能优化要求任务尽可能只被执行一次。
+								- 这里的“soft locks”说的就是一个operation可以发生两次，在通常情况没有任何crash的情况下，客户端会take the lock out and do the operation，再然后会释放lock，但是如果客户端halfway crash，那么lock将会被zookeeper自动释放，经过一段时间后客户端将会重新执行一样的map task
+							- 问题：
+								- 如果持有lock的server dies，那么这个lock可以被revoke，在伪代码中如果不传入ephemeral这个flag，那么这种情况是否会发生呢？如果我们不传入这个ephemeral的flag，那么我们是否可以emulate the go locks ?
+								  collapsed:: true
+									- 当没有这个ephemeral时，你创建了一个persistent file，然后客户端dies，所以这个lock会持续存在，没人可以release它，这样就会造成一个deadlock，因为能够释放这个lock的机器已经dead或者crashed了
+									- 可是，不是任何一个能够删除对应的log file的机器都可以被看作是能够释放这个lock吗，比如一个背景进程？如果是那样的，会break其他客户端正在运行的进程，因为其他客户端也会认为自己有相对应的一把lock
+									-
+								- 关于这里的leader election，可以被暴露的中间状态是什么？（intermediate state that could get exposed）
+									- Pure leader election将不会产生任何中间状态，但是通常会创建一个configuration file，正如我们在zookeeper中使用ready trick可以看见的
+									- 也就是写入whole file然后将它原子性地进行转换 （convert it atomically as we name it）
+									-
+							-
+	-
 	-
 -
