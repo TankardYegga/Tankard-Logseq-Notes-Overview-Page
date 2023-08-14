@@ -1258,6 +1258,7 @@ id:: 64d0a734-57b6-4e01-9774-71ff7ac30109
 			- Influential System Design
 			-
 		- Chain Replication的过程是怎么样的？
+		  collapsed:: true
 			- ![image.png](../assets/image_1692016008570_0.png)
 				- tail对应的server专门负责将acknowledgement发送会客户端
 			- ![image.png](../assets/image_1692016047338_0.png)
@@ -1267,34 +1268,57 @@ id:: 64d0a734-57b6-4e01-9774-71ff7ac30109
 					  collapsed:: true
 						- ![image.png](../assets/image_1692016473613_0.png)
 					- 因为在这一点，write操作对于readers来说是visible的，但是在任何其他点之前都是不可见的
-		- Chain Replication中需要仔细理解的地方有哪些呢？
+		- Chain Replication整个过程中需要仔细理解的地方有哪些呢？
+		  collapsed:: true
 			- read operation只包含一个server
+			  collapsed:: true
 				- 在lab3中我们的实现中，read operation需要经过raft、log和所有其他类似的stuff，论文中讨论了optimization，但是read操作总是先走向leader，leader在局部执行操作之前必须先联系服务器中的majority，所以可以知道read操作需要经过的servers是与写操作完全不同的，read and write workload实际上被分散在至少两个servers上
 				- 这里的read operation只需要go to tail，不需要与其他的server进行交流，所以能够立即返回结果
 			- 在no crash的情形下，很容易判定这个scheme能够保证linearizability
+			  collapsed:: true
 				- 因为所有的write操作在head处都是以一种total order的方式被应用的
 				- 当tail接收到那些write操作的update，在commit point它想给客户端发送响应，将request发送回去，此时同一个客户端里面发送了一个read操作，这个read操作将会被发到tail，它将会观察到最新的改变（last change）
 				- 所以，winthin a single client, 所有的操作都是totally ordered，任何在client 1写操作之后的其他客户端的读操作都将能读取到lastest data
 				- 所以，很容易获得intuition，这是能够保证linearizability的
 			- 让head在接受到write operation后就马上返回结果给客户端，而不是让tail来返回结果，这是否会出错，或者是否仍然能够保持great linearizability呢？
+			  collapsed:: true
 				- 这将会break linearizability，这个protocol change会沿着s1、s2、s3不断地传递下去（keep propagating），当head也就是s1接受了write请求，然后把结果立马返回给客户端，然后客户端又向s3发送一个read请求，但是此时第一次的write请求还没有从s1传递到s3，所以此时s3只能返回给客户端之前的数据，而不是最新数据
 				- tail将acknowledgement发送回给客户端之所以重要，是因为一旦tail处理完write操作之后，这实际上就是commit point
 				- 以上讨论的都是没有failure的normal scenario
-			- 当出现crash时，要怎么进行处理呢？
-				- 需要分三种具体的case来处理，分别是head crash，head和tail中的某台机器crash，tail crash，如下图所示（u1, u2, u3是三种操作）：
+		- 当出现crash时，Chain Replication要怎么进行处理呢？
+		  collapsed:: true
+			- 需要分三种具体的case来处理，分别是head crash，head和tail中的某台机器crash，tail crash，如下图所示（u1, u2, u3是三种操作）：
+			  collapsed:: true
+				- ![image.png](../assets/image_1692023546378_0.png)
+			- 当head crash了，要怎么办呢？
+			  collapsed:: true
+				- 配置服务器将会发现head crash，那么只需要cut off当前的head，然后将s2提升为head，后续客户端发送的请求将通过s2来进行处理
+				- 这是最easy的场景，此时原先的head s1将会丢失u3这个操作，但是u3这个操作并没有被commit，这是因为操作都在tail处被commit，所以这是一个fair game，客户端就相当于从来没有观察到u3操作发生过了（这里面的一个假设是操作在这个chain中传递时是按照FIFO的顺序进行的，这可能是通过tcp connection来实现的）
+				- 为什么这里需要configuration server来决定s2成为new head，而不是s2自己来决定自己将要成为head呢？后面这种方式会是valid的吗？
 				  collapsed:: true
-					- ![image.png](../assets/image_1692023546378_0.png)
-				- 当head crash了，要怎么办呢？
-					- 配置服务器将会发现head crash，那么只需要cut off当前的head，然后将s2提升为head，后续客户端发送的请求将通过s2来进行处理
-					- 这是最easy的场景，此时原先的head s1将会丢失u3这个操作，但是u3这个操作并没有被commit，这是因为操作都在tail处被commit，所以这是一个fair game，客户端就相当于从来没有观察到u3操作发生过了（这里面的一个假设是操作在这个chain中传递时是按照FIFO的顺序进行的，这可能是通过tcp connection来实现的）
-					- 为什么这里需要configuration server来决定s2成为new head，而不是s2自己来决定自己将要成为head呢？后面这种方式会是valid的吗？
-					  collapsed:: true
-						- 因为如果让s2来决定，可能会造成split brain现象：因为此时s2可能是与s1出现了网络分区而无法联系到s1，而不是s1宕机了，那么此时将会有两个head s1和s2同时处理command，这会违背having a total order这个属性
-						-
-				- 当中间的一台服务器crash了，要怎么办呢？
-					- ![image.png](../assets/image_1692024490238_0.png)
-					- ![image.png](../assets/image_1692024647139_0.png)
+					- 因为如果让s2来决定，可能会造成split brain现象：因为此时s2可能是与s1出现了网络分区而无法联系到s1，而不是s1宕机了，那么此时将会有两个head s1和s2同时处理command，这会违背having a total order这个属性
 					-
+			- 当中间的一台服务器crash了，要怎么办呢？
+			  collapsed:: true
+				- ![image.png](../assets/image_1692024490238_0.png)
+				- ![image.png](../assets/image_1692024647139_0.png)
+				- s1必须要使得s3 up-to-date，因为s1发送给s2的operations会随着s2的crash而无法发送给s3，在这里s1需要发送给s3 u2和u3这两个操作
 				-
+			- 当tail  crash了，要怎么办呢？
+			  collapsed:: true
+				- ![image.png](../assets/image_1692025105668_0.png)
+				- ![image.png](../assets/image_1692025199763_0.png)
+				- 客户端需要从configuration server那里知道s2成为了新的tail，除此之外无需做什么事，因为没有commited operations丢失
+				- 当s2成为了tail，我们不需要向客户端发送acknowledgement来说明那些已经被自动commit的entries吗？就比如这里s3中的u1已经被commited，我们不需要把这个信息告诉给客户端吗，因为此时成为new tail的s2是不知道这个信息的，不是吗？
+					- 这个问题是存在的，但是解决方法还可以像lab3中那样：客户端将会对u1操作进行重试，然后会有一个duplication detection scheme来进行检测
+					- 论文中没有明确指出应该选择哪一种
+					-
+			- 与raft论文的图7 图8相比，这个case要简单得多，一方面是因为这里所有的operations等各种操作都是沿着replication chain来push down的，另一方面是这里的configuration part被外包给了outsource manager，而关于recovery plan的primary backup part，it is reasonable straightforward
+			-
+			-
+			-
+			-
+		- 如何在复制链中增加一个new replica呢？
+			-
 -
 -
