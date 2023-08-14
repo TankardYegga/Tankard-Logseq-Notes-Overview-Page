@@ -1656,6 +1656,8 @@ collapsed:: true
 					- In recent years, deep learning has achieved significant breakthroughs in various types of tasks. For example, [19] proposed a knowledge graph-based model Rec-RN for item recommendation, while [20] presented an automated video analysis framework to identify the exposure region. Naturally, deep learning methods have also been successfully applied to many medical image analysis tasks, including image classification [][].
 					- In recent years, deep learning has made significant breakthroughs across various types of tasks. For instance, [19] introduced a knowledge graph-based model known as Rec-RN for item recommendation, while [20] developed an automated video analysis framework that enables the identification of the exposure region. Furthermore, it is worth noting that deep learning techniques have also found successful applications in medical image analysis tasks, such as image classification [][].
 		- [[Run]]
+			- TODO 把三个知识星球里面的相关资料给拷贝下来，进行整理
+			-
 			- TODO 刷完三套完整的雅思试卷
 			- DONE 学完车库工程师目前提供的学习内容
 			  :LOGBOOK:

@@ -749,6 +749,7 @@ title:: mit/6.824
 					-
 			-
 		- c 和 d 都可以成为leader
+id:: 64d0a706-c4e1-4692-a428-562e13acd858
 		-
 	- log catchup：
 	  collapsed:: true
@@ -764,11 +765,13 @@ title:: mit/6.824
 					- 因为此时S2将某个人放入S3的log value给擦除了，这可能是dangerous的，所以存在一个corner case。当declare 一个message是commited时，需要特别小心
 					- 将实用下图来说明擦除log的相关issue：
 						- ![AOWH`(EPGDK4H6@M8EI`H69.png](../assets/AOWH`(EPGDK4H6@M8EI`H69_1690649437417_0.png)
+id:: 64d0a706-926c-49d4-a463-3f289b46302c
 							- （a）log 1被everybody都commited了，然后S1或者S2在term 2成为了leader，它们中的leader追加了一个term 2的entry，但是并没有被commited，因为 可以很确定 it is not on the majority
 							- （b）S5 与S1和S2中的leader disconnect了，所以并没有监听到 term 2 的leader的心跳，S5成为了term 3的leader并追加了一个term为3的log entry，这个entry很明显也没有commited，因为不是on the majority
 							- (c)  S5 再次get disconnected，S1成为了term 4的leader，S1将term 2的这个entry给replicate到S3结点了，S1知道实际上这个entry已经有3份copy了，所以它可能deliver这个entry到应用，可是this is not true。关于commit有一些更subtle的reasoning需要去执行：You can commit after the leader has committed one entry in its own term，当前达到majority的entry的term为2，不等于当前leader所在的term 4，这个entry是来自以前的term的，所以 commit rule实际上不会允许commit two immediately to the surface。所以，在你的代码中，关于something是否可以被deliver到applied channel上，需要考虑这一点，需要进行考虑的原因如图de所阐述的那样。
 								- c的情况，在正常的情况下是可能出现的，比如网络延迟了，在term 2的时候的appendentry当s1在term 4的时候 start了之后才到
 								- c中如果term 2的appendentry先到达了S3  已经是majority了 然后term4的log entry到达了  这时term 4同样能commit term2的这个日志；
+id:: 64d0a706-042c-41b8-9956-cd3ce92de041
 								- c到d，就是S1的leader身份又过期了，重新选举，5成为了leader，此时任期是5或者更高
 							- (e) 中当term 4的log entry被replicate到S2, S3之后，已经形成了一个majority，那么这个entry可以被commit，当它被commit之后，之前term内的entry节点就都可以被commit了
 							- 为什么上图所示的擦除过程中，d中不是用count replicas的方式来使得term 2的log entry存活下来呢？
@@ -845,9 +848,13 @@ title:: mit/6.824
 			  collapsed:: true
 				- 对，snapshots是由surface来驱动的，所以surface会时不时地告知raft：我已经完成了一个snapshot，这是我的snapshot，且这个snapshot包括了所有从0到C的operations，然后raft会：写入snapshot，从i位置处truncate log， 将所有的这些info都写入disk中
 				- 当一个follower crash后reboot，会从persistent disk中load snapshots，然后再重建应用的state（key value store）
+id:: 64d0a706-92f9-4303-8fbb-d257f1bf2025
 			- 当log被从i处cut时，剩下的log entry为 [i, n], 此时若有一个new node加入了system，那么这个new node必然没有log前面的一部分，同样也没有snapshot，那么后续该怎么做呢？
+id:: 64d0a706-1261-4649-b66c-5902e3e6258d
 				- 此时raft必须要把snapshot给communicate到follower，这是由leader来发送的。在lab2D中需要实现snapshot RPC or install snapshot RPC
+id:: 64d0a706-a808-4ba5-857a-19ec09c5bfda
 					- ![image.png](../assets/image_1690822469595_0.png)
+id:: 64d0a706-b58d-4586-92fa-c7206808c74b
 					-
 			- 什么时候不能install old snapshot呢？
 			  collapsed:: true
@@ -935,6 +942,7 @@ title:: mit/6.824
 					- 请再形象地解释一下clerk？
 					  collapsed:: true
 						- 功能一：
+id:: 64d0a706-94ba-4c85-9638-a53501e5d8b5
 							- clerk是client所link的一个stub或者一个little library，所以client 发起 puts and gets calls时，实际上clerk是client沟通的接口，clerk同时保存了一些who's leader and who's follower的信息，clerk存储的信息只是当前它认为是这样的，不一定是up-to-date和完全正确的
 							- 当clerk里保存的当前leader是完全正确的，当client发送RPC消息给leader时，它就知道发送的机器就是当前的leader；而当clerk里面保持的leader有误时，接受到RPC消息的机器就会告诉client“我不是当前的leader，你应该发送给当前的leader XXX”，于是client就会转而发送RPC消息给XXX，同时clerk会更新关于当前leader的信息
 						- 功能二：
@@ -1142,6 +1150,7 @@ title:: mit/6.824
 						- V # 代表的是版本号
 						-
 				- 为什么version number是handy的？
+id:: 64d0a734-57b6-4e01-9774-71ff7ac30109
 					- 以下面的counter实现的小例子来进行说明：如果setData中的version number和getData中的version number还是一致的话，那么自增实际上发生了，否则没有发生，这样是为了protect against什么呢？这防止你interleave get and set
 					  collapsed:: true
 						- ![image.png](../assets/image_1691170806807_0.png)
@@ -1156,4 +1165,19 @@ title:: mit/6.824
 		- ![image.png](../assets/image_1691172092761_0.png)
 			- 使用weaker consistency这种trick，将能够导致high performace，以及在出现network partition时能够继续运行
 			-
+- Chain Replication:
+	- 这节课大概讲些什么呢？
+	  collapsed:: true
+		- ![image.png](../assets/image_1691979401228_0.png)
+			- defer返回的结果是在function return之前的那个点执行，而不是在basic block return之前的那个点
+		- ![image.png](../assets/image_1691979508070_0.png)
+			- 继续补充zookeeper logs的知识
+	- Zookeeper的场景回顾？
+		- ![image.png](../assets/image_1691980004647_0.png)
+			- 上图中的圆圈代表的是Zookeeper Service, 使用tree结构来存储state；client向zookeeper service发送create命令，operation先进入service，service将使用底层的replication library ZAB，ZAB使得operation在不同的server之间进行通信，最后zookeeper service apply this operation并把结果返回给client
+			- Zookeeper允许每个服务器或者说peer接受read请求，这使得集群的读性能可以随着服务器数量的增加而提高，但是这种思路的flip side就是它放弃了linearizablitity。在raft中无法让每个服务器都执行read的原因是，不是每个服务器都见到了最新的更新操作，比如9个机器组成的集群，可能只有5/9 见到了最新的写操作；在zookeeper中也会面临同样的问题，这通过改变correctness guarantee来解决，这个correctness guarantee对于 “写 关注于configuration或者coordination的set of programs”来说是非常有用的; zookeeper is really intended for the master or coordinator rule, 它提供了一系列的primitive来使得这个目的doable，主要涉及atomic increment和lock两个方面，上一节课主要讲述了atomic increment相关的内容，这一节主要讨论lock相关
+		- ![image.png](../assets/image_1691981898785_0.png)
+			- 第一个关于lock的是acquire operation：上图中的while块给出了对应的伪代码。首先，创建名为“lf”的log file，并将ephemeral设置为true，如果创建成功并且成功获得了lock，那么就会退出for loop，如果没有的话，那么就
+		-
+	-
 -
