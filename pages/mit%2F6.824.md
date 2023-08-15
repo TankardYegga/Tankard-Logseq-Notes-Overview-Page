@@ -1334,6 +1334,7 @@ title:: mit/6.824
 					-
 				-
 		- Chain Replication的properties和raft的对比？
+		  collapsed:: true
 			- CR 实现了primary / backup schema 但是没有实现 configuration service
 			- chain replication的positive aspect：
 			  collapsed:: true
@@ -1354,7 +1355,21 @@ title:: mit/6.824
 					- ![image.png](../assets/image_1692079979557_0.png)
 						- 论文中把objects也称作volumes,  也就是把原本的single chain改成multiple chain
 					- ![image.png](../assets/image_1692080209880_0.png)
+						- 三个chain上都标记为S1的三台服务器分别是S1的不同shard（分片），存储有不同的内容，三个shard一起才构成了一个完整的S1, 可以观察到在CH1、CH2和CH3中，S1、S2、S3的相对顺序是保持不变的，形成了一种错位有序
 						- 这三个chain上的read operations都go to corresponding tail，而三个chain的tail都是不同的，所以读操作可以并行进行
 						- read performance可以随着chain数量的增多而提高，因为读请求将会被spread到不同的chain上，这达到了与zookeeper类似的性质：read操作的性能会随着服务器数量的增加而相应地scale，但是比zookeeper更好的一点是：这能够maintain linearizability
-						-
+						- 当客户端发起一个read请求时，是客户端自己决定还是configuration server来决定要从哪个chain中读取呢？
+							- 论文中关于这一点没有explicit的说明。但是猜测客户端和服务器通过proxy来进行沟通，在lab4中你将会从配置服务器中下载一份configuration，而这份configuration file中包含了shard assignment
+							- 三个chain上的服务器的顺序需要如此仔细地安排，是为了防止某一个chain oversaturate或者某两个服务器之间有一种特定的link吗？
+							  collapsed:: true
+								- 这个CR scheme并没有很把这一点考虑在内，不如可以想象configuration manager有一个关于network如何lay out的sophisticated model，这个model可以很仔细地考虑chain是怎么搭建完成的（比如在一个chain上放置更多的shard，在另外一个chain上放置更少的shard）
+								-
+							- 为什么变成multiple chain了依旧保持了linearizability呢，怎么理解呢？
+								- 因为基本上没有东西发生改变，在一个单一chain上执行的是primary / backup plan, 而linearizability是在单一chain上被carry over的
+								-
+		- 对前面内容的简单总结？
+		  collapsed:: true
+			- ![image.png](../assets/image_1692085062194_0.png)
+				- lab3中不管是replication还是configuration都使用的是raft
+				-
 -
