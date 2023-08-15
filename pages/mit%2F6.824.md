@@ -1180,7 +1180,6 @@ title:: mit/6.824
 		- ![image.png](../assets/image_1691981898785_0.png)
 			- 第一个关于lock的是acquire operation：上图中的while块给出了对应的伪代码。首先，创建名为“lf”的log file，并将ephemeral设置为true，如果创建成功并且成功获得了log，那么就会退出for loop；如果没有创建文件的话，那么就判断exits( "fl", watch),  其中的watch被设置为true，很显然我们必然知道这里的“fl”文件是不被当前进程所创建成功的（其他的某一个进程率先创建了“fl”文件，当其他的这个进程创建完成后，当前进程的exits判断就为true），这里主要是为了设置watch，当file actually disappear时watch将会go off，client会收到一个关于file disappear的notification，所以我们在这里需要做的就只是等待notification
 			- 第二个关于lock的是release operation：只需要向zookeeper service发送一个delete “lf”这个log file的operation。当这个删除的operation被发送给zookeeper service之后，会使得所有的文件都go away，会fire  the watch, 会使得所有的客户端都等待通知，一旦得到通知，它们就会进行重试，其中的一个客户端会重试成功，我们将会获得log file或者创建log file, 而其他的客户端将会call exists并且将会等待notification
-			  collapsed:: true
 				- ![image.png](../assets/image_1691984095211_0.png)
 			- Zookeeper的semantic是足够good的，体现在：linearizability for write operations + rules when notifications go off.  这实际上实现了一个faithful的lock，因为当有很多的客户端同时尝试去获得lock时，只有一个客户端将会获得这把lock，而当lock的release完成后，或者当文件被删除后，下一轮中只有一个客户端将会获得这把lock，所以build this foundational primitives and use these primitives that zookeeper offers是有趣的，
 			- 除了这里的watch的角色，另一个重要的角色是：ephemeral
@@ -1192,7 +1191,6 @@ title:: mit/6.824
 						- 为什么这个lock会更好呢？
 							- 之前没有得到lock的所有客户端都需要重试，但是这里这些客户端形成了一个line，可以get the log one by one。
 							- 该lock与之前的lock在很多方面有区别，可以参考伪代码中使用primitive进行的实现：
-							  collapsed:: true
 								- create中增加了一个sequential的flag，这意味着在创建文件时，文件的名称包含了顺序的序号，比如第一个文件是lock-0，下一个文件就是lock-1；create命令返回的结果n代表已经创建的文件数量，比如创建lock-0文件的客户端会返回0，创建lock-1文件的客户端会返回1
 									- ![image.png](../assets/image_1691989669527_0.png)
 								- getChildren返回的是创建文件的目录下的所有文件，在这里也就是会返回1000个file或者1000个Znode
@@ -1213,7 +1211,6 @@ title:: mit/6.824
 								- 这里的“soft locks”说的就是一个operation可以发生两次，在通常情况没有任何crash的情况下，客户端会take the lock out and do the operation，再然后会释放lock，但是如果客户端halfway crash，那么lock将会被zookeeper自动释放，经过一段时间后客户端将会重新执行一样的map task
 							- 问题：
 								- 如果持有lock的server dies，那么这个lock可以被revoke，在伪代码中如果不传入ephemeral这个flag，那么这种情况是否会发生呢？如果我们不传入这个ephemeral的flag，那么我们是否可以emulate the go locks ?
-								  collapsed:: true
 									- 当没有这个ephemeral时，你创建了一个persistent file，然后客户端dies，所以这个lock会持续存在，没人可以release它，这样就会造成一个deadlock，因为能够释放这个lock的机器已经dead或者crashed了
 									- 可是，不是任何一个能够删除对应的log file的机器都可以被看作是能够释放这个lock吗，比如一个背景进程？如果是那样的，会break其他客户端正在运行的进程，因为其他客户端也会认为自己有相对应的一把lock
 									-
@@ -1223,6 +1220,7 @@ title:: mit/6.824
 									-
 							-
 	- Chain Replication:
+	  collapsed:: true
 		- 构建RSM (Replicated State Machine) 的方法有哪两种呢？
 		  collapsed:: true
 			- Run all operations using raft or Paxos or any other distributed consensus algorithm
@@ -1233,18 +1231,11 @@ title:: mit/6.824
 				- 配置服务可能内部会使用raft paxos zap等算法，这些配置服务的实现还需要运行primary / backup replication （GFS是一个master，实际上决定了which set of servers hold the trunk， 决定了chunk的replica group，replicated chunk group执行primary/backup replication，chunk中的一个是primary，其他是backups，在primary/backup replication中有对应的protocol）
 				- 这种方法比第一种更为常见
 				-
-				-
-				-
-				-
-				-
-				-
 		- 当key value server要存储的状态达到terabytes数量级，潜在的risk和问题是什么呢？
 		  collapsed:: true
 			- 我们将不得不flush the log very often。checkpoint的size是和key value server的size线性相关的，所以当key value server is gigantic，那么checkpoint的size也会是巨大的，如果任何时候checkpoint将要被发送的话，那么这个检查点文件也会过大了
 			- 在lab2D中new primary需要将snapshot发送给其他的servers，第一种方法会使得snapshot过大。第二种方法中configuration server将会管理更少的state，而primary / backup replication将能够复制大量的数据
 			- 第一种方法中everything is in single component，所以更为简单方便
-			-
-			-
 			-
 		- Chain Replication是用来解决什么问题的？
 		  collapsed:: true
@@ -1265,47 +1256,38 @@ title:: mit/6.824
 				- 当tail 将操作或者说消息应用到state change时，可以被看作是commit point
 				- 可以被看作是commit point的原因是什么呢？
 					- 因为后续的所有读请求(subsequent reads) 总是来自tail， 也就是说如果有其他人或者其他客户端要执行一个read操作，这个操作总是go to tail，并且操作会很快返回给这个“其他客户端”
-					  collapsed:: true
 						- ![image.png](../assets/image_1692016473613_0.png)
 					- 因为在这一点，write操作对于readers来说是visible的，但是在任何其他点之前都是不可见的
 		- Chain Replication整个过程中需要仔细理解的地方有哪些呢？
 		  collapsed:: true
 			- read operation只包含一个server
-			  collapsed:: true
 				- 在lab3中我们的实现中，read operation需要经过raft、log和所有其他类似的stuff，论文中讨论了optimization，但是read操作总是先走向leader，leader在局部执行操作之前必须先联系服务器中的majority，所以可以知道read操作需要经过的servers是与写操作完全不同的，read and write workload实际上被分散在至少两个servers上
 				- 这里的read operation只需要go to tail，不需要与其他的server进行交流，所以能够立即返回结果
 			- 在no crash的情形下，很容易判定这个scheme能够保证linearizability
-			  collapsed:: true
 				- 因为所有的write操作在head处都是以一种total order的方式被应用的
 				- 当tail接收到那些write操作的update，在commit point它想给客户端发送响应，将request发送回去，此时同一个客户端里面发送了一个read操作，这个read操作将会被发到tail，它将会观察到最新的改变（last change）
 				- 所以，winthin a single client, 所有的操作都是totally ordered，任何在client 1写操作之后的其他客户端的读操作都将能读取到lastest data
 				- 所以，很容易获得intuition，这是能够保证linearizability的
 			- 让head在接受到write operation后就马上返回结果给客户端，而不是让tail来返回结果，这是否会出错，或者是否仍然能够保持great linearizability呢？
-			  collapsed:: true
 				- 这将会break linearizability，这个protocol change会沿着s1、s2、s3不断地传递下去（keep propagating），当head也就是s1接受了write请求，然后把结果立马返回给客户端，然后客户端又向s3发送一个read请求，但是此时第一次的write请求还没有从s1传递到s3，所以此时s3只能返回给客户端之前的数据，而不是最新数据
 				- tail将acknowledgement发送回给客户端之所以重要，是因为一旦tail处理完write操作之后，这实际上就是commit point
 				- 以上讨论的都是没有failure的normal scenario
 		- 当出现crash时，Chain Replication要怎么进行处理呢？
 		  collapsed:: true
 			- 需要分三种具体的case来处理，分别是head crash，head和tail中的某台机器crash，tail crash，如下图所示（u1, u2, u3是三种操作）：
-			  collapsed:: true
 				- ![image.png](../assets/image_1692023546378_0.png)
 			- 当head crash了，要怎么办呢？
-			  collapsed:: true
 				- 配置服务器将会发现head crash，那么只需要cut off当前的head，然后将s2提升为head，后续客户端发送的请求将通过s2来进行处理
 				- 这是最easy的场景，此时原先的head s1将会丢失u3这个操作，但是u3这个操作并没有被commit，这是因为操作都在tail处被commit，所以这是一个fair game，客户端就相当于从来没有观察到u3操作发生过了（这里面的一个假设是操作在这个chain中传递时是按照FIFO的顺序进行的，这可能是通过tcp connection来实现的）
 				- 为什么这里需要configuration server来决定s2成为new head，而不是s2自己来决定自己将要成为head呢？后面这种方式会是valid的吗？
-				  collapsed:: true
 					- 因为如果让s2来决定，可能会造成split brain现象：因为此时s2可能是与s1出现了网络分区而无法联系到s1，而不是s1宕机了，那么此时将会有两个head s1和s2同时处理command，这会违背having a total order这个属性
 					-
 			- 当中间的一台服务器crash了，要怎么办呢？
-			  collapsed:: true
 				- ![image.png](../assets/image_1692024490238_0.png)
 				- ![image.png](../assets/image_1692024647139_0.png)
 				- s1必须要使得s3 up-to-date，因为s1发送给s2的operations会随着s2的crash而无法发送给s3，在这里s1需要发送给s3 u2和u3这两个操作
 				-
 			- 当tail  crash了，要怎么办呢？
-			  collapsed:: true
 				- ![image.png](../assets/image_1692025105668_0.png)
 				- ![image.png](../assets/image_1692025199763_0.png)
 				- 客户端需要从configuration server那里知道s2成为了新的tail，除此之外无需做什么事，因为没有commited operations丢失
@@ -1334,23 +1316,25 @@ title:: mit/6.824
 					-
 				-
 		- Chain Replication的properties和raft的对比？
-		  collapsed:: true
 			- CR 实现了primary / backup schema 但是没有实现 configuration service
 			- chain replication的positive aspect：
-			  collapsed:: true
 				- 客户端的RPC请求被split到head和tail之间，而不是像raft中那样所有的请求都要run through the leader
 				- head只发送updates一次，而在raft当中leader将updates也就是log entries发送给每个peer。正是因为在CR schema中只用发送一次RPC，所以会包含更少的message
 				- Read or query operations involve only the tail，而在raft中即便实现了read-only optimization，也就是避免让读操作go through the log, 避免其被追加到所有出现的log中，但是它仍然要求leader联系大多数的peer来帮助确定是否这个operation可以被serve
+				  collapsed:: true
+					- 这里的问题是，leader不是已经包含了所有被commited的entries吗？为什么leader还需要联系其他的peer来确定呢？[[存疑]]
+						- 课程的老师说两种scheme下，一种是在leader上进行的所有recent write操作，另外一种是可能原则上可以有来自其他peer的read操作，都需要确保我们有last operation；所以如果要求是我们想把reads分散到所有的机器上，我们不得不更小心，我们不能由自己来实现，因为这样绝对会破坏linearizability，而当everything goes to leader，则不会；可以说，这是在每个new term时默认的empty agreement，我们不得不确保所有的是最新的，算是一个golden trick
+						- 和MIT群里讨论的一个结果是：当leader和其他服务器出现了网络分区之后，会选举出一个new leader，因为分区的存在这个new leader也无法通知old leader它已经不再是leader了，所以old leader如果此时接受到了read请求，它必须联系peer来确认它还是不是leader，如果它不是leader了，new leader可能已经执行了很多新的写入操作，那么此时old leader返回的结果就不算最新的了
 				- Simple Recovery Plan
 			- chain replication 的 negative aspect：
 			  collapsed:: true
 				- one failure requires reconfiguration
-				  collapsed:: true
 					- 之所以需要进行重新配置，是因为write操作不得不go through the whole chain，并且只有当chain中的每个server都处理了这个操作之后才能被acknowledge，这意味着在CR scheme中一旦出现了一台服务器crash，那么可能会有一个短暂的宕机时段( short period of downtime) ；而在raft中只要peer servers中的大多数接受了这个特定的write操作且追加到它们的日志中，那么system就可以proceed，所以如果其中的一台服务器fail了，不一定会造成系统的中断(interruption), 只要remaining servers仍然可以形成大多数
 					-
 					-
 					-
 			- chain replication 的positive aspect有可以被进一步优化的吗？
+			  collapsed:: true
 				- 有，因为CR中read操作只涉及到tail这一台服务器，可以拓展来实现high performance：
 					- ![image.png](../assets/image_1692079979557_0.png)
 						- 论文中把objects也称作volumes,  也就是把原本的single chain改成multiple chain
@@ -1360,16 +1344,39 @@ title:: mit/6.824
 						- read performance可以随着chain数量的增多而提高，因为读请求将会被spread到不同的chain上，这达到了与zookeeper类似的性质：read操作的性能会随着服务器数量的增加而相应地scale，但是比zookeeper更好的一点是：这能够maintain linearizability
 						- 当客户端发起一个read请求时，是客户端自己决定还是configuration server来决定要从哪个chain中读取呢？
 							- 论文中关于这一点没有explicit的说明。但是猜测客户端和服务器通过proxy来进行沟通，在lab4中你将会从配置服务器中下载一份configuration，而这份configuration file中包含了shard assignment
-							- 三个chain上的服务器的顺序需要如此仔细地安排，是为了防止某一个chain oversaturate或者某两个服务器之间有一种特定的link吗？
-							  collapsed:: true
-								- 这个CR scheme并没有很把这一点考虑在内，不如可以想象configuration manager有一个关于network如何lay out的sophisticated model，这个model可以很仔细地考虑chain是怎么搭建完成的（比如在一个chain上放置更多的shard，在另外一个chain上放置更少的shard）
-								-
-							- 为什么变成multiple chain了依旧保持了linearizability呢，怎么理解呢？
-								- 因为基本上没有东西发生改变，在一个单一chain上执行的是primary / backup plan, 而linearizability是在单一chain上被carry over的
-								-
+						- 为什么变成multiple chain了依旧保持了linearizability呢，怎么理解呢？
+							- 因为基本上没有东西发生改变，在一个单一chain上执行的是primary / backup plan, 而linearizability是在单一chain上被carry over的
+						- 三个chain上的服务器的顺序需要如此仔细地安排，是为了防止某一个chain oversaturate或者某两个服务器之间有一种特定的link吗？
+							- 这个CR scheme并没有很把这一点考虑在内，不如可以想象configuration manager有一个关于network如何lay out的sophisticated model，这个model可以很仔细地考虑chain是怎么搭建完成的（比如在一个chain上放置更多的shard，在另外一个chain上放置更少的shard）
+						- chain的长度是由什么来决定的？为了把chain的长度从线性改成log级的，可以把chain改成tree的结构吗，tree的每个叶子对应一个tail？
+						  collapsed:: true
+							- 主要是failure的mean time来govern的。通常来说是三或者五个服务器，这对于保持high availability是很有好处的，因为在整个系统宕机之前我们可以从四个服务器中及时恢复。chain的长度当然会造成delay，但是一般来说chain不会太长
+							- 改成tree的话可能是危险的，因为对于同一个叶子，之前可能被另外一个客户端修改过，所以可能会存在一些同步问题
+						- 只有当chain上的所有服务器都go down了，整个chain才会go down吗？
+						  collapsed:: true
+							- 是的
+			- 如何保持cross objects的strong consistency？
+			  collapsed:: true
+				- 完全没有理解，查看视频 {{video https://www.youtube.com/watch?v=1uUcW-Mqg5o}} 最后10分钟的内容
+				-
+			- chain中的successor中的操作始终是predecessor中的前缀，对吗？
+			  collapsed:: true
+				- 是的
+			- 前面讨论的是chain中机器crash的情况，如果chain中机器是出现了网络分区呢，比如中间的机器s2和configuration server和其他机器断开了，之后又恢复了，那么此时s3不是同时接受来自s1和s2的operation了吗？
+			  collapsed:: true
+				- ![image.png](../assets/image_1692095824810_0.png)
+				- 论文中并没有谈论这一点，但是可以假定configuration server中会给configuration进行编号之类的，比如view number，所以恢复之后，会发现view number变了，所以s2即便重新连接了也不会再参与chain了，也就是s3也不会接受s2发送过来的东西了
+			- 持有go locks的lock holder如果crash了，那么会出现intermediate state吗？这些中间状态会也是visible的吗？
+				- 不会，因为go locks出现的场景是一台机器运行多协程，也就是goroutine，如果go locks的lock holder crash了，也就是这台机器crash了，那么所有的go协程都会停止运行。如果是以文件写入disk的方式来与lock绑定，那么lock holder crash了，那么这些文件都会丢失
 		- 对前面内容的简单总结？
 		  collapsed:: true
 			- ![image.png](../assets/image_1692085062194_0.png)
 				- lab3中不管是replication还是configuration都使用的是raft
+				- 第二种方法对性能的提升主要依赖于P/B using CR
+				- 第二种方法一个特别nice的点是，当数据量非常大时，可以有更specialized synchronization or schemes来将state从一台机器拷贝到另外一台机器，任何允许将configuration server分离出来的primary backup scheme都能很容易地允许做到那一点
+				- spanner使用的是第一种方法来do the operations
 				-
+				-
+-
+-
 -
