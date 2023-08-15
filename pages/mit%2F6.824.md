@@ -1,5 +1,16 @@
+public:: true
 title:: mit/6.824
 
+- 课程信息：
+  id:: 64c73e88-ca09-468e-9e52-6360950342d3
+  collapsed:: true
+	- 课程链接：https://pdos.csail.mit.edu/6.824/schedule.html
+	- 课程笔记：
+		- https://www.qtmuniao.com/2020/03/14/6-824-vidoe-notes-3-gfs/
+		- https://mit-public-courses-cn-translatio.gitbook.io/mit6-824
+		- https://space.bilibili.com/61981458
+		- https://ashiamd.github.io/docsify-notes/#/study/%E5%88%86%E5%B8%83%E5%BC%8F%E7%AD%96%E7%95%A5/MIT6.824%E7%BD%91%E8%AF%BE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-01
+		- https://github.com/1345414527/MIT6.824-2022
 - Introduction:
   collapsed:: true
 	- 分布式系统是什么呢？
@@ -184,7 +195,6 @@ title:: mit/6.824
 			- 序列化和反序列化的方法可能有所不同，但通常采用比较常见的方式，比如 JSON、XML、Protobuf、MessagePack 等
 			- 这些stub使得远程过程调用和regular/local procedure call的效果差异不大，并且这些stub通常都是自动生成的
 	- RPC的failures有哪些可能的语义呢？
-	  collapsed:: true
 		- ![image.png](../assets/image_1687914194519_0.png)
 			- 至少一次：
 				- 如果server fail了，那么client应该做什么呢？此时当client第一次向crashed的server发送请求时，必然得不到响应，所以会time out，然后client就会自动进行重试，直到server的函数调用至少执行了一次
@@ -1166,6 +1176,7 @@ title:: mit/6.824
 			- 使用weaker consistency这种trick，将能够导致high performace，以及在出现network partition时能够继续运行
 			-
 - Chain Replication:
+  collapsed:: true
 	- 这节课大概讲些什么呢？
 	  collapsed:: true
 		- ![image.png](../assets/image_1691979401228_0.png)
@@ -1377,6 +1388,24 @@ title:: mit/6.824
 				- spanner使用的是第一种方法来do the operations
 				-
 				-
+	-
+- Distributed Transactions:
+	- 如何准确地理解Transaction？
+		- 需要理解下图中的两个核心概念：这两个概念名字相似，但却是much unrelated的，分别是用于解决完全不同的问题的；这两个概念除了在事物中使用，也可以作为welfare ideas
+		  collapsed:: true
+			- ![image.png](../assets/image_1692098986801_0.png)
+		- transaction是用于解决什么问题的？
+			- ![image.png](../assets/image_1692099728185_0.png)
+				- 业务通常是用来解决跨机器的原子操作问题，图中的X Y是两台机器
+				- 保证向x和y的两个put操作要么同时发生，要么同时不发生：
+					- 如果第一个操作失败了，那么第二个操作就不应该进行
+				- 如果有其他客户端同时对同一个账号执行操作，那么
+					- 其他客户端无法观察到当前账号的中间结果（中间结果比如只完成了第一个减操作，没有完成第二个加操作）
+			- ![image.png](../assets/image_1692100696456_0.png)
+				- abort也是常见的事务的API之一：比如事务一中如果账号中没有足够的money来执行减1操作，那么就会abort
+				-
+	-
+	-
 -
 -
 -
