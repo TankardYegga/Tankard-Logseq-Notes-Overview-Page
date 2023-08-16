@@ -1438,6 +1438,7 @@ title:: mit/6.824
 					-
 				-
 			- transaction system用来forbid execution的方法有哪些呢？
+			  collapsed:: true
 				- 其实，forbid execution也就是concurrency control
 					- ![image.png](../assets/image_1692111238252_0.png)
 					- 第一种悲观法：
@@ -1449,6 +1450,7 @@ title:: mit/6.824
 						- 如果不满足就会abort and retry，这将会在farm论文中详细讲解
 					- 两种方法都有很多对应的 提升concurrency、提供更weak的consistency的很多具体实现
 			- isolation其实有很多的degree，通常需要降低degree of isolation来获得更多的concurrency，那具体要怎么做呢?
+			  collapsed:: true
 				- concurrency的黄金标准是serializability，如果要满足这个黄金标准，那么方法是：
 					- Two-phase locking
 					  collapsed:: true
@@ -1485,6 +1487,46 @@ title:: mit/6.824
 								- https://blog.csdn.net/qq_31780525/article/details/54376674
 								- read-write锁就相当于时分复用“读锁”和“写锁”，需要写操作时就是写锁，需要读操作时就是读锁，互斥情况基本上没有太大变化，除了基本的多个读锁共存、写锁和其他写锁和所有读锁都互斥以外，增加了一点：当已经有多个读锁了，这是来了一个写请求会被阻塞，而这个写请求之后的所有读请求也要被阻塞，不然的话读请求就会长期占据锁 而写锁就会被永久堵塞了
 								-
+				- 另外一种针对crash情况的方法是：two-phase commit (2pc)
+				  collapsed:: true
+					- 这个方法有很多的variations，但是这里重点关注base version
+					- 客户端向transaction system提交这个transfer transaction，接受这个事务的机器或者程序被称作coordinator，这个coordinator的机器会负责通过transaction system来运行事务
+					- 先看一下没有任何crash时是如何work out的：
+					  collapsed:: true
+						- ![image.png](../assets/image_1692171592045_0.png)
+						- tid是事务的ID，后续发送的prepare这些消息都携带有tid
+						- A和B是另外的两台机器，在A和B接受到commit ( tid ) 时，就会install the log，A机器中就是install x，B机器中就是install y，安装完成之后返回给coordinator说“yeah，I am done"
+						- 在事务完成之后，transaction system无需记忆任何这些状态，但是A和B机器需要短暂地记忆一下这些状态，直到next transaction 被hear about
+						- 整个事务的流程中，只有当 A 和 B都agree了，才能commit；如果B没有agree，可能的原因有发生了deadlock、log中没有空间了、在y的账号中没有足够多的钱了，那么b就是not consented，就会返回coordinator一个"no"；
+						  collapsed:: true
+							- 当b已经给coordinator发送yes了，这时候的B突然决定要单边abort这个transaction，这是可能的吗？不可能，因为当发送yes时，就一定是promise to execute the transactions，也就是所有的情况都被考虑完了才会对prepare消息发送response，而不是发出yes后再反悔
+							-
+							-
+					- 再看一下有crash时要怎么work out：
+						- ![image.png](../assets/image_1692195081525_0.png)
+						- crash的场景1：B已经prepared好了，然后给coordinatot发送了一个“okay”的消息，然后刚刚在发出这个消息后，B就crash了，我们要怎么做呢？
+						  collapsed:: true
+							- 此时不能够abort the whole thing，因为B已经promise to commit了，此时我们需要使用log，使得B从crash中成功恢复过来，crash之前需要被记住的内容是：它已经针对transaction id为tid的事务prepared了，且它持有y上的lock，所以这样在crash之后才能back to noraml；恢复之后，coordinator会重试commit message，B在接受到针对那个tid的commit message之后，会执行install的相关操作
+							- 可以从这个过程中看到，two-phase commit方法是比较expensive的，因为不仅有多轮的消息来回发送，而且其中的participant实际上也需要将一些内容写入到stable storage中，而写入stable storage一般是比较expensive的，会需要花费若干毫秒，假设乐观得来说写入花费1毫秒，那么每秒钟要有1000次更多的写入
+						- ![image.png](../assets/image_1692196912692_0.png)
+						- crash的场景2：当coordinator将commit message刚刚发出后就crash了，我们需要arrange什么来使得whole plan依旧能够work out呢？
+						  collapsed:: true
+							- 这时coordinator需要将这个需要被commit的事务的ransaction id变成persistent state，也就是写入stable storage中，然后coordinator可以从log中恢复过来
+							- 假设这里的B在接受到来自coordinator的commit message时发生了延迟，B会认为coordinator crash了，所以B需要等待coordinator恢复后重新发送commit message，而不是直接abort B
+							-
+							-
+							-
+						- ![image.png](../assets/image_1692197636167_0.png)
+						- crash的场景3：A在接受到prepare的message后，并没有返回消息，或者说返回的消息始终没法成功到达coordinator，那么后续要怎么办呢？
+							- 此时coordinator可以直接abort A，然后再去abort B，A无需知道coordinator的任何操作，当A从crash中恢复时，A会询问coordinator，但是coordinator无需记忆关于当前事务的任何细节（anything about this transaction),  它会回复给A：“那个transaction我已经abort了，因为我已经没有commit record了,  我没有等着去inform everybody"， B 在abort后可以继续参与到其他涉及y的相关事务的执行中去
+							- 如果coordinator发送给A的消息丢失了，coordinator abort the transaction，然后B crash了，当B come back up时，B打算等待来自coordinator的关于当前transaction的commit message，但是当前的这个transaction已经abort了，那么后面会怎么做呢？
+								- 在大多数的协议中B会ping to coordinator（因为B知道谁是coordinator），并且B会询问coordinator 事务的结果会是什么
+							- 这里在y上的lock是从将y放入log，一直到将y install to actual state，所以问题是：这里的locks是分布式的吗，因为在这里是跨服务器来处理的，是这样吗？我的意思是说，如果y只存在于B之上，那么我们可能不需要distributed locking，我只是很好奇setup是什么
+								- 这里的setup是：A将维持它所拥有的所有shards的locks，或者说它所拥有的所有的变量、所有的records的locks，B维持它所拥有的所有records的locks
+								- 当accounts是shared between multiple servers，每一台server只有一个特定的account，这是一个shared case。在这种情况下，一个account可能会在多个服务器上被使用，所以需要分布式锁，这个后面还会继续讨论
+							-
+							-
+						-
 	-
 	-
 	-
