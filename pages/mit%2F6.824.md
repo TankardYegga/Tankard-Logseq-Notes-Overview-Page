@@ -1438,7 +1438,6 @@ title:: mit/6.824
 					-
 				-
 			- transaction system用来forbid execution的方法有哪些呢？
-			  collapsed:: true
 				- 其实，forbid execution也就是concurrency control
 					- ![image.png](../assets/image_1692111238252_0.png)
 					- 第一种悲观法：
@@ -1452,6 +1451,7 @@ title:: mit/6.824
 			- isolation其实有很多的degree，通常需要降低degree of isolation来获得更多的concurrency，那具体要怎么做呢?
 				- concurrency的黄金标准是serializability，如果要满足这个黄金标准，那么方法是：
 					- Two-phase locking
+					  collapsed:: true
 						- ![image.png](../assets/image_1692112878829_0.png)
 						- 基本思想可以看作是对simple locking scheme（在文献中一般被称作simple locking或者是strict locking，也就是先获取所有需要的locks，然后使用再释放）的一个refinement或者说是improvement：也可以说是more fine-grained的，加锁不再是一次性，而是随着事务的运行incrementally来加锁，这会导致出现一些在simple locking下不允许的concurrency pattern（在下图中事务T1是先获取x的lock，再获取y的lock，而不是一次性地把x和y的lock都同时拿到）
 						- 这个思路中的rule2是说必须等到T1事务commit point之后才能释放lock，所以T2即便早早地发起了获取lock的请求，也要一直等待到这个commit point
@@ -1467,7 +1467,25 @@ title:: mit/6.824
 								- ![image.png](../assets/image_1692155414327_0.png)
 								- 上面的箭头表示T1会先需要等待T2'释放lock，下面的反向箭头表示T2'会先需要等待T1释放lock
 					- 什么时候two-phase locking会比strict locking（需要in advance地来提前索要所有的lock）有更多的concurrency呢？
+					  collapsed:: true
 						- 在原则上这是显然成立的
+						- 比如audit function，可以在读完这个人的amount之后就立刻释放锁，而不必等到读完所有内容（read every once )，这是一个read lock的例子
+							- 我猜测的是，有一大段数据需要读，比如既需要读取x，也需要读取y，如果是simple or strict locking的话，那么就是说事务先开始同时获取x和y的读锁，再读取x、读取y（也就是get操作），然后一起释放两把读锁；而如果使用two-phase locking的话，就是先获取x的读锁、读取x、释放锁，再获取y的读锁、读取y、释放锁，我感觉这样的话就相当于是两次“加锁-读数据-释放锁”的操作了，但是因为这个数据量更少，所以concurrency就增加了
+							- 2阶段锁，只能在加锁阶段加锁，解锁阶段解锁，不会出现加锁，解锁，加锁、解锁这样的流程吧？是的，一般不会，但是这里是特殊的场景，和可以在commit point之前释放锁的场景((64dc4209-c9bd-4873-bb02-ea49505a2d61))都是一样的，就是多个读锁，没有任何写请求的参与
+						- 假如存在一个condition，这个condition很少成立，但是当其成立时才会读取一块数据，那么在事务的开始并不需要就直接acquire the lock，而是真地需要去读这个数据时才会需要
+							- two-phase locking就是incrementally地来加速，第二种情况地就会保证执行时按照具体的情况来判断是否加锁，而这个条件很少成立，那么也就是加上lock的概率或者说频率也不高，没有lock，那么concurrency自然也就高了
+							- 第二个例子很清楚，说白了就是延迟加锁，需要读数据的时候加锁，而非有申请资源意向就加锁
+							- 这个就有点那种pay-as-you-go的意味，就是跟云的思想类似，需要的时候才会去用云上的某些资源，而不会提前预先分配资源，就相当于动态的运行时的lock
+					- 从前面的事务例子来看，都是在commit point才能去release lock的，那么有没有可能relinquish the lock before the commit point呢？
+					  id:: 64dc4209-c9bd-4873-bb02-ea49505a2d61
+					  collapsed:: true
+						- 取决于具体的情况，如果是exclusive lock，那么lock point与commit point是类似的；而如果是read-write lock（也就是同时允许read locks and write locks) ,  那么是有可能在一些限制下提前释放read locks
+							- read-write lock的理解
+							  collapsed:: true
+								- https://blog.csdn.net/qq_31780525/article/details/54376674
+								- read-write锁就相当于时分复用“读锁”和“写锁”，需要写操作时就是写锁，需要读操作时就是读锁，互斥情况基本上没有太大变化，除了基本的多个读锁共存、写锁和其他写锁和所有读锁都互斥以外，增加了一点：当已经有多个读锁了，这是来了一个写请求会被阻塞，而这个写请求之后的所有读请求也要被阻塞，不然的话读请求就会长期占据锁 而写锁就会被永久堵塞了
+								-
+	-
 	-
 	-
 -
