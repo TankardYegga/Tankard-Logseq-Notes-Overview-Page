@@ -1395,15 +1395,79 @@ title:: mit/6.824
 		  collapsed:: true
 			- ![image.png](../assets/image_1692098986801_0.png)
 		- transaction是用于解决什么问题的？
+		  collapsed:: true
 			- ![image.png](../assets/image_1692099728185_0.png)
 				- 业务通常是用来解决跨机器的原子操作问题，图中的X Y是两台机器
 				- 保证向x和y的两个put操作要么同时发生，要么同时不发生：
 					- 如果第一个操作失败了，那么第二个操作就不应该进行
 				- 如果有其他客户端同时对同一个账号执行操作，那么
 					- 其他客户端无法观察到当前账号的中间结果（中间结果比如只完成了第一个减操作，没有完成第二个加操作）
+		- Transactions中的常见原语有哪些？
+		  collapsed:: true
 			- ![image.png](../assets/image_1692100696456_0.png)
-				- abort也是常见的事务的API之一：比如事务一中如果账号中没有足够的money来执行减1操作，那么就会abort
+				- abort也是常见的事务的API之一：
+					- 比如事务一中如果账号中没有足够的money来执行减1操作，那么就会abort，但是abort时之前已经执行完成的其他operation都会被撤销，也就是相当于没有发生
+					- 当两个事务之间出现了deadlock，那么事务系统也会发出abort，来让其中的一个事务先被abort，好让另外一个事务继续执行，这个被abort的事务之后可以重试
 				-
+				-
+		- transactions原语所保证的属性是什么？
+		  collapsed:: true
+			- ACID
+				- atomic：
+					- 与crash recovery plan有关
+				- consistent：
+					- 与数据库有关，数据库通常有内部的不变量（internal invariance）诸如referential integrity作为consistency的指标，数据库需要维持这种一致性
+				- isolated：
+					- 两个事务不应该能够观察到彼此的intermediate results
+				- durable：
+					- 一旦事务提交了，结果会被直接写入stable storage中，如果系统crash了之后恢复了，那么latest commited results已经被记录到stable storage中了
+		- 为什么特别需要关注一下isolation这个属性？
+			- 其他在数据库中的定义是serializability：要求事务按照一定的serial order执行，一定会有same result，也就是下图中T1和T2的先后执行顺序并不影响数据库里面的最终数据
+			- ![image.png](../assets/image_1692103351226_0.png)
+			- serializability与linearizability的区别是？
+			  collapsed:: true
+				- linearizability有一个real-time component，也就是说如果T2在T1结束之后才开始的话，那么T2在total order中不得不show up later，而serializability中则没有这个要求，如果T2在T1 stop or finish后稍微晚一点点开始的话，系统依旧允许reward it
+				- 也可以说，serializability比linearizability要更weak一点吧，但是serializability在编程area上来说要更为方便很多，因为事务的执行可以是serial order的，而不用考虑各种interleaving，也就不会有各种problematic cases
+			- problematic cases通常是transaction system所要极力forbid的：
+			  collapsed:: true
+				- ![image.png](../assets/image_1692105464715_0.png)
+					- 图中的竖线反应了command的先后执行顺序，所以在transfer操作执行前，t1返回的值是10，因为x这时候还没有修改，在transfer执行成功后，x变成了9，y变成了11
+					- 很明显，这种情况不是serializable的
+				- ![image.png](../assets/image_1692106129573_0.png)
+					- 同样这不是一个serializable execution，因为执行的结果不是T1 T2或者T2 T1执行的结果
+					-
+				-
+			- transaction system用来forbid execution的方法有哪些呢？
+			  collapsed:: true
+				- 其实，forbid execution也就是concurrency control
+					- ![image.png](../assets/image_1692111238252_0.png)
+					- 第一种悲观法：
+						- ask permission first and do the operations
+						- 需要使用lock，只有当事务系统确认execution是serializable后，才会释放lock
+					- 第二种乐观法：
+						- just go ahead and if something went wrong, apologize later
+						- 如果执行或者结果是serializable的，那么什么也不会发生
+						- 如果不满足就会abort and retry，这将会在farm论文中详细讲解
+					- 两种方法都有很多对应的 提升concurrency、提供更weak的consistency的很多具体实现
+			- isolation其实有很多的degree，通常需要降低degree of isolation来获得更多的concurrency，那具体要怎么做呢?
+				- concurrency的黄金标准是serializability，如果要满足这个黄金标准，那么方法是：
+					- Two-phase locking
+						- ![image.png](../assets/image_1692112878829_0.png)
+						- 基本思想可以看作是对simple locking scheme（在文献中一般被称作simple locking或者是strict locking，也就是先获取所有需要的locks，然后使用再释放）的一个refinement或者说是improvement：也可以说是more fine-grained的，加锁不再是一次性，而是随着事务的运行incrementally来加锁，这会导致出现一些在simple locking下不允许的concurrency pattern（在下图中事务T1是先获取x的lock，再获取y的lock，而不是一次性地把x和y的lock都同时拿到）
+						- 这个思路中的rule2是说必须等到T1事务commit point之后才能释放lock，所以T2即便早早地发起了获取lock的请求，也要一直等待到这个commit point
+						- ![image.png](../assets/image_1692114998060_0.png)
+						- T1中有a set of locks，T2中也有，T1和T2的locks不能intersect，否则会出现另外一个事务可见的中间结果
+						- 上图与problematic case中的一个是完全一样的，都是在x和y的put操作之间slot in了get操作
+						- ![image.png](../assets/image_1692153786283_0.png)
+						- 是否有可能造成死锁呢？是可能的，如上图所示，如果事务T2'是先读取y的值，再读取x的值，那么就会出现deadlock，此时T1会等待T2'释放关于y的lock，而T2'会等待T1释放关于x的lock。之所以这里T1不能在put（x）之后立马释放lock，这是由two-phase locking的rule2所决定的，必须得等到commit之后才能释放lock。
+						- 可以从这个例子中看出two-phase locking更像是optimistic lock，因为它是先执行，执行中如果出现了deadlock再去abort
+						- 那么transaction system是怎么判断出现了deadlock呢？
+							- 一种方法是timeout basis：如果两个事务的运行超过一定时间没有make forward progress了，那么就断定deadlock了，就abort其中的一个事务
+							- 另外一种更systematic的方法是：transaction system会在transaction运行的过程中构建一个wait-for graph，如果graph中出现了cycle，那就一定有deadlock
+								- ![image.png](../assets/image_1692155414327_0.png)
+								- 上面的箭头表示T1会先需要等待T2'释放lock，下面的反向箭头表示T2'会先需要等待T1释放lock
+					- 什么时候two-phase locking会比strict locking（需要in advance地来提前索要所有的lock）有更多的concurrency呢？
+						- 在原则上这是显然成立的
 	-
 	-
 -
