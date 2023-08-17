@@ -1450,10 +1450,8 @@ title:: mit/6.824
 						- 如果不满足就会abort and retry，这将会在farm论文中详细讲解
 					- 两种方法都有很多对应的 提升concurrency、提供更weak的consistency的很多具体实现
 			- isolation其实有很多的degree，通常需要降低degree of isolation来获得更多的concurrency，那具体要怎么做呢?
-			  collapsed:: true
-				- concurrency的黄金标准是serializability，如果要满足这个黄金标准，那么方法是：
-					- Two-phase locking
-					  collapsed:: true
+				- concurrency的黄金标准是serializability，如果要满足这个黄金标准，那么方法是(2PL) ：
+					- Two-phase locking （2PL)
 						- ![image.png](../assets/image_1692112878829_0.png)
 						- 基本思想可以看作是对simple locking scheme（在文献中一般被称作simple locking或者是strict locking，也就是先获取所有需要的locks，然后使用再释放）的一个refinement或者说是improvement：也可以说是more fine-grained的，加锁不再是一次性，而是随着事务的运行incrementally来加锁，这会导致出现一些在simple locking下不允许的concurrency pattern（在下图中事务T1是先获取x的lock，再获取y的lock，而不是一次性地把x和y的lock都同时拿到）
 						- 这个思路中的rule2是说必须等到T1事务commit point之后才能释放lock，所以T2即便早早地发起了获取lock的请求，也要一直等待到这个commit point
@@ -1487,7 +1485,7 @@ title:: mit/6.824
 								- https://blog.csdn.net/qq_31780525/article/details/54376674
 								- read-write锁就相当于时分复用“读锁”和“写锁”，需要写操作时就是写锁，需要读操作时就是读锁，互斥情况基本上没有太大变化，除了基本的多个读锁共存、写锁和其他写锁和所有读锁都互斥以外，增加了一点：当已经有多个读锁了，这是来了一个写请求会被阻塞，而这个写请求之后的所有读请求也要被阻塞，不然的话读请求就会长期占据锁 而写锁就会被永久堵塞了
 								-
-				- 另外一种针对crash情况的方法是：two-phase commit (2pc)
+				- 另外一种针对crash情况的方法是：two-phase commit (2PC)
 				  collapsed:: true
 					- 这个方法有很多的variations，但是这里重点关注base version
 					- 客户端向transaction system提交这个transfer transaction，接受这个事务的机器或者程序被称作coordinator，这个coordinator的机器会负责通过transaction system来运行事务
@@ -1518,6 +1516,7 @@ title:: mit/6.824
 							-
 						- ![image.png](../assets/image_1692197636167_0.png)
 						- crash的场景3：A在接受到prepare的message后，并没有返回消息，或者说返回的消息始终没法成功到达coordinator，那么后续要怎么办呢？
+						  collapsed:: true
 							- 此时coordinator可以直接abort A，然后再去abort B，A无需知道coordinator的任何操作，当A从crash中恢复时，A会询问coordinator，但是coordinator无需记忆关于当前事务的任何细节（anything about this transaction),  它会回复给A：“那个transaction我已经abort了，因为我已经没有commit record了,  我没有等着去inform everybody"， B 在abort后可以继续参与到其他涉及y的相关事务的执行中去
 							- 如果coordinator发送给A的消息丢失了，coordinator abort the transaction，然后B crash了，当B come back up时，B打算等待来自coordinator的关于当前transaction的commit message，但是当前的这个transaction已经abort了，那么后面会怎么做呢？
 								- 在大多数的协议中B会ping to coordinator（因为B知道谁是coordinator），并且B会询问coordinator 事务的结果会是什么
@@ -1526,7 +1525,35 @@ title:: mit/6.824
 								- 当accounts是shared between multiple servers，每一台server只有一个特定的account，这是一个shared case。在这种情况下，一个account可能会在多个服务器上被使用，所以需要分布式锁，这个后面还会继续讨论
 							-
 							-
+						- ![image.png](../assets/image_1692206867581_0.png)
+						- 回到coordinator在commit point之后就恰好abort的情况，这个时刻到最终事务完全结束的时间间隔内，B是不能够unilaterally地来abort的，因为此时A和B都已经promise要去commit了。很有可能此时A已经did the commit,  但是它不再能单边地abort了，在这种case下只有一种option，那么这个option是什么呢？
+							- 这时候B就只能wait，wait期间B依旧持有y的lock，那么其他任何需要使用y的事务也都无法获得该lock而阻塞，当coordinator comes back，coordinator宣传或者重新宣传（re-announce）自己关于这个特定事务的outcome的决定是什么
+							- 这个也是两阶段提交的一个aspect，这个协议可能会使用block直到一个机器comes back
+							- 我们可以怎么在coordinator上做些什么，来使得这个scneario unlikely呢？
+							  collapsed:: true
+								- 我们需要让这个coordinator变得fault tolerant，那么怎么做呢？我们先让coordinator不再是在single machine上来运行，而是在一个replicated state machine上来运行，然后我们在其上运行raft协议，那么RSM中如果一台机器crash了，hopefully其他机器依然能够保证服务正常运行
+								- 然而实际上非常有可能不使用raft，来实际上replicate coordinator或者任何其他的participant
+								- 关于raft的一些讨论点：
+								  collapsed:: true
+									- ![image.png](../assets/image_1692209251363_0.png)
+									- 使用raft可以避免系统因为coordinator而长时间被block
+									- raft和2PC是否是相似的东西？
+									  collapsed:: true
+										- 因为它们有很多parallelism，比如2PC叫做coordinator，raft中被叫做leader；2PC中我们有很多的participants，raft中有followers；
+										- 但是不同的地方在于，raft中的leader是可以change的，是为了防止单点失败，而2PC中coordinator是基本不变的；raft中leader依赖于大多数的概念，而2PC中coordinator需要获得包含commitment的每一个服务器的response；在概念上来说，raft是用来replicate the same thing，而2PC则做的是opposite的事，是将one thing spread across different servers and have to deal with problem
+											- 或者更精简地来说，raft：all the servers do the same thing （about high availability )， 2PC: all servers operate on different data (about atomic operations across different servers,  其中data is living across on different servers)。raft和2PC的某些internal techiniques是非常相似的，但是解决的问题却是完全不同的，但是我们可以在2PC中使用raft来使得coordinator变得fault tolerant以及使得participants变得more highly available
+											-
+											-
+											-
+								-
 						-
+						-
+				- 2PL 和 2PC 的核心不同点在哪里？
+				  collapsed:: true
+					- 前者与分布式系统的关系不大，可以说是关于across single server上的atomic operations，可以在一台multi-core server上来实现2PL这个事务系统
+					- 2PC主要是关于分布式系统的
+					-
+				-
 	-
 	-
 	-
