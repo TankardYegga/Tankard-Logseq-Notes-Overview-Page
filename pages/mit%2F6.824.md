@@ -1391,6 +1391,7 @@ title:: mit/6.824
 				-
 	-
 - Distributed Transactions:
+  collapsed:: true
 	- 如何准确地理解Transaction？
 		- 需要理解下图中的两个核心概念：这两个概念名字相似，但却是much unrelated的，分别是用于解决完全不同的问题的；这两个概念除了在事物中使用，也可以作为welfare ideas
 		  collapsed:: true

@@ -1,0 +1,3 @@
+- ![Preface_2009_Principles-of-Computer-System-Design.pdf](../assets/Preface_2009_Principles-of-Computer-System-Design_1693224342557_0.pdf)
+- ![Chapter-1---Systems_2009_Principles-of-Computer-System-Design.pdf](../assets/Chapter-1---Systems_2009_Principles-of-Computer-System-Design_1693224356933_0.pdf)
+	-
