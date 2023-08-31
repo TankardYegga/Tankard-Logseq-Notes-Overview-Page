@@ -475,4 +475,4 @@
                           :page 66},
                :content {:text "TensorF low 对于 Client- Master- Worker 有很灵活的配置方式，既可以让它们工作在单个节 点中， 也可以让它们 工作在分布式 的环 境中 利用 多 机 多卡进行今 训练 。 一 般在单机环境下，这 三 者在同一个进程 当 巾；而在分布式环境下，它们会用远程过程调用（ RPC )的方式连接起来（参见图 l I. I0 ） "},
                :properties {:color "green"}}],
- :extra {:page 80}}
+ :extra {:page 35}}
