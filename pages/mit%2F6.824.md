@@ -3,7 +3,6 @@ title:: mit/6.824
 
 - 课程信息：
   id:: 64c73e88-ca09-468e-9e52-6360950342d3
-  collapsed:: true
 	- 课程链接：https://pdos.csail.mit.edu/6.824/schedule.html
 	- 课程笔记：
 		- https://www.qtmuniao.com/2020/03/14/6-824-vidoe-notes-3-gfs/

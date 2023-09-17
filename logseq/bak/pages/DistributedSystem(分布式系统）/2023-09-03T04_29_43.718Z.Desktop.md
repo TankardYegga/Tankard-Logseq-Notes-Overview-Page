@@ -14,5 +14,5 @@ public:: true
 - [[mit/6.824]]
 - [[深入理解分布式共识算法]]
 - [[InterestedMentors]]
--
+- [[分布式机器学习]]
 -

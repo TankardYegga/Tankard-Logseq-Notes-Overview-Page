@@ -177,12 +177,13 @@
  :ref/default-open-blocks-level 2
 
  :ref/linked-references-collapsed-threshold 50
- :favorites ["JobSearching" "LiftAnusManager" "冥想(meditation)" "SolutionNotes" "MindsetManager" "BooksReadingPlan" "SocialMediaManager" "BodyAddictionManager" "GoalMachine" "Leetcode01" "Innovation" "WalkingOutOfComfortZone" "DelayCuration" "TraceableManagement" "Taking notes on books"]
+ :favorites ["JobSearching" "冥想(meditation)" "SolutionNotes" "BooksReadingPlan" "SocialMediaManager" "GoalMachine" "Leetcode01" "Innovation" "WalkingOutOfComfortZone" "DelayCuration" "TraceableManagement" "Taking notes on books"]
  :editor/logical-outdenting? true
  :graph/settings {:builtin-pages? true, :journal? false, :orphan-pages? true}
- :editor/preferred-pasting-file? false
+ :editor/preferred-pasting-file? true
  :ui/show-full-blocks? true
  :publishing/all-pages-public? false
+ :feature/enable-whiteboards? true
 
  ;; any number between 0 and 1 (the greater it is the faster the changes of the next-interval of card reviews) (default 0.5)
  ;; :srs/learning-fraction 0.5
