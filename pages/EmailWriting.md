@@ -1,3 +1,5 @@
+public:: true
+
 - https://youtu.be/Zdj4rqf-d-c
 	- 邮件能够从侧面反映出你的背景：有没有海外留学经验、有没有基本的英文文化圈常识、有没有connection
 	- chatGPT能完成95%的文书工作了，几乎是无往而不利

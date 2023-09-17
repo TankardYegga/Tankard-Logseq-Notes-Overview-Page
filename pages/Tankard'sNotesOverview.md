@@ -5,11 +5,9 @@ public:: true
 	- [[DeepLearning]]
 	- [[java]]
 	- [[Leetcode]]
-	- [[LeetcodeTheory]]
 	- [[DistributedSystem(分布式系统）]]
 	- [[CloudNative]]
-	- [[AISystem]]
-	- [[PureSystem]]
+	- [[System]]
 - [[Reading]]
   :LOGBOOK:
   CLOCK: [2023-02-22 Wed 13:46:59]
@@ -22,7 +20,7 @@ public:: true
 	- [[MyEssays]]
 	- [[WritingTutorial]]
 - [[MaterialsCollected]]
-	- [[PersonalPage]]
 	- [[FormatTemplate]]
+-
 -
 -
