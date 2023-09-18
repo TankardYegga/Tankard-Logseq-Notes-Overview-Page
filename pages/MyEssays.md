@@ -1,5 +1,6 @@
 public:: true
 
+- public:: true
 - [[MyPhilosophy]]
 	- [[Why I am pursing a phd ? ]]
 	- [[My thinking on how to do research and engineering]]

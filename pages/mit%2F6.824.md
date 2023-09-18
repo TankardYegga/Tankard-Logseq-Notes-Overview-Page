@@ -1671,6 +1671,7 @@ title:: mit/6.824
 					-
 			-
 		- Could you give an example that really shows off where spark shines?
+		  collapsed:: true
 			- 论文中给出了关于iterative structure的pagerank的例子：
 			  collapsed:: true
 				- ![image.png](../assets/image_1695040785808_0.png)
@@ -1682,7 +1683,29 @@ title:: mit/6.824
 				- ![image.png](../assets/image_1695044744136_0.png)
 				- ![image.png](../assets/image_1695045753669_0.png)
 			- 上面例子中的links ranks file都是share among all the iterations
+			- pagerank例子的lineage graph是什么样的呢？
+			  collapsed:: true
+				- ![image.png](../assets/image_1695046344235_0.png)
+				- 这个lineage graph为什么是dynamic的？
+					- 因为迭代的次数并不确定，随着迭代次数的增加，loop中的每个操作都会继续叠加
+				- 这个lineage graph是wide dependency吗？
+					- 是的，join across links and ranks，需要分别来自links和ranks的partition
+				- 生成contribs RDD的过程看上去需要network communication，但是可以有optimization，具体要怎么进行优化呢？
+					- 可以使用你自己指定的hash partition方法来对已有的一个RDD进行划分，在这里让links和ranks这两个RDD使用相同的方式来进行partition，按照key或者key的hash来进行划分。在pagerank的例子中，ranks和links的key都是u1, u2, u3, 所以同一个key的rank和link将会被划分到同一个机器上去，这样wide dependency将能够以narrow dependency的方式来执行，这里具体的划分函数将由编程人员或者scheduler来决定
+					  collapsed:: true
+						- ![image.png](../assets/image_1695049655454_0.png){:height 248, :width 594}
+						-
+				- 在这个过程中，links将会调用persist call，但是intermediate RDDs不会调用，为什么呢？
+					- 因为像rank1、rank2这些都是new RDD （every time），而links在一个partition的数据计算过程中是不会变的，需要驻留在内存中；但是，这些中间的RDD可以occasionally地存储在HDFS中，所以当发生失败时，不用从iteration loop的开头重新执行
+					-
 			-
-			-
+		- 对RDD进行一下summary？
+		  collapsed:: true
+			- ![image.png](../assets/image_1695052584240_0.png)
+			- MR是mapreduce
+			- 论文中可以依据 每个计算 需要花费的时间这一数据，来进行automatic checkpointing，怎么来看待这个思想呢？
+				- 其实 执行checkpointing以及从checkpoints中读取数据  和  重新执行计算 的开销都是比较大的，只是当计算开销更大时，使用checkpointing会更好，比如pagerank中也是推荐每10次iteration就进行一次checkpointing比较好
+				-
+		-
 -
 -
