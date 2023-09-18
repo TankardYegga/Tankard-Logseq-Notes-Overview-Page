@@ -1589,6 +1589,7 @@ title:: mit/6.824
 		-
 	- RDDs的Programming Model是什么呢？
 		- RDD的example：
+		  collapsed:: true
 			- ![image.png](../assets/image_1695000621934_0.png)
 			- 当你startup workstation or laptop时，可以交互式地使用spark
 			- 第一行的lines就是RDD, 命令里的hdfs表示这是一个实际存储在hdfs的RDD，这个hdfs可能包含了很多的partitions；当输入第一行命令时，实际上没有发生什么，论文中把这个称作lazy computations，它会在之后的某个时间点开始执行
@@ -1598,14 +1599,83 @@ title:: mit/6.824
 				- actions是那种实际将导致计算发生的operations，之前所有lazily built up的操作会在这个点被执行
 				- RDDs是read-only或者immutable的，所以transformations操作只能从一个RDD中产生出一个新的RDD，而不是在原来的RDD上进行修改
 			- 第二行命令对lines这个RDD中以message ERROT或者string ERROR开头的进行过滤，实际上这行也并不实际执行，只是生成了recipe性质的东西：data flow or lineage graph of the computation，意思是说这些操作是pipelined的。比如，stage1中先从Partition 1中读取相关的记录，stage2中对其进行filter，而当stage2正在运行时，stage1则从file system里面取出next set of records，等待feed to stage2；当stage越来越多，就可以实现某种程度上的并行
-				- 为什么是并行的？与mapreduce类似，可以看作是一个job或者一个task pertain to某一个特定的partition，不同的partition对应的job可以看作是并行执行的
+				- 为什么是并行的？
+					- 与mapreduce类似，可以看作是一个job或者一个task pertain to某一个特定的partition，不同的partition对应的job可以看作是并行执行的。lineage graph对应的pipeline上不同stage上的job也可以看作是parallelism
+				- lineage graph和log of transactions有什么区别呢？仅仅是granularity的区别吗？
+					- 这两个概念有一些similarity，比如说如果节点共享相同的beginning state，然后所有的操作都是deterministic的，那么最终的end state也一定是一样的
+					- 但是，还是差别蛮大的，比如lineage graph中的RDD之前可以有多个RDD，而log of transactions通常是严格线性的
 			- 最后一行的errors.persist()是让spark将内存的RDD进行拷贝
 			- 如果后续需要继续对errors这个RDD进行操作时，那么只需要从内存中读取original RDD就行，而不用像mapreduce那样需要从disk中重新进行读取，因而节省了很多时间
+		- RDD开始执行computation的例子：
+		  collapsed:: true
+			- ![image.png](../assets/image_1695008714632_0.png)
+			- 这个例子是接着前面一张图的，说明可以resue RDDs
+			- 在本例中的filter操作和map操作之后的RDD没有命名，所以可以看作是一个anonymous RDD，这里的lineage graph只是自己命名了一下
 			-
 			-
+		- RDD 执行computation的过程该怎么理解呢？
+		  collapsed:: true
+			- ![image.png](../assets/image_1695009250228_0.png)
+			- ![image.png](../assets/image_1695010834861_0.png)
+			- ![image.png](../assets/image_1695010904042_0.png)
+			- 为什么HDFS的分区数目要多于worker数目？
+			  collapsed:: true
+				- 因为这样的话，HDFS的分区就比较小，一个worker就可以同时处理几个分区的内容，实现了load balancing
+			- 这里的wide dependency和narrow dependency分别是什么意思呢？通常来说，哪种类型的计算更好呢？
+			  collapsed:: true
+				- count操作的执行过程与mapreduce很像，都是先将任务分发到各个分区上，然后再将各分区上的结果进行合并，所以wide dependency说的就是计算的执行过程需要依赖多个分区；
+				- 而像单纯的filter操作，只唯一地依赖parent partition，所以narrow dependency就是说计算的执行过程只依赖于唯一的分区
+					- 论文中指出“narrow dependency中parent RDD的每一个partition最多被child RDD的一个partition所使用”，也就是说从parent RDD partition to child RDD partition是一对一的关系，那么从child RDD partition to parent RDD partition呢？同样也是一对一的关系，因为如果是一对多的关系，也就是有多个parent RDD partition隐射到同一个child RDD partition了，那么这就是wide dependency了
+				- 通常来说，更偏好于有narrow dependencies的computation，因为这些计算可以不需要任何通信地在本地运行；而对于一个wide dependency的computation来说，很有可能不得不collect partitions from parent RDD from all the machines
+				-
+				-
+			- 如果不调用errors.persist()的话，会有什么不同？
+				- 如果不调用的话，那么后面的errors再次filter并执行collect操作时，必须要重新进行计算
+			- 整个workflow都是在内存中的吗？为啥不会像mapreduce那样把中间结果存储起来？
+				- 除了one exception，都是在内存中的
+				- 前面的errors.persist()可以作为另外一种flag，我认为它被称作“reliable”的，也就是它实际上被存储在HDFS中，也可以把它称作“a checkpoint”
+			- 这些partitions是由谁来划分的呢？
+				- 这种partitions的定义是由HDFS中的files来决定的（这些文件通常是由一些logging system来创建的），可以进行重新划分 (repartition)且可以看到这样做是advantageous的，比如可以使用hash partition trick，或者你可以定义你自己的partitioner
+			- 图示中的schedulers的作用是什么呢？
+				- driver把code发送给worker，worker询问scheduler自己要去执行的partition具体是哪一块，scheduler内部有保存lineage graph的信息
+		- RDD计算过程中是怎么来处理fault tolerance的呢？
+		  collapsed:: true
+			- 如果在计算过程中某个worker crash了，要怎么做才能保证fault tolerance呢？
+			  collapsed:: true
+				- 与mapreduce中map worker crash了需要重新执行map task甚至需要重新执行部分reduce task类似，这里也需要重新执行。但是这里的计算过程更为复杂，是多个stage组成的，所以这里worker是需要recompute the stage
+				- ![image.png](../assets/image_1695027388223_0.png)
+				- 在RDD之上定义的api，所有的这些transformation是functional的，也就是给定输入的RDD, 就会产生特定的输出的RDD，这个过程是completely deterministic的，所以当crash之后，需要restart a stage or sequence of transformations from the same input，就会产生同样的输出，就可以recreate the same partition
+				-
+			- narrow dependency和wide dependency下的fault tolerance有区别吗？
+				- 有，narrow case下和mapreduce基本没有什么区别，但是wide dependency下将会是一个tricky case
+				- tricky case：
+					- ![image.png](../assets/image_1695036019477_0.png){:height 354, :width 656}
+					- ![image.png](../assets/image_1695036610093_0.png)
+					- 这里的join操作会需要多个RDD的输入
+					- 一旦一个worker fail了，那么需要在很多的partition上重新进行计算，所以是slightly costly的，比如上图中的woker crash了，需要先计算紧临的上一个RDD，也需要计算这个map操作之前的join之后的RDD，很明显这个RDD需要从所有不同的partitions中来重新进行计算
+					- 对于程序员来说，一种解决方案是：
+						- 将RDD checkpoint或者persist到stable storage上，checkpoint的位置是那些不方便进行recompute的RDD，比如上图中join操作之后的RDD就可以保存为检查点
+						- 这里的persist和errors.persist()这种命令所代表的reliable flag有什么区别呢？
+						  collapsed:: true
+							- 使用reliable flag的含义是：
+								- 将要把RDD一直保存在内存中而不会throw it away，所以可以在later computation来resue these RDDs
+							- 而checkpoint or liability flag的含义是：
+								- 将整个RDD的copy写入到HDFS中，而HDFS是一个persistent或者说stable的storage file system
+								-
+							-
+						- 是否可以让spark un persist some RDDs呢？因为这些persisted的RDD在后面的计算中不一定会被一直使用，如果一直让这些RDD驻留在内存中的话，会占据不必要的内存空间。
+						  collapsed:: true
+							- 我presume在spark中存在一个general的strategy能够这样做：当内存中的空间不足后，能够将一些RDD给spill to HDFS 或者说 remove from HDFS，但是论文中的plan比较vague。唯一可以肯定的是，当计算结束 或者 用户退出登录、停止drive时，内存中的RDDs全部都会be gone
+							-
+					-
+					-
 			-
+		- Could you give an example that really shows off where spark shines?
+			- 论文中给出了关于iterative structure的pagerank的例子：
+				- ![image.png](../assets/image_1695040785808_0.png)
+				- ![image.png](../assets/image_1695041135742_0.png)
+				- ![image.png](../assets/image_1695041439365_0.png)
+				-
 			-
-			-
--
 -
 -
