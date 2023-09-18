@@ -1672,10 +1672,17 @@ title:: mit/6.824
 			-
 		- Could you give an example that really shows off where spark shines?
 			- 论文中给出了关于iterative structure的pagerank的例子：
+			  collapsed:: true
 				- ![image.png](../assets/image_1695040785808_0.png)
 				- ![image.png](../assets/image_1695041135742_0.png)
 				- ![image.png](../assets/image_1695041439365_0.png)
-				-
+				- ![image.png](../assets/image_1695041896952_0.png)
+				- ![image.png](../assets/image_1695043002974_0.png)
+				- ![image.png](../assets/image_1695043515290_0.png)
+				- ![image.png](../assets/image_1695044744136_0.png)
+				- ![image.png](../assets/image_1695045753669_0.png)
+			- 上面例子中的links ranks file都是share among all the iterations
+			-
 			-
 -
 -
