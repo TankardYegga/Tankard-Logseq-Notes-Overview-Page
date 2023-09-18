@@ -1574,6 +1574,7 @@ title:: mit/6.824
 	-
 - Spark：
 	- Spark是什么呢？
+	  collapsed:: true
 		- Spark（2012）可以被看作是Hadoop的successor，而Hadoop则是mapreduce的open-source version
 		- 但是现在一般使用spark来替代Hadoop了，spark被widely used in data science computation尤其是大量数据时；spark是由databricks公司所管理研发的，被加入了apache这个open-source project，成为了apache spark
 		- 相比于Hadoop，它的优势是可以应用于a wide range of applications，尤其是iterative operations（也就是有many rounds of map-reduce operations），之所以其能支持a set of map reduce operations，是因为它在内存当中保存了immediate results (中间结果)并且在编程上对此有很好的支持
@@ -1586,6 +1587,25 @@ title:: mit/6.824
 			- 支持多种编程语言的前端语言选择使得Spark非常灵活和易于使用。开发人员可以根据自己的喜好和项目需求选择合适的编程语言来编写Spark应用程序，而不仅仅局限于Scala。这种灵活性使得Spark成为了一个受欢迎的大数据处理框架。
 		- Spark论文中的RDD已经deprecated了，现在是data frame（带有explicit columns的RDDs），RDD中比较好的设计思想在data frame中也是为true的；这篇论文获得了ACM doctoral thesis award，而对于一般的doctoral thesis来说这是非常unusual的impact
 		-
+	- RDDs的Programming Model是什么呢？
+		- RDD的example：
+			- ![image.png](../assets/image_1695000621934_0.png)
+			- 当你startup workstation or laptop时，可以交互式地使用spark
+			- 第一行的lines就是RDD, 命令里的hdfs表示这是一个实际存储在hdfs的RDD，这个hdfs可能包含了很多的partitions；当输入第一行命令时，实际上没有发生什么，论文中把这个称作lazy computations，它会在之后的某个时间点开始执行
+			- RDD支持很多种操作，主要包含两类
+			  collapsed:: true
+				- ![image.png](../assets/image_1695001601663_0.png)
+				- actions是那种实际将导致计算发生的operations，之前所有lazily built up的操作会在这个点被执行
+				- RDDs是read-only或者immutable的，所以transformations操作只能从一个RDD中产生出一个新的RDD，而不是在原来的RDD上进行修改
+			- 第二行命令对lines这个RDD中以message ERROT或者string ERROR开头的进行过滤，实际上这行也并不实际执行，只是生成了recipe性质的东西：data flow or lineage graph of the computation，意思是说这些操作是pipelined的。比如，stage1中先从Partition 1中读取相关的记录，stage2中对其进行filter，而当stage2正在运行时，stage1则从file system里面取出next set of records，等待feed to stage2；当stage越来越多，就可以实现某种程度上的并行
+				- 为什么是并行的？与mapreduce类似，可以看作是一个job或者一个task pertain to某一个特定的partition，不同的partition对应的job可以看作是并行执行的
+			- 最后一行的errors.persist()是让spark将内存的RDD进行拷贝
+			- 如果后续需要继续对errors这个RDD进行操作时，那么只需要从内存中读取original RDD就行，而不用像mapreduce那样需要从disk中重新进行读取，因而节省了很多时间
+			-
+			-
+			-
+			-
+			-
 -
 -
 -
