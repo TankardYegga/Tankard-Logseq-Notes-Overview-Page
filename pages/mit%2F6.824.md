@@ -3,6 +3,7 @@ title:: mit/6.824
 
 - 课程信息：
   id:: 64c73e88-ca09-468e-9e52-6360950342d3
+  collapsed:: true
 	- 课程链接：https://pdos.csail.mit.edu/6.824/schedule.html
 	- 课程笔记：
 		- https://www.qtmuniao.com/2020/03/14/6-824-vidoe-notes-3-gfs/
@@ -1571,6 +1572,20 @@ title:: mit/6.824
 	-
 	-
 	-
+- Spark：
+	- Spark是什么呢？
+		- Spark（2012）可以被看作是Hadoop的successor，而Hadoop则是mapreduce的open-source version
+		- 但是现在一般使用spark来替代Hadoop了，spark被widely used in data science computation尤其是大量数据时；spark是由databricks公司所管理研发的，被加入了apache这个open-source project，成为了apache spark
+		- 相比于Hadoop，它的优势是可以应用于a wide range of applications，尤其是iterative operations（也就是有many rounds of map-reduce operations），之所以其能支持a set of map reduce operations，是因为它在内存当中保存了immediate results (中间结果)并且在编程上对此有很好的支持
+		- Spark的目标是in-memory computations for data sets that basically fit in memory，而不是像之前的论文中的database fitting in memory
+			- "Database fitting in memory"是指将整个数据库完全加载到计算机的内存中进行操作和查询的过程。通常情况下，数据库的数据存储在磁盘上，而不是内存中。当数据库的大小超过计算机内存的容量时，查询和操作数据库的速度可能会受到限制，因为需要频繁地从磁盘读取和写入数据。然而，如果数据库的大小适合计算机的内存容量，那么整个数据库可以被加载到内存中，这样就可以在内存中直接进行查询和操作，而无需频繁的磁盘访问。这提高了数据库的性能和响应速度，因为内存访问速度比磁盘访问速度快得多。数据库在内存中的操作通常比在磁盘上的操作更快，从而提供更高效的数据管理和检索功能。
+		- Spark不是和scala语言strongly tied的，有很多其他的front end language：
+		  collapsed:: true
+			- Spark并不是与Scala绑定的，尽管Scala是Spark的首选编程语言，因为它与Spark的内部结构和API非常契合。Spark是用Scala语言编写的，并且提供了Scala API作为主要的编程接口。
+			- 然而，Spark也支持其他编程语言作为前端语言，这使得开发人员可以使用自己熟悉的语言来编写Spark应用程序。除了Scala之外，Spark还支持Java、Python和R等编程语言。这些语言都有与Spark交互的专门API，并且可以使用相同的Spark集群进行分布式计算。
+			- 支持多种编程语言的前端语言选择使得Spark非常灵活和易于使用。开发人员可以根据自己的喜好和项目需求选择合适的编程语言来编写Spark应用程序，而不仅仅局限于Scala。这种灵活性使得Spark成为了一个受欢迎的大数据处理框架。
+		- Spark论文中的RDD已经deprecated了，现在是data frame（带有explicit columns的RDDs），RDD中比较好的设计思想在data frame中也是为true的；这篇论文获得了ACM doctoral thesis award，而对于一般的doctoral thesis来说这是非常unusual的impact
+		-
 -
 -
 -
