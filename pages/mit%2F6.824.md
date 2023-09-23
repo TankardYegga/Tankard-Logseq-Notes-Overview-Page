@@ -1572,7 +1572,46 @@ title:: mit/6.824
 	-
 	-
 	-
+- Spanner:
+	- Spanner的核心好处有哪些？
+	  collapsed:: true
+		- Wide-area transactions
+		- R/W transaction：2PC + 2PL + paxos groups
+		- R/O transaction
+		  collapsed:: true
+			- paper使得read-only transactions变得very inexpensive
+			- read-only transactions可以在任何的data center来run，且可以运行得很快
+			- 事实上paper中的表6的数据说明 read-only transactions要比read-write transactions差不多快10倍
+			- 只读业务里面用到了两个核心的技巧：
+			  collapsed:: true
+				- 一是snapshot isolation，这其实是一个标准的数据库设计想法，用在这里是为了使得read变得快速，尤其是使得它在分布式的环境设置下也能工作得很好
+				- 二是synchronized clocks，然而这些clocks并不是perfectly synchronized，所以它们的业务策略必须解决一部分的swap drift or error margin，因为true time也是不为我们所准确所知的
+				  collapsed:: true
+					- "swap" 指的是两个或多个线程或进程之间交换数据或状态的操作。这种交换可能导致潜在的问题，如数据竞争、死锁或活锁等
+					- "drift" 通常指的是时钟漂移（clock drift）问题，时钟漂移是指计算机系统中的时钟不准确地运行，导致时间的偏移或不准确。时钟漂移可能由于一些硬件或软件方面的因素引起，如晶体振荡器的不稳定性、温度变化、电源波动、操作系统的时间管理等
+					- 在计算机科学和数据分析中，（error margin）误差边界通常用于表示一个计算结果或数据估计的可信程度。它可以用来衡量测量或计算的准确性，并确定结果是否在可接受的范围内。
+						- 误差边界可以是一个绝对值或相对值，具体取决于测量或估计的上下文
+						- 它可以表示为一个特定的数字，也可以表示为一个百分比或比例
+						  collapsed:: true
+							- 如果某个测量结果的误差边界为±0.5，那么它意味着该结果与真实值之间的差异可能在±0.5的范围内。
+							- 如果某个数据估计的误差边界为10%，那么它意味着该估计值可能与真实值相差不超过估计值的10%。
+		- widely-used
+			- 在谷歌的内部使用
+			- 作为cloud service可以给google customer来使用，比如gmail的email system实际上就go through spanner
+			-
+	- Spanner的high-level organization是什么呢？
+	  collapsed:: true
+		- ![image.png](../assets/image_1695490215268_0.png)
+		- 可以想象成在跨不同数据中心上来运行一个kv server
+		- ![image.png](../assets/image_1695490608423_0.png)
+		- 每个shard及其副本，在对应的数据中心上形成了一个对应的paxos group；每个shard的数据可能是database rows，也可能是key value stores
+		- majority rule的应用带来了两点好处：数据中心的fault tolerance，以及 减轻了slowest machine对整个性能的影响
+		- replicas最好被放置在需要使用它的某个server client的附近（这里的客户端指代的是某种backend google service，比如gmail ，而不是那些具体使用gmail的users）：read only transactions的执行可以在local replica处进行，而不用与其他的数据中心进行通信
+		-
+	- 这节lecture中的challenge有哪些呢？
+		-
 - Spark：
+  collapsed:: true
 	- Spark是什么呢？
 	  collapsed:: true
 		- Spark（2012）可以被看作是Hadoop的successor，而Hadoop则是mapreduce的open-source version
@@ -1588,6 +1627,7 @@ title:: mit/6.824
 		- Spark论文中的RDD已经deprecated了，现在是data frame（带有explicit columns的RDDs），RDD中比较好的设计思想在data frame中也是为true的；这篇论文获得了ACM doctoral thesis award，而对于一般的doctoral thesis来说这是非常unusual的impact
 		-
 	- RDDs的Programming Model是什么呢？
+	  collapsed:: true
 		- RDD的example：
 		  collapsed:: true
 			- ![image.png](../assets/image_1695000621934_0.png)
@@ -1645,8 +1685,8 @@ title:: mit/6.824
 				- 与mapreduce中map worker crash了需要重新执行map task甚至需要重新执行部分reduce task类似，这里也需要重新执行。但是这里的计算过程更为复杂，是多个stage组成的，所以这里worker是需要recompute the stage
 				- ![image.png](../assets/image_1695027388223_0.png)
 				- 在RDD之上定义的api，所有的这些transformation是functional的，也就是给定输入的RDD, 就会产生特定的输出的RDD，这个过程是completely deterministic的，所以当crash之后，需要restart a stage or sequence of transformations from the same input，就会产生同样的输出，就可以recreate the same partition
-				-
 			- narrow dependency和wide dependency下的fault tolerance有区别吗？
+			  collapsed:: true
 				- 有，narrow case下和mapreduce基本没有什么区别，但是wide dependency下将会是一个tricky case
 				- tricky case：
 					- ![image.png](../assets/image_1695036019477_0.png){:height 354, :width 656}
@@ -1667,9 +1707,6 @@ title:: mit/6.824
 						  collapsed:: true
 							- 我presume在spark中存在一个general的strategy能够这样做：当内存中的空间不足后，能够将一些RDD给spill to HDFS 或者说 remove from HDFS，但是论文中的plan比较vague。唯一可以肯定的是，当计算结束 或者 用户退出登录、停止drive时，内存中的RDDs全部都会be gone
 							-
-					-
-					-
-			-
 		- Could you give an example that really shows off where spark shines?
 		  collapsed:: true
 			- 论文中给出了关于iterative structure的pagerank的例子：
@@ -1684,28 +1721,37 @@ title:: mit/6.824
 				- ![image.png](../assets/image_1695045753669_0.png)
 			- 上面例子中的links ranks file都是share among all the iterations
 			- pagerank例子的lineage graph是什么样的呢？
-			  collapsed:: true
 				- ![image.png](../assets/image_1695046344235_0.png)
 				- 这个lineage graph为什么是dynamic的？
 					- 因为迭代的次数并不确定，随着迭代次数的增加，loop中的每个操作都会继续叠加
 				- 这个lineage graph是wide dependency吗？
 					- 是的，join across links and ranks，需要分别来自links和ranks的partition
 				- 生成contribs RDD的过程看上去需要network communication，但是可以有optimization，具体要怎么进行优化呢？
-					- 可以使用你自己指定的hash partition方法来对已有的一个RDD进行划分，在这里让links和ranks这两个RDD使用相同的方式来进行partition，按照key或者key的hash来进行划分。在pagerank的例子中，ranks和links的key都是u1, u2, u3, 所以同一个key的rank和link将会被划分到同一个机器上去，这样wide dependency将能够以narrow dependency的方式来执行，这里具体的划分函数将由编程人员或者scheduler来决定
-					  collapsed:: true
+					- 可以使用你自己指定的hash partition方法来对已有的一个RDD进行划分，在这里让links和ranks这两个RDD使用相同的方式来进行partition （hash partition是standard database partitioning scheme），按照key或者key的hash来进行划分。在pagerank的例子中，ranks和links的key都是u1, u2, u3, 所以同一个key的rank和link将会被划分到同一个机器上去，这样wide dependency将能够以narrow dependency的方式来执行，这里具体的划分函数将由编程人员或者scheduler来决定
 						- ![image.png](../assets/image_1695049655454_0.png){:height 248, :width 594}
+						- ![image.png](../assets/image_1695054992027_0.png)
+						-
 						-
 				- 在这个过程中，links将会调用persist call，但是intermediate RDDs不会调用，为什么呢？
 					- 因为像rank1、rank2这些都是new RDD （every time），而links在一个partition的数据计算过程中是不会变的，需要驻留在内存中；但是，这些中间的RDD可以occasionally地存储在HDFS中，所以当发生失败时，不用从iteration loop的开头重新执行
-					-
-			-
 		- 对RDD进行一下summary？
 		  collapsed:: true
 			- ![image.png](../assets/image_1695052584240_0.png)
 			- MR是mapreduce
 			- 论文中可以依据 每个计算 需要花费的时间这一数据，来进行automatic checkpointing，怎么来看待这个思想呢？
+			  collapsed:: true
 				- 其实 执行checkpointing以及从checkpoints中读取数据  和  重新执行计算 的开销都是比较大的，只是当计算开销更大时，使用checkpointing会更好，比如pagerank中也是推荐每10次iteration就进行一次checkpointing比较好
 				-
+			- driver是在客户端吗？
+				- 是的，但是当driver crash时，不确定要怎么做，scanner可能会自动进行reconnect
+	- 关于spark中的fault tolerance，怎么理解下面的这张图？
+	  collapsed:: true
+		- ![image.png](../assets/image_1695055585335_0.png)
 		-
--
+	- lineage graph中不能仅仅通过图本身，比如单向箭头来判断是narrow dependency 还是 wide dependency，对吗？
+	  collapsed:: true
+		- ![image.png](../assets/image_1695055767542_0.png)
+		- 是的，比如最后的collect，虽然是单向箭头执向它，但是它很明显是一个wide dependency
+		-
+	-
 -
