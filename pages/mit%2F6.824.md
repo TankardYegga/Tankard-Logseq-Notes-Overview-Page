@@ -1609,7 +1609,17 @@ title:: mit/6.824
 		- replicas最好被放置在需要使用它的某个server client的附近（这里的客户端指代的是某种backend google service，比如gmail ，而不是那些具体使用gmail的users）：read only transactions的执行可以在local replica处进行，而不用与其他的数据中心进行通信
 		-
 	- 这节lecture中的challenge有哪些呢？
+	  collapsed:: true
+		- Read of local replica yield the latest write
+		  collapsed:: true
+			- 之前说只读事务从最近的数据中心读取数就可以了，而不用从其他数据中心来传送数据，这样就必然要求本地数据中心读取的结果必须是最新写入后的数据
+			- zookeeper中也面临这样的问题，但是它是采用了weak consistency，而并没有真的解决；而在spanner当中，保持了linearizability，甚至是shoot for a strikingly strong property than linearizability
+		- Transactions Over Shards
+		  collapsed:: true
+			- 比如说bank transfer的事务，一个账号在一个数据中心的shard上，目标账户在另外一个数据中心的shard上，那么必须确保一次事务操作能够有一致的语义
+		- Txns（Transactions） must be serializable
 		-
+	-
 - Spark：
   collapsed:: true
 	- Spark是什么呢？
