@@ -1620,6 +1620,7 @@ title:: mit/6.824
 		- Txns（Transactions） must be serializable
 		-
 	- Read write Txns是怎么工作的？
+	  collapsed:: true
 		- ![image.png](../assets/image_1695494140129_0.png)
 		- 这里的customer是server in the gmail system而不是web浏览器中的gmail，customer实际上负责orchestrate the transactions：customer里面有transaction manager or transaction library来实际进行管理
 		- 这里先讨论没有timestamps时的情况，事实上在读写事务中时间戳没有那么重要，时间戳实际上大多数时候只用于只读的事务，所以需要对 r/w txns中的方法进行a little bit tweaking（一点点的微调）才能用于支持只读的事务，而r/w txns本质上就是：straight 2PL + 2PC
@@ -1637,8 +1638,28 @@ title:: mit/6.824
 		- ![image.png](../assets/image_1695544790423_0.png)
 		- ![image.png](../assets/image_1695545012181_0.png)
 		- ![image.png](../assets/image_1695545211267_0.png)
-		- 一旦participants已经准备好（prepared）并且同意去准备（agree to prepare），那么就发送回OK；然后，TC就可以进行commit，在这个commit point，coordinator需要去记录：它实际上已经做出那个commit decision了，这是因为participant在之后come back后有可能想要知道并且找出这一点
+		- 一旦participants已经准备好（prepared）并且同意去准备（agree to prepare），那么就发送回OK，这和我们之前谈到的两阶段协议非常类似；然后，TC就可以进行commit，在这个commit point，coordinator需要去记录：
+		  "它实际上已经做出那个commit decision了"，这是因为participant在之后come back后有可能想要知道并且找出这一点（two-phase commit state should be written using Paxos and replicated using Paxos）
+		- 在整个presentation里面，可以把Paxos认为是being complete substitute or equivalent to raft，尽管spanner predates raft，但是从概念上来说它们是一样的
+		- ![image.png](../assets/image_1695546624744_0.png)
+		- 在coordinator写入commit state之后，coordinator会通知participants也就是这里的ShardA和ShardB：the transaction has already been committed；再然后，shardA和shardB将会response back：great！事务已经被提交了，coordinator可以clean up the state了；再过一段时间，shard可以开始clean up their state了
+		- ![image.png](../assets/image_1695547463204_0.png)
+		- ![image.png](../assets/image_1695547569733_0.png)
+		- 需要注意的是，在participant接受到事务已经commit的消息后，将会立即release their locks
+		- 我们在之前谈论过的一些two phase commit的问题，在这里是less relevant的，因为participants are all paxos groups and so they are replicated and much more highly available here
 		-
+	- 关于read write Txns的一些问题？
+		- spanner中是存在log table还是lock table？
+		  collapsed:: true
+			- 在Google Cloud Spanner中，存在日志表（log tables）的概念，而锁表（lock tables）的概念并不适用于Spanner。
+			- 日志表（log tables）在Spanner中用于记录数据库的更改操作，包括事务的提交和回滚等。它们用于维护数据的一致性和持久性，并提供恢复功能。
+			- 锁表（lock tables）的概念通常与传统的关系型数据库管理系统（RDBMS）相关，用于管理并发访问和事务的隔离级别。但是，在Spanner中，使用分布式事务协议和多版本并发控制（MVCC）来实现事务的隔离和一致性，因此不需要显式的锁表概念。
+			- 所以，在Spanner中，你会看到日志表（log tables）的概念，但是锁表（lock tables）的概念并不存在。
+		- 每个shard是会replicate the log table吗？
+			- 不是在复制log table，而是会复制它在do the prepare时所hold的lock，因为这个是在do the two phase commit时它所需要的state
+			- 一些事务的current locks没有reach到prepared stage，这些事务会lost吗？
+				- 是的，会lost，这些事务然后会abort，这些participant将不会再participate其中了，并且会告知coordinator：我的locks被我所丢失了，所以我不能再执行这些事务了
+				-
 	- Read only Txns是怎么工作的?
 	-
 - Spark：
