@@ -1627,8 +1627,18 @@ title:: mit/6.824
 		- log table只在leader那里保存了一份，并没有被复制，所以当leader fail时，log table的信息就会丢失，这时候的事务会abort掉，所以必须得重新启动才能恢复。为什么只保留有一份呢? 是为了使得read操作更快
 		- ![image.png](../assets/image_1695540750320_0.png){:height 395, :width 718}
 		- 所有的写操作都在客户端本地完成，然后它会需要向Spanner来提交这个事务：具体是向transaction coordinator（TC）来进行提交，TC是一组服务器组成的PaxosGroup。
-			- 为什么TC需要是PaxosGroup呢？这与2PC protocol有关，当TC fail了，它会阻塞掉所有的参与者(block the participants)；为什么会阻塞参与者呢？一般参与者会准备好并且同意继续执行事务了(prepare and agree to go along with the transaction), 但是当这时候的TC挂掉了的话，这些参与者不得不一直持有它们自身的locks并且需要等待TC comes back。如果使用PaxosGroup的话，我们就可以对coordinator来进行复制，这样可以使得coordinator是highly available的，就可以避免这种特定的disaster了。
-			-
+			- 为什么TC需要是PaxosGroup呢？这与2PC protocol有关，当TC fail了，它会阻塞掉所有的参与者(block the participants)；为什么会阻塞参与者呢？一般参与者会准备好并且同意继续执行事务了(prepare and agree to go along with the transaction), 但是当这时候的TC挂掉了的话，这些参与者不得不一直持有它们自身的locks并且需要等待TC comes back。如果使用PaxosGroup的话，我们就可以对coordinator来进行复制，这样可以使得coordinator是highly available的，就可以避免这种特定的disaster scenario了。
+			- 简单来说，也就是TC实际上是负责来运行2PC协议的
+		- ![image.png](../assets/image_1695542351987_0.png)
+		- ![image.png](../assets/image_1695543339703_0.png)
+		- TC将x和y的更新（x减1，y增加1）分别发送给Shard A和Shard B的leader；实际上它们已经grab the locks了，或者说把locks给promote成read write locks了，它们通常使用write-ahead logging来进行prepare the changes，而不是实际进行执行；如果everything已经准备好了的话，就会commit to the transaction，也就是进入某种所谓的prepared state了，这是一个big moment point，因为在这一个point，所有的peers or participants are committing to the transaction
+		- ![image.png](../assets/image_1695544264748_0.png)
+		- 从之前的lecture中可知，participant是必须要record some state的，这是为了防止当它们fail然后恢复之后，可以pick up from where they left off.  所以在prepared state这一点，这会导致一个paxos write操作。这个操作写什么呢？主要写2PC state和各种locks，且这时候shard的leader需要将这个write给复制到组内的其他不同的peers，目的是为了确保写入的state是可以fault tolerance的
+		- ![image.png](../assets/image_1695544790423_0.png)
+		- ![image.png](../assets/image_1695545012181_0.png)
+		- ![image.png](../assets/image_1695545211267_0.png)
+		- 一旦participants已经准备好（prepared）并且同意去准备（agree to prepare），那么就发送回OK；然后，TC就可以进行commit，在这个commit point，coordinator需要去记录：它实际上已经做出那个commit decision了，这是因为participant在之后come back后有可能想要知道并且找出这一点
+		-
 	- Read only Txns是怎么工作的?
 	-
 - Spark：
