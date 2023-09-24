@@ -1619,6 +1619,17 @@ title:: mit/6.824
 			- 比如说bank transfer的事务，一个账号在一个数据中心的shard上，目标账户在另外一个数据中心的shard上，那么必须确保一次事务操作能够有一致的语义
 		- Txns（Transactions） must be serializable
 		-
+	- Read write Txns是怎么工作的？
+		- ![image.png](../assets/image_1695494140129_0.png)
+		- 这里的customer是server in the gmail system而不是web浏览器中的gmail，customer实际上负责orchestrate the transactions：customer里面有transaction manager or transaction library来实际进行管理
+		- 这里先讨论没有timestamps时的情况，事实上在读写事务中时间戳没有那么重要，时间戳实际上大多数时候只用于只读的事务，所以需要对 r/w txns中的方法进行a little bit tweaking（一点点的微调）才能用于支持只读的事务，而r/w txns本质上就是：straight 2PL + 2PC
+		- ![image.png](../assets/image_1695495681634_0.png)
+		- log table只在leader那里保存了一份，并没有被复制，所以当leader fail时，log table的信息就会丢失，这时候的事务会abort掉，所以必须得重新启动才能恢复。为什么只保留有一份呢? 是为了使得read操作更快
+		- ![image.png](../assets/image_1695540750320_0.png){:height 395, :width 718}
+		- 所有的写操作都在客户端本地完成，然后它会需要向Spanner来提交这个事务：具体是向transaction coordinator（TC）来进行提交，TC是一组服务器组成的PaxosGroup。
+			- 为什么TC需要是PaxosGroup呢？这与2PC protocol有关，当TC fail了，它会阻塞掉所有的参与者(block the participants)；为什么会阻塞参与者呢？一般参与者会准备好并且同意继续执行事务了(prepare and agree to go along with the transaction), 但是当这时候的TC挂掉了的话，这些参与者不得不一直持有它们自身的locks并且需要等待TC comes back。如果使用PaxosGroup的话，我们就可以对coordinator来进行复制，这样可以使得coordinator是highly available的，就可以避免这种特定的disaster了。
+			-
+	- Read only Txns是怎么工作的?
 	-
 - Spark：
   collapsed:: true
