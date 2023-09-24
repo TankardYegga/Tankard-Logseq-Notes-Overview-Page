@@ -1649,6 +1649,7 @@ title:: mit/6.824
 		- 我们在之前谈论过的一些two phase commit的问题，在这里是less relevant的，因为participants are all paxos groups and so they are replicated and much more highly available here
 		-
 	- 关于read write Txns的一些问题？
+	  collapsed:: true
 		- spanner中是存在log table还是lock table？
 		  collapsed:: true
 			- 在Google Cloud Spanner中，存在日志表（log tables）的概念，而锁表（lock tables）的概念并不适用于Spanner。
@@ -1661,7 +1662,14 @@ title:: mit/6.824
 				- 是的，会lost，这些事务然后会abort，这些participant将不会再participate其中了，并且会告知coordinator：我的locks被我所丢失了，所以我不能再执行这些事务了
 				-
 	- Read only Txns是怎么工作的?
-	-
+		- ![image.png](../assets/image_1695589362268_0.png)
+		- no locks可以使得 只读事务 不会 阻塞读写事务，同样读写事务也不会阻塞只读事务
+		- no 2PC也意味着没有 宽范围内的通信，所以reads绝对可以从local replica来执行了
+		- 从本地的数据中心来读取的最需要考虑的问题是：怎么保持consistency 或者说 serializability
+		- ![image.png](../assets/image_1695589798006_0.png)
+		- paper中指出 只读事务  是 读写事务 的 10 times faster，读写事务 通过需要长距离的通信，所以一般是hundreds of milliseconds,  只读事务一般就只有5-10毫秒
+		-
+	- 关于read only txns的一些问题？
 - Spark：
   collapsed:: true
 	- Spark是什么呢？
