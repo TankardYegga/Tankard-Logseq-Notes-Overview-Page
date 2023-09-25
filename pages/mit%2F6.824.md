@@ -1727,7 +1727,7 @@ title:: mit/6.824
 				- 如果 [[$red]]==设置的时间戳比正常情况下  要更小==的话
 					- 比如T3事务中的 Rx的时间戳是 9的话，这时候T3读取到的数据会是 T1执行之前的，而实际上T3现在的时间戳本来就已经是15了，所以本应该看到 T1执行之后的结果
 					- 所以 这其实破坏了 serializability，因为本应该看到的写入的结果，并没有被看到
-		- Spanner中是如何来synchronize clocks的呢？
+		- Spanner中是如何来synchronize clocks的呢（clocks are not perfectly synchronized）？
 			- 进行时钟同步的困难是什么？
 			  collapsed:: true
 				- clocks是非常容易drift的：因为系统的oscillator以固定的frequency来计时，但是这个frequency的保持却并不一定稳定
@@ -1736,7 +1736,29 @@ title:: mit/6.824
 			- 使用atomic clocks可以实现更高的precision
 			- 所有的clocks都必须在global time上保持一致，并且它们在某种程度上需要一直tick tick，并且需要定期地来resynchronize;  使用GPS来broadcast time
 			- 论文中没有详细说明true time system是如何工作的，但是可能的情况是：
-				- 每个data center有一个或者几个atomic clock，不同data center的time master的local clocks不是通过一个time server来同步的，
+			  collapsed:: true
+				- 每个data center有一个或者几个atomic clock，不同data center的time master的local clocks不是通过一个time server来同步的，而是通过GPS来synchronize themselves的
+				- 因此，不同服务器上的这些clocks实际上在epsilon上（error rate）是非常接近的，通常来说这些clocks的时间和true time的差在 a few microseconds（10^-6s） 到 a few milliseconds(10^-3s)
+				- 在machine上的time library会keep track of [[$red]]==average delay or normal delay== for sending or receiving messages to the time master, 并且会用评估出来的这些延迟来纠正small mistakes
+				- 协议里同样提供了对于outlier的支持，比如网络中可能会发生故障，导致timestamp在传送过程中的延迟很严重
+				- 如果oscillator彻底无法恢复了（go kaput），返回不正确的values，可能可以使用类似于NTP的技巧来处理这些问题，论文中也没有谈论大量的细节
+				  collapsed:: true
+					- "Kaput" 是一个英文词汇，来自德语 "kaputt"，意思是"坏掉"、"不再工作"、"无法修复"。它常用于描述事物或设备损坏、故障或无法使用的状态。例如，你可以说一台电脑或一辆汽车坏掉了，它们无法正常运行或需要修复。除了用于描述物体的状态，"kaput" 也可以用于形容一种情况或计划彻底失败或崩溃。总之，"kaput" 表示某物或某种情况已经无法恢复或修复
+				- true time这个概念能够给我们提供的是：
+				  collapsed:: true
+					- 当前absolute time或者说true time是什么的一种best estimate
+					- margin of error
+					  collapsed:: true
+						- "Margin of error" 是一个统计学术语，指的是在进行调查或抽样时，由于样本的有限性而引入的不确定性范围。它表示了样本估计值与真实总体参数值之间可能存在的差异。
+						- 在进行调查或抽样时，很难完全调查到整个总体，因此使用样本数据来推断总体参数。由于样本的随机性和有限性，样本统计值可能会有一定的误差。"Margin of error" 表示了样本统计值与真实总体参数值之间的可能误差范围。
+						- 通常，"margin of error" 会以一个特定的置信水平来表示，例如95%或99%。这表示在多次重复抽样的情况下，有95%或99%的概率样本统计值的误差范围会包含真实总体参数值。
+						- "Margin of error" 在调查和民意调查中非常重要，它可以帮助解释和解读统计数据的可靠性和精确性。
+					-
+			- 解决clock drift的方法是什么呢？
+			  collapsed:: true
+				- 不适用pure timestamps
+				- ![image.png](../assets/image_1695657925384_0.png)
+				- 可以确保true time是在intervals里面的
 	- 关于read only txns的一些问题？
 - Spark：
   collapsed:: true
