@@ -1704,16 +1704,23 @@ title:: mit/6.824
 					- 所以，在任何一个特定的replica中，给定一个timestamp，比如是15，就知道latest write的结果是什么了
 					- 问题是，正如前面所说，read事务是从最近的machine里面来读取的，这个machine和其他地理位置的machine会正好组成一个PaxosGroup，很明显当前的machine并不一定是这个PaxosGroup的leader，所以当前的read难道没有可能会读取到stale的data吗？
 						- ![image.png](../assets/image_1695637854003_0.png)
-						- 老师说的是“safe time rule”的：在时间戳为15的点进行读取操作时，必须要等待一个时间戳比15更大的写入操作，因为这样就可以判断在读取15之前没有进行任何写入操作了，所以就可以安全地来执行此次读取操作，也就不会出现当前的replica看不见在时间戳为10时的写入操作了
+						- [[$red]]==老师说的是“safe time rule”的：==在时间戳为15的点进行读取操作时，必须要等待一个时间戳比15更大的写入操作，因为这样就可以判断在读取15之前没有进行任何写入操作了，所以就可以安全地来执行此次读取操作，也就不会出现当前的replica看不见在时间戳为10时的写入操作了
 							- ![image.png](../assets/image_1695644532866_0.png)
-						- 还有另外一个rule的要求：必要要等待transactions that have prepared but not committed，比如说在时间戳为14的点有一个读写事务已经prepared了但是还没有commit，那么当前时间戳为15时的读取操作必须要等待前面那个事务被commit
+						- [[$red]]==还有另外一个rule的要求：==必要要等待transactions that have prepared but not committed，比如说在时间戳为14的点有一个读写事务已经prepared了但是还没有commit，那么当前时间戳为15时的读取操作必须要等待前面那个事务被commit
+							- [[存疑]] 这个rule感觉像是上面那个rule的隐性规则吧？
 						- 这种correctness guarantee could apply across different shards 还是 only apply to one shard?
 							- 这种正确性保证，是事务级别的；如果一个读操作只从一个local replica上来读取，那么也不得不确保事务是externally consistent的
 		- Spanner中的clocks为啥must be perfect呢？
 			- 所有的参与者（participants）必须在timestamp order上达成一致，每个事务都会选择一个特定的时间戳，那么在系统中的everywhere都必须要有同样的时间戳
-			- Only matters for read only transactions
+			- [[$red]]==Only matters for read only transactions==
+				- 这是因为在RW Txn中是通过grab logs 和 two-phase locking to get a total order的
 			- 如果有一台服务器或者一个replica刚刚有错误的时间戳，也就是说和其他服务器在整个时间戳上没有达成一致性统一，会出现什么问题呢？
-				- 如果 设置的时间戳比正常情况下  要更大的话，比如T3事务中的Rx的时间戳是18的话，因为这时候T2的Wx的时间戳是20 > 18,  所以依据前面的safe time rule，
+				- 如果 [[$red]]==设置的时间戳比正常情况下  要更大==的话
+					- 比如T3事务中的Rx的时间戳是18的话，因为这时候T2的Wx的时间戳是20 > 18,  所以依据前面的safe time rule，这时候的Rx可以直接执行；而如果Rx的时间戳大到成了24 > 20 这种，那么Rx不能执行，必须得等到 有时间戳大于24的RW Txn完成，才可以执行
+					- 两种情况下事务的执行都没有受到影响，只是会推迟，导致longer finishing time
+				- 如果 [[$red]]==设置的时间戳比正常情况下  要更小==的话
+					- 比如T3事务中的 Rx的时间戳是 9的话，这时候T3读取到的数据会是 T1执行之前的，而实际上T3现在的时间戳本来就已经是15了，所以本应该看到 T1执行之后的结果
+					- 所以 这其实破坏了 serializability，因为本应该看到的写入的结果，并没有被看到
 	- 关于read only txns的一些问题？
 - Spark：
   collapsed:: true
@@ -1859,4 +1866,5 @@ title:: mit/6.824
 		- 是的，比如最后的collect，虽然是单向箭头执向它，但是它很明显是一个wide dependency
 		-
 	-
+-
 -
