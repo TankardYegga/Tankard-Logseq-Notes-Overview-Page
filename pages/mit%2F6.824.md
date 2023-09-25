@@ -1662,13 +1662,44 @@ title:: mit/6.824
 				- 是的，会lost，这些事务然后会abort，这些participant将不会再participate其中了，并且会告知coordinator：我的locks被我所丢失了，所以我不能再执行这些事务了
 				-
 	- Read only Txns是怎么工作的?
-		- ![image.png](../assets/image_1695589362268_0.png)
-		- no locks可以使得 只读事务 不会 阻塞读写事务，同样读写事务也不会阻塞只读事务
-		- no 2PC也意味着没有 宽范围内的通信，所以reads绝对可以从local replica来执行了
-		- 从本地的数据中心来读取的最需要考虑的问题是：怎么保持consistency 或者说 serializability
-		- ![image.png](../assets/image_1695589798006_0.png)
-		- paper中指出 只读事务  是 读写事务 的 10 times faster，读写事务 通过需要长距离的通信，所以一般是hundreds of milliseconds,  只读事务一般就只有5-10毫秒
-		-
+		- 只读事务的要求有哪些呢？
+		  collapsed:: true
+			- ![image.png](../assets/image_1695589362268_0.png)
+			- no locks可以使得 只读事务 不会 阻塞读写事务，同样读写事务也不会阻塞只读事务
+			- no 2PC也意味着没有 宽范围内的通信，所以reads绝对可以从local replica来执行了
+			- 从本地的数据中心来读取的最需要考虑的问题是：怎么保持consistency 或者说 serializability
+			- ![image.png](../assets/image_1695589798006_0.png)
+			- paper中指出 只读事务  是 读写事务 的 10 times faster，读写事务 通过需要长距离的通信，所以一般是hundreds of milliseconds,  只读事务一般就只有5-10毫秒
+		- Spanner的correctness goal是什么呢？
+		  collapsed:: true
+			- ![image.png](../assets/image_1695590393165_0.png)
+			- 正确性的第一条就是serializability：只读事务 和 读写事务 必须以一定的serial order来执行，也就是说只读事务必须fit in the 读写事务中；只读事务 不能是只读到 part of the 读写事务的writes，也就是只读事务读取的结果要么就是完成读写事务之后的，要么就是读写事务根本没有执行
+			- ![image.png](../assets/image_1695590796779_0.png)
+			- 外部一致性的条件是：T2事务 在T1事务完成提交之后  才开始，这里的T2事务是只读事务；可以认为 是 = serializability + real-time requirement；
+			- 外部一致性和linearizability很接近，但是它们的区别是：
+				- 外部一致性 是一个transaction level的，而linearizability是关于individual reads and writes
+				- 和linearizability一样，外部一致性 is pleasant for programmers
+		- Spanner中是如何来实现只读事务的correctness goal的呢？
+			- Bad Plan：Read latest commit value
+			  collapsed:: true
+				- ![image.png](../assets/image_1695593901311_0.png)
+				- ![image.png](../assets/image_1695594043907_0.png)
+				- Rx读取的是T1事务的写入结果，Ry读取的是T2事务的写入结果，两者很明显not on the consistent picture
+				-
+			- Spanner所使用的Better Plan：Snapshot Isolation
+				- 这是一个standard database idea，并且主要是在local database中进行的，而不是在wide area中
+				- 有两个需要理解的点：
+				  collapsed:: true
+					- 第一个是Assign Timestamp to Txns
+						- 对于 读写事务， 这个时间戳是在：commit point 或者 说 the point that starts to commit
+						- 对于 只读事务， 这个时间戳是在：start of the transactions
+					- 第二个是 Execute all the operations in the transactions in timestamp order
+						- Each replica store multiple values for a key namely with their timestamp: 比如说在一个特定的replica里，要求它给出x 在 time = 10 时的value，或者 在time = 20的value，我们把这个称作multiversion databases或者multiversion storage，也就是为每个更新都维持一个对应的version
+						-
+				- 这个是如何解决Bad Plan中对应的问题的呢？
+					- ![image.png](../assets/image_1695636637120_0.png)
+					- T3中Rx Ry操作虽然隔开了一段时间，但是它们的时间戳都是T3事务开始的时间，在这里也就是15，所以Rx Ry都会读取到T1事务写入的结果
+					-
 	- 关于read only txns的一些问题？
 - Spark：
   collapsed:: true
