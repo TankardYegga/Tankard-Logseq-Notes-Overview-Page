@@ -1680,6 +1680,7 @@ title:: mit/6.824
 				- 外部一致性 是一个transaction level的，而linearizability是关于individual reads and writes
 				- 和linearizability一样，外部一致性 is pleasant for programmers
 		- Spanner中是如何来实现只读事务的correctness goal的呢？
+		  collapsed:: true
 			- Bad Plan：Read latest commit value
 			  collapsed:: true
 				- ![image.png](../assets/image_1695593901311_0.png)
@@ -1687,6 +1688,7 @@ title:: mit/6.824
 				- Rx读取的是T1事务的写入结果，Ry读取的是T2事务的写入结果，两者很明显not on the consistent picture
 				-
 			- Spanner所使用的Better Plan：Snapshot Isolation
+			  collapsed:: true
 				- 这是一个standard database idea，并且主要是在local database中进行的，而不是在wide area中
 				- 有两个需要理解的点：
 				  collapsed:: true
@@ -1697,6 +1699,7 @@ title:: mit/6.824
 						- Each replica store multiple values for a key namely with their timestamp: 比如说在一个特定的replica里，要求它给出x 在 time = 10 时的value，或者 在time = 20的value，我们把这个称作multiversion databases或者multiversion storage，也就是为每个更新都维持一个对应的version
 						-
 				- 这个是如何解决Bad Plan中对应的问题的呢？
+				  collapsed:: true
 					- ![image.png](../assets/image_1695636637120_0.png)
 					- T3中Rx Ry操作虽然隔开了一段时间，但是它们的时间戳都是T3事务开始的时间，在这里也就是15，所以Rx Ry都会读取到T1事务写入的结果
 					- ![image.png](../assets/image_1695636887729_0.png)
@@ -1711,16 +1714,29 @@ title:: mit/6.824
 						- 这种correctness guarantee could apply across different shards 还是 only apply to one shard?
 							- 这种正确性保证，是事务级别的；如果一个读操作只从一个local replica上来读取，那么也不得不确保事务是externally consistent的
 		- Spanner中的clocks为啥must be perfect呢？
+		  collapsed:: true
 			- 所有的参与者（participants）必须在timestamp order上达成一致，每个事务都会选择一个特定的时间戳，那么在系统中的everywhere都必须要有同样的时间戳
 			- [[$red]]==Only matters for read only transactions==
+			  collapsed:: true
 				- 这是因为在RW Txn中是通过grab logs 和 two-phase locking to get a total order的
 			- 如果有一台服务器或者一个replica刚刚有错误的时间戳，也就是说和其他服务器在整个时间戳上没有达成一致性统一，会出现什么问题呢？
+			  collapsed:: true
 				- 如果 [[$red]]==设置的时间戳比正常情况下  要更大==的话
 					- 比如T3事务中的Rx的时间戳是18的话，因为这时候T2的Wx的时间戳是20 > 18,  所以依据前面的safe time rule，这时候的Rx可以直接执行；而如果Rx的时间戳大到成了24 > 20 这种，那么Rx不能执行，必须得等到 有时间戳大于24的RW Txn完成，才可以执行
 					- 两种情况下事务的执行都没有受到影响，只是会推迟，导致longer finishing time
 				- 如果 [[$red]]==设置的时间戳比正常情况下  要更小==的话
 					- 比如T3事务中的 Rx的时间戳是 9的话，这时候T3读取到的数据会是 T1执行之前的，而实际上T3现在的时间戳本来就已经是15了，所以本应该看到 T1执行之后的结果
 					- 所以 这其实破坏了 serializability，因为本应该看到的写入的结果，并没有被看到
+		- Spanner中是如何来synchronize clocks的呢？
+			- 进行时钟同步的困难是什么？
+			  collapsed:: true
+				- clocks是非常容易drift的：因为系统的oscillator以固定的frequency来计时，但是这个frequency的保持却并不一定稳定
+				  collapsed:: true
+					- "Oscillator" 是一个英文词汇，指的是一个产生周期性信号或波动的设备、器件或系统。它可以用来产生各种类型的振荡信号，例如电子振荡器、声波振荡器和机械振荡器等。振荡器的运作基于一个反馈回路，通过不断循环的正反馈过程，在特定频率上产生稳定的振荡输出。振荡器在许多领域中都有广泛的应用，包括电子通信、音频设备、计算机时钟等
+			- 使用atomic clocks可以实现更高的precision
+			- 所有的clocks都必须在global time上保持一致，并且它们在某种程度上需要一直tick tick，并且需要定期地来resynchronize;  使用GPS来broadcast time
+			- 论文中没有详细说明true time system是如何工作的，但是可能的情况是：
+				- 每个data center有一个或者几个atomic clock，不同data center的time master的local clocks不是通过一个time server来同步的，
 	- 关于read only txns的一些问题？
 - Spark：
   collapsed:: true
