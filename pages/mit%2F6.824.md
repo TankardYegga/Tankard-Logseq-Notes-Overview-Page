@@ -1756,9 +1756,17 @@ title:: mit/6.824
 					-
 			- 解决clock drift的方法是什么呢？
 			  collapsed:: true
-				- 不适用pure timestamps
+				- 不使用pure timestamps
 				- ![image.png](../assets/image_1695657925384_0.png)
 				- 可以确保true time是在intervals里面的
+				- ![image.png](../assets/image_1695658671973_0.png)
+				- start rule在interval这种方式里发生了改变：now就是latest
+				- 但是 RW TXNS 和 RO TXNS的区别没有变：前者依然是the start of the commit，后者依然是start of the txn
+				- ![image.png](../assets/image_1695659577539_0.png)
+				- 第二个规则是：commit wait；由上图文字可知，它必然实际上是before true time
+				-
+			- 使用interval来解决clock drift，可以具体讲一个例子吗？
+				-
 	- 关于read only txns的一些问题？
 - Spark：
   collapsed:: true
