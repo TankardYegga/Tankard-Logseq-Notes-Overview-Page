@@ -1728,6 +1728,7 @@ title:: mit/6.824
 					- 比如T3事务中的 Rx的时间戳是 9的话，这时候T3读取到的数据会是 T1执行之前的，而实际上T3现在的时间戳本来就已经是15了，所以本应该看到 T1执行之后的结果
 					- 所以 这其实破坏了 serializability，因为本应该看到的写入的结果，并没有被看到
 		- Spanner中是如何来synchronize clocks的呢（clocks are not perfectly synchronized）？
+		  collapsed:: true
 			- 进行时钟同步的困难是什么？
 			  collapsed:: true
 				- clocks是非常容易drift的：因为系统的oscillator以固定的frequency来计时，但是这个frequency的保持却并不一定稳定
@@ -1766,8 +1767,24 @@ title:: mit/6.824
 				- 第二个规则是：commit wait；由上图文字可知，它必然实际上是before true time
 				-
 			- 使用interval来解决clock drift，可以具体讲一个例子吗？
-				-
+				- 这里用一个简单的事务例子来进行说明：只对X进行写的事务
+					- ![image.png](../assets/image_1695698570362_0.png)
+					- T1事务在1的时候commit了，这个事务在我们这并不是特别关注
+					- T2通过x写入2，进入了prepared的状态，也就是beginning of the commit，此时它会去询问一个time，获得回来的会是一个interval；获取的这个true time并不是whole line in the interval（区间的整段）, 而是somewhere in the interval；这个interval的start time是well before the true time,  比方说1，这个1是与T1事务有时间上的overlap的；或许interval的true time的latest value是10吧
+					- ![image.png](../assets/image_1695701245031_0.png)
+					- 我们需要选择latest value = 10来作为timestamp，而我们之所以选择这个值，就是我们想要绝对确认：存在一个事务确实在true time之前启动，也就是说选择的这个时间一定要在这个事务完成之后，所以对于前面一个事务我们不会感到任何confusion
+					- ![image.png](../assets/image_1695786376380_0.png){:height 351, :width 625}
+					- 在时间戳10之后，事务会do the prepare（会做无论什么next phase commit必要的工作，比如two phase commit）,  然后到达real commit point；并且在那里依据commit rule，可能不得不需要wait一会，因为我们需要绝对确定10已经是过去时了，所以在commit time这个点，transaction coordinator将会要做的是keep reading his local clocks直到它能够获取回来interval；这个interval的start如果是7 8 9之类的，那么TC还是会继续读取，一直等到interval的start大于10了，因为这样我们就可以肯定true time has passed，所以此时commit当前的事务就会是安全的了
+					- ![image.png](../assets/image_1695787825715_0.png)
+					- ![image.png](../assets/image_1695788032759_0.png)
+					- T3事务返回的interval是[10...12]，也就是true time是在10和12的某个区间之内；很明显这个interval和T2事务有所重叠了，我们知道当前事务必须要pass 10，因为从定义上来说T3的reads必须是要在T2之后的；从定义上来说，T3这个读操作是可以work out的，因为我们将选择这个interval的end也就是12来作为timestamp （latest rule），12一定是pass 10的，所以T3一定可以读取到T2之后的结果，也就是2；但是这里必然会是有delay的，正如前面所提到的，如果clock是非常precise的话，那么这个delay也会是非常small的
+					- 为什么这里T3可以在T2commit之前就可以读取到数据呢？
+						- 因为这里的T2是一个读写事务，当客户端告诉Transaction coordinator可以提交事务了，这时候被当前事务使用的那些values其实是被相关的lock给锁住的，但是读操作应该是可以继续读的
+					-
 	- 关于read only txns的一些问题？
+		- 在RW TXNs中的ordering是什么呢？
+		  collapsed:: true
+			- 在RW TXNs的global ordering是通过locks来实现的，也就是two phase locking在某种程度上保证了serious global ordering
 - Spark：
   collapsed:: true
 	- Spark是什么呢？
