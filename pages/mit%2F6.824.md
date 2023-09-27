@@ -1573,6 +1573,7 @@ title:: mit/6.824
 	-
 	-
 - Spanner:
+  collapsed:: true
 	- Spanner的核心好处有哪些？
 	  collapsed:: true
 		- Wide-area transactions
@@ -1662,6 +1663,7 @@ title:: mit/6.824
 				- 是的，会lost，这些事务然后会abort，这些participant将不会再participate其中了，并且会告知coordinator：我的locks被我所丢失了，所以我不能再执行这些事务了
 				-
 	- Read only Txns是怎么工作的?
+	  collapsed:: true
 		- 只读事务的要求有哪些呢？
 		  collapsed:: true
 			- ![image.png](../assets/image_1695589362268_0.png)
@@ -1782,9 +1784,15 @@ title:: mit/6.824
 						- 因为这里的T2是一个读写事务，当客户端告诉Transaction coordinator可以提交事务了，这时候被当前事务使用的那些values其实是被相关的lock给锁住的，但是读操作应该是可以继续读的
 					-
 	- 关于read only txns的一些问题？
+	  collapsed:: true
 		- 在RW TXNs中的ordering是什么呢？
 		  collapsed:: true
 			- 在RW TXNs的global ordering是通过locks来实现的，也就是two phase locking在某种程度上保证了serious global ordering
+	- 对Spanner的总结是什么？
+	  collapsed:: true
+		- ![image.png](../assets/image_1695796013338_0.png)
+		- Spanner实现了external consistency：这是一种和linearizability类似的性质，都包含有real time component，通常来说这需要perfectly synchronized clocks，但是在Spanner中relax the rule
+		- R/0 TXN通常来说是fast的，而R/W TXN则没有那么fast了，paper中有大概提到一个R/W TXN的耗时是100milliseconds，那么1s中大概只能完成10个R/W TXN；但是R/W TXN还是非常powerful的，因为可以在跨数据中心的多个data shards上可以执行transaction opera
 - Spark：
   collapsed:: true
 	- Spark是什么呢？
