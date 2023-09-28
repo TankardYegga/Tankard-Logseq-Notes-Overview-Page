@@ -1637,8 +1637,49 @@ title:: mit/6.824
 		- [[$red]]==ws1可能会在执行这些复杂的文件系统操作时crash，我们需要解决相应的crash recovery的问题。==比如说在d目录下创建一个文件，其实这个操作还是挺复杂的，因为需要修改目录、分配一个新的inode、初始化这个inode、将inode写入目录，也就说这个操作其实是由多个小的steps所组成的，如果FS在其中的任何一步中crash了，需要被recovery correctly。怎么才算正确地恢复呢？只要内部的数据结构要正确（整个数据结构是consistent的，inode没有lost）
 	- 如何解决设计选择带来的这些挑战呢？
 		- Cash Coherency
-		-
+			- ![image.png](../assets/image_1695893276546_0.png)
+			- frangipani通过lock server来解决这个问题：
+				- 存储了一个对应的lock table，table中的每一行是文件名（对应于一个文件的lock）和拥有这个文件的workstation；
+				- 可以把lock server理解成像zookeeper那样的distributed service：它提供了对于logs的acquiring和releasing，它是fault tolerance的（在fangipani中这是paxos-based implementation）
+			- ![image.png](../assets/image_1695894771632_0.png)
+			- 在workstation这边，也存储有一个对应的lock table:
+				- file for a lock （cached）+ whether it's busy or idle
+				- 如上图所示的f文件（图片中的x改成f），如果是busy，意味着文件系统正在对应的文件上进行操作，文件系统正在actively地使用这个文件
+				- [[$red]]==假如表中有另外一条数据“g idle”,  这个数据中的idle的含义是：==
+					- 在当前这个point，文件并没有正在被修改，或者说并没有被正在work on；
+					- 这个lock也被称作sticky lock:
+						- 如果不久后某个时间点file server打算再次要使用g，它可以直接使用，而不需要实际上去和pedal系统进行通信 或者  重新加载缓存(reload its cache)，原则在于“sticky”对应的含义
+						- sticky说的意思是没有其他的workstation在此时获得了对应的lock
+			- 除了lock server和WS上的lock table，还伴随有一系列的message和rule来确保实际上能够获得这种cache coherence (consistency)：
+				- [[$red]]==基本的guiding rule是：how to cache a file==
+					- 首先需要acquire the lock，这一步实际上是获取consistency的stepping stone
+					- 在论文中它们的locks描述为being exclusive或者是read write locks，在本lecture中我们assume为exclusive clocks，这一点并不重要，但是存在一个优化能够让多个workstations在read-only mode下have a file cached
+				- [[$red]]==实现Cache Coherency的Protocol:==
+					- 该系统其实目标是要达成：linearizable的文件系统操作
+					- 在workstation和lock server和其他的workstations，有四个重要的message:
+					  collapsed:: true
+						- requiring a lock
+						- granting a lock
+						- revoking a lock
+						- releasing a lock
+					- 一个具体的示例：
+						- ![image.png](../assets/image_1695910251909_0.png)
+						- ws1先向log server发送对文件f进行读写的请求，LS在查看了表格之后确认这个文件并没有被任何其他工作站所使用，所以给ws1发送同意授予的message，ws1接受消息后对f进行加锁；
+						- ws1继续在local执行一些读写操作，比如像图示中那样，先执行一些read，再执行一些modification，但是这些修改是write back cache而不是write through cache
+						  collapsed:: true
+							- Write back cache和Write through cache 是计算机系统中两种常见的缓存写入策略。
+							  collapsed:: true
+								- Write back cache（写回缓存）是指在处理器向主存写入数据时，先将数据写入缓存，而不是立即写入主存。当缓存行被替换出时，才会将修改后的数据写回主存。这种策略能够提高写入性能，因为多个写操作可以合并为一次主存写入。
+								- 相比之下，Write through cache（写直通缓存）是指在处理器写入数据时，同时将数据写入缓存和主存。每次写操作都会立即更新缓存和主存，保持数据的一致性。这种策略保证了数据的可靠性，但写入性能可能相对较低。
+								- 选择使用哪种缓存写入策略取决于具体的系统需求和设计考虑。Write back cache 提供了更好的写入性能，但可能会导致数据不一致的风险。Write through cache 确保了数据的一致性，但写入性能可能较低。
+								- 需要注意的是，写回缓存和写直通缓存是对缓存写入策略的不同描述，具体实现可能会有所差异。这些策略在计算机系统中的应用会受到多个因素的影响，如处理器架构、缓存一致性协议和系统设计等。
+						- workstation此时可以直接release the lock，那么ws1表中的f对应的状态就从busy变成idle，此时若再想要重新获取lock来执行一些读写操作，可以不用再次与log server交互，就可以直接在本地进行，但是这里有一个简化：
+							- unlock操作对应有一个lease，所以客户端至少需要定期地来refresh the disk，但是并不需要从实际的
+						-
+						-
+				-
 - Spanner:
+  collapsed:: true
 	- Spanner的核心好处有哪些？
 	  collapsed:: true
 		- Wide-area transactions
