@@ -1612,6 +1612,7 @@ title:: mit/6.824
 				- 这个文件系统所可以scale或者说支持的workload也会随着workstation数量的增加，而变大
 				-
 	- Frangipani 所针对的Use case要怎么理解呢？
+	  collapsed:: true
 		- ![image.png](../assets/image_1695830322307_0.png)
 		- 分享的文件要么是：同一个工程项目需要进行合作；同一个用户需要登录多个workstation
 		- 由这个用例，所驱动的设计选择是什么呢？
@@ -1628,8 +1629,15 @@ title:: mit/6.824
 					- GFS中有一个小的library，是应用专门用来读取或者写入文件的，但它不是100%的unique compatible的；
 					-
 				-
-		- 这些设计选择，所带来的挑战是什么呢？
-			-
+	- 由用例驱动的那些设计选择，所带来的挑战是什么呢？
+	  collapsed:: true
+		- ![image.png](../assets/image_1695879268026_0.png)
+		- 当workstation2读取文件时，另外一个workstation1可能对同样的文件进行了写入，并写入了本地的缓存中，但是还没有同步到pedal的disk中去，所以这时候ws2就有可能读取到不是最新写入的结果。[[$red]]==本质上这是一个缓存一致性的问题==
+		- ws1和ws2同时要往同一个目录下写入两个命名不同的文件，一个文件是f，另外一个文件是g，ws1和ws2必须要管理好这两个写入的顺序，否则可能会使得第二个文件写入时直接清空d目录下的所有文件。[[$red]]==也就是需要保证atomicity，否则我们会得到wrong result==
+		- [[$red]]==ws1可能会在执行这些复杂的文件系统操作时crash，我们需要解决相应的crash recovery的问题。==比如说在d目录下创建一个文件，其实这个操作还是挺复杂的，因为需要修改目录、分配一个新的inode、初始化这个inode、将inode写入目录，也就说这个操作其实是由多个小的steps所组成的，如果FS在其中的任何一步中crash了，需要被recovery correctly。怎么才算正确地恢复呢？只要内部的数据结构要正确（整个数据结构是consistent的，inode没有lost）
+	- 如何解决设计选择带来的这些挑战呢？
+		- Cash Coherency
+		-
 - Spanner:
 	- Spanner的核心好处有哪些？
 	  collapsed:: true
