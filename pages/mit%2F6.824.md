@@ -1588,15 +1588,14 @@ title:: mit/6.824
 		- 图示中几个客户端共同连接着一个wire，同时这个wire接着几个服务器组成的FS
 		- 系统的复杂度主要是由FS的complexity来决定的：体现在open close write read 以及 crash recovery是resilient还是resistant的
 		- 这里的客户端是simple或者说dumb的，大多数的文件系统操作都会从客户端的program上relay到file server上
-		- 这个设计之所以很受欢迎的还有一点是安全层面：file servers是不得不、必须要be trusted的，而client则是不需要be trusted的，而在MIT的环境中machines are open，所以这是一个很有用的property
+		- 这个设计之所以很受欢迎的还有一点是安全层面：
+			- file servers是不得不、必须要be trusted的，而client则是不需要be trusted的，而在MIT的环境中machines are open，所以这是一个很有用的property
 	- Frangipani是怎么设计呢？
-	  collapsed:: true
 		- ![image.png](../assets/image_1695827424289_0.png)
 		- 设计有非常大的区别，采用的是decentralized的思路：
-			- 所有的file server code都是在client的各自机器上的，这些file server所唯一共享的就只有一个big virtual disk（one ssd drive），存储有image 或者 conceptual image在自己的head处；这个virtual disk是通过pedal系统来实现的，内部有很多的机器，内部通过传递disk blocks来进行复制，这是为了确保这些操作能够以正确的order来执行；
+			- 所有的file server code都是在client的各自机器上的，这些file server所唯一共享的就只有一个big virtual disk（one ssd drive），存储有image 或者 conceptual image在自己的head处；这个virtual disk是通过paddle系统来实现的，内部有很多的机器，内部通过传递disk blocks来进行复制，这是为了确保这些操作能够以正确的order来执行；
 			- 但是从外部来看，接口就是：read a block, write a block，和普通的disk并没有什么区别
 			- 这个系统的复杂度实际上来自于客户端FS的complexity了：
-			  collapsed:: true
 				- 但是如果你增加工作站里客户端的数目，那么FS也会随之增加，CPU power也会相应增加
 				- 每个客户端都可以drive on自己的文件系统，所以heavy duty computation就可以全部在客户端的机器上执行了，而与此对应的普通网络文件系统的设计，系统性能的瓶颈会是file server，因为当客户端数量增加时，file server处理不过来，就需要把文件划分到多个不同的server上
 				-
@@ -1607,7 +1606,6 @@ title:: mit/6.824
 				- 所有的客户端都共同使用FS里面的文件，如果存在多个file server的话，不同的server之间可能不存在数据的拷贝，可能只是单纯地把一个数据划分成多个volume分布在不同的File server上而已，一个volume放在一个file server之上；如果某个volume被get hit hard（也就是被频繁访问和使用的话），那么你就会得到bottlenecks
 				-
 			- 而在Frangipani中则不是这种情况
-			  collapsed:: true
 				- 在Frangipani中所有的FS操作都在workstation上来执行，而且有多个workstation
 				- 这个文件系统所可以scale或者说支持的workload也会随着workstation数量的增加，而变大
 				-
@@ -1616,7 +1614,6 @@ title:: mit/6.824
 		- ![image.png](../assets/image_1695830322307_0.png)
 		- 分享的文件要么是：同一个工程项目需要进行合作；同一个用户需要登录多个workstation
 		- 由这个用例，所驱动的设计选择是什么呢？
-		  collapsed:: true
 			- caching
 				- 与其希望所有的数据和读写操作都发生在pedal系统里，他们希望操作实际能够发生在workstations里
 				- 大多数人都只需要在本地编写自己的private file就可以了，所以也就只希望能从本地的workstation来获取文件就可以了, 而不需要过多的网络传输，从而可以提高系统的写入性能了；一种避免对pedal系统发送过高流量的方法就是write-back cache而不是write through，当操作实际发生时，它们只stay in the cache，然后在之后的某些point会被percolate传播 给pedal系统了
@@ -1637,6 +1634,7 @@ title:: mit/6.824
 		- [[$red]]==ws1可能会在执行这些复杂的文件系统操作时crash，我们需要解决相应的crash recovery的问题。==比如说在d目录下创建一个文件，其实这个操作还是挺复杂的，因为需要修改目录、分配一个新的inode、初始化这个inode、将inode写入目录，也就说这个操作其实是由多个小的steps所组成的，如果FS在其中的任何一步中crash了，需要被recovery correctly。怎么才算正确地恢复呢？只要内部的数据结构要正确（整个数据结构是consistent的，inode没有lost）
 	- 如何解决设计选择带来的这些挑战呢？
 		- Cash Coherency
+		  collapsed:: true
 			- ![image.png](../assets/image_1695893276546_0.png)
 			- frangipani通过lock server来解决这个问题：
 				- 存储了一个对应的lock table，table中的每一行是文件名（对应于一个文件的lock）和拥有这个文件的workstation；
@@ -1663,21 +1661,56 @@ title:: mit/6.824
 						- revoking a lock
 						- releasing a lock
 					- 一个具体的示例：
-						- ![image.png](../assets/image_1695910251909_0.png)
-						- ws1先向log server发送对文件f进行读写的请求，LS在查看了表格之后确认这个文件并没有被任何其他工作站所使用，所以给ws1发送同意授予的message，ws1接受消息后对f进行加锁；
-						- ws1继续在local执行一些读写操作，比如像图示中那样，先执行一些read，再执行一些modification，但是这些修改是write back cache而不是write through cache
+					  collapsed:: true
+						- ws1先向lock server发送请求
 						  collapsed:: true
-							- Write back cache和Write through cache 是计算机系统中两种常见的缓存写入策略。
+							- ![image.png](../assets/image_1695910251909_0.png)
+							- ws1先向log server发送对文件f进行读写的请求，LS在查看了表格之后确认这个文件并没有被任何其他工作站所使用，所以给ws1发送同意授予的message，ws1接受消息后对f进行加锁；
+							- ws1继续在local执行一些读写操作，比如像图示中那样，先执行一些read，再执行一些modification，但是这些修改是write back cache而不是write through cache
 							  collapsed:: true
-								- Write back cache（写回缓存）是指在处理器向主存写入数据时，先将数据写入缓存，而不是立即写入主存。当缓存行被替换出时，才会将修改后的数据写回主存。这种策略能够提高写入性能，因为多个写操作可以合并为一次主存写入。
-								- 相比之下，Write through cache（写直通缓存）是指在处理器写入数据时，同时将数据写入缓存和主存。每次写操作都会立即更新缓存和主存，保持数据的一致性。这种策略保证了数据的可靠性，但写入性能可能相对较低。
-								- 选择使用哪种缓存写入策略取决于具体的系统需求和设计考虑。Write back cache 提供了更好的写入性能，但可能会导致数据不一致的风险。Write through cache 确保了数据的一致性，但写入性能可能较低。
-								- 需要注意的是，写回缓存和写直通缓存是对缓存写入策略的不同描述，具体实现可能会有所差异。这些策略在计算机系统中的应用会受到多个因素的影响，如处理器架构、缓存一致性协议和系统设计等。
-						- workstation此时可以直接release the lock，那么ws1表中的f对应的状态就从busy变成idle，此时若再想要重新获取lock来执行一些读写操作，可以不用再次与log server交互，就可以直接在本地进行，但是这里有一个简化：
-							- unlock操作对应有一个lease，所以客户端至少需要定期地来refresh the disk，但是并不需要从实际的
+								- Write back cache和Write through cache 是计算机系统中两种常见的缓存写入策略。
+									- Write back cache（写回缓存）是指在处理器向主存写入数据时，先将数据写入缓存，而不是立即写入主存。当缓存行被替换出时，才会将修改后的数据写回主存。这种策略能够提高写入性能，因为多个写操作可以合并为一次主存写入。
+									- 相比之下，Write through cache（写直通缓存）是指在处理器写入数据时，同时将数据写入缓存和主存。每次写操作都会立即更新缓存和主存，保持数据的一致性。这种策略保证了数据的可靠性，但写入性能可能相对较低。
+									- 选择使用哪种缓存写入策略取决于具体的系统需求和设计考虑。Write back cache 提供了更好的写入性能，但可能会导致数据不一致的风险。Write through cache 确保了数据的一致性，但写入性能可能较低。
+									- 需要注意的是，写回缓存和写直通缓存是对缓存写入策略的不同描述，具体实现可能会有所差异。这些策略在计算机系统中的应用会受到多个因素的影响，如处理器架构、缓存一致性协议和系统设计等。
+							- workstation此时可以直接release the lock，那么ws1表中的f对应的状态就从busy变成idle，此时若再想要重新获取lock来执行一些读写操作，可以不用再次与log server交互，就可以直接在本地进行，但是这里有一个简化：
+							  collapsed:: true
+								- unlock操作对应有一个lease，所以客户端至少需要定期地来refresh the disk
+								- 但是如果lease没有expire的话，那么并不需要从实际的paddle中来re-write或者re-read the file
+								-
+								-
+						- ws2 后向lock server发送请求
+							- ![image.png](../assets/image_1695912933047_0.png)
+							- 当ws2也给ls发送操作f的请求时，ls发现该f已经被ws1使用了，于是向ws1发送revoke的请求
+							- ws1接受到请求后，会需要将当前的数据写入到paddle里（这实际上是一个有点复杂的操作）：ws1需要此时将自己关于f的state给flash到paddle中
+							- ![image.png](../assets/image_1695914360206_0.png)
+							- 当LS收集到所有的数据之后，就会acknowledge给到ws1, ws就会将release f的message发送给LS； LS修改table中的ws1和ws2, 然后发送给ws2 grant f的消息
+							- [[$red]]==很明显，这时候ws2读取到的就是latest write的结果，这是通过lock management来实现的==
 						-
-						-
-				-
+					- [[$red]]==关于该Protocol的问题：==
+						- 有提到当释放read write lock的时候需要写入到paddle系统中，我不明白，为啥当release read lock的时候也需要写入呢？read操作并不会修改原来的数据啊
+						  collapsed:: true
+							- 这里我们并不严格注重读写锁和互斥锁的distinction，直接当成exclusive lock来看待，读取操作是一个小的应用，且是一个重要的优化，但是并不会大幅度地改变designer system
+							- GPT给出的读写锁和互斥锁的区别：
+							  collapsed:: true
+								- 读写锁（Read-Write Lock）和互斥锁（Mutex Lock）是在多线程编程中常用的同步机制，用于控制对共享资源的访问。它们的主要区别在于对共享资源的访问权限。
+								- 互斥锁是一种独占锁，也称为排他锁。在使用互斥锁时，只能有一个线程访问共享资源，其他线程需要等待锁的释放才能进行访问。互斥锁适用于对共享资源的写操作，因为写操作需要排他访问，不允许其他线程同时进行读或写。
+								- 读写锁则允许多个线程同时读共享资源，但在进行写操作时需要独占地获取锁。也就是说，读写锁提供了对共享资源的读写并发访问的机制。多个线程可以同时获取读锁，以实现并发读取共享资源的操作，而写锁是独占的，只有获取写锁的线程可以进行写操作。
+								- 因此，互斥锁适用于对共享资源的互斥访问，而读写锁适用于对共享资源的读写操作进行并发控制。使用读写锁可以提高并发性能，特别是在读操作远远多于写操作的情况下。但是，读写锁的实现复杂度较高，适用场景需要根据具体需求进行评估和选择。
+								-
+							-
+							-
+						- 这里的两台workstation对同一个文件进行modify，那么是否整个系统会变得inefficient呢？我这样想，是因为这个过程就像cache bouncing back and forth
+							- 如果有两个工作站或者工程师同时bang on the same file back and forth，那确实会对系统的性能造成影响，但是这个场景实际上是一个错误的assumption：因为这里多个不同的工程师大部分时候只会编辑自己的private files，只有很少时候比如共同的代码仓库啥的，会share a file
+							  collapsed:: true
+								- "Bang on the server"是一个英语俚语，常用于指代在服务器上进行强力或粗暴的操作。它可以表示对服务器进行强制性的、有可能造成问题的处理或修改。这个短语通常带有一定的负面含义，暗示可能会有意外结果或破坏性的行为。在技术领域，这个短语可能指代对服务器进行强制重启、强行关闭进程或进行不稳定的修改等操作。
+						- 当workstation1在本地修改完成之后，对应的文件还处于缓存当中而没有被写入到paddle中，为啥这时候可以release the lock了呢？
+							- 因为这里的释放锁并不是lock server上进行释放，而是说ws1本地进行释放，也就是说ws1把表上对应的f从busy改成idle
+						- 如果当workstation2发送请求给lock server时，ws1还是处于执行对f的文件操作中，那么这时候lock server会怎么进行处理呢？
+						  collapsed:: true
+							- ls不会直接reject请求，因为这样的话，如果等待一定时间间隔重发的话，ws1可能还在执行，因为ws1执行操作的时长是不确定的，所以时间间隔也不太好设置
+							- 这里的策略就是：ls一直wait到ws1执行完操作并locally释放锁
+							-
 - Spanner:
   collapsed:: true
 	- Spanner的核心好处有哪些？
