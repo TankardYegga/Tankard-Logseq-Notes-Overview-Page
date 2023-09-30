@@ -1731,7 +1731,9 @@ title:: mit/6.824
 					- 第二步是install the update
 					- 之所以分成两步，是因为一旦在第一步中将所有的changes都log了的话，就可以确认后续更新data blocks的操作是完全safe的
 			- 在更新过程中可能会发生crash：
+			  collapsed:: true
 				- 如果crash发生在第一步之后第二步之前：
+				  collapsed:: true
 					- ![image.png](../assets/image_1696005592836_0.png)
 					- demon recovery service将会发现这个crash
 					- 为什么要先把changes写成record放入log里，然后才apply the changes呢？
@@ -1740,10 +1742,34 @@ title:: mit/6.824
 						- 假如我们不这么做，而是直接apply the changes的话，那么此时crash and recovery之后，就不知道哪些changes已经done，哪些changes没有done了，而如果我们先用log进行记录，那么后续recovery的成本会比较低
 						-
 				- 怎么保证第一步对log的update本身就是atomic的呢？
+				  collapsed:: true
 					- 论文中提到每个log record都有一个对应的check zone，在执行read the log record之前，会先计算checksum来确保整个记录是完整的
-					- 也有其他的方法，比如先一次性写入几个blocks、然后再写入一个commit record，但是这样的话隐藏的假设也就是保证一次性地在log中写入几个块，比如12个中写入5个是一个atomic operation，此时的commit record可能是committed 或者 not committed来表示操作有没有完成，如果这个commit record并不存在的话，那么就说明这个operation并没有被完全完整地记录
+					- 也有其他的方法，比如先一次性写入几个blocks、然后再写入一个commit record，但是这样的话隐藏的假设也就是保证一次性地在log中写入几个块，比如12个中写入5个是一个atomic operation，此时的commit record可能是committed 或者 not committed来表示操作有没有完成，如果这个commit record并不存在的话，那么就说明这个operation并没有被完全完整地记录，这个操作就不应该被执行其中的任何一步
 					-
 					-
+					-
+				- 如何crash发生在flush state to workstation之前，那么要怎么处理呢？
+				  collapsed:: true
+					- 这种情况下crash只会造成当前的workstation的data lost，而不会对其他workstation造成inconsistent state，所以这不是一个problem
+					-
+			- 这里可能需要注意一下log per server的设计可能会造成some problems
+				- 需要了解下log record本身的内容
+					- ![image.png](../assets/image_1696048688363_0.png)
+					- 每个log record都有一个security number（SN）
+					- 其中存在一个log record记录的是array of updates：包括block number（包含inode的那个block）、version number、newbytes for that block number
+						- 这里bytes的含义是什么呢？
+							- 就是当对inode的部分进行写入操作时，可能会改变其中的一些bytes。
+							- 那么这里的改变具体会是什么样呢？因为这里的每一个block最多是512bytes，而所做的修改完全有可能是比512字节大得多
+								- 当你写入一个文件，应用程序 调用write the file F and a whole bunch of data时，所有的这些数据 实际上现在并没有 go through log,  而是一旦进行状态的flush时 所有的这些数据 都会go straight to paddle
+								- 实际上go through the log的changes就只有metadata changes，metadata说的是关于文件的信息，包括inode directory那一类的，这些都是直接go through the logs, 所以这里所说的改变就是对文件系统中的metadata blocks的updates
+								- inode、directory、以及application-level的data (file blocks that constitute a file),  这些都是直接写入paddle系统，而不会go for the log
+					- 还是以前面创建file的过程举例：
+						- ![image.png](../assets/image_1696049591186_0.png)
+						- 第一步是将log给force进入paddle系统
+						- 第二步是将已经更新的块发送给paddle系统
+						- 第三步是释放锁本身
+						-
+						-
 - Spanner:
   collapsed:: true
 	- Spanner的核心好处有哪些？
