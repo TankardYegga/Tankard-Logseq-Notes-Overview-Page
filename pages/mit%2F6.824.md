@@ -1593,8 +1593,8 @@ title:: mit/6.824
 	- Frangipani是怎么设计呢？
 	  collapsed:: true
 		- ![image.png](../assets/image_1695827424289_0.png)
-		- 设计有非常大的区别，采用的是decentralized的思路：
-			- 所有的file server code都是在client的各自机器上的，这些file server所唯一共享的就只有一个big virtual disk（one ssd drive），存储有image 或者 conceptual image在自己的head处；这个virtual disk是通过paddle系统来实现的，内部有很多的机器，内部通过传递disk blocks来进行复制，这是为了确保这些操作能够以正确的order来执行；
+		- 设计有非常大的区别，[[$red]]==采用的是decentralized的思路==：
+			- 所有的file server code都是在client的各自机器上的，这些file server所唯一共享的就只有一个big virtual disk（one ssd drive），存储有image 或者 conceptual image在自己的head处；[[$red]]==这个virtual disk是通过paddle系统来实现的，内部有很多的机器，内部通过传递disk blocks来进行复制，这是为了确保这些操作能够以正确的order来执行；==
 			- 但是从外部来看，接口就是：read a block, write a block，和普通的disk并没有什么区别
 			- 这个系统的复杂度实际上来自于客户端FS的complexity了：
 				- 但是如果你增加工作站里客户端的数目，那么FS也会随之增加，CPU power也会相应增加
@@ -1743,6 +1743,7 @@ title:: mit/6.824
 					-
 			- 这里可能需要注意一下log per server的设计可能会造成some problems
 				- 需要了解下log record本身的内容
+				  collapsed:: true
 					- ![image.png](../assets/image_1696048688363_0.png)
 					- 每个log record都有一个security number（SN）
 					- 其中存在一个log record记录的是array of updates：包括block number（包含inode的那个block）、version number、newbytes for that block number
@@ -1773,9 +1774,9 @@ title:: mit/6.824
 						- 结果很明显，这些操作会丢失
 					- 如果是在完成向paddle系统writing log之后发生了crash，结果会是什么呢？
 						- ![image.png](../assets/image_1696088130041_0.png)
-						- 这里涉及到lock lease的概念，lock server需要等待workstation1对文件f的lock的lease过期了，那么就可以判断现在ws1不再持有lock或者说不再能够持有对应的lock了，就可以使用后续的recovery demon来进行recovery了
+						- 这里涉及到lock lease的概念，lock server需要等待workstation1对文件f的lock的lease过期了，那么就可以判断现在ws1不再持有lock或者说不再能够持有对应的lock了或者说现在已经没有人向paddle系统中写入数据了，就可以使用后续的recovery demon来进行recovery了
 						- 为什么lock server需要进行wait呢，为啥不是lock server判断ws1没有任何响应了就可以直接释放锁了呢？换句话说，为啥要设置lease这个概念呢？
-							- 当有另外的workstation比如ws2来请求lock server同一个文件f的使用时，lock server的lock table发现该文件f正被ws1使用，于是向ws1发送revoke request，ws1此时没有任何响应，但是没有响应的原因可能有两种：一是ws1 crash了，二是ws1并没有crash，但是ws1和lock server之间的网络出现了network partition，在第二种原因对应的场景下
+							- 当有另外的workstation比如ws2来请求lock server同一个文件f的使用时，lock server的lock table发现该文件f正被ws1使用，于是向ws1发送revoke request，ws1此时没有任何响应，但是没有响应的原因可能有两种：一是ws1 crash了，[[$red]]==二是ws1并没有crash，但是ws1和lock server之间的网络出现了network partition（lock server不可以talk to workstation1, 但是ws1可以talk to paddle，paddle系统是每个workstation内部的）==，在第二种原因对应的场景下ws1依然会make some changes，但是只要lock的lease到期了，此时ws1也必然不能再make any changes了
 						-
 						-
 - Spanner:
