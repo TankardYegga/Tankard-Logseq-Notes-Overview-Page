@@ -1591,6 +1591,7 @@ title:: mit/6.824
 		- 这个设计之所以很受欢迎的还有一点是安全层面：
 			- file servers是不得不、必须要be trusted的，而client则是不需要be trusted的，而在MIT的环境中machines are open，所以这是一个很有用的property
 	- Frangipani是怎么设计呢？
+	  collapsed:: true
 		- ![image.png](../assets/image_1695827424289_0.png)
 		- 设计有非常大的区别，采用的是decentralized的思路：
 			- 所有的file server code都是在client的各自机器上的，这些file server所唯一共享的就只有一个big virtual disk（one ssd drive），存储有image 或者 conceptual image在自己的head处；这个virtual disk是通过paddle系统来实现的，内部有很多的机器，内部通过传递disk blocks来进行复制，这是为了确保这些操作能够以正确的order来执行；
@@ -1641,6 +1642,7 @@ title:: mit/6.824
 				- 可以把lock server理解成像zookeeper那样的distributed service：它提供了对于logs的acquiring和releasing，它是fault tolerance的（在fangipani中这是paxos-based implementation）
 			- ![image.png](../assets/image_1695894771632_0.png)
 			- 在workstation这边，也存储有一个对应的lock table:
+			  collapsed:: true
 				- file for a lock （cached）+ whether it's busy or idle
 				- 如上图所示的f文件（图片中的x改成f），如果是busy，意味着文件系统正在对应的文件上进行操作，文件系统正在actively地使用这个文件
 				- [[$red]]==假如表中有另外一条数据“g idle”,  这个数据中的idle的含义是：==
@@ -1649,19 +1651,18 @@ title:: mit/6.824
 						- 如果不久后某个时间点file server打算再次要使用g，它可以直接使用，而不需要实际上去和pedal系统进行通信 或者  重新加载缓存(reload its cache)，原则在于“sticky”对应的含义
 						- sticky说的意思是没有其他的workstation在此时获得了对应的lock
 			- 除了lock server和WS上的lock table，还伴随有一系列的message和rule来确保实际上能够获得这种cache coherence (consistency)：
+			  collapsed:: true
 				- [[$red]]==基本的guiding rule是：how to cache a file==
 					- 首先需要acquire the lock，这一步实际上是获取consistency的stepping stone
 					- 在论文中它们的locks描述为being exclusive或者是read write locks，在本lecture中我们assume为exclusive clocks，这一点并不重要，但是存在一个优化能够让多个workstations在read-only mode下have a file cached
 				- [[$red]]==实现Cache Coherency的Protocol:==
 					- 该系统其实目标是要达成：linearizable的文件系统操作
 					- 在workstation和lock server和其他的workstations，有四个重要的message:
-					  collapsed:: true
 						- requiring a lock
 						- granting a lock
 						- revoking a lock
 						- releasing a lock
 					- 一个具体的示例：
-					  collapsed:: true
 						- ws1先向lock server发送请求
 						  collapsed:: true
 							- ![image.png](../assets/image_1695910251909_0.png)
@@ -1680,6 +1681,7 @@ title:: mit/6.824
 								-
 								-
 						- ws2 后向lock server发送请求
+						  collapsed:: true
 							- ![image.png](../assets/image_1695912933047_0.png)
 							- 当ws2也给ls发送操作f的请求时，ls发现该f已经被ws1使用了，于是向ws1发送revoke的请求
 							- ws1接受到请求后，会需要将当前的数据写入到paddle里（这实际上是一个有点复杂的操作）：ws1需要此时将自己关于f的state给flash到paddle中
@@ -1711,6 +1713,37 @@ title:: mit/6.824
 							- ls不会直接reject请求，因为这样的话，如果等待一定时间间隔重发的话，ws1可能还在执行，因为ws1执行操作的时长是不确定的，所以时间间隔也不太好设置
 							- 这里的策略就是：ls一直wait到ws1执行完操作并locally释放锁
 							-
+		- Atomicity （using locks）
+		  collapsed:: true
+			- ![image.png](../assets/image_1696000932131_0.png)
+			- 系统会给inode进行编号，update inode里面的 # 代表的就是inode的编号
+			- 这里该文件本身和该文件所在的目录都会各自对应于一个inode，也就是各自都会有一个对应的lock，只有等到这两个inode的lock都在本地被释放了，那么才能响应revoke的请求
+			- 文件和目录对应的lock应该是有一个固定的相对顺序的，否则会很容易造成deadlock
+		- Cash Recovery
+			- 在把state给更新到paddle系统中，其实也是相当于需要一个careful的protocol的: write-ahead logging
+			  collapsed:: true
+				- ![image.png](../assets/image_1696004458252_0.png)
+				- disk可以看作是blocks组成的一个很长的数组：
+					- 其中的一部分是log，paddle中是每个server都对应有一个log，但是图示中只画出了一个；
+					- 另外的一部分是file system，包含一些inode和一些其他的data blocks
+				- 更新state到paddle系统中的过程是：
+					- 第一步是update the log，主要写入log的内容是关于create这个操作本身的：比如分配的inode的编号、更改的那个目录，总之是反映将要在文件系统块上执行的修改信息
+					- 第二步是install the update
+					- 之所以分成两步，是因为一旦在第一步中将所有的changes都log了的话，就可以确认后续更新data blocks的操作是完全safe的
+			- 在更新过程中可能会发生crash：
+				- 如果crash发生在第一步之后第二步之前：
+					- ![image.png](../assets/image_1696005592836_0.png)
+					- demon recovery service将会发现这个crash
+					- 为什么要先把changes写成record放入log里，然后才apply the changes呢？
+					  collapsed:: true
+						- 这里写入fs时可能会先把file的inode写入，然后把对应的directory block或者data block加入，很明显这是两个separate的writes，因而整个过程不是atomic的；在这两者之间有可能会发生crash，如果已经分配了inode，但是还没有stuck in the directory，那么crash and recovery之后，inode就会丢失，如果我们扫描整个磁盘的话，可以解决，但是过于昂贵了；
+						- 假如我们不这么做，而是直接apply the changes的话，那么此时crash and recovery之后，就不知道哪些changes已经done，哪些changes没有done了，而如果我们先用log进行记录，那么后续recovery的成本会比较低
+						-
+				- 怎么保证第一步对log的update本身就是atomic的呢？
+					- 论文中提到每个log record都有一个对应的check zone，在执行read the log record之前，会先计算checksum来确保整个记录是完整的
+					- 也有其他的方法，比如先一次性写入几个blocks、然后再写入一个commit record，但是这样的话隐藏的假设也就是保证一次性地在log中写入几个块，比如12个中写入5个是一个atomic operation，此时的commit record可能是committed 或者 not committed来表示操作有没有完成，如果这个commit record并不存在的话，那么就说明这个operation并没有被完全完整地记录
+					-
+					-
 - Spanner:
   collapsed:: true
 	- Spanner的核心好处有哪些？
