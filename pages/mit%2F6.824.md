@@ -1634,7 +1634,7 @@ title:: mit/6.824
 		- ws1和ws2同时要往同一个目录下写入两个命名不同的文件，一个文件是f，另外一个文件是g，ws1和ws2必须要管理好这两个写入的顺序，否则可能会使得第二个文件写入时直接清空d目录下的所有文件。[[$red]]==也就是需要保证atomicity，否则我们会得到wrong result==
 		- [[$red]]==ws1可能会在执行这些复杂的文件系统操作时crash，我们需要解决相应的crash recovery的问题。==比如说在d目录下创建一个文件，其实这个操作还是挺复杂的，因为需要修改目录、分配一个新的inode、初始化这个inode、将inode写入目录，也就说这个操作其实是由多个小的steps所组成的，如果FS在其中的任何一步中crash了，需要被recovery correctly。怎么才算正确地恢复呢？只要内部的数据结构要正确（整个数据结构是consistent的，inode没有lost）
 	- 如何解决设计选择带来的这些挑战呢？
-		- Cash Coherency
+		- Cache Coherency
 		  collapsed:: true
 			- ![image.png](../assets/image_1695893276546_0.png)
 			- frangipani通过lock server来解决这个问题：
@@ -1642,7 +1642,6 @@ title:: mit/6.824
 				- 可以把lock server理解成像zookeeper那样的distributed service：它提供了对于logs的acquiring和releasing，它是fault tolerance的（在fangipani中这是paxos-based implementation）
 			- ![image.png](../assets/image_1695894771632_0.png)
 			- 在workstation这边，也存储有一个对应的lock table:
-			  collapsed:: true
 				- file for a lock （cached）+ whether it's busy or idle
 				- 如上图所示的f文件（图片中的x改成f），如果是busy，意味着文件系统正在对应的文件上进行操作，文件系统正在actively地使用这个文件
 				- [[$red]]==假如表中有另外一条数据“g idle”,  这个数据中的idle的含义是：==
@@ -1651,7 +1650,6 @@ title:: mit/6.824
 						- 如果不久后某个时间点file server打算再次要使用g，它可以直接使用，而不需要实际上去和pedal系统进行通信 或者  重新加载缓存(reload its cache)，原则在于“sticky”对应的含义
 						- sticky说的意思是没有其他的workstation在此时获得了对应的lock
 			- 除了lock server和WS上的lock table，还伴随有一系列的message和rule来确保实际上能够获得这种cache coherence (consistency)：
-			  collapsed:: true
 				- [[$red]]==基本的guiding rule是：how to cache a file==
 					- 首先需要acquire the lock，这一步实际上是获取consistency的stepping stone
 					- 在论文中它们的locks描述为being exclusive或者是read write locks，在本lecture中我们assume为exclusive clocks，这一点并不重要，但是存在一个优化能够让多个workstations在read-only mode下have a file cached
@@ -1664,24 +1662,20 @@ title:: mit/6.824
 						- releasing a lock
 					- 一个具体的示例：
 						- ws1先向lock server发送请求
-						  collapsed:: true
 							- ![image.png](../assets/image_1695910251909_0.png)
 							- ws1先向log server发送对文件f进行读写的请求，LS在查看了表格之后确认这个文件并没有被任何其他工作站所使用，所以给ws1发送同意授予的message，ws1接受消息后对f进行加锁；
 							- ws1继续在local执行一些读写操作，比如像图示中那样，先执行一些read，再执行一些modification，但是这些修改是write back cache而不是write through cache
-							  collapsed:: true
 								- Write back cache和Write through cache 是计算机系统中两种常见的缓存写入策略。
 									- Write back cache（写回缓存）是指在处理器向主存写入数据时，先将数据写入缓存，而不是立即写入主存。当缓存行被替换出时，才会将修改后的数据写回主存。这种策略能够提高写入性能，因为多个写操作可以合并为一次主存写入。
 									- 相比之下，Write through cache（写直通缓存）是指在处理器写入数据时，同时将数据写入缓存和主存。每次写操作都会立即更新缓存和主存，保持数据的一致性。这种策略保证了数据的可靠性，但写入性能可能相对较低。
 									- 选择使用哪种缓存写入策略取决于具体的系统需求和设计考虑。Write back cache 提供了更好的写入性能，但可能会导致数据不一致的风险。Write through cache 确保了数据的一致性，但写入性能可能较低。
 									- 需要注意的是，写回缓存和写直通缓存是对缓存写入策略的不同描述，具体实现可能会有所差异。这些策略在计算机系统中的应用会受到多个因素的影响，如处理器架构、缓存一致性协议和系统设计等。
 							- workstation此时可以直接release the lock，那么ws1表中的f对应的状态就从busy变成idle，此时若再想要重新获取lock来执行一些读写操作，可以不用再次与log server交互，就可以直接在本地进行，但是这里有一个简化：
-							  collapsed:: true
 								- unlock操作对应有一个lease，所以客户端至少需要定期地来refresh the disk
 								- 但是如果lease没有expire的话，那么并不需要从实际的paddle中来re-write或者re-read the file
 								-
 								-
 						- ws2 后向lock server发送请求
-						  collapsed:: true
 							- ![image.png](../assets/image_1695912933047_0.png)
 							- 当ws2也给ls发送操作f的请求时，ls发现该f已经被ws1使用了，于是向ws1发送revoke的请求
 							- ws1接受到请求后，会需要将当前的数据写入到paddle里（这实际上是一个有点复杂的操作）：ws1需要此时将自己关于f的state给flash到paddle中
@@ -1691,10 +1685,8 @@ title:: mit/6.824
 						-
 					- [[$red]]==关于该Protocol的问题：==
 						- 有提到当释放read write lock的时候需要写入到paddle系统中，我不明白，为啥当release read lock的时候也需要写入呢？read操作并不会修改原来的数据啊
-						  collapsed:: true
 							- 这里我们并不严格注重读写锁和互斥锁的distinction，直接当成exclusive lock来看待，读取操作是一个小的应用，且是一个重要的优化，但是并不会大幅度地改变designer system
 							- GPT给出的读写锁和互斥锁的区别：
-							  collapsed:: true
 								- 读写锁（Read-Write Lock）和互斥锁（Mutex Lock）是在多线程编程中常用的同步机制，用于控制对共享资源的访问。它们的主要区别在于对共享资源的访问权限。
 								- 互斥锁是一种独占锁，也称为排他锁。在使用互斥锁时，只能有一个线程访问共享资源，其他线程需要等待锁的释放才能进行访问。互斥锁适用于对共享资源的写操作，因为写操作需要排他访问，不允许其他线程同时进行读或写。
 								- 读写锁则允许多个线程同时读共享资源，但在进行写操作时需要独占地获取锁。也就是说，读写锁提供了对共享资源的读写并发访问的机制。多个线程可以同时获取读锁，以实现并发读取共享资源的操作，而写锁是独占的，只有获取写锁的线程可以进行写操作。
@@ -1704,12 +1696,10 @@ title:: mit/6.824
 							-
 						- 这里的两台workstation对同一个文件进行modify，那么是否整个系统会变得inefficient呢？我这样想，是因为这个过程就像cache bouncing back and forth
 							- 如果有两个工作站或者工程师同时bang on the same file back and forth，那确实会对系统的性能造成影响，但是这个场景实际上是一个错误的assumption：因为这里多个不同的工程师大部分时候只会编辑自己的private files，只有很少时候比如共同的代码仓库啥的，会share a file
-							  collapsed:: true
 								- "Bang on the server"是一个英语俚语，常用于指代在服务器上进行强力或粗暴的操作。它可以表示对服务器进行强制性的、有可能造成问题的处理或修改。这个短语通常带有一定的负面含义，暗示可能会有意外结果或破坏性的行为。在技术领域，这个短语可能指代对服务器进行强制重启、强行关闭进程或进行不稳定的修改等操作。
 						- 当workstation1在本地修改完成之后，对应的文件还处于缓存当中而没有被写入到paddle中，为啥这时候可以release the lock了呢？
 							- 因为这里的释放锁并不是lock server上进行释放，而是说ws1本地进行释放，也就是说ws1把表上对应的f从busy改成idle
 						- 如果当workstation2发送请求给lock server时，ws1还是处于执行对f的文件操作中，那么这时候lock server会怎么进行处理呢？
-						  collapsed:: true
 							- ls不会直接reject请求，因为这样的话，如果等待一定时间间隔重发的话，ws1可能还在执行，因为ws1执行操作的时长是不确定的，所以时间间隔也不太好设置
 							- 这里的策略就是：ls一直wait到ws1执行完操作并locally释放锁
 							-
@@ -1719,7 +1709,7 @@ title:: mit/6.824
 			- 系统会给inode进行编号，update inode里面的 # 代表的就是inode的编号
 			- 这里该文件本身和该文件所在的目录都会各自对应于一个inode，也就是各自都会有一个对应的lock，只有等到这两个inode的lock都在本地被释放了，那么才能响应revoke的请求
 			- 文件和目录对应的lock应该是有一个固定的相对顺序的，否则会很容易造成deadlock
-		- Cash Recovery
+		- Crash Recovery
 			- 在把state给更新到paddle系统中，其实也是相当于需要一个careful的protocol的: write-ahead logging
 			  collapsed:: true
 				- ![image.png](../assets/image_1696004458252_0.png)
@@ -1737,7 +1727,6 @@ title:: mit/6.824
 					- ![image.png](../assets/image_1696005592836_0.png)
 					- demon recovery service将会发现这个crash
 					- 为什么要先把changes写成record放入log里，然后才apply the changes呢？
-					  collapsed:: true
 						- 这里写入fs时可能会先把file的inode写入，然后把对应的directory block或者data block加入，很明显这是两个separate的writes，因而整个过程不是atomic的；在这两者之间有可能会发生crash，如果已经分配了inode，但是还没有stuck in the directory，那么crash and recovery之后，inode就会丢失，如果我们扫描整个磁盘的话，可以解决，但是过于昂贵了；
 						- 假如我们不这么做，而是直接apply the changes的话，那么此时crash and recovery之后，就不知道哪些changes已经done，哪些changes没有done了，而如果我们先用log进行记录，那么后续recovery的成本会比较低
 						-
@@ -1757,29 +1746,36 @@ title:: mit/6.824
 					- ![image.png](../assets/image_1696048688363_0.png)
 					- 每个log record都有一个security number（SN）
 					- 其中存在一个log record记录的是array of updates：包括block number（包含inode的那个block）、version number、newbytes for that block number
+					  collapsed:: true
 						- 这里bytes的含义是什么呢？
 							- 就是当对inode的部分进行写入操作时，可能会改变其中的一些bytes。
 							- 那么这里的改变具体会是什么样呢？因为这里的每一个block最多是512bytes，而所做的修改完全有可能是比512字节大得多
-							  collapsed:: true
 								- 当你写入一个文件，应用程序 调用write the file F and a whole bunch of data时，所有的这些数据 实际上现在并没有 go through log,  而是一旦进行状态的flush时 所有的这些数据 都会go straight to paddle
 								- 实际上go through the log的changes就只有metadata changes，metadata说的是关于文件的信息，包括inode directory那一类的，这些都是直接go through the logs, 所以这里所说的改变就是对文件系统中的metadata blocks的updates
 								- inode、directory、以及application-level的data (file blocks that constitute a file),  这些都是直接写入paddle系统，而不会go for the log
 						- 不通过log来写everything（也就是说不通过 先写log，再写fs的方式），这个设计的downside是什么呢？
-						  collapsed:: true
 							- 数据可能会丢失
 							- 数据可能会是inconsistent的，假如一个文件有10个blocks，可能的结果是只有部分写入了、全部写入了、什么都没有写入，如果不通过log，就会导致写入的结果是完全不确定的，因为不能保证所有的10次写入是被applied together的
 						- 是因为log的存在才保证了写入等的原子性吗？如果不使用log，那么要怎么保证原子性？
-						  collapsed:: true
 							- 是的，是因为使用了log
 							- 如果不使用log，而此时应用程序依然想要保证对某个文件f的原子性的写操作，那么应用程序就不得不自己来进行arrange，这对于大多数的unix系统文件也是一样：如果你向unix文件系统来写入文件，比如一个VM image，那么是不能保证这个image能够在one single shot中被一致性地完全写入到文件系统中去的，即便存在crash的情况下。经典的解决这个问题的方式，就是将全部内容写入到一个temporary file里面去，然后对这个file执行一个atomic rename operation，改成destination filename即可。
 						- 不适用log的好处是什么呢？
 							- 当写入一个比如达GB以上的文件时，如果使用log，可能在log和fs里都要写入GB级别的数据，这会dramatically cut the performance，所以通常来说user data是不使用log的，这样可以保证一定的performance
-					- 还是以前面创建file的过程举例：
-					  collapsed:: true
-						- ![image.png](../assets/image_1696049591186_0.png)
-						- 第一步是将log给force进入paddle系统
-						- 第二步是将已经更新的块发送给paddle系统
-						- 第三步是释放锁本身
+							- metadata一般来说是比user data要小得多的，所以一般metadata updates使用log
+				- 还是以前面创建file的过程举例：
+					- ![image.png](../assets/image_1696049591186_0.png)
+					- 第一步是将log给force进入paddle系统
+					- 第二步是将已经更新的块发送给paddle系统
+					- 第三步是释放锁本身
+					- 这里的第二步就是对data blocks进行更新吗？
+						- 是的，可能workstation会将更新的blocks信息以并行的方式来发送给paddle系统
+					- 如果是在writing log之前发生了crash，结果会是什么呢？
+						- 结果很明显，这些操作会丢失
+					- 如果是在完成向paddle系统writing log之后发生了crash，结果会是什么呢？
+						- ![image.png](../assets/image_1696088130041_0.png)
+						- 这里涉及到lock lease的概念，lock server需要等待workstation1对文件f的lock的lease过期了，那么就可以判断现在ws1不再持有lock或者说不再能够持有对应的lock了，就可以使用后续的recovery demon来进行recovery了
+						- 为什么lock server需要进行wait呢，为啥不是lock server判断ws1没有任何响应了就可以直接释放锁了呢？换句话说，为啥要设置lease这个概念呢？
+							- 当有另外的workstation比如ws2来请求lock server同一个文件f的使用时，lock server的lock table发现该文件f正被ws1使用，于是向ws1发送revoke request，ws1此时没有任何响应，但是没有响应的原因可能有两种：一是ws1 crash了，二是ws1并没有crash，但是ws1和lock server之间的网络出现了network partition，在第二种原因对应的场景下
 						-
 						-
 - Spanner:
