@@ -1774,10 +1774,15 @@ title:: mit/6.824
 						- 结果很明显，这些操作会丢失
 					- 如果是在完成向paddle系统writing log之后发生了crash，结果会是什么呢？
 						- ![image.png](../assets/image_1696088130041_0.png)
-						- 这里涉及到lock lease的概念，lock server需要等待workstation1对文件f的lock的lease过期了，那么就可以判断现在ws1不再持有lock或者说不再能够持有对应的lock了或者说现在已经没有人向paddle系统中写入数据了，就可以使用后续的recovery demon来进行recovery了
+						- 这里涉及到lock lease的概念，lock server需要等待workstation1对文件f的lock的lease过期了，那么就可以判断现在ws1不再持有lock或者说不再能够持有对应的lock了或者说现在已经没有人向paddle系统中写入数据了，就可以使用后续的recovery daemon来进行recovery了
 						- 为什么lock server需要进行wait呢，为啥不是lock server判断ws1没有任何响应了就可以直接释放锁了呢？换句话说，为啥要设置lease这个概念呢？
 							- 当有另外的workstation比如ws2来请求lock server同一个文件f的使用时，lock server的lock table发现该文件f正被ws1使用，于是向ws1发送revoke request，ws1此时没有任何响应，但是没有响应的原因可能有两种：一是ws1 crash了，[[$red]]==二是ws1并没有crash，但是ws1和lock server之间的网络出现了network partition（lock server不可以talk to workstation1, 但是ws1可以talk to paddle，paddle系统是每个workstation内部的）==，在第二种原因对应的场景下ws1依然会make some changes，但是只要lock的lease到期了，此时ws1也必然不能再make any changes了
-						-
+						- 在写入log之后发生crash了，那么此时的recovery daemon是怎么具体进行recovery的呢？
+							- 首先是[[$red]]==读取ws1中的log，然后是把log中的operations都apply到paddle系统中去==, lock server之后可以reassign or regrant the lock to one of the other workstations
+							- demon其实可以看作是一种surface or service or sort of a process, 主要是执行一些housing cleaning tasks，因为这些tasks通常不是连续被使用的，所以被称作daemon
+							  collapsed:: true
+								- "Daemon" 是一种计算机程序，以后台或服务方式运行，通常在操作系统启动时启动，并在系统运行期间一直保持活动状态。它们通常在无需用户干预的情况下运行，并执行特定的任务或提供服务。守护进程在操作系统中广泛应用，比如网络服务、服务器、打印服务等。
+								- 在类Unix系统中，守护进程一词通常被拼写为 "daemon"。这是因为在早期的Unix系统中，用于后台运行的进程被称为 "daemon"，这个术语来源于希腊神话中的 "daimon"（指精灵或神）。
 						-
 - Spanner:
   collapsed:: true
