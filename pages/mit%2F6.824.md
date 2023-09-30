@@ -1760,10 +1760,22 @@ title:: mit/6.824
 						- 这里bytes的含义是什么呢？
 							- 就是当对inode的部分进行写入操作时，可能会改变其中的一些bytes。
 							- 那么这里的改变具体会是什么样呢？因为这里的每一个block最多是512bytes，而所做的修改完全有可能是比512字节大得多
+							  collapsed:: true
 								- 当你写入一个文件，应用程序 调用write the file F and a whole bunch of data时，所有的这些数据 实际上现在并没有 go through log,  而是一旦进行状态的flush时 所有的这些数据 都会go straight to paddle
 								- 实际上go through the log的changes就只有metadata changes，metadata说的是关于文件的信息，包括inode directory那一类的，这些都是直接go through the logs, 所以这里所说的改变就是对文件系统中的metadata blocks的updates
 								- inode、directory、以及application-level的data (file blocks that constitute a file),  这些都是直接写入paddle系统，而不会go for the log
+						- 不通过log来写everything（也就是说不通过 先写log，再写fs的方式），这个设计的downside是什么呢？
+						  collapsed:: true
+							- 数据可能会丢失
+							- 数据可能会是inconsistent的，假如一个文件有10个blocks，可能的结果是只有部分写入了、全部写入了、什么都没有写入，如果不通过log，就会导致写入的结果是完全不确定的，因为不能保证所有的10次写入是被applied together的
+						- 是因为log的存在才保证了写入等的原子性吗？如果不使用log，那么要怎么保证原子性？
+						  collapsed:: true
+							- 是的，是因为使用了log
+							- 如果不使用log，而此时应用程序依然想要保证对某个文件f的原子性的写操作，那么应用程序就不得不自己来进行arrange，这对于大多数的unix系统文件也是一样：如果你向unix文件系统来写入文件，比如一个VM image，那么是不能保证这个image能够在one single shot中被一致性地完全写入到文件系统中去的，即便存在crash的情况下。经典的解决这个问题的方式，就是将全部内容写入到一个temporary file里面去，然后对这个file执行一个atomic rename operation，改成destination filename即可。
+						- 不适用log的好处是什么呢？
+							- 当写入一个比如达GB以上的文件时，如果使用log，可能在log和fs里都要写入GB级别的数据，这会dramatically cut the performance，所以通常来说user data是不使用log的，这样可以保证一定的performance
 					- 还是以前面创建file的过程举例：
+					  collapsed:: true
 						- ![image.png](../assets/image_1696049591186_0.png)
 						- 第一步是将log给force进入paddle系统
 						- 第二步是将已经更新的块发送给paddle系统
@@ -2136,5 +2148,6 @@ title:: mit/6.824
 			- 是的，比如最后的collect，虽然是单向箭头执向它，但是它很明显是一个wide dependency
 			-
 		-
+-
 -
 -
