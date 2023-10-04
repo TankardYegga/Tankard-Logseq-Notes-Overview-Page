@@ -1573,6 +1573,7 @@ title:: mit/6.824
 	-
 	-
 - Cached Consistency: Frangipani
+  collapsed:: true
 	- Frangipani这篇论文是讲什么的？
 	  collapsed:: true
 		- Frangipani是一个network file system
@@ -1634,8 +1635,8 @@ title:: mit/6.824
 		- ws1和ws2同时要往同一个目录下写入两个命名不同的文件，一个文件是f，另外一个文件是g，ws1和ws2必须要管理好这两个写入的顺序，否则可能会使得第二个文件写入时直接清空d目录下的所有文件。[[$red]]==也就是需要保证atomicity，否则我们会得到wrong result==
 		- [[$red]]==ws1可能会在执行这些复杂的文件系统操作时crash，我们需要解决相应的crash recovery的问题。==比如说在d目录下创建一个文件，其实这个操作还是挺复杂的，因为需要修改目录、分配一个新的inode、初始化这个inode、将inode写入目录，也就说这个操作其实是由多个小的steps所组成的，如果FS在其中的任何一步中crash了，需要被recovery correctly。怎么才算正确地恢复呢？只要内部的数据结构要正确（整个数据结构是consistent的，inode没有lost）
 	- 如何解决设计选择带来的这些挑战呢？
+	  collapsed:: true
 		- Cache Coherency
-		  collapsed:: true
 			- ![image.png](../assets/image_1695893276546_0.png)
 			- frangipani通过lock server来解决这个问题：
 				- 存储了一个对应的lock table，table中的每一行是文件名（对应于一个文件的lock）和拥有这个文件的workstation；
@@ -1704,14 +1705,12 @@ title:: mit/6.824
 							- 这里的策略就是：ls一直wait到ws1执行完操作并locally释放锁
 							-
 		- Atomicity （using locks）
-		  collapsed:: true
 			- ![image.png](../assets/image_1696000932131_0.png)
 			- 系统会给inode进行编号，update inode里面的 # 代表的就是inode的编号
 			- 这里该文件本身和该文件所在的目录都会各自对应于一个inode，也就是各自都会有一个对应的lock，只有等到这两个inode的lock都在本地被释放了，那么才能响应revoke的请求
 			- 文件和目录对应的lock应该是有一个固定的相对顺序的，否则会很容易造成deadlock
 		- Crash Recovery
 			- 在把state给更新到paddle系统中，其实也是相当于需要一个careful的protocol的: write-ahead logging
-			  collapsed:: true
 				- ![image.png](../assets/image_1696004458252_0.png)
 				- disk可以看作是blocks组成的一个很长的数组：
 					- 其中的一部分是log，paddle中是每个server都对应有一个log，但是图示中只画出了一个；
@@ -1721,9 +1720,7 @@ title:: mit/6.824
 					- 第二步是install the update
 					- 之所以分成两步，是因为一旦在第一步中将所有的changes都log了的话，就可以确认后续更新data blocks的操作是完全safe的
 			- 在更新过程中可能会发生crash：
-			  collapsed:: true
 				- 如果crash发生在第一步之后第二步之前：
-				  collapsed:: true
 					- ![image.png](../assets/image_1696005592836_0.png)
 					- demon recovery service将会发现这个crash
 					- 为什么要先把changes写成record放入log里，然后才apply the changes呢？
@@ -1731,23 +1728,19 @@ title:: mit/6.824
 						- 假如我们不这么做，而是直接apply the changes的话，那么此时crash and recovery之后，就不知道哪些changes已经done，哪些changes没有done了，而如果我们先用log进行记录，那么后续recovery的成本会比较低
 						-
 				- 怎么保证第一步对log的update本身就是atomic的呢？
-				  collapsed:: true
 					- 论文中提到每个log record都有一个对应的check zone，在执行read the log record之前，会先计算checksum来确保整个记录是完整的
 					- 也有其他的方法，比如先一次性写入几个blocks、然后再写入一个commit record，但是这样的话隐藏的假设也就是保证一次性地在log中写入几个块，比如12个中写入5个是一个atomic operation，此时的commit record可能是committed 或者 not committed来表示操作有没有完成，如果这个commit record并不存在的话，那么就说明这个operation并没有被完全完整地记录，这个操作就不应该被执行其中的任何一步
 					-
 					-
 					-
 				- 如何crash发生在flush state to workstation之前，那么要怎么处理呢？
-				  collapsed:: true
 					- 这种情况下crash只会造成当前的workstation的data lost，而不会对其他workstation造成inconsistent state，所以这不是一个problem
 					-
 			- 这里可能需要注意一下log per server的设计可能会造成some problems
 				- 需要了解下log record本身的内容
-				  collapsed:: true
 					- ![image.png](../assets/image_1696048688363_0.png)
 					- 每个log record都有一个security number（SN）
 					- 其中存在一个log record记录的是array of updates：包括block number（包含inode的那个block）、version number、newbytes for that block number
-					  collapsed:: true
 						- 这里bytes的含义是什么呢？
 							- 就是当对inode的部分进行写入操作时，可能会改变其中的一些bytes。
 							- 那么这里的改变具体会是什么样呢？因为这里的每一个block最多是512bytes，而所做的修改完全有可能是比512字节大得多
@@ -1780,10 +1773,50 @@ title:: mit/6.824
 						- 在写入log之后发生crash了，那么此时的recovery daemon是怎么具体进行recovery的呢？
 							- 首先是[[$red]]==读取ws1中的log，然后是把log中的operations都apply到paddle系统中去==, lock server之后可以reassign or regrant the lock to one of the other workstations
 							- demon其实可以看作是一种surface or service or sort of a process, 主要是执行一些housing cleaning tasks，因为这些tasks通常不是连续被使用的，所以被称作daemon
-							  collapsed:: true
 								- "Daemon" 是一种计算机程序，以后台或服务方式运行，通常在操作系统启动时启动，并在系统运行期间一直保持活动状态。它们通常在无需用户干预的情况下运行，并执行特定的任务或提供服务。守护进程在操作系统中广泛应用，比如网络服务、服务器、打印服务等。
 								- 在类Unix系统中，守护进程一词通常被拼写为 "daemon"。这是因为在早期的Unix系统中，用于后台运行的进程被称为 "daemon"，这个术语来源于希腊神话中的 "daimon"（指精灵或神）。
+						- 这里在finishing writing logging后，是能保证metadata能够达成一个consistent state的，对吧？只是不能保证user data已经被完成写入了，对吧？
+							- 是的，logging system所能够唯一保证的是：可以实现内文件系统内部数据结构的基本一致性，而这是很重要的。因为如果文件系统内部的数据结构被mess up了，那么每个人都有可能会失去自己的数据
+							-
+							-
+					- 如果是在writing log的过程中发生了crash之后，结果会是什么呢？
+						- 此时log中可能会出现prefix，prefix中可能会包含针对multiple operations的multiple log records，比如SN1、SN2（security number）等对应的log records
+						- 出现prefix的场景是：如果在这些record updates中的某个发生了crash，那么checksum就不能checkout了，我们就会在那个特定的record处停下来，在log中就会存在一个correct prefix of the operations。比如，创建文件f的record在log中，创建文件g的record在log中，而创建文件g的record在log中，而创建文件h的record却不在log中，在log的每个record都代表了一个atomic的文件系统操作（is there and is complete）
+						- 出现了prefix的后果是什么呢？
+							- 这时候workstation只能执行这部分的prefix operations，因为我们会丢失掉 the end of the prefix or the end of updates
+							- 这个后果是undesirable的，但是还是okay的，因为在很多其他case下我们有可能会丢失全部的updates（比如在写入log之前crash了，就会全部丢失）
+							-
 						-
+						-
+				- 考虑log per server 或者说 lock per server的tricky case：
+					- 这个case可能会post什么样的问题？
+						- 主要是关于reading方面
+					- 具体描述下这个case吧？
+						- ![image.png](../assets/image_1696098400183_0.png)
+						- ws1中delete的那个文件假设之前已经存在
+						- ws1和ws2都把create写入到自己的log中
+						- ws1发生了crash, w3上则由recovery team在ws1的log运行了recovery daemon
+							- 可能会造成的最坏结果是什么呢？
+								- 就是replay delete操作，这会重写workstation2对paddle系统所执行的changes
+							- 如何来 fix 这种最坏的结果？
+								- ![image.png](../assets/image_1696252370623_0.png)
+								- 使用version number：
+									- ws1中directory d/f 的log的version number是10
+									- ws2中对应的d/f操作的version number是11，也就是说会自增1来保住version number是有一定的order的
+									- FileSystem中的inode f对应的metadata block中的version number是11
+									- deamon程序的规则是：永远不replace已经被应用的操作，只有当log record中的版本号比当前的metadata的版本号要大时才replay the operation
+										- ![image.png](../assets/image_1696418888233_0.png)
+										- 在本例子中FS中的metadata的版本号是11，比ws1中对f的操作的版本号10大，所以不会重新执行ws1中的这个delete操作了
+										-
+										-
+									-
+								- best version number总是与被编辑的这个具体的inode绑定吗？
+									- 是的
+								-
+	- 总结？
+	  collapsed:: true
+		- ![image.png](../assets/image_1696419699770_0.png)
+		- intended settings
 - Spanner:
   collapsed:: true
 	- Spanner的核心好处有哪些？
