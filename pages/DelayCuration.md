@@ -2524,7 +2524,6 @@ collapsed:: true
 				- 不需要
 				- 因为模型里面并不需要用到topo_mask这个数据，但是原先的数据库返回接口里面保留了这个返回值，需要修改其返回任意一个tensor就行了
 			- DOING 计算传统机器学习里面的三种模型的结果
-			  collapsed:: true
 			  :LOGBOOK:
 			  CLOCK: [2023-11-14 Tue 23:28:25]
 			  CLOCK: [2023-11-14 Tue 23:28:26]
@@ -2571,6 +2570,7 @@ collapsed:: true
 					- 原本的权重设置是{0.3, 0.7}，这与其他深度学习模型都是{0.4，0.6}的设置不同
 					- 后来发现KNN模型并不需要class_weight这个参数项
 				- DONE 计算随机森林
+				  collapsed:: true
 				  :LOGBOOK:
 				  CLOCK: [2023-11-14 Tue 23:28:52]
 				  CLOCK: [2023-11-14 Tue 23:28:54]--[2023-11-15 Wed 18:57:44] =>  19:28:50
@@ -2588,6 +2588,15 @@ collapsed:: true
 					  :END:
 						- ![image.png](../assets/image_1700041755058_0.png)
 						- ![image.png](../assets/image_1700041770617_0.png)
+				- DONE 随机森林和论文模型对不上，找到对应的模型保存文件尝试了一下 =》成功
+				  collapsed:: true
+				  :LOGBOOK:
+				  CLOCK: [2023-11-15 Wed 21:24:52]
+				  CLOCK: [2023-11-15 Wed 21:24:53]--[2023-11-15 Wed 21:26:53] =>  00:02:00
+				  :END:
+					- ![image.png](../assets/image_1700054751582_0.png)
+					- ![image.png](../assets/image_1700054811552_0.png)
+					-
 				- DONE 把机器学习模型的confusion matrix保存的代码写一下
 				  :LOGBOOK:
 				  CLOCK: [2023-11-15 Wed 16:35:22]
@@ -2609,10 +2618,17 @@ collapsed:: true
 			  CLOCK: [2023-11-14 Tue 23:30:19]
 			  CLOCK: [2023-11-14 Tue 23:30:20]
 			  :END:
-			- DOING
+			- DOING 古装里面的美好法术哪些真的可以实现呢？
 			  :LOGBOOK:
 			  CLOCK: [2023-11-15 Wed 19:15:34]
+			  CLOCK: [2023-11-15 Wed 21:15:48]
 			  :END:
+			- DOING 笛与竹、橘生淮南则为橘、
+			  :LOGBOOK:
+			  CLOCK: [2023-11-15 Wed 21:16:10]
+			  CLOCK: [2023-11-15 Wed 21:16:11]
+			  :END:
+			-
 		- [[继续阅读书籍]]
 			- TODO 关于理性方面的书籍
 				- TODO 《The art of love》
