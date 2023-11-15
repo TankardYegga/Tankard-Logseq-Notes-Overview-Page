@@ -2456,29 +2456,163 @@ collapsed:: true
 			  :LOGBOOK:
 			  CLOCK: [2023-11-10 Fri 17:49:17]--[2023-11-10 Fri 17:49:20] =>  00:00:03
 			  :END:
-			- DOING 依据评审意见来跑相关的实验
+			- DONE 增加confusion matrix
 			  :LOGBOOK:
-			  CLOCK: [2023-11-13 Mon 23:10:54]
+			  CLOCK: [2023-11-13 Mon 23:10:53]--[2023-11-14 Tue 00:59:28] =>  01:48:35
 			  :END:
-			- DOING 增加confusion matrix
+			- DONE 增加分类指标：precision 和F1 score
 			  :LOGBOOK:
-			  CLOCK: [2023-11-13 Mon 23:10:53]
+			  CLOCK: [2023-11-13 Mon 23:10:52]--[2023-11-14 Tue 00:59:30] =>  01:48:38
 			  :END:
-			- DOING 增加分类指标：precision 和F1 score
+			- DONE 梳理一下完整的实验流程
 			  :LOGBOOK:
-			  CLOCK: [2023-11-13 Mon 23:10:52]
+			  CLOCK: [2023-11-15 Wed 17:39:06]--[2023-11-15 Wed 17:39:08] =>  00:00:02
 			  :END:
-			- TODO 梳理一下完整的实验流程
 				- DONE 深度学习实验怎么进行加速呢？
 				  :LOGBOOK:
 				  CLOCK: [2023-11-13 Mon 23:10:26]--[2023-11-13 Mon 23:10:27] =>  00:00:01
 				  :END:
-			- TODO 调参到可以与论文结果相匹配，或者说差距不大
+			- DONE 调参到可以与论文结果相匹配，或者说差距不大
+			  collapsed:: true
+			  :LOGBOOK:
+			  CLOCK: [2023-11-14 Tue 00:58:53]--[2023-11-14 Tue 00:58:54] =>  00:00:01
+			  :END:
 				- ![image.png](../assets/image_1699888438523_0.png)
 				- ![image.png](../assets/image_1699888473085_0.png)
 				- ![image.png](../assets/image_1699888697470_0.png)
 				- ![image.png](../assets/image_1699888847505_0.png)
+				- ![image.png](../assets/image_1699888967366_0.png)
+				- ![image.png](../assets/image_1699889053599_0.png)
+				- ![image.png](../assets/image_1699889147045_0.png)
 				-
+			- DONE 完成论文模型的两个指标数据的增加和confusion matrix的画图
+			  collapsed:: true
+			  :LOGBOOK:
+			  CLOCK: [2023-11-14 Tue 00:59:23]--[2023-11-15 Wed 00:15:53] =>  23:16:30
+			  :END:
+				- ![image.png](../assets/image_1699954558153_0.png)
+				- ![image.png](../assets/image_1699977873522_0.png)
+				- ![image.png](../assets/image_1699978503717_0.png)
+				- ![image.png](../assets/image_1699978525420_0.png)
+			- DONE 完成最后一次paper model的SGD的调参：也就是第五次实验结果
+			  collapsed:: true
+			  :LOGBOOK:
+			  CLOCK: [2023-11-14 Tue 20:43:31]--[2023-11-14 Tue 21:32:54] =>  00:49:23
+			  :END:
+				- ![image.png](../assets/image_1699968191454_0.png)
+				- /home/sunjiarui/SmgcnPaperNew/deep_model/experim_4_resnet17_4_refined_w_loss_1.0_5/experim_4_resnet17_4_refined_w_loss_1.0_5_epoch_32_0.935672514619883_0.8837209302325582.pkl
+				- ![image.png](../assets/image_1699968762402_0.png)
+				-
+			- DONE 提取增强后的数据的特征 =》看看需不需要重新进行提取 =》不需要
+			  collapsed:: true
+			  :LOGBOOK:
+			  CLOCK: [2023-11-14 Tue 20:43:52]
+			  CLOCK: [2023-11-14 Tue 20:45:28]--[2023-11-14 Tue 23:39:18] =>  02:53:50
+			  :END:
+				- 直接开启第六次实验，将数据集切换为数据量二倍增强后的，结果如下
+				- ![image.png](../assets/image_1699975432705_0.png)
+				- ![image.png](../assets/image_1699975471342_0.png)
+				- ![image.png](../assets/image_1699975867883_0.png)
+				- ![image.png](../assets/image_1699976132195_0.png)
+				-
+			- DONE 看看增强后的数据里train目录下的topo_mask需不需要
+			  collapsed:: true
+			  :LOGBOOK:
+			  CLOCK: [2023-11-14 Tue 20:46:00]
+			  CLOCK: [2023-11-14 Tue 20:46:02]--[2023-11-14 Tue 22:20:20] =>  01:34:18
+			  :END:
+				- 不需要
+				- 因为模型里面并不需要用到topo_mask这个数据，但是原先的数据库返回接口里面保留了这个返回值，需要修改其返回任意一个tensor就行了
+			- DOING 计算传统机器学习里面的三种模型的结果
+			  collapsed:: true
+			  :LOGBOOK:
+			  CLOCK: [2023-11-14 Tue 23:28:25]
+			  CLOCK: [2023-11-14 Tue 23:28:26]
+			  :END:
+				- DONE 计算SVM
+				  collapsed:: true
+				  :LOGBOOK:
+				  CLOCK: [2023-11-14 Tue 23:28:41]
+				  CLOCK: [2023-11-14 Tue 23:28:45]--[2023-11-15 Wed 16:35:14] =>  17:06:29
+				  :END:
+					- DONE 计算class_weight为0.3: 0.7
+					  collapsed:: true
+					  :LOGBOOK:
+					  CLOCK: [2023-11-15 Wed 16:22:44]
+					  CLOCK: [2023-11-15 Wed 16:22:45]--[2023-11-15 Wed 16:34:53] =>  00:12:08
+					  :END:
+						- ![image.png](../assets/image_1700040498324_0.png)
+						- ![image.png](../assets/image_1700040576203_0.png)
+						-
+					- DONE 计算class_weight 为 0.4: 0.6
+					  collapsed:: true
+					  :LOGBOOK:
+					  CLOCK: [2023-11-15 Wed 16:24:13]
+					  CLOCK: [2023-11-15 Wed 16:24:14]--[2023-11-15 Wed 16:34:55] =>  00:10:41
+					  :END:
+						- ![image.png](../assets/image_1700040262708_0.png)
+						- ![image.png](../assets/image_1700040283333_0.png)
+						-
+					- 第二种更好
+				- DONE 计算KNN
+				  collapsed:: true
+				  :LOGBOOK:
+				  CLOCK: [2023-11-14 Tue 23:28:47]
+				  CLOCK: [2023-11-14 Tue 23:28:49]--[2023-11-15 Wed 16:11:04] =>  16:42:15
+				  :END:
+					- ![image.png](../assets/image_1700040780781_0.png)
+					- ![image.png](../assets/image_1700040806171_0.png)
+					-
+				- DONE 把权重改为{0.4,0.6}后重新运行KNN后的结构
+				  :LOGBOOK:
+				  CLOCK: [2023-11-15 Wed 16:11:10]
+				  CLOCK: [2023-11-15 Wed 16:11:12]--[2023-11-15 Wed 16:22:32] =>  00:11:20
+				  :END:
+					- 原本的权重设置是{0.3, 0.7}，这与其他深度学习模型都是{0.4，0.6}的设置不同
+					- 后来发现KNN模型并不需要class_weight这个参数项
+				- DONE 计算随机森林
+				  :LOGBOOK:
+				  CLOCK: [2023-11-14 Tue 23:28:52]
+				  CLOCK: [2023-11-14 Tue 23:28:54]--[2023-11-15 Wed 18:57:44] =>  19:28:50
+				  :END:
+					- DONE {0.4, 0.6}的结果
+					  collapsed:: true
+					  :LOGBOOK:
+					  CLOCK: [2023-11-15 Wed 17:46:20]
+					  CLOCK: [2023-11-15 Wed 17:46:21]--[2023-11-15 Wed 17:46:52] =>  00:00:31
+					  :END:
+						- ![image.png](../assets/image_1700041604938_0.png)
+					- DONE {0.3，0.7}的结果
+					  :LOGBOOK:
+					  CLOCK: [2023-11-15 Wed 17:46:58]--[2023-11-15 Wed 17:49:34] =>  00:02:36
+					  :END:
+						- ![image.png](../assets/image_1700041755058_0.png)
+						- ![image.png](../assets/image_1700041770617_0.png)
+				- DONE 把机器学习模型的confusion matrix保存的代码写一下
+				  :LOGBOOK:
+				  CLOCK: [2023-11-15 Wed 16:35:22]
+				  CLOCK: [2023-11-15 Wed 16:37:25]--[2023-11-15 Wed 17:38:57] =>  01:01:32
+				  :END:
+			- DOING 完成消融实验的模型结果
+			  :LOGBOOK:
+			  CLOCK: [2023-11-14 Tue 23:29:11]
+			  CLOCK: [2023-11-14 Tue 23:29:35]
+			  CLOCK: [2023-11-14 Tue 23:29:46]
+			  :END:
+			- DOING 完成对比实验的模型结果
+			  :LOGBOOK:
+			  CLOCK: [2023-11-14 Tue 23:29:58]
+			  CLOCK: [2023-11-14 Tue 23:30:00]
+			  :END:
+			- DOING 完成扩展实验的模型结果
+			  :LOGBOOK:
+			  CLOCK: [2023-11-14 Tue 23:30:19]
+			  CLOCK: [2023-11-14 Tue 23:30:20]
+			  :END:
+			- DOING
+			  :LOGBOOK:
+			  CLOCK: [2023-11-15 Wed 19:15:34]
+			  :END:
 		- [[继续阅读书籍]]
 			- TODO 关于理性方面的书籍
 				- TODO 《The art of love》
@@ -2509,6 +2643,18 @@ collapsed:: true
 			- TODO 编辑部的故事
 			- TODO 自己写完知乎上大佬文字描述的文章
 				- 模仿这个知乎账号的一部分？
+			- TODO 写一篇互联网的素材信息源吧？
+				- 就是查找各大知名up主和知乎账号 =》判断他们的信息数据源是什么
+			- TODO 总结归纳所有的逻辑推理规则
+			- TODO 怎么才能叫按照规律做事呢？
+			- TODO 生死劫、恋爱劫
+			- TODO 投名状、其他各种状
+		- [[完成超声AI毕设]]
+			- TODO 日常简单查阅如何撰写毕业论文设计
+				- TODO 如何在撰写时就避免重复
+				- TODO 如何增加工程量：比如实验结果多样化
+				- TODO 思考论文中可能会被judge的点
+				-
 - ## CountDownPlans
 	- NOW CountDown100
 	  collapsed:: true
