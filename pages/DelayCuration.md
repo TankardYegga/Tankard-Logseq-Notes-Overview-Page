@@ -2485,15 +2485,6 @@ collapsed:: true
 				- ![image.png](../assets/image_1699889053599_0.png)
 				- ![image.png](../assets/image_1699889147045_0.png)
 				-
-			- DONE 完成论文模型的两个指标数据的增加和confusion matrix的画图
-			  collapsed:: true
-			  :LOGBOOK:
-			  CLOCK: [2023-11-14 Tue 00:59:23]--[2023-11-15 Wed 00:15:53] =>  23:16:30
-			  :END:
-				- ![image.png](../assets/image_1699954558153_0.png)
-				- ![image.png](../assets/image_1699977873522_0.png)
-				- ![image.png](../assets/image_1699978503717_0.png)
-				- ![image.png](../assets/image_1699978525420_0.png)
 			- DONE 完成最后一次paper model的SGD的调参：也就是第五次实验结果
 			  collapsed:: true
 			  :LOGBOOK:
@@ -2504,17 +2495,10 @@ collapsed:: true
 				- ![image.png](../assets/image_1699968762402_0.png)
 				-
 			- DONE 提取增强后的数据的特征 =》看看需不需要重新进行提取 =》不需要
-			  collapsed:: true
 			  :LOGBOOK:
 			  CLOCK: [2023-11-14 Tue 20:43:52]
 			  CLOCK: [2023-11-14 Tue 20:45:28]--[2023-11-14 Tue 23:39:18] =>  02:53:50
 			  :END:
-				- 直接开启第六次实验，将数据集切换为数据量二倍增强后的，结果如下
-				- ![image.png](../assets/image_1699975432705_0.png)
-				- ![image.png](../assets/image_1699975471342_0.png)
-				- ![image.png](../assets/image_1699975867883_0.png)
-				- ![image.png](../assets/image_1699976132195_0.png)
-				-
 			- DONE 看看增强后的数据里train目录下的topo_mask需不需要
 			  collapsed:: true
 			  :LOGBOOK:
@@ -2523,19 +2507,19 @@ collapsed:: true
 			  :END:
 				- 不需要
 				- 因为模型里面并不需要用到topo_mask这个数据，但是原先的数据库返回接口里面保留了这个返回值，需要修改其返回任意一个tensor就行了
-			- DOING 计算传统机器学习里面的三种模型的结果
+			-
+			- DONE 计算传统机器学习里面的三种模型的结果
+			  collapsed:: true
 			  :LOGBOOK:
 			  CLOCK: [2023-11-14 Tue 23:28:25]
-			  CLOCK: [2023-11-14 Tue 23:28:26]
+			  CLOCK: [2023-11-14 Tue 23:28:26]--[2023-11-15 Wed 22:10:56] =>  22:42:30
 			  :END:
 				- DONE 计算SVM
-				  collapsed:: true
 				  :LOGBOOK:
 				  CLOCK: [2023-11-14 Tue 23:28:41]
 				  CLOCK: [2023-11-14 Tue 23:28:45]--[2023-11-15 Wed 16:35:14] =>  17:06:29
 				  :END:
 					- DONE 计算class_weight为0.3: 0.7
-					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2023-11-15 Wed 16:22:44]
 					  CLOCK: [2023-11-15 Wed 16:22:45]--[2023-11-15 Wed 16:34:53] =>  00:12:08
@@ -2602,6 +2586,52 @@ collapsed:: true
 				  CLOCK: [2023-11-15 Wed 16:35:22]
 				  CLOCK: [2023-11-15 Wed 16:37:25]--[2023-11-15 Wed 17:38:57] =>  01:01:32
 				  :END:
+			- DONE 重新跑论文模型的val数据集部分的结果
+			  collapsed:: true
+			  :LOGBOOK:
+			  CLOCK: [2023-11-15 Wed 22:12:09]
+			  CLOCK: [2023-11-15 Wed 22:12:10]--[2023-11-15 Wed 22:17:32] =>  00:05:22
+			  :END:
+				- ![image.png](../assets/image_1700057661437_0.png)
+				-
+			- DONE 重新跑论文模型的test数据集部分的结果
+			  collapsed:: true
+			  :LOGBOOK:
+			  CLOCK: [2023-11-15 Wed 22:12:28]
+			  CLOCK: [2023-11-15 Wed 22:12:29]--[2023-11-15 Wed 22:21:21] =>  00:08:52
+			  :END:
+				- ![image.png](../assets/image_1700057860638_0.png)
+				-
+			- DONE 开启第六次实验，将数据集切换为数据量二倍增强后的，结果如下
+			  :LOGBOOK:
+			  CLOCK: [2023-11-15 Wed 22:23:29]
+			  CLOCK: [2023-11-15 Wed 22:23:30]--[2023-11-16 Thu 00:22:12] =>  01:58:42
+			  :END:
+				- DONE 模型训练得到的模型
+				  collapsed:: true
+				  :LOGBOOK:
+				  CLOCK: [2023-11-15 Wed 22:23:45]
+				  CLOCK: [2023-11-15 Wed 22:23:46]--[2023-11-16 Thu 00:11:02] =>  01:47:16
+				  :END:
+					- ![image.png](../assets/image_1700064588188_0.png)
+					- ![image.png](../assets/image_1700064610161_0.png)
+					-
+				- DONE 模型在test数据集部分的结果
+				  collapsed:: true
+				  :LOGBOOK:
+				  CLOCK: [2023-11-15 Wed 22:24:06]
+				  CLOCK: [2023-11-15 Wed 22:24:08]--[2023-11-16 Thu 00:22:05] =>  01:57:57
+				  :END:
+					- ![image.png](../assets/image_1700065071546_0.png)
+					-
+				- DONE 模型在val数据集部分的结果
+				  collapsed:: true
+				  :LOGBOOK:
+				  CLOCK: [2023-11-16 Thu 00:21:14]
+				  CLOCK: [2023-11-16 Thu 00:21:15]--[2023-11-16 Thu 00:22:08] =>  00:00:53
+				  :END:
+					- ![image.png](../assets/image_1700065283799_0.png){:height 311, :width 625}
+					-
 			- DOING 完成消融实验的模型结果
 			  :LOGBOOK:
 			  CLOCK: [2023-11-14 Tue 23:29:11]
