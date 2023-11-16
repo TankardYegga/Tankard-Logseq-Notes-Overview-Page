@@ -2808,43 +2808,56 @@ collapsed:: true
 				  CLOCK: [2023-11-16 Thu 18:40:45]--[2023-11-16 Thu 19:22:33] =>  00:41:48
 				  :END:
 					- ![image.png](../assets/image_1700133748654_0.png)
-			- DOING alexnet
+			- DONE alexnet
+			  collapsed:: true
 			  :LOGBOOK:
-			  CLOCK: [2023-11-16 Thu 18:39:47]
+			  CLOCK: [2023-11-16 Thu 18:39:47]--[2023-11-16 Thu 19:43:33] =>  01:03:46
 			  :END:
-				- DOING test
+				- DONE test
+				  collapsed:: true
 				  :LOGBOOK:
-				  CLOCK: [2023-11-16 Thu 18:40:39]
+				  CLOCK: [2023-11-16 Thu 18:40:39]--[2023-11-16 Thu 19:43:31] =>  01:02:52
 				  :END:
-				- DOING val
+					- ![image.png](../assets/image_1700135008235_0.png)
+				- DONE val
+				  collapsed:: true
 				  :LOGBOOK:
-				  CLOCK: [2023-11-16 Thu 18:40:45]
+				  CLOCK: [2023-11-16 Thu 18:40:45]--[2023-11-16 Thu 19:30:34] =>  00:49:49
 				  :END:
-			- DOING resnet18 + weighted_pooling
+					- ![image.png](../assets/image_1700134230347_0.png)
+			- DONE resnet18 + weighted_pooling
+			  collapsed:: true
 			  :LOGBOOK:
 			  CLOCK: [2023-11-16 Thu 18:39:49]
-			  CLOCK: [2023-11-16 Thu 18:39:57]
+			  CLOCK: [2023-11-16 Thu 18:39:57]--[2023-11-16 Thu 20:02:24] =>  01:22:27
 			  :END:
-				- DOING test
+				- DONE test
+				  collapsed:: true
 				  :LOGBOOK:
-				  CLOCK: [2023-11-16 Thu 18:40:39]
+				  CLOCK: [2023-11-16 Thu 18:40:39]--[2023-11-16 Thu 19:57:31] =>  01:16:52
 				  :END:
-				- DOING val
+					- ![image.png](../assets/image_1700135848086_0.png)
+				- DONE val
 				  :LOGBOOK:
-				  CLOCK: [2023-11-16 Thu 18:40:45]
+				  CLOCK: [2023-11-16 Thu 18:40:45]--[2023-11-16 Thu 20:02:23] =>  01:21:38
 				  :END:
-			- DOING  densenet121 + weighed_pooling
+					- ![image.png](../assets/image_1700136139708_0.png)
+			- DONE  densenet121 + weighed_pooling
 			  :LOGBOOK:
-			  CLOCK: [2023-11-16 Thu 18:40:10]
+			  CLOCK: [2023-11-16 Thu 18:40:10]--[2023-11-16 Thu 20:09:42] =>  01:29:32
 			  :END:
-				- DOING test
+				- DONE test
+				  collapsed:: true
 				  :LOGBOOK:
-				  CLOCK: [2023-11-16 Thu 18:40:39]
+				  CLOCK: [2023-11-16 Thu 18:40:39]--[2023-11-16 Thu 20:09:35] =>  01:28:56
 				  :END:
-				- DOING val
+					- ![image.png](../assets/image_1700136574664_0.png)
+				- DONE val
+				  collapsed:: true
 				  :LOGBOOK:
-				  CLOCK: [2023-11-16 Thu 18:40:45]
+				  CLOCK: [2023-11-16 Thu 18:40:45]--[2023-11-16 Thu 20:09:40] =>  01:28:55
 				  :END:
+					- ![image.png](../assets/image_1700136368337_0.png)
 		- [[继续阅读书籍]]
 		  collapsed:: true
 			- TODO 关于理性方面的书籍
