@@ -2632,22 +2632,6 @@ collapsed:: true
 				  :END:
 					- ![image.png](../assets/image_1700065283799_0.png){:height 311, :width 625}
 					-
-			- DOING 完成消融实验的模型结果
-			  :LOGBOOK:
-			  CLOCK: [2023-11-14 Tue 23:29:11]
-			  CLOCK: [2023-11-14 Tue 23:29:35]
-			  CLOCK: [2023-11-14 Tue 23:29:46]
-			  :END:
-			- DOING 完成对比实验的模型结果
-			  :LOGBOOK:
-			  CLOCK: [2023-11-14 Tue 23:29:58]
-			  CLOCK: [2023-11-14 Tue 23:30:00]
-			  :END:
-			- DOING 完成扩展实验的模型结果
-			  :LOGBOOK:
-			  CLOCK: [2023-11-14 Tue 23:30:19]
-			  CLOCK: [2023-11-14 Tue 23:30:20]
-			  :END:
 			- DOING 古装里面的美好法术哪些真的可以实现呢？
 			  :LOGBOOK:
 			  CLOCK: [2023-11-15 Wed 19:15:34]
@@ -2658,11 +2642,215 @@ collapsed:: true
 			  CLOCK: [2023-11-15 Wed 21:16:10]
 			  CLOCK: [2023-11-15 Wed 21:16:11]
 			  :END:
-			-
+			- DONE 重新跑resnet18的模型，因为pkl文件和论文貌似对不上
+			  collapsed:: true
+			  :LOGBOOK:
+			  CLOCK: [2023-11-16 Thu 15:15:25]
+			  CLOCK: [2023-11-16 Thu 15:15:26]--[2023-11-16 Thu 15:53:20] =>  00:37:54
+			  :END:
+				- ![image.png](../assets/image_1700119103728_0.png)
+				- ![image.png](../assets/image_1700122075296_0.png)
+				- 但是结果不如原先对应的resnet18模型检查点文件，所以启用此训练结果
+			- DONE 找到了resnet18对应的模型检查点文件
+			  collapsed:: true
+			  :LOGBOOK:
+			  CLOCK: [2023-11-16 Thu 15:53:25]
+			  CLOCK: [2023-11-16 Thu 15:53:27]--[2023-11-16 Thu 16:25:28] =>  00:32:01
+			  :END:
+				- DONE 测试数据集上的结果
+				  collapsed:: true
+				  :LOGBOOK:
+				  CLOCK: [2023-11-16 Thu 15:57:40]
+				  CLOCK: [2023-11-16 Thu 15:57:41]--[2023-11-16 Thu 16:12:31] =>  00:14:50
+				  :END:
+					- ![image.png](../assets/image_1700122243813_0.png)
+				- DONE val数据集上的结果
+				  :LOGBOOK:
+				  CLOCK: [2023-11-16 Thu 15:58:01]
+				  CLOCK: [2023-11-16 Thu 15:58:04]--[2023-11-16 Thu 16:12:30] =>  00:14:26
+				  :END:
+					- ![image.png](../assets/image_1700122322488_0.png)
+					-
+			- DONE 找到了densenet121的模型检查点文件
+			  collapsed:: true
+			  :LOGBOOK:
+			  CLOCK: [2023-11-16 Thu 16:25:35]
+			  CLOCK: [2023-11-16 Thu 16:25:38]--[2023-11-16 Thu 16:57:03] =>  00:31:25
+			  :END:
+				- DONE 测试数据部分
+				  :LOGBOOK:
+				  CLOCK: [2023-11-16 Thu 16:27:20]
+				  CLOCK: [2023-11-16 Thu 16:27:22]--[2023-11-16 Thu 16:28:43] =>  00:01:21
+				  CLOCK: [2023-11-16 Thu 16:47:20]--[2023-11-16 Thu 16:47:22] =>  00:00:02
+				  :END:
+					- ![image.png](../assets/image_1700124627326_0.png)
+				- DONE val数据集部分
+				  collapsed:: true
+				  :LOGBOOK:
+				  CLOCK: [2023-11-16 Thu 16:27:30]
+				  CLOCK: [2023-11-16 Thu 16:27:32]--[2023-11-16 Thu 16:57:01] =>  00:29:29
+				  :END:
+					- ![image.png](../assets/image_1700125003972_0.png)
+					-
+			- DONE 找到了 proposed without multi-out的模型检查点文件
+			  collapsed:: true
+			  :LOGBOOK:
+			  CLOCK: [2023-11-16 Thu 16:26:12]
+			  CLOCK: [2023-11-16 Thu 16:26:13]
+			  CLOCK: [2023-11-16 Thu 16:26:16]--[2023-11-16 Thu 17:53:38] =>  01:27:22
+			  :END:
+				- DONE 测试数据部分
+				  collapsed:: true
+				  :LOGBOOK:
+				  CLOCK: [2023-11-16 Thu 16:27:20]
+				  CLOCK: [2023-11-16 Thu 16:27:22]--[2023-11-16 Thu 16:28:43] =>  00:01:21
+				  CLOCK: [2023-11-16 Thu 17:53:30]--[2023-11-16 Thu 17:53:31] =>  00:00:01
+				  :END:
+					- ![image.png](../assets/image_1700128142818_0.png)
+				- DONE val数据集部分
+				  collapsed:: true
+				  :LOGBOOK:
+				  CLOCK: [2023-11-16 Thu 16:27:30]
+				  CLOCK: [2023-11-16 Thu 16:27:32]--[2023-11-16 Thu 17:53:36] =>  01:26:04
+				  :END:
+					- ![image.png](../assets/image_1700128326133_0.png)
+					-
+			- DONE 找到了proposed w concat fusion的模型检查点文件
+			  collapsed:: true
+			  :LOGBOOK:
+			  CLOCK: [2023-11-16 Thu 17:53:56]
+			  CLOCK: [2023-11-16 Thu 17:59:01]--[2023-11-16 Thu 18:05:52] =>  00:06:51
+			  :END:
+				- DONE 找到了测试数据集上的部分
+				  :LOGBOOK:
+				  CLOCK: [2023-11-16 Thu 17:59:25]
+				  CLOCK: [2023-11-16 Thu 17:59:27]--[2023-11-16 Thu 18:05:50] =>  00:06:23
+				  :END:
+					- ![image.png](../assets/image_1700128788962_0.png)
+				- DONE 找打了验证数据集上的部分
+				  collapsed:: true
+				  :LOGBOOK:
+				  CLOCK: [2023-11-16 Thu 17:59:35]
+				  CLOCK: [2023-11-16 Thu 17:59:37]--[2023-11-16 Thu 18:04:35] =>  00:04:58
+				  :END:
+					- ![image.png](../assets/image_1700128963497_0.png)
+			- DONE 找到了FDFFE的模型检查文件
+			  collapsed:: true
+			  :LOGBOOK:
+			  CLOCK: [2023-11-16 Thu 18:21:12]
+			  CLOCK: [2023-11-16 Thu 18:21:14]--[2023-11-16 Thu 18:32:48] =>  00:11:34
+			  :END:
+				- DONE  测试数据集
+				  :LOGBOOK:
+				  CLOCK: [2023-11-16 Thu 18:21:24]
+				  CLOCK: [2023-11-16 Thu 18:21:25]--[2023-11-16 Thu 18:32:47] =>  00:11:22
+				  :END:
+					- ![image.png](../assets/image_1700130097118_0.png)
+				- DONE val数据集
+				  :LOGBOOK:
+				  CLOCK: [2023-11-16 Thu 18:21:30]
+				  CLOCK: [2023-11-16 Thu 18:21:32]--[2023-11-16 Thu 18:32:46] =>  00:11:14
+				  :END:
+					- ![image.png](../assets/image_1700130209531_0.png)
+					-
+			- DONE vgg11
+			  collapsed:: true
+			  :LOGBOOK:
+			  CLOCK: [2023-11-16 Thu 18:32:55]
+			  CLOCK: [2023-11-16 Thu 18:32:57]--[2023-11-16 Thu 18:39:15] =>  00:06:18
+			  :END:
+				- DONE  test
+				  collapsed:: true
+				  :LOGBOOK:
+				  CLOCK: [2023-11-16 Thu 18:33:00]
+				  CLOCK: [2023-11-16 Thu 18:33:03]--[2023-11-16 Thu 18:36:02] =>  00:02:59
+				  :END:
+					- ![image.png](../assets/image_1700130865007_0.png)
+				- DONE val
+				  :LOGBOOK:
+				  CLOCK: [2023-11-16 Thu 18:33:06]
+				  CLOCK: [2023-11-16 Thu 18:33:07]--[2023-11-16 Thu 18:38:35] =>  00:05:28
+				  :END:
+					- ![image.png](../assets/image_1700131056587_0.png)
+					-
+			- DONE vgg16
+			  collapsed:: true
+			  :LOGBOOK:
+			  CLOCK: [2023-11-16 Thu 18:39:28]--[2023-11-16 Thu 19:14:47] =>  00:35:19
+			  :END:
+				- DONE test
+				  collapsed:: true
+				  :LOGBOOK:
+				  CLOCK: [2023-11-16 Thu 18:40:29]--[2023-11-16 Thu 19:11:47] =>  00:31:18
+				  :END:
+					- ![image.png](../assets/image_1700133104324_0.png)
+				- DONE val
+				  collapsed:: true
+				  :LOGBOOK:
+				  CLOCK: [2023-11-16 Thu 18:40:32]--[2023-11-16 Thu 19:14:46] =>  00:34:14
+				  :END:
+					- ![image.png](../assets/image_1700133283600_0.png)
+			- DONE efficient-net
+			  collapsed:: true
+			  :LOGBOOK:
+			  CLOCK: [2023-11-16 Thu 18:39:32]
+			  CLOCK: [2023-11-16 Thu 18:39:39]--[2023-11-16 Thu 19:22:37] =>  00:42:58
+			  :END:
+				- DONE test
+				  collapsed:: true
+				  :LOGBOOK:
+				  CLOCK: [2023-11-16 Thu 18:40:39]--[2023-11-16 Thu 19:19:54] =>  00:39:15
+				  :END:
+					- ![image.png](../assets/image_1700133592256_0.png)
+				- DONE val
+				  collapsed:: true
+				  :LOGBOOK:
+				  CLOCK: [2023-11-16 Thu 18:40:45]--[2023-11-16 Thu 19:22:33] =>  00:41:48
+				  :END:
+					- ![image.png](../assets/image_1700133748654_0.png)
+			- DOING alexnet
+			  :LOGBOOK:
+			  CLOCK: [2023-11-16 Thu 18:39:47]
+			  :END:
+				- DOING test
+				  :LOGBOOK:
+				  CLOCK: [2023-11-16 Thu 18:40:39]
+				  :END:
+				- DOING val
+				  :LOGBOOK:
+				  CLOCK: [2023-11-16 Thu 18:40:45]
+				  :END:
+			- DOING resnet18 + weighted_pooling
+			  :LOGBOOK:
+			  CLOCK: [2023-11-16 Thu 18:39:49]
+			  CLOCK: [2023-11-16 Thu 18:39:57]
+			  :END:
+				- DOING test
+				  :LOGBOOK:
+				  CLOCK: [2023-11-16 Thu 18:40:39]
+				  :END:
+				- DOING val
+				  :LOGBOOK:
+				  CLOCK: [2023-11-16 Thu 18:40:45]
+				  :END:
+			- DOING  densenet121 + weighed_pooling
+			  :LOGBOOK:
+			  CLOCK: [2023-11-16 Thu 18:40:10]
+			  :END:
+				- DOING test
+				  :LOGBOOK:
+				  CLOCK: [2023-11-16 Thu 18:40:39]
+				  :END:
+				- DOING val
+				  :LOGBOOK:
+				  CLOCK: [2023-11-16 Thu 18:40:45]
+				  :END:
 		- [[继续阅读书籍]]
+		  collapsed:: true
 			- TODO 关于理性方面的书籍
 				- TODO 《The art of love》
 			- TODO 知乎提问:
+			  collapsed:: true
 				- INTP为什么没有敬畏感？或者说如何培养自己的敬畏感？
 				- 如何培养对于小的事实片段和小的逻辑推断的记忆力？
 				- 日本的敬畏感、西方人的敬畏感是不是都是通过严谨来体现的？中国人在什么领域会体现出这种敬畏感呢？
@@ -2697,6 +2885,7 @@ collapsed:: true
 			- TODO 投名状、其他各种状
 			- TODO 我的目标就是没有目标，率性而为，当时当地什么最适合我、什么对我最友好、我最想做什么，我就选择什么，比如如果我想去北美或者欧洲读cs phd，那么我就一定需要出来找计算机的工业界或者教职吗 =》并不一定，我读了之后想找什么类型的工作都可以，很多地方给了phd更多的职业选择 =》因为phd最重要的是思维的锻炼，而不是那些功利性的结果 =》要是抱着功利性的结果，去读phd，迟早会把自己限定在欲望的牢笼里面，也会被这个世界上各种各样的随机性和不确定性所困住 =》就像丁元英关于佛性和成佛的论述一样
 		- [[完成超声AI毕设]]
+		  collapsed:: true
 			- TODO 日常简单查阅如何撰写毕业论文设计
 				- TODO 如何在撰写时就避免重复
 				- TODO 如何增加工程量：比如实验结果多样化
