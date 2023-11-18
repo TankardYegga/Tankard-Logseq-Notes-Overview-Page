@@ -195,3 +195,4 @@
 - Here for each image we generated three pairs of visualization results: one was about resnet18 and densenet121 in the proposed model; one was about individual resnet18 and individual densenet121; and the last was about resnet18 with weighted pooling and densenet121 with weighted pooling.
 -
 -
+-
