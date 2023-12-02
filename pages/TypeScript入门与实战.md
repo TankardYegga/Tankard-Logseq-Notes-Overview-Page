@@ -1,4 +1,3 @@
-public:: true
 tags:: 书
 分类:: [[计算机-编程设计]]
 作者:: [[钟胜平编著]]
@@ -8,8 +7,9 @@ ISBN:: 9787111669722
 已读完:: 否
 来源:: [[微信读书]]
 书籍id:: 35433566
-版本:: 509661387
-封面:: ![](https://weread-1258476243.file.myqcloud.com/weread/cover/75/YueWen_35433566/s_YueWen_35433566.jpg){:width 80}
+版本:: 1883153537
+封面:: ![](https://cdn.weread.qq.com/weread/cover/75/YueWen_35433566/s_YueWen_35433566.jpg){:width 80}
+public:: false
 
 - [[简介]]
   heading:: true
