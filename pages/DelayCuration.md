@@ -2950,21 +2950,32 @@ collapsed:: true
 				- TODO 如何在撰写时就避免重复
 				- TODO 如何增加工程量：比如实验结果多样化
 				- TODO 思考论文中可能会被judge的点
-			- TODO  确认basic settings
+			- DONE  确认basic settings
 			  collapsed:: true
-				- TODO 确认分割任务是否需要将没有乳腺肿块的正常包含进去
-					- 可以先直接用unet来测试对比一下，效果的差异是否明显
-				- TODO 确定是否使用交叉验证，交叉验证的比例又应该如何设置
-				- TODO 确定怎么进行数据增强
-				  :LOGBOOK:
-				  CLOCK: [2024-01-01 Mon 09:39:01]--[2024-01-01 Mon 09:39:01] =>  00:00:00
-				  :END:
+			  :LOGBOOK:
+			  CLOCK: [2024-01-17 Wed 19:55:16]--[2024-01-17 Wed 20:15:18] =>  00:20:02
+			  :END:
 				- DONE 确定最终实验所用到的指标
 				  :LOGBOOK:
 				  CLOCK: [2024-01-01 Mon 09:38:56]--[2024-01-01 Mon 09:38:57] =>  00:00:01
 				  :END:
-			- TODO 思考如何在不确定图上进行创新
-			- TODO 思考可视化对比不同模型的分割结果
+				- DONE 确认模型的输出是否已经用sigmoid归一化到[0，1]了，还是说只是两个原始概率值？
+				  :LOGBOOK:
+				  CLOCK: [2024-01-17 Wed 19:55:37]--[2024-01-17 Wed 20:15:11] =>  00:19:34
+				  :END:
+					- 这会影响到损失函数如何计算 + 指标的计算
+					- 查看了下之前的代码，都是没有torch.sigmoid, 因为sigmoid之后就不方便绘制heatmap了；也就说尽量把一切的后处理都放在模型后，这样将来能够利用更多的原始数据
+			- DONE 思考可视化对比不同模型的分割结果
+			  collapsed:: true
+			  :LOGBOOK:
+			  CLOCK: [2024-01-17 Wed 19:42:09]--[2024-01-17 Wed 19:42:12] =>  00:00:03
+			  :END:
+				- 保留在preds子文件夹了
+				- 所有的绘图的代码其实只需要在测试部分写就可以了
+				- 一般的loss这样与训练相关的图其实没有特别大的意义，除非这个模型本身很难训练
+				  collapsed:: true
+					- ![image.png](../assets/image_1705492217295_0.png)
+					-
 			- DONE 总结一下师兄毕设中实验设计的思路和技巧
 			  :LOGBOOK:
 			  CLOCK: [2024-01-17 Wed 18:44:41]--[2024-01-17 Wed 18:44:42] =>  00:00:01
@@ -3074,7 +3085,7 @@ collapsed:: true
 				  CLOCK: [2024-01-17 Wed 18:40:54]--[2024-01-17 Wed 18:41:36] =>  00:00:42
 				  :END:
 				-
-			- TODO 怎么修改rethink模型的主干网络，使得其具有效果
+			- TODO 怎么修改rethink模型的主干网络，使得其具有相当效果
 			- TODO 怎么修改uncertainty map那块，使得其有效果
 			- TODO 用一个端到端的网络来顺带完成乳腺肿块的分类
 			-
@@ -3135,11 +3146,24 @@ collapsed:: true
 		- https://yd.qq.com/web/reader/0cb322b0720439750cbda36
 		-
 	- DOING 阅读《有序》1h
+	  collapsed:: true
 	  :LOGBOOK:
 	  CLOCK: [2024-01-13 Sat 19:14:23]
 	  CLOCK: [2024-01-13 Sat 19:14:24]
 	  :END:
-	-
+		- DOING 超级搜索术用来降低信息整理的成本
+		  :LOGBOOK:
+		  CLOCK: [2024-01-17 Wed 20:05:14]
+		  CLOCK: [2024-01-17 Wed 20:05:16]
+		  :END:
+			- https://www.yojiang.cn/pc/lesson/117
+			  id:: 65a7c288-d097-4656-b0e7-08a1ac4e717b
+		- TODO 自己开发一款信息整理工具
+		  :LOGBOOK:
+		  CLOCK: [2024-01-17 Wed 20:06:47]
+		  CLOCK: [2024-01-17 Wed 20:06:48]--[2024-01-17 Wed 20:07:26] =>  00:00:38
+		  :END:
+		-
 - ## DistractionTracing
 	-
 	-
