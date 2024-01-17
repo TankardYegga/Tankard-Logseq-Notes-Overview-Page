@@ -2329,6 +2329,7 @@ collapsed:: true
 			  :END:
 			- TODO 学期末把开题封面给刑老师
 		- [[平复情绪或者平复脑压练习]]
+		  collapsed:: true
 			- TODO 脑压大时尝试冥想5min
 			- DONE 拿快递 + 喝咖啡
 			  :LOGBOOK:
@@ -2448,6 +2449,7 @@ collapsed:: true
 					- ![image.png](../assets/image_1699323847030_0.png)
 					-
 		- [[对BSPC论文进行修改]]
+		  collapsed:: true
 			- DONE 找到论文当初使用的数据集是哪一个
 			  :LOGBOOK:
 			  CLOCK: [2023-11-10 Fri 17:49:10]--[2023-11-10 Fri 17:49:11] =>  00:00:01
@@ -2943,12 +2945,131 @@ collapsed:: true
 			  CLOCK: [2023-11-18 Sat 13:56:44]
 			  :END:
 		- [[完成超声AI毕设]]
-		  collapsed:: true
 			- TODO 日常简单查阅如何撰写毕业论文设计
+			  collapsed:: true
 				- TODO 如何在撰写时就避免重复
 				- TODO 如何增加工程量：比如实验结果多样化
 				- TODO 思考论文中可能会被judge的点
+			- TODO  确认basic settings
+			  collapsed:: true
+				- TODO 确认分割任务是否需要将没有乳腺肿块的正常包含进去
+					- 可以先直接用unet来测试对比一下，效果的差异是否明显
+				- TODO 确定是否使用交叉验证，交叉验证的比例又应该如何设置
+				- TODO 确定怎么进行数据增强
+				  :LOGBOOK:
+				  CLOCK: [2024-01-01 Mon 09:39:01]--[2024-01-01 Mon 09:39:01] =>  00:00:00
+				  :END:
+				- DONE 确定最终实验所用到的指标
+				  :LOGBOOK:
+				  CLOCK: [2024-01-01 Mon 09:38:56]--[2024-01-01 Mon 09:38:57] =>  00:00:01
+				  :END:
+			- TODO 思考如何在不确定图上进行创新
+			- TODO 思考可视化对比不同模型的分割结果
+			- DONE 总结一下师兄毕设中实验设计的思路和技巧
+			  :LOGBOOK:
+			  CLOCK: [2024-01-17 Wed 18:44:41]--[2024-01-17 Wed 18:44:42] =>  00:00:01
+			  :END:
+			-
+			- TODO 完成基本的baseline实验
+				- DONE 分析数据方面的问题
+				  :LOGBOOK:
+				  CLOCK: [2024-01-11 Thu 20:59:57]--[2024-01-11 Thu 20:59:58] =>  00:00:01
+				  :END:
+					- 一个是没有把normal数据放进去
+					- 第二个是数据划分比例的问题，应该将8:1:1改成6:2:2
+					- 第三个是没有进行数据的预处理
+				- DOING 完成关于数据问题setting的组合实验
+				  :LOGBOOK:
+				  CLOCK: [2024-01-11 Thu 21:03:31]
+				  :END:
+					- DONE no normal + no processing + 8:1:1
+					  collapsed:: true
+					  :LOGBOOK:
+					  CLOCK: [2024-01-11 Thu 21:22:43]--[2024-01-11 Thu 21:22:44] =>  00:00:01
+					  :END:
+						- train + val
+							- ![1e31c0c10450f4545c928ea9b410d4a.png](../assets/1e31c0c10450f4545c928ea9b410d4a_1704979155113_0.png)
+							- ![47028933fe7df44ff4a95729570b27f.png](../assets/47028933fe7df44ff4a95729570b27f_1704979202839_0.png)
+							-
+						- test
+						  collapsed:: true
+							- ![0b3a9d7a012e88f32108e5f07b77f80.png](../assets/0b3a9d7a012e88f32108e5f07b77f80_1704979358913_0.png)
+							-
+						-
+					- DOING normal + no processing  + 6:2:2
+					  :LOGBOOK:
+					  CLOCK: [2024-01-11 Thu 21:23:05]
+					  CLOCK: [2024-01-11 Thu 21:23:45]
+					  CLOCK: [2024-01-11 Thu 21:25:55]
+					  :END:
+						- 迭代25次的结果
+						  collapsed:: true
+							- train + val
+								- ![image.png](../assets/image_1705483908478_0.png)
+							- test
+								- ![image.png](../assets/image_1705484479898_0.png)
+								-
+						- 迭代50次的结果
+						  collapsed:: true
+							- train + val (44)
+							  collapsed:: true
+								- ![image.png](../assets/image_1705488971391_0.png)
+								- ![image.png](../assets/image_1705488994788_0.png)
+								-
+							- test
+								-
+						- 问了一下GPT是否要加入normal类的图片
+							- ![image.png](../assets/image_1705490005004_0.png)
+							- ![image.png](../assets/image_1705490073663_0.png)
+							- BUSI
+					- DOING  no normal  +  no processing  + 6:2:2
+					  :LOGBOOK:
+					  CLOCK: [2024-01-11 Thu 21:26:20]
+					  :END:
+					- DOING 数据预处理要怎么处理？
+					  :LOGBOOK:
+					  CLOCK: [2024-01-11 Thu 21:27:00]
+					  CLOCK: [2024-01-11 Thu 22:30:56]
+					  CLOCK: [2024-01-11 Thu 22:31:01]
+					  :END:
+					- DOING 看下MICCAI上使用BUSI论文分割的结果大概是哪个范围水平的，如果和加入了normal的结果差距太大，那还是不要加上NORMAL了
+					  :LOGBOOK:
+					  CLOCK: [2024-01-17 Wed 18:37:11]
+					  CLOCK: [2024-01-17 Wed 18:37:13]
+					  CLOCK: [2024-01-17 Wed 18:38:28]
+					  :END:
+				- DOING 查看论文使用的几个基线网络，用于对比的
+				  collapsed:: true
+				  :LOGBOOK:
+				  CLOCK: [2024-01-17 Wed 14:21:20]
+				  CLOCK: [2024-01-17 Wed 14:21:27]
+				  CLOCK: [2024-01-17 Wed 14:21:33]
+				  :END:
+					- rethinking论文里面的
+						- ![image.png](../assets/image_1705473643037_0.png)
+						  id:: 65a7722a-1ec4-42d5-8624-ac8a6244fa6c
+					- 残差回馈网络论文里面的对比模型
+					  collapsed:: true
+						- ![image.png](../assets/image_1705472938889_0.png)
+						-
+					- 师兄论文里面的对比模型
+					  collapsed:: true
+						- ![image.png](../assets/image_1705473137339_0.png)
+						-
+					-
+				- TODO 就是特殊的存在多个乳腺肿块的分割block的图片，这个可以单独拿出来讲一下
+				  :LOGBOOK:
+				  CLOCK: [2024-01-17 Wed 18:40:50]
+				  CLOCK: [2024-01-17 Wed 18:40:54]--[2024-01-17 Wed 18:41:36] =>  00:00:42
+				  :END:
 				-
+			- TODO 怎么修改rethink模型的主干网络，使得其具有效果
+			- TODO 怎么修改uncertainty map那块，使得其有效果
+			- TODO 用一个端到端的网络来顺带完成乳腺肿块的分类
+			-
+			-
+			-
+			-
 - ## CountDownPlans
 	- NOW CountDown100
 	  collapsed:: true
@@ -2959,7 +3080,6 @@ collapsed:: true
 	  CLOCK: [2023-11-08 Wed 19:16:30]
 	  :END:
 		- DONE coundown93 + countdown92
-		  collapsed:: true
 		  :LOGBOOK:
 		  CLOCK: [2023-10-26 Thu 09:51:11]
 		  CLOCK: [2023-10-26 Thu 09:51:12]--[2023-10-26 Thu 09:55:26] =>  00:04:14
@@ -2981,8 +3101,36 @@ collapsed:: true
 		  :END:
 			- [[长期主义]]
 			-
+	- DONE 自我检视
+	  collapsed:: true
+	  :LOGBOOK:
+	  CLOCK: [2024-01-09 Tue 21:46:45]
+	  CLOCK: [2024-01-09 Tue 21:46:50]--[2024-01-11 Thu 20:35:13] =>  46:48:23
+	  :END:
+		- 其实骨子里我是喜欢有一定的可以依赖的对象 =》依赖意味着当需要帮助时，不用从0开始探索 =》虽然baseline不一定很高，但是不用经过从0到baseline爬升的那一段最辛酸的时光 =》就是得尝试各种可能的路径，其中有些路径可能具有毁灭性的灾难，可行的路径如果没有坚持到正确的时间点可能就放弃了 =》本质上是我想探索已经挖掘好的现有的东西，却没有胆量、智慧和汗水去进行“真正的探索” =》也就是还是“畏难”，我缺乏真正的面对困难的勇气和信念 =》一旦我具有了，就能在各种困难面前独当一面，而不需要依靠别人的帮助
+		- 我发现我其实并没有什么节省成本的概念 =》包括时间成本、机会成本、金钱的成本 =》特别是有一大块的时间，就特别只想用来做一件事 =》我感觉这种是时间的充足感充裕感，或者说冗余感 =》或者说，这是一种时间上的富裕感 =》“贫穷”导致的心理上紧巴巴的感觉，让我本能地排斥 =》时间上的紧张感，让我觉得自己在进行百米冲刺，或者是 抠搜搜地扣馒头末来吃 =》我想要可支配的时间变得富足
+	- DONE 查找“数据架构”、“数据流图”、“数据流架构图”等的书籍
+	  collapsed:: true
+	  :LOGBOOK:
+	  CLOCK: [2024-01-11 Thu 20:36:03]
+	  CLOCK: [2024-01-13 Sat 18:01:35]
+	  CLOCK: [2024-01-13 Sat 18:01:36]--[2024-01-13 Sat 19:08:28] =>  01:06:52
+	  :END:
+		- 务架构应用架构数据架构实战 温昱 PDF电子版
+		- 业务架构解构与实践(博文视点出品)
+		  王旭东 魏炜 等
+		- 数据为王:打开工业数据治理之门 pdf
+		- https://blog.csdn.net/SaixiCo/article/details/130976506
+		- https://yd.qq.com/web/reader/0cb322b0720439750cbda36
+		-
+	- DOING 阅读《有序》1h
+	  :LOGBOOK:
+	  CLOCK: [2024-01-13 Sat 19:14:23]
+	  CLOCK: [2024-01-13 Sat 19:14:24]
+	  :END:
+	-
 - ## DistractionTracing
-	- 19:47 真的好困啊，想睡觉，可是又没有能够马上躺倒的那种困倦，困倦好像全部集中在自己的颈部和头部；要不就直接休息一下吧
+	-
 	-
 -
 -

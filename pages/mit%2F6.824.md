@@ -115,19 +115,18 @@ title:: mit/6.824
 			- 一些程序会需要在后台运行，周期性地运行然后休眠
 			- the overhead is worthy ?
 				- yes
-	- asynchronous program和vent driving program的区别？
+	- asynchronous program和event driving program的区别？
 	  collapsed:: true
 		- Asynchronous programming and event-driven programming are both ways of handling concurrency in software development, but they are not the same thing.
 		- Asynchronous programming is a programming paradigm where tasks are executed concurrently without blocking the main thread. This means that a program can execute multiple tasks at the same time, without waiting for one task to complete before starting the next one. Asynchronous programming is typically used in situations where a program needs to perform I/O operations, such as reading from a file or making a network request, without blocking the main thread.
 		- Event-driven programming, on the other hand, is a programming paradigm where the flow of the program is determined by events that occur, rather than by a sequential order of execution. In an event-driven program, the program waits for events to occur, such as mouse clicks or keyboard presses, and then responds to those events. Event-driven programming is often used in graphical user interfaces, where the program needs to respond to user input in real-time.
 		- While there is some overlap between asynchronous programming and event-driven programming, they are not the same thing. Asynchronous programming is a way of handling concurrency, while event-driven programming is a way of structuring the flow of a program based on events.
 		- 线程比事件驱动更容易，因为它只需要写直接的流程控制代码：计算、发送信息、等待响应，
-			- 而后者它需要把无论什么活动都分割成很多小的片段，这些小的代码片段会不时地被相应的事件驱动循环在某个时刻激活，因此编程来说会更加困难；此外如果在事件驱动编程下如果你想要获得并发，将无法获得CPU的并行，比如你要写一个保持32核都忙碌的繁忙的服务器，一个单一的循环不是一个自然的方式去利用超过一个核；
+			- 而后者它需要把无论什么活动都分割成很多小的片段，这些小的代码片段会不时地被相应的事件驱动循环在某个时刻激活，因此编程来说会更加困难；此外如果在事件驱动编程下如果你想要获得并发，将无法获得CPU的并行，比如你要写一个保持32核都忙碌的繁忙的服务器，一个单一的循环不是一个去利用超过一个核的自然的方式；
 			- 通常这种方式的开销会比线程稍微小一点，为什么呢？
 				- 因为当多线程的数量超过1000时，管理线程的开销就开始变大，包括维持每个线程的状态、决定下次该执行哪一个线程
 		- 进程是由操作系统来控制的，与具体使用什么语言无关
 	- 当一个context发生切换时，所有的线程都发生了对应的切换吗？
-	  collapsed:: true
 		- 假如你有一台单核的机器，你在上面运行了多个进程，OS会给不同的进程time slicing来进行来回切换，所以当硬件计时结束时，CPU从一个进程拿走，被放置到另外一个进程之上；context切换时只有操作系统知道的线程会进行切换
 		- go cleverly multiplex as many go routines on top of single operating system threads to reduce overhead
 			- 这句话的意思是，在单个操作系统线程上巧妙地多路复用多个Go协程，以减少开销。
@@ -179,23 +178,17 @@ title:: mit/6.824
 		- ![image.png](../assets/image_1687772074136_0.png)
 		-
 	- Go中的条件变量可以被看作是什么？
-	  collapsed:: true
 		- 可以看作是协调进程之间的coordination原语(primitive)，尤其是当使用lock来保护共享状态(shared state) 的时候
-		-
-		-
 	- Web Crawler项目的目标是什么呢？
-	  collapsed:: true
 		- ![image.png](../assets/image_1687853212490_0.png)
 			- 第二个目标一次性获取到URL，是在说correctness的要求
 		-
 	- Go当中的RPC是如何工作的？
-	  collapsed:: true
 		- ![image.png](../assets/image_1687879945764_0.png)
 			- marshal 和 unmarshal 是序列化和反序列化的过程。序列化是将数据结构或对象转换为字节流的过程，以便将其从一个应用程序发送到另一个应用程序或存储在磁盘上。反序列化是将字节流转换回原始数据结构或对象的过程
 			- 序列化和反序列化的方法可能有所不同，但通常采用比较常见的方式，比如 JSON、XML、Protobuf、MessagePack 等
 			- 这些stub使得远程过程调用和regular/local procedure call的效果差异不大，并且这些stub通常都是自动生成的
 	- RPC的failures有哪些可能的语义呢？
-	  collapsed:: true
 		- ![image.png](../assets/image_1687914194519_0.png)
 			- 至少一次：
 				- 如果server fail了，那么client应该做什么呢？此时当client第一次向crashed的server发送请求时，必然得不到响应，所以会time out，然后client就会自动进行重试，直到server的函数调用至少执行了一次
@@ -208,7 +201,6 @@ title:: mit/6.824
 				- 因为这是normal情况下的procedure call会展现的
 				- 但这通常非常难去进行管理或者说安排arrange,  要求你不得不维持磁盘上的状态, 这个维持操作是昂贵的。在实践中，只有很少的RPC系统是exactly once的
 	- Go语言中的rpc的failures的语义是哪一种呢？
-	  collapsed:: true
 		- 是at most once
 		- 通过tcp channel来发起调用，tcp channel将会保证没有duplicates。应用程序可能会进行重试，但将是应用程序的责任来处理duplication和failed message的问题
 		- rpc和pc的区别是通过failure时的goal来体现的
@@ -239,7 +231,6 @@ title:: mit/6.824
 		- 一是一致性问题
 		  collapsed:: true
 			- 什么是ideal consistency？
-			  collapsed:: true
 				- 通过一个具体的执行案例，明确合理的值是什么、不合理的值是什么来定义什么是consistency
 					- ![image.png](../assets/image_1687940308288_0.png)
 						- C3读取的结果可能是1或者2，这取决于C1和C2并发执行的相对顺序
@@ -247,7 +238,6 @@ title:: mit/6.824
 						-
 				-
 		- 二是failure问题
-		  collapsed:: true
 			- 对于复制没有任何约束时，是最坏的复制策略，也可以视作no protocol
 				- ![image.png](../assets/image_1687940892468_0.png)
 	- GFS的case study主要学习些什么？
@@ -261,6 +251,7 @@ title:: mit/6.824
 	- 课程简介是什么？
 	  collapsed:: true
 		- Minica Summary：
+		  collapsed:: true
 			- Detailed Summary for [Lecture 4: Primary-Backup Replication
 			  不公开](https://www.youtube.com/watch?v=gXiDmq1zDq4) by [Monica](https://monica.im)  
 			    
@@ -321,7 +312,6 @@ title:: mit/6.824
 				-
 			-
 		- 不可以处理的：
-		  collapsed:: true
 			- logic bugs
 				- 在primary和replication中软件的逻辑错误将会重复出现
 			- configuration errors
@@ -332,10 +322,13 @@ title:: mit/6.824
 			- 比如earthquake，我们会希望backup能够维持原有的数据
 			-
 	- 构建primary backup system可能会出现的issues or challenges？
+	  collapsed:: true
 		- Has the primary failed?
+		  collapsed:: true
 			- 在一个分布式系统中，很难区分是network partition还是machine failed，前者是说primary is still up但是部分计算机无法和primary进行通信，那么此时backup就会认为primary is dead，但是实际上一些client仍然可以与primary进行通信，这样也就会造成“two primary”的情形了。当network被heal了之后，那么原先的primary就能够正常继续工作了，此时一部分client与原先的primary进行通信，另外一部分client与新选出来的primary进行通信，于是整个系统就处于incorrect state当中
 			- 所以，我们必须avoid this split brain syndrome at all costs
 		- How to keep the primary and backup in sync ?
+		  collapsed:: true
 			- 当primary crash了，切换到backup时需要backup能够与原先primary的state保持一致，这样的切换就像是在一台电脑上无缝般切换一样流畅
 			- 要求：
 				- apply changes in the right order
@@ -347,25 +340,32 @@ title:: mit/6.824
 				- 如果所有的backup都fail了，那么当它们重新back up时，我们需要判断哪一个是具有最新的state
 	- 两种deal with primary backup replication的方法分别是什么？
 		- 第一种：
+		  collapsed:: true
 			- ![image.png](../assets/image_1688487464378_0.png)
 			- primary在给客户端响应之前，要先执行相关的操作，同时需要把这个操作产生的状态变化同步给backup machine，这样才能保证两者的一致性
 		- 第二种：
+		  collapsed:: true
 			- ![image.png](../assets/image_1688487897935_0.png)
 			- primary在执行操作前，会把操作发送给backup，等待backup执行完这些操作后，发送acknowledgement给primary，然后primary再执行这些操作，最后才给客户端响应
 			-
 		- 第一种方法的缺点是什么呢？
+		  collapsed:: true
 			- 如果一个operation会产生很多state的话，那么state tranfer方式将变得代价很高，所以一般使用第二种方法，GFS中追加数据时没有send data而是发送operation就是这种方法
 			-
 		- 为什么在第二种方法中客户端不用发送数据呢？
+		  collapsed:: true
 			- 因为这些发送的operation是deterministic的，只要两台machine的当前state是一样的，那么应用这些操作，就一定会end up in the same state，因而也就保证了不同的machine具有最终相同的数据
 		- 那么，对于所有程序的所有操作，要怎么判断它是deterministic的还是non-deterministic的？
+		  collapsed:: true
 			- 在replicated state machine中，是将所有的operation都变成deterministic
 			-
 		- 可以使用两者的混合方法吗？
+		  collapsed:: true
 			- 可以，你可以默认设置使用replicated state machine的方式来运行系统，但是如果primary或者backup fail了，那么就只剩下一台机器，然后需要创建一个新的replica，通常对于这个新的replica，实际上需要将  当前存在的replica的状态 或者  当前存在的replica的状态的副本 transfer到 它上面去
 			- 整体上，这个混合方法中使用state transfer的operaton并不frequent，因为fail的情况并不总是出现，而replicated state machine方法的复制operations的行为比较频繁
 			-
 		- What level of operations to replicate ?
+		  collapsed:: true
 			- application-level (gfs file append, and write)
 				- 这意味着应用必须参与其中，也就是应用能够知道这些操作的semantics是什么，能够知道一个操作或者事件实际上要去做什么，比如写实际上要去做什么
 				- 如果在应用层面来使用replicated state machine这个方法，应用自身需要被进行修改，从而成为执行replicated state machine的一部分
@@ -394,49 +394,39 @@ title:: mit/6.824
 			- 关于virtualization的overview？
 			  collapsed:: true
 				- virtual machine monitor / hypervisor
+				  collapsed:: true
 					- ![image.png](../assets/image_1688530813952_0.png)
 						- 指的是在一块硬件的基础上使其成为电脑的end pieces（硬件系统的末端设备或者组件，通常直接与外部环境交互或者与其他系统进行连接）
 						- 我们可以在x86 box（Hardware，图示中最底下的矩形）的上层运行一个virtual machine monitor，而在这个monitor上层通常是多个virtual machine，在论文中该vm monitor上层只有一个linux系统和相关的应用
 						- vm monitor也被称作Hypervisor（虚拟机监控器），这里也就是论文中的vmft（vm with fault tolerance）
-						  collapsed:: true
 							- 是一种虚拟化技术，它允许在一台物理计算机上运行多个虚拟机操作系统。Hypervisor 可以将计算机的物理资源（如 CPU、内存、存储空间等）划分为多个虚拟机，每个虚拟机都可以独立运行不同的操作系统和应用程序。Hypervisor 可以提高计算机资源的利用率，同时也可以提供更好的安全性和可管理性。
 						- 当最底层发生了Hardware interrupt，整个系统会怎么做？
 							- 这个中断会先通过vm monitor，然后再由这个monitor将这个中断deliver给linux系统
 							- 实际上，任何的external event，都会首先被hypervisor所捕获到，然后才会被vm捕获到
 							- 如果有一个external interrupt，我们要怎么replicate this？
-							  collapsed:: true
 								- hypervisor实际上控制了interrupt的转发，所以replicate也与hypervisor有关。实际上，hypervisor是一个强有力的工具，能够使得指令变得deterministic
 								- 如果有一个中断发生，不管是网络中断还是硬件中断（比如timer interrupt），vmft会做两件事：
-								  collapsed:: true
 									- 把这个中断给deliver给linux文件系统的application
 									- 通过一个logging channel把这个中断发送给backup
 									- 例子图示：
 										- Client通过网络向Hardware发送一个packet，造成一个中断（下图中最底层的横线表示same network）
-										  collapsed:: true
 											- ![image.png](../assets/image_1688532422734_0.png)
 										- linux系统接收到monitor传送过来的中断后，按照正常应对中断的方式进行处理，然后把想要发送的packet传送给monitor，linux系统会以为自己正在通过实际的网卡（network interface card）写入数据，但是实际上它是通过由monitor所仿真的（emulated）virtual network interface card来写入数据；当linux系统向virtual card写入一系列的指令时，它实际上正在通过monitor来进行写入；monitor通过对硬件编程（programming the real hardware）来代表os发送packet, 然后the real hardware将真正的响应返回给客户端
-										  collapsed:: true
 											- ![image.png](../assets/image_1688532840884_0.png)
-										- 如果primary和backup初始时处于相同的state，如果它们同时接受同样的中断请求，monitor可以控制中断在同一时刻被delivered，且中断对应完全一样的指令；由于发送的中断需要通过logging channel才能传递到backup，所以中断在primary的monitor处会显buffer一段时间，直到中断也已经到达backup的monitor了
+										- 如果primary和backup初始时处于相同的state，如果它们同时接受同样的中断请求，monitor可以控制中断在同一时刻被delivered，且中断对应完全一样的指令；由于发送的中断需要通过logging channel才能传递到backup，所以中断在primary的monitor处会先在buffer一段时间，直到中断也已经到达backup的monitor了
 										- backup上linux返回的packet不会send到网络上
-										  collapsed:: true
 											- ![image.png](../assets/image_1688534687494_0.png)
 										-
 						- 还存在额外的component需要注意的吗？
 							- 有，是在同一个网络上的Storage Server
-							  collapsed:: true
 								- ![image.png](../assets/image_1688534805884_0.png)
 							- 它可以看作是primary和backup上两个virtual machine的hard disk：
-							  collapsed:: true
 								- 当一个应用试图给一个文件里写入数据，文件系统就会mount上linux系统（下图中green arrow表示了相关的控制流程）
-								  collapsed:: true
 									- ![image.png](../assets/image_1688562571800_0.png)
 								- 有时候是客户端发起存储相关的communication，有时则是storage server主动发起存储相关的communication
 							- storage server扮演了除了存储服务器以外的其他的额外的角色：arbitration server
-							  collapsed:: true
 								- 在storage server内部会有一个block用作flag，来arbitrate（make a formal judgment or make an official decision）当发生failure将成为primary的那台机器是哪一个
 								- 主要原因是当primary和backup中某一个crash或者network fail时，无法区分是哪一种情况，但此时两者和storage server内部的这个flag block都是可以进行通信的；
-								  collapsed:: true
 									- 为什么这样做能够区分crash或者network fail呢?
 										- 当crash时，其实只有一台仍旧alive的机器会进行 test and set操作，crash的那台无法与存储服务器通信，自然也没有机会成为primary
 										- 而当network fail时，两台机器都会进行test and set 操作，两台机器中与存储服务器通信速度更快的将成为primary
@@ -445,36 +435,32 @@ title:: mit/6.824
 								- 于是，primary和backup都是尝试往这个flag block里面写入1，谁先写入1谁就就是primary：假如backup比primary率先抢到了1，server就会给backup返回0；那么当primary读取这个flag block时就会发现它已经是1了，server就会返回给它1；这种操作被称作 test and set （先进行读取测试，然后依据测试结果进行相应的set），其中返回结果得到0的machine将会处理client发送的请求，而返回结果为1的machine将会terminate and done
 							- arbitration server避免了split brain syndrome
 						- vmft中的repair plan是什么？repair的意思是说当primary宕机了，现在就只剩下一台backup机器了，但是这台backup的机器也有可能进一步宕机，所以必须需要再有一台replica
-						  collapsed:: true
 							- vmft中的repair plan是手动的，就是 ：
 								- 人通过monitor software会notice到这一点
 								- 然后会主动创建一个新的replica，或者 基于第一台机器的镜像来创建：注意在这个复制或者说克隆期间，primary是不会处理来自客户端的请求的
 								- 一旦second backup被创建成功，logging channel就会重新启动，如果我们follow the protocol, 这个flag就会被重设为0：这些操作是为了保证secondary backup和primary保持同步的状态
-								  collapsed:: true
 									- ![image.png](../assets/image_1688527000155_0.png)
 								- 整个系统恢复对客户端的服务
 						- 如果 logging channel或者the channel to the sever broke了，那我们就得不到响应了，所以怎么办呢？
-						  collapsed:: true
 							- sytem将直接stop，直到故障被repair，没有其他的补救措施
 							- 且之后的所有客户端请求都不会再被接受处理，因为我们并不清楚当前的state是什么
 						- 你认为disaster failures是什么？
-						  collapsed:: true
 							- 所有的网络电缆都断了
 							- primary和backup同时都宕机了
 							-
 						- client什么时候会从storage server进行读取？
-						  collapsed:: true
 							- 不会，只有linux上的应用和vmft会与存储服务器进行交互，图示中的绿色箭头表示了这种流向：
 								- ![image.png](../assets/image_1688565390164_0.png)
 				-
 			- primary / backup 的目标是两台机器工作的结果就像一台机器在运行，那么论文中这种replication sheme会存在哪些sources of divergence?
-			  collapsed:: true
 				- ![image.png](../assets/image_1688570772507_0.png)
 				- 指令可能是non-deterministic的
+				  collapsed:: true
 					- 比如关于time的指令，如果两台机器的定时不同步，那么同一个指令的运行结果可能会是不同的
 				- packets input or timer interrupt在不同机器的指令流中的位置可能不同（这里的位置可以理解为interrupt被deliver到指令流中的时机）
+				  collapsed:: true
 					- 当客户端发送packets时，或者产生了interrupt，必须要进行执行或者处理，这是由linux系统中对应的interrupt handler来具体进行处理
-					- 比如primary中interrupt在指令1：inc 和 指令2：deck中发生，而同样的interrupt在backup中的指令2和指令3中发生了，这就是说中断不处于指令流中的same point，会导致指令流执行的最终结果可能不同
+					- 比如primary中interrupt在指令1：inc 和 指令2：dec中发生，而同样的interrupt在backup中的指令2和指令3中发生了，这就是说中断不处于指令流中的same point，会导致指令流执行的最终结果可能不同
 				- concurrency / multi-core 可能导致的non-determinism
 					- 论文中的solution是disallow多核，只匀速进行uni-core的处理
 					- 这是因为：
@@ -485,25 +471,20 @@ title:: mit/6.824
 					-
 				-
 			- 当interrupt comes in，primary和backup是怎么保证中断的同步的？
-			  collapsed:: true
 				- ![image.png](../assets/image_1688572740316_0.png)
 					- VMFT判断应用或者linux系统要在哪个指令之后执行这个中断
 					- 将【中断的前一个指令序号】+【中断指令本身】+【中断关联的数据】一并作为消息通过logging channel发送给backup，所以backup会lag behind one message
 					-
 			- 是不是只有interrupt等这些会造成potential divergence的指令才会需要通过logging channel来进行通信？
-			  collapsed:: true
 				- 是的，这里需要把operation和instruction两个概念区分清楚，linux系统执行program实际上底层是执行这些computer instructions，而在primary和backup上linux的所有computer instructions都是一样的，只有external interrupt是primary当前有而backup暂时还没有的，所以才需要通信来传递
 				-
 			- primary和backup对应的linux系统，对non-deterministic instruction是怎么进行处理的呢？
-			  collapsed:: true
 				- 首先，在linux系统通过image启动前，会先扫描找出linux binary中所有的non-determin instructions，比如 get the time of the day, 然后将它们转化成某种invalid instructions；
-				- 然后，当linux实际去执行non-determin instructions时，它将控制权转交给hypervisor（hypervisor会把自动地识别到这条指令将cause a trap），hypervisor会对这个指令emulate(仿真），也就是知道这个指令将会产生的所有effects但只记录这些effects所产生的results，比如说执行指令“go into a0”，它会把a0的值记录下来并传递给backup
+				- 然后，当linux实际去执行non-deterministic instructions时，它将控制权转交给hypervisor（hypervisor会把自动地识别到这条指令将cause a trap），hypervisor会对这个指令emulate(仿真），也就是知道这个指令将会产生的所有effects但只记录这些effects所产生的results，比如说执行指令“go into a0”，它会把a0的值记录下来并传递给backup
 				- 最后，backup的vm monitor会使用同样的a0的值，将a0存入对应的需要更新数值的寄存器中，而不会重新执行指令
 			- primary和backup执行的速度谁快谁慢呢?
-			  collapsed:: true
-				- 在几乎一样的硬件条件下，如果要执行的instructions完全没有中断的话，那么primary和backup的运行速度几乎是完全一样的；但是实际上总是不可避免地会有一些中断，比如定时中断，而处理中断时backup必然是lag behind primary one message 的，也就是primary会比backup要运行得可能慢一点，但是两者的运行速度不会差距太多，一方面是因为中断不会特别频繁，另一方面如果运行速度差太多会影响后面failure时backup取代primary提供服务时的性能
+				- 在几乎一样的硬件条件下，如果要执行的instructions完全没有中断的话，那么primary和backup的运行速度几乎是完全一样的；但是实际上总是不可避免地会有一些中断，比如定时中断，而处理中断时backup必然是lag behind primary one message 的，也就是primary会比backup要运行得可能快一点，但是两者的运行速度不会差距太多，一方面是因为中断不会特别频繁，另一方面如果运行速度差太多会影响后面failure时backup取代primary提供服务时的性能
 			- 关于failover的更多场景，能给出一些解读吗？
-			  collapsed:: true
 				- 场景1：
 					- ![image.png](../assets/image_1688575324178_0.png)
 					- 此时backup会先等待中断的消息完全接受，然后执行与primary相同的指令，但是并不响应回客户端；backup会通过arbitration server成为primary，客户端然后会超时重试，重新发送一个tcp packet，一切开始正常工作
@@ -530,37 +511,29 @@ title:: mit/6.824
 						- 但是，总体来说这个performance还是impressive的
 						- 鉴于速度原因，通常人们使用replicated state machine方法不是像这篇论文中的instruction level，而是在application level，因为这将获得更高的性能，但需要application被modified，这一点我们已经在gfs系统中得见了
 						-
-						-
-						-
 			- 使用VMFT是否是一个design decision？
-			  collapsed:: true
 				- 是的，它使得这种replication变得transparent
 				- 整个系统的设计目的就是：fault-tolerantly replicated
 			- 在Output Rule下，客户端是否会两次看到同样的response呢？
-			  collapsed:: true
 				- 是，因为网络的fault-tolerant model总是assume：网络无论如何都可以duplicate message，而像tcp这样的协议在用来duplicate message方面已经可以说是完全设计好了, 无论应用使用什么样的replication或者duplication策略都是这样
 				-
-				-
-				-
-				-
 			- 论文中如果出现了多个backup，那么对应的storage server除了arbitration还有其他的功能吗？
-			  collapsed:: true
 				- 不会出现这种情况，因为论文中的策略就只有一个backup
 				-
 			- 论文中说logging channel使用udp是为了传输的performance（延迟低），那么当primary通过这个channel发送packet但是没有收到acknowledgement时，是不是就会认为backup fail了，并且也不会重新再次传送（retransmit）?
-			  collapsed:: true
 				- No，比如说timer interrupt每隔开10毫秒就产生一次，如果primary发送的heartbeats返回，那么系统就会继续做一些timer interrupt，直到放弃
 				- 这个heartbeats sort of来说是由timer发送的，但是由于每隔10毫秒就会发送一次interrupt message,所以会产生一些间接的副作用
+	-
 - Fault Tolerance: Raft (1)
+  collapsed:: true
 	- 主要讲什么？
-	  collapsed:: true
 		- Raft是分布式replication协议的核心元素
 		- 这一讲对应lab2A和lab2B，分别是 the election  of the leader 和 pushing the logs around
 		- 下一讲Raft2对应 lab2C 和 lab2D, 分别是 snapshots 和 the log compaction
 	- 之前的GFS、mapreduce、VMFT有什么共同的缺点？Raft协议有什么改进？
 		- 尽管它们进行replication都进行了fault tolerance的处理，但是都存在single point of failures
 			- 在GFS中是coordinator
-			- 在Mapreduce是master，masters用来hand out lease的
+			- 在Mapreduce是master，master用来hand out lease的
 			- 在VMFT中是storage sever
 		- 在避免split brain syndrome的过程中，引入或者maintain了单点失败
 		- 因为down time的概率不高和发生时处理的时长不久，所以在大多数场景下这些协议都work fine，但是我们甚至可以没有单点失败，也就是进一步来降低宕机的时长，这也就是raft协议能够做到的
@@ -2037,150 +2010,151 @@ title:: mit/6.824
 		- Spanner实现了external consistency：这是一种和linearizability类似的性质，都包含有real time component，通常来说这需要perfectly synchronized clocks，但是在Spanner中relax the rule
 		- R/0 TXN通常来说是fast的，而R/W TXN则没有那么fast了，paper中有大概提到一个R/W TXN的耗时是100milliseconds，那么1s中大概只能完成10个R/W TXN；但是R/W TXN还是非常powerful的，因为可以在跨数据中心的多个data shards上可以执行transaction opera
 		-
-	- Spark：
+- Spark：
+  collapsed:: true
+	- Spark是什么呢？
 	  collapsed:: true
-		- Spark是什么呢？
+		- Spark（2012）可以被看作是Hadoop的successor，而Hadoop则是mapreduce的open-source version
+		- 但是现在一般使用spark来替代Hadoop了，spark被widely used in data science computation尤其是大量数据时；spark是由databricks公司所管理研发的，被加入了apache这个open-source project，成为了apache spark
+		- 相比于Hadoop，它的优势是可以应用于a wide range of applications，尤其是iterative operations（也就是有many rounds of map-reduce operations），之所以其能支持a set of map reduce operations，是因为它在内存当中保存了immediate results (中间结果)并且在编程上对此有很好的支持
+		- Spark的目标是in-memory computations for data sets that basically fit in memory，而不是像之前的论文中的database fitting in memory
+			- "Database fitting in memory"是指将整个数据库完全加载到计算机的内存中进行操作和查询的过程。通常情况下，数据库的数据存储在磁盘上，而不是内存中。当数据库的大小超过计算机内存的容量时，查询和操作数据库的速度可能会受到限制，因为需要频繁地从磁盘读取和写入数据。然而，如果数据库的大小适合计算机的内存容量，那么整个数据库可以被加载到内存中，这样就可以在内存中直接进行查询和操作，而无需频繁的磁盘访问。这提高了数据库的性能和响应速度，因为内存访问速度比磁盘访问速度快得多。数据库在内存中的操作通常比在磁盘上的操作更快，从而提供更高效的数据管理和检索功能。
+		- Spark不是和scala语言strongly tied的，有很多其他的front end language：
 		  collapsed:: true
-			- Spark（2012）可以被看作是Hadoop的successor，而Hadoop则是mapreduce的open-source version
-			- 但是现在一般使用spark来替代Hadoop了，spark被widely used in data science computation尤其是大量数据时；spark是由databricks公司所管理研发的，被加入了apache这个open-source project，成为了apache spark
-			- 相比于Hadoop，它的优势是可以应用于a wide range of applications，尤其是iterative operations（也就是有many rounds of map-reduce operations），之所以其能支持a set of map reduce operations，是因为它在内存当中保存了immediate results (中间结果)并且在编程上对此有很好的支持
-			- Spark的目标是in-memory computations for data sets that basically fit in memory，而不是像之前的论文中的database fitting in memory
-				- "Database fitting in memory"是指将整个数据库完全加载到计算机的内存中进行操作和查询的过程。通常情况下，数据库的数据存储在磁盘上，而不是内存中。当数据库的大小超过计算机内存的容量时，查询和操作数据库的速度可能会受到限制，因为需要频繁地从磁盘读取和写入数据。然而，如果数据库的大小适合计算机的内存容量，那么整个数据库可以被加载到内存中，这样就可以在内存中直接进行查询和操作，而无需频繁的磁盘访问。这提高了数据库的性能和响应速度，因为内存访问速度比磁盘访问速度快得多。数据库在内存中的操作通常比在磁盘上的操作更快，从而提供更高效的数据管理和检索功能。
-			- Spark不是和scala语言strongly tied的，有很多其他的front end language：
-			  collapsed:: true
-				- Spark并不是与Scala绑定的，尽管Scala是Spark的首选编程语言，因为它与Spark的内部结构和API非常契合。Spark是用Scala语言编写的，并且提供了Scala API作为主要的编程接口。
-				- 然而，Spark也支持其他编程语言作为前端语言，这使得开发人员可以使用自己熟悉的语言来编写Spark应用程序。除了Scala之外，Spark还支持Java、Python和R等编程语言。这些语言都有与Spark交互的专门API，并且可以使用相同的Spark集群进行分布式计算。
-				- 支持多种编程语言的前端语言选择使得Spark非常灵活和易于使用。开发人员可以根据自己的喜好和项目需求选择合适的编程语言来编写Spark应用程序，而不仅仅局限于Scala。这种灵活性使得Spark成为了一个受欢迎的大数据处理框架。
-			- Spark论文中的RDD已经deprecated了，现在是data frame（带有explicit columns的RDDs），RDD中比较好的设计思想在data frame中也是为true的；这篇论文获得了ACM doctoral thesis award，而对于一般的doctoral thesis来说这是非常unusual的impact
-			-
-		- RDDs的Programming Model是什么呢？
-		  collapsed:: true
-			- RDD的example：
-			  collapsed:: true
-				- ![image.png](../assets/image_1695000621934_0.png)
-				- 当你startup workstation or laptop时，可以交互式地使用spark
-				- 第一行的lines就是RDD, 命令里的hdfs表示这是一个实际存储在hdfs的RDD，这个hdfs可能包含了很多的partitions；当输入第一行命令时，实际上没有发生什么，论文中把这个称作lazy computations，它会在之后的某个时间点开始执行
-				- RDD支持很多种操作，主要包含两类
-				  collapsed:: true
-					- ![image.png](../assets/image_1695001601663_0.png)
-					- actions是那种实际将导致计算发生的operations，之前所有lazily built up的操作会在这个点被执行
-					- RDDs是read-only或者immutable的，所以transformations操作只能从一个RDD中产生出一个新的RDD，而不是在原来的RDD上进行修改
-				- 第二行命令对lines这个RDD中以message ERROT或者string ERROR开头的进行过滤，实际上这行也并不实际执行，只是生成了recipe性质的东西：data flow or lineage graph of the computation，意思是说这些操作是pipelined的。比如，stage1中先从Partition 1中读取相关的记录，stage2中对其进行filter，而当stage2正在运行时，stage1则从file system里面取出next set of records，等待feed to stage2；当stage越来越多，就可以实现某种程度上的并行
-					- 为什么是并行的？
-						- 与mapreduce类似，可以看作是一个job或者一个task pertain to某一个特定的partition，不同的partition对应的job可以看作是并行执行的。lineage graph对应的pipeline上不同stage上的job也可以看作是parallelism
-					- lineage graph和log of transactions有什么区别呢？仅仅是granularity的区别吗？
-						- 这两个概念有一些similarity，比如说如果节点共享相同的beginning state，然后所有的操作都是deterministic的，那么最终的end state也一定是一样的
-						- 但是，还是差别蛮大的，比如lineage graph中的RDD之前可以有多个RDD，而log of transactions通常是严格线性的
-				- 最后一行的errors.persist()是让spark将内存的RDD进行拷贝
-				- 如果后续需要继续对errors这个RDD进行操作时，那么只需要从内存中读取original RDD就行，而不用像mapreduce那样需要从disk中重新进行读取，因而节省了很多时间
-			- RDD开始执行computation的例子：
-			  collapsed:: true
-				- ![image.png](../assets/image_1695008714632_0.png)
-				- 这个例子是接着前面一张图的，说明可以resue RDDs
-				- 在本例中的filter操作和map操作之后的RDD没有命名，所以可以看作是一个anonymous RDD，这里的lineage graph只是自己命名了一下
-				-
-				-
-			- RDD 执行computation的过程该怎么理解呢？
-			  collapsed:: true
-				- ![image.png](../assets/image_1695009250228_0.png)
-				- ![image.png](../assets/image_1695010834861_0.png)
-				- ![image.png](../assets/image_1695010904042_0.png)
-				- 为什么HDFS的分区数目要多于worker数目？
-				  collapsed:: true
-					- 因为这样的话，HDFS的分区就比较小，一个worker就可以同时处理几个分区的内容，实现了load balancing
-				- 这里的wide dependency和narrow dependency分别是什么意思呢？通常来说，哪种类型的计算更好呢？
-				  collapsed:: true
-					- count操作的执行过程与mapreduce很像，都是先将任务分发到各个分区上，然后再将各分区上的结果进行合并，所以wide dependency说的就是计算的执行过程需要依赖多个分区；
-					- 而像单纯的filter操作，只唯一地依赖parent partition，所以narrow dependency就是说计算的执行过程只依赖于唯一的分区
-						- 论文中指出“narrow dependency中parent RDD的每一个partition最多被child RDD的一个partition所使用”，也就是说从parent RDD partition to child RDD partition是一对一的关系，那么从child RDD partition to parent RDD partition呢？同样也是一对一的关系，因为如果是一对多的关系，也就是有多个parent RDD partition隐射到同一个child RDD partition了，那么这就是wide dependency了
-					- 通常来说，更偏好于有narrow dependencies的computation，因为这些计算可以不需要任何通信地在本地运行；而对于一个wide dependency的computation来说，很有可能不得不collect partitions from parent RDD from all the machines
-					-
-					-
-				- 如果不调用errors.persist()的话，会有什么不同？
-					- 如果不调用的话，那么后面的errors再次filter并执行collect操作时，必须要重新进行计算
-				- 整个workflow都是在内存中的吗？为啥不会像mapreduce那样把中间结果存储起来？
-					- 除了one exception，都是在内存中的
-					- 前面的errors.persist()可以作为另外一种flag，我认为它被称作“reliable”的，也就是它实际上被存储在HDFS中，也可以把它称作“a checkpoint”
-				- 这些partitions是由谁来划分的呢？
-					- 这种partitions的定义是由HDFS中的files来决定的（这些文件通常是由一些logging system来创建的），可以进行重新划分 (repartition)且可以看到这样做是advantageous的，比如可以使用hash partition trick，或者你可以定义你自己的partitioner
-				- 图示中的schedulers的作用是什么呢？
-					- driver把code发送给worker，worker询问scheduler自己要去执行的partition具体是哪一块，scheduler内部有保存lineage graph的信息
-			- RDD计算过程中是怎么来处理fault tolerance的呢？
-			  collapsed:: true
-				- 如果在计算过程中某个worker crash了，要怎么做才能保证fault tolerance呢？
-				  collapsed:: true
-					- 与mapreduce中map worker crash了需要重新执行map task甚至需要重新执行部分reduce task类似，这里也需要重新执行。但是这里的计算过程更为复杂，是多个stage组成的，所以这里worker是需要recompute the stage
-					- ![image.png](../assets/image_1695027388223_0.png)
-					- 在RDD之上定义的api，所有的这些transformation是functional的，也就是给定输入的RDD, 就会产生特定的输出的RDD，这个过程是completely deterministic的，所以当crash之后，需要restart a stage or sequence of transformations from the same input，就会产生同样的输出，就可以recreate the same partition
-				- narrow dependency和wide dependency下的fault tolerance有区别吗？
-				  collapsed:: true
-					- 有，narrow case下和mapreduce基本没有什么区别，但是wide dependency下将会是一个tricky case
-					- tricky case：
-						- ![image.png](../assets/image_1695036019477_0.png){:height 354, :width 656}
-						- ![image.png](../assets/image_1695036610093_0.png)
-						- 这里的join操作会需要多个RDD的输入
-						- 一旦一个worker fail了，那么需要在很多的partition上重新进行计算，所以是slightly costly的，比如上图中的woker crash了，需要先计算紧临的上一个RDD，也需要计算这个map操作之前的join之后的RDD，很明显这个RDD需要从所有不同的partitions中来重新进行计算
-						- 对于程序员来说，一种解决方案是：
-							- 将RDD checkpoint或者persist到stable storage上，checkpoint的位置是那些不方便进行recompute的RDD，比如上图中join操作之后的RDD就可以保存为检查点
-							- 这里的persist和errors.persist()这种命令所代表的reliable flag有什么区别呢？
-							  collapsed:: true
-								- 使用reliable flag的含义是：
-									- 将要把RDD一直保存在内存中而不会throw it away，所以可以在later computation来resue these RDDs
-								- 而checkpoint or liability flag的含义是：
-									- 将整个RDD的copy写入到HDFS中，而HDFS是一个persistent或者说stable的storage file system
-									-
-								-
-							- 是否可以让spark un persist some RDDs呢？因为这些persisted的RDD在后面的计算中不一定会被一直使用，如果一直让这些RDD驻留在内存中的话，会占据不必要的内存空间。
-							  collapsed:: true
-								- 我presume在spark中存在一个general的strategy能够这样做：当内存中的空间不足后，能够将一些RDD给spill to HDFS 或者说 remove from HDFS，但是论文中的plan比较vague。唯一可以肯定的是，当计算结束 或者 用户退出登录、停止drive时，内存中的RDDs全部都会be gone
-								-
-			- Could you give an example that really shows off where spark shines?
-			  collapsed:: true
-				- 论文中给出了关于iterative structure的pagerank的例子：
-				  collapsed:: true
-					- ![image.png](../assets/image_1695040785808_0.png)
-					- ![image.png](../assets/image_1695041135742_0.png)
-					- ![image.png](../assets/image_1695041439365_0.png)
-					- ![image.png](../assets/image_1695041896952_0.png)
-					- ![image.png](../assets/image_1695043002974_0.png)
-					- ![image.png](../assets/image_1695043515290_0.png)
-					- ![image.png](../assets/image_1695044744136_0.png)
-					- ![image.png](../assets/image_1695045753669_0.png)
-				- 上面例子中的links ranks file都是share among all the iterations
-				- pagerank例子的lineage graph是什么样的呢？
-					- ![image.png](../assets/image_1695046344235_0.png)
-					- 这个lineage graph为什么是dynamic的？
-						- 因为迭代的次数并不确定，随着迭代次数的增加，loop中的每个操作都会继续叠加
-					- 这个lineage graph是wide dependency吗？
-						- 是的，join across links and ranks，需要分别来自links和ranks的partition
-					- 生成contribs RDD的过程看上去需要network communication，但是可以有optimization，具体要怎么进行优化呢？
-						- 可以使用你自己指定的hash partition方法来对已有的一个RDD进行划分，在这里让links和ranks这两个RDD使用相同的方式来进行partition （hash partition是standard database partitioning scheme），按照key或者key的hash来进行划分。在pagerank的例子中，ranks和links的key都是u1, u2, u3, 所以同一个key的rank和link将会被划分到同一个机器上去，这样wide dependency将能够以narrow dependency的方式来执行，这里具体的划分函数将由编程人员或者scheduler来决定
-							- ![image.png](../assets/image_1695049655454_0.png){:height 248, :width 594}
-							- ![image.png](../assets/image_1695054992027_0.png)
-							-
-							-
-					- 在这个过程中，links将会调用persist call，但是intermediate RDDs不会调用，为什么呢？
-						- 因为像rank1、rank2这些都是new RDD （every time），而links在一个partition的数据计算过程中是不会变的，需要驻留在内存中；但是，这些中间的RDD可以occasionally地存储在HDFS中，所以当发生失败时，不用从iteration loop的开头重新执行
-			- 对RDD进行一下summary？
-			  collapsed:: true
-				- ![image.png](../assets/image_1695052584240_0.png)
-				- MR是mapreduce
-				- 论文中可以依据 每个计算 需要花费的时间这一数据，来进行automatic checkpointing，怎么来看待这个思想呢？
-				  collapsed:: true
-					- 其实 执行checkpointing以及从checkpoints中读取数据  和  重新执行计算 的开销都是比较大的，只是当计算开销更大时，使用checkpointing会更好，比如pagerank中也是推荐每10次iteration就进行一次checkpointing比较好
-					-
-				- driver是在客户端吗？
-					- 是的，但是当driver crash时，不确定要怎么做，scanner可能会自动进行reconnect
-		- 关于spark中的fault tolerance，怎么理解下面的这张图？
-		  collapsed:: true
-			- ![image.png](../assets/image_1695055585335_0.png)
-			-
-		- lineage graph中不能仅仅通过图本身，比如单向箭头来判断是narrow dependency 还是 wide dependency，对吗？
-		  collapsed:: true
-			- ![image.png](../assets/image_1695055767542_0.png)
-			- 是的，比如最后的collect，虽然是单向箭头执向它，但是它很明显是一个wide dependency
-			-
+			- Spark并不是与Scala绑定的，尽管Scala是Spark的首选编程语言，因为它与Spark的内部结构和API非常契合。Spark是用Scala语言编写的，并且提供了Scala API作为主要的编程接口。
+			- 然而，Spark也支持其他编程语言作为前端语言，这使得开发人员可以使用自己熟悉的语言来编写Spark应用程序。除了Scala之外，Spark还支持Java、Python和R等编程语言。这些语言都有与Spark交互的专门API，并且可以使用相同的Spark集群进行分布式计算。
+			- 支持多种编程语言的前端语言选择使得Spark非常灵活和易于使用。开发人员可以根据自己的喜好和项目需求选择合适的编程语言来编写Spark应用程序，而不仅仅局限于Scala。这种灵活性使得Spark成为了一个受欢迎的大数据处理框架。
+		- Spark论文中的RDD已经deprecated了，现在是data frame（带有explicit columns的RDDs），RDD中比较好的设计思想在data frame中也是为true的；这篇论文获得了ACM doctoral thesis award，而对于一般的doctoral thesis来说这是非常unusual的impact
 		-
+	- RDDs的Programming Model是什么呢？
+	  collapsed:: true
+		- RDD的example：
+		  collapsed:: true
+			- ![image.png](../assets/image_1695000621934_0.png)
+			- 当你startup workstation or laptop时，可以交互式地使用spark
+			- 第一行的lines就是RDD, 命令里的hdfs表示这是一个实际存储在hdfs的RDD，这个hdfs可能包含了很多的partitions；当输入第一行命令时，实际上没有发生什么，论文中把这个称作lazy computations，它会在之后的某个时间点开始执行
+			- RDD支持很多种操作，主要包含两类
+			  collapsed:: true
+				- ![image.png](../assets/image_1695001601663_0.png)
+				- actions是那种实际将导致计算发生的operations，之前所有lazily built up的操作会在这个点被执行
+				- RDDs是read-only或者immutable的，所以transformations操作只能从一个RDD中产生出一个新的RDD，而不是在原来的RDD上进行修改
+			- 第二行命令对lines这个RDD中以message ERROT或者string ERROR开头的进行过滤，实际上这行也并不实际执行，只是生成了recipe性质的东西：data flow or lineage graph of the computation，意思是说这些操作是pipelined的。比如，stage1中先从Partition 1中读取相关的记录，stage2中对其进行filter，而当stage2正在运行时，stage1则从file system里面取出next set of records，等待feed to stage2；当stage越来越多，就可以实现某种程度上的并行
+				- 为什么是并行的？
+					- 与mapreduce类似，可以看作是一个job或者一个task pertain to某一个特定的partition，不同的partition对应的job可以看作是并行执行的。lineage graph对应的pipeline上不同stage上的job也可以看作是parallelism
+				- lineage graph和log of transactions有什么区别呢？仅仅是granularity的区别吗？
+					- 这两个概念有一些similarity，比如说如果节点共享相同的beginning state，然后所有的操作都是deterministic的，那么最终的end state也一定是一样的
+					- 但是，还是差别蛮大的，比如lineage graph中的RDD之前可以有多个RDD，而log of transactions通常是严格线性的
+			- 最后一行的errors.persist()是让spark将内存的RDD进行拷贝
+			- 如果后续需要继续对errors这个RDD进行操作时，那么只需要从内存中读取original RDD就行，而不用像mapreduce那样需要从disk中重新进行读取，因而节省了很多时间
+		- RDD开始执行computation的例子：
+		  collapsed:: true
+			- ![image.png](../assets/image_1695008714632_0.png)
+			- 这个例子是接着前面一张图的，说明可以resue RDDs
+			- 在本例中的filter操作和map操作之后的RDD没有命名，所以可以看作是一个anonymous RDD，这里的lineage graph只是自己命名了一下
+			-
+			-
+		- RDD 执行computation的过程该怎么理解呢？
+		  collapsed:: true
+			- ![image.png](../assets/image_1695009250228_0.png)
+			- ![image.png](../assets/image_1695010834861_0.png)
+			- ![image.png](../assets/image_1695010904042_0.png)
+			- 为什么HDFS的分区数目要多于worker数目？
+			  collapsed:: true
+				- 因为这样的话，HDFS的分区就比较小，一个worker就可以同时处理几个分区的内容，实现了load balancing
+			- 这里的wide dependency和narrow dependency分别是什么意思呢？通常来说，哪种类型的计算更好呢？
+			  collapsed:: true
+				- count操作的执行过程与mapreduce很像，都是先将任务分发到各个分区上，然后再将各分区上的结果进行合并，所以wide dependency说的就是计算的执行过程需要依赖多个分区；
+				- 而像单纯的filter操作，只唯一地依赖parent partition，所以narrow dependency就是说计算的执行过程只依赖于唯一的分区
+					- 论文中指出“narrow dependency中parent RDD的每一个partition最多被child RDD的一个partition所使用”，也就是说从parent RDD partition to child RDD partition是一对一的关系，那么从child RDD partition to parent RDD partition呢？同样也是一对一的关系，因为如果是一对多的关系，也就是有多个parent RDD partition隐射到同一个child RDD partition了，那么这就是wide dependency了
+				- 通常来说，更偏好于有narrow dependencies的computation，因为这些计算可以不需要任何通信地在本地运行；而对于一个wide dependency的computation来说，很有可能不得不collect partitions from parent RDD from all the machines
+				-
+				-
+			- 如果不调用errors.persist()的话，会有什么不同？
+				- 如果不调用的话，那么后面的errors再次filter并执行collect操作时，必须要重新进行计算
+			- 整个workflow都是在内存中的吗？为啥不会像mapreduce那样把中间结果存储起来？
+				- 除了one exception，都是在内存中的
+				- 前面的errors.persist()可以作为另外一种flag，我认为它被称作“reliable”的，也就是它实际上被存储在HDFS中，也可以把它称作“a checkpoint”
+			- 这些partitions是由谁来划分的呢？
+				- 这种partitions的定义是由HDFS中的files来决定的（这些文件通常是由一些logging system来创建的），可以进行重新划分 (repartition)且可以看到这样做是advantageous的，比如可以使用hash partition trick，或者你可以定义你自己的partitioner
+			- 图示中的schedulers的作用是什么呢？
+				- driver把code发送给worker，worker询问scheduler自己要去执行的partition具体是哪一块，scheduler内部有保存lineage graph的信息
+		- RDD计算过程中是怎么来处理fault tolerance的呢？
+		  collapsed:: true
+			- 如果在计算过程中某个worker crash了，要怎么做才能保证fault tolerance呢？
+			  collapsed:: true
+				- 与mapreduce中map worker crash了需要重新执行map task甚至需要重新执行部分reduce task类似，这里也需要重新执行。但是这里的计算过程更为复杂，是多个stage组成的，所以这里worker是需要recompute the stage
+				- ![image.png](../assets/image_1695027388223_0.png)
+				- 在RDD之上定义的api，所有的这些transformation是functional的，也就是给定输入的RDD, 就会产生特定的输出的RDD，这个过程是completely deterministic的，所以当crash之后，需要restart a stage or sequence of transformations from the same input，就会产生同样的输出，就可以recreate the same partition
+			- narrow dependency和wide dependency下的fault tolerance有区别吗？
+			  collapsed:: true
+				- 有，narrow case下和mapreduce基本没有什么区别，但是wide dependency下将会是一个tricky case
+				- tricky case：
+					- ![image.png](../assets/image_1695036019477_0.png){:height 354, :width 656}
+					- ![image.png](../assets/image_1695036610093_0.png)
+					- 这里的join操作会需要多个RDD的输入
+					- 一旦一个worker fail了，那么需要在很多的partition上重新进行计算，所以是slightly costly的，比如上图中的woker crash了，需要先计算紧临的上一个RDD，也需要计算这个map操作之前的join之后的RDD，很明显这个RDD需要从所有不同的partitions中来重新进行计算
+					- 对于程序员来说，一种解决方案是：
+						- 将RDD checkpoint或者persist到stable storage上，checkpoint的位置是那些不方便进行recompute的RDD，比如上图中join操作之后的RDD就可以保存为检查点
+						- 这里的persist和errors.persist()这种命令所代表的reliable flag有什么区别呢？
+						  collapsed:: true
+							- 使用reliable flag的含义是：
+								- 将要把RDD一直保存在内存中而不会throw it away，所以可以在later computation来resue these RDDs
+							- 而checkpoint or liability flag的含义是：
+								- 将整个RDD的copy写入到HDFS中，而HDFS是一个persistent或者说stable的storage file system
+								-
+							-
+						- 是否可以让spark un persist some RDDs呢？因为这些persisted的RDD在后面的计算中不一定会被一直使用，如果一直让这些RDD驻留在内存中的话，会占据不必要的内存空间。
+						  collapsed:: true
+							- 我presume在spark中存在一个general的strategy能够这样做：当内存中的空间不足后，能够将一些RDD给spill to HDFS 或者说 remove from HDFS，但是论文中的plan比较vague。唯一可以肯定的是，当计算结束 或者 用户退出登录、停止drive时，内存中的RDDs全部都会be gone
+							-
+		- Could you give an example that really shows off where spark shines?
+		  collapsed:: true
+			- 论文中给出了关于iterative structure的pagerank的例子：
+			  collapsed:: true
+				- ![image.png](../assets/image_1695040785808_0.png)
+				- ![image.png](../assets/image_1695041135742_0.png)
+				- ![image.png](../assets/image_1695041439365_0.png)
+				- ![image.png](../assets/image_1695041896952_0.png)
+				- ![image.png](../assets/image_1695043002974_0.png)
+				- ![image.png](../assets/image_1695043515290_0.png)
+				- ![image.png](../assets/image_1695044744136_0.png)
+				- ![image.png](../assets/image_1695045753669_0.png)
+			- 上面例子中的links ranks file都是share among all the iterations
+			- pagerank例子的lineage graph是什么样的呢？
+				- ![image.png](../assets/image_1695046344235_0.png)
+				- 这个lineage graph为什么是dynamic的？
+					- 因为迭代的次数并不确定，随着迭代次数的增加，loop中的每个操作都会继续叠加
+				- 这个lineage graph是wide dependency吗？
+					- 是的，join across links and ranks，需要分别来自links和ranks的partition
+				- 生成contribs RDD的过程看上去需要network communication，但是可以有optimization，具体要怎么进行优化呢？
+					- 可以使用你自己指定的hash partition方法来对已有的一个RDD进行划分，在这里让links和ranks这两个RDD使用相同的方式来进行partition （hash partition是standard database partitioning scheme），按照key或者key的hash来进行划分。在pagerank的例子中，ranks和links的key都是u1, u2, u3, 所以同一个key的rank和link将会被划分到同一个机器上去，这样wide dependency将能够以narrow dependency的方式来执行，这里具体的划分函数将由编程人员或者scheduler来决定
+						- ![image.png](../assets/image_1695049655454_0.png){:height 248, :width 594}
+						- ![image.png](../assets/image_1695054992027_0.png)
+						-
+						-
+				- 在这个过程中，links将会调用persist call，但是intermediate RDDs不会调用，为什么呢？
+					- 因为像rank1、rank2这些都是new RDD （every time），而links在一个partition的数据计算过程中是不会变的，需要驻留在内存中；但是，这些中间的RDD可以occasionally地存储在HDFS中，所以当发生失败时，不用从iteration loop的开头重新执行
+		- 对RDD进行一下summary？
+		  collapsed:: true
+			- ![image.png](../assets/image_1695052584240_0.png)
+			- MR是mapreduce
+			- 论文中可以依据 每个计算 需要花费的时间这一数据，来进行automatic checkpointing，怎么来看待这个思想呢？
+			  collapsed:: true
+				- 其实 执行checkpointing以及从checkpoints中读取数据  和  重新执行计算 的开销都是比较大的，只是当计算开销更大时，使用checkpointing会更好，比如pagerank中也是推荐每10次iteration就进行一次checkpointing比较好
+				-
+			- driver是在客户端吗？
+				- 是的，但是当driver crash时，不确定要怎么做，scanner可能会自动进行reconnect
+	- 关于spark中的fault tolerance，怎么理解下面的这张图？
+	  collapsed:: true
+		- ![image.png](../assets/image_1695055585335_0.png)
+		-
+	- lineage graph中不能仅仅通过图本身，比如单向箭头来判断是narrow dependency 还是 wide dependency，对吗？
+	  collapsed:: true
+		- ![image.png](../assets/image_1695055767542_0.png)
+		- 是的，比如最后的collect，虽然是单向箭头执向它，但是它很明显是一个wide dependency
+		-
+	-
+-
 -
 -
 -

@@ -19,7 +19,6 @@
 	- 模型的整体结构：
 		- **首先，利用两个unet级联形成的Cascade Unet：**
 			- **从第一个unet的粗糙分割预测中获得confidence map**
-			  collapsed:: true
 				- <p style = "color: red">【1】从预测的分割概率图推到得到confidence map，当对目标的预测概率越接近0.5，表示不确定性越强</p>
 					- <p style="color:gray" >具体方法</p>：
 						- ![image.png](../assets/image_1665920769144_0.png)
@@ -31,7 +30,6 @@
 						- <p style="color:blue"> 分割结果的引入能够侧重于前景的目标区域，边缘模糊处理使得模型能够同时关注原图和分割结果中的边缘部分；</p>
 						- <p style="color:blue"> 下一个unet的输入也变成了单通道了；</p>
 			- **利用confidence map中的不确定性来增强粗糙预测的特征图**
-			  collapsed:: true
 				- <p style="color: red">【1】为了减少或者说弱化 造成不确定分割的特征，使用UAM（不确定注意力）模块来提取到真正对结果产生影响的特征</p>
 					- <p style="color:gray" >Masked Cross Attention: 使用上一个unet的解码特征作为query tokens,  当前unet上一层的编码特征作为key tokens，两者的内积得到像素之间的权重，本层的编码特征同时也作为value tokens, 如此一来，每个像素的特征进行了一轮更新; 再使用confidence map进行mask，用来降低或者弱化不确定边缘的像素的特征</p>
 						- ![image.png](../assets/image_1665927293702_0.png)
