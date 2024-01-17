@@ -2996,11 +2996,11 @@ collapsed:: true
 							- ![0b3a9d7a012e88f32108e5f07b77f80.png](../assets/0b3a9d7a012e88f32108e5f07b77f80_1704979358913_0.png)
 							-
 						-
-					- DOING normal + no processing  + 6:2:2
+					- DONE normal + no processing  + 6:2:2
 					  :LOGBOOK:
 					  CLOCK: [2024-01-11 Thu 21:23:05]
 					  CLOCK: [2024-01-11 Thu 21:23:45]
-					  CLOCK: [2024-01-11 Thu 21:25:55]
+					  CLOCK: [2024-01-11 Thu 21:25:55]--[2024-01-17 Wed 19:27:18] =>  142:01:23
 					  :END:
 						- 迭代25次的结果
 						  collapsed:: true
@@ -3019,21 +3019,32 @@ collapsed:: true
 							- test
 								-
 						- 问了一下GPT是否要加入normal类的图片
+						  collapsed:: true
 							- ![image.png](../assets/image_1705490005004_0.png)
 							- ![image.png](../assets/image_1705490073663_0.png)
-							- BUSI
+							- BUSI 中没有肿块的只有133张图片，在数据集中的比例是133 / 780 = 17.05%；
+							- ![image.png](../assets/image_1705490457189_0.png)
+							- 理论分析是：如果加入没有肿块的数据，可以提高模型对于正常组织的泛化能力，但会降低区分良恶性肿块的能力。但是，一方面这里没有肿块的数据比例只有17.05%，对模型的性能不会产生显著影响；另一方面本论文使用的分割模型较为复杂，模型可能能自动学习如何区分非肿块和肿块。
+							- 实验结果：添加了normal和没有normal的对比实验表明，加上了normal后泛化能力的提高不足以抵消区分良恶性肿块性能的下降，这个tradeoff并不划算
+						- DONE 看下MICCAI上使用BUSI论文分割的结果大概是哪个范围水平的，如果和加入了normal的结果差距太大，那还是不要加上NORMAL了
+						  collapsed:: true
+						  :LOGBOOK:
+						  CLOCK: [2024-01-17 Wed 19:28:01]--[2024-01-17 Wed 19:30:11] =>  00:02:10
+						  :END:
+							- ![image.png](../assets/image_1705490960494_0.png)
+							- 迭代25次的结果在test上是59.83%，远远低于这里的70.10
 					- DOING  no normal  +  no processing  + 6:2:2
 					  :LOGBOOK:
 					  CLOCK: [2024-01-11 Thu 21:26:20]
 					  :END:
+					-
 					- DOING 数据预处理要怎么处理？
 					  :LOGBOOK:
 					  CLOCK: [2024-01-11 Thu 21:27:00]
 					  CLOCK: [2024-01-11 Thu 22:30:56]
 					  CLOCK: [2024-01-11 Thu 22:31:01]
 					  :END:
-					- DOING 看下MICCAI上使用BUSI论文分割的结果大概是哪个范围水平的，如果和加入了normal的结果差距太大，那还是不要加上NORMAL了
-					  :LOGBOOK:
+					- :LOGBOOK:
 					  CLOCK: [2024-01-17 Wed 18:37:11]
 					  CLOCK: [2024-01-17 Wed 18:37:13]
 					  CLOCK: [2024-01-17 Wed 18:38:28]
