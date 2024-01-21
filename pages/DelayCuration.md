@@ -2990,7 +2990,6 @@ collapsed:: true
 					- 第二个是数据划分比例的问题，应该将8:1:1改成6:2:2
 					- 第三个是没有进行数据的预处理
 				- DOING 完成关于数据问题setting的组合实验
-				  collapsed:: true
 				  :LOGBOOK:
 				  CLOCK: [2024-01-11 Thu 21:03:31]
 				  :END:
@@ -3023,7 +3022,6 @@ collapsed:: true
 					  CLOCK: [2024-01-21 Sun 20:31:45]--[2024-01-21 Sun 20:32:34] =>  00:00:49
 					  :END:
 						- DONE normal + no processing  + 6:2:2
-						  collapsed:: true
 						  :LOGBOOK:
 						  CLOCK: [2024-01-11 Thu 21:23:05]
 						  CLOCK: [2024-01-11 Thu 21:23:45]
@@ -3045,16 +3043,7 @@ collapsed:: true
 								- test
 									- ![image.png](../assets/image_1705494801669_0.png)
 									-
-							- 问了一下GPT是否要加入normal类的图片
-							  collapsed:: true
-								- ![image.png](../assets/image_1705490005004_0.png)
-								- ![image.png](../assets/image_1705490073663_0.png)
-								- BUSI 中没有肿块的只有133张图片，在数据集中的比例是133 / 780 = 17.05%；
-								- ![image.png](../assets/image_1705490457189_0.png)
-								- 理论分析是：如果加入没有肿块的数据，可以提高模型对于正常组织的泛化能力，但会降低区分良恶性肿块的能力。但是，一方面这里没有肿块的数据比例只有17.05%，对模型的性能不会产生显著影响；另一方面本论文使用的分割模型较为复杂，模型可能能自动学习如何区分非肿块和肿块。
-								- 实验结果：添加了normal和没有normal的对比实验表明，加上了normal后泛化能力的提高不足以抵消区分良恶性肿块性能的下降，这个tradeoff并不划算
 						- DONE  no normal  +  no processing  + 6:2:2
-						  collapsed:: true
 						  :LOGBOOK:
 						  CLOCK: [2024-01-11 Thu 21:26:20]--[2024-01-17 Wed 23:35:00] =>  146:08:40
 						  :END:
@@ -3078,6 +3067,7 @@ collapsed:: true
 						  CLOCK: [2024-01-17 Wed 23:47:32]--[2024-01-18 Thu 00:52:56] =>  01:05:24
 						  :END:
 						- DONE 加上normal数据的
+						  collapsed:: true
 						  :LOGBOOK:
 						  CLOCK: [2024-01-18 Thu 00:53:16]
 						  CLOCK: [2024-01-18 Thu 00:53:23]
@@ -3142,13 +3132,18 @@ collapsed:: true
 								- ![image.png](../assets/image_1705839821362_0.png)
 						- 这个数据划分不带normal是0.7536, 带上normal是0.7596
 						- 这个数据划分下加上normal的要更好
+					- 问了一下GPT是否要加入normal类的图片
+						- ![image.png](../assets/image_1705490005004_0.png)
+						- ![image.png](../assets/image_1705490073663_0.png)
+						- BUSI 中没有肿块的只有133张图片，在数据集中的比例是133 / 780 = 17.05%；
+						- ![image.png](../assets/image_1705490457189_0.png)
+						- 理论分析是：如果加入没有肿块的数据，可以提高模型对于正常组织的泛化能力，但会降低区分良恶性肿块的能力。但是，一方面这里没有肿块的数据比例只有17.05%，对模型的性能不会产生显著影响；另一方面本论文使用的分割模型较为复杂，模型可能能自动学习如何区分非肿块和肿块。
 					- DONE 选定最终批次的数据
-					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-01-21 Sun 20:39:47]
 					  CLOCK: [2024-01-21 Sun 20:39:48]--[2024-01-21 Sun 20:40:00] =>  00:00:12
 					  :END:
-						- 选定第二批
+						- 选择第三批数据，添加了normal和没有normal的对比实验表明，加上了normal图片后泛化能力只提高了很小一部分，说明BUSI数据集中normal数据对于区分肿块和非肿块的作用非常有限，几乎可以忽略不计。同时，论文《Rethinking the Unpretentious U-net for Medical Ultrasound Image Segmentation》的代码部分 和《Breast mass segmentation in ultrasound with selective kernel U-Net convolutional neural network》的实验数据部分也都只使用了benign和malignant这两类肿块。故，本文不添加normal数据。
 					- DOING 数据预处理要怎么处理？
 					  :LOGBOOK:
 					  CLOCK: [2024-01-11 Thu 21:27:00]
@@ -3218,6 +3213,29 @@ collapsed:: true
 			-
 			-
 			-
+			-
+		- [[开始撰写毕设大论文]]
+		  collapsed:: true
+			- TODO 先确定三章每一章具体针对的问题是什么
+			  :LOGBOOK:
+			  CLOCK: [2024-01-21 Sun 20:43:45]
+			  CLOCK: [2024-01-21 Sun 20:43:48]
+			  CLOCK: [2024-01-21 Sun 20:44:03]--[2024-01-21 Sun 20:46:05] =>  00:02:02
+			  :END:
+			- TODO 先开始撰写第三章
+			  :LOGBOOK:
+			  CLOCK: [2024-01-21 Sun 20:44:25]
+			  CLOCK: [2024-01-21 Sun 20:44:43]
+			  CLOCK: [2024-01-21 Sun 20:44:44]--[2024-01-21 Sun 20:46:04] =>  00:01:20
+			  :END:
+			- TODO 在跑实验或者没有进度的时候开始写前两章
+			  :LOGBOOK:
+			  CLOCK: [2024-01-21 Sun 20:44:50]
+			  CLOCK: [2024-01-21 Sun 20:45:02]
+			  CLOCK: [2024-01-21 Sun 20:45:03]
+			  CLOCK: [2024-01-21 Sun 20:45:06]--[2024-01-21 Sun 20:46:05] =>  00:00:59
+			  :END:
+			- TODO 划定章节的标题，然后估计下每章大概要写多少页
 			-
 - ## CountDownPlans
 	- NOW CountDown100
@@ -3292,6 +3310,12 @@ collapsed:: true
 		  CLOCK: [2024-01-17 Wed 20:06:48]--[2024-01-17 Wed 20:07:26] =>  00:00:38
 		  :END:
 		-
+	- DOING 去拿快递，因为有可能是比亚迪的材料
+	  :LOGBOOK:
+	  CLOCK: [2024-01-21 Sun 22:50:54]
+	  CLOCK: [2024-01-21 Sun 22:50:56]
+	  :END:
+	-
 - ## DistractionTracing
 	-
 	-
