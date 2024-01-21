@@ -2980,9 +2980,9 @@ collapsed:: true
 			  :LOGBOOK:
 			  CLOCK: [2024-01-17 Wed 18:44:41]--[2024-01-17 Wed 18:44:42] =>  00:00:01
 			  :END:
-			-
 			- TODO 完成基本的baseline实验
 				- DONE 分析数据方面的问题
+				  collapsed:: true
 				  :LOGBOOK:
 				  CLOCK: [2024-01-11 Thu 20:59:57]--[2024-01-11 Thu 20:59:58] =>  00:00:01
 				  :END:
@@ -2990,6 +2990,7 @@ collapsed:: true
 					- 第二个是数据划分比例的问题，应该将8:1:1改成6:2:2
 					- 第三个是没有进行数据的预处理
 				- DOING 完成关于数据问题setting的组合实验
+				  collapsed:: true
 				  :LOGBOOK:
 				  CLOCK: [2024-01-11 Thu 21:03:31]
 				  :END:
@@ -2999,6 +3000,7 @@ collapsed:: true
 					  CLOCK: [2024-01-11 Thu 21:22:43]--[2024-01-11 Thu 21:22:44] =>  00:00:01
 					  :END:
 						- train + val
+						  collapsed:: true
 							- ![1e31c0c10450f4545c928ea9b410d4a.png](../assets/1e31c0c10450f4545c928ea9b410d4a_1704979155113_0.png)
 							- ![47028933fe7df44ff4a95729570b27f.png](../assets/47028933fe7df44ff4a95729570b27f_1704979202839_0.png)
 							-
@@ -3007,48 +3009,146 @@ collapsed:: true
 							- ![0b3a9d7a012e88f32108e5f07b77f80.png](../assets/0b3a9d7a012e88f32108e5f07b77f80_1704979358913_0.png)
 							-
 						-
-					- DONE normal + no processing  + 6:2:2
+					- DONE 看下MICCAI上使用BUSI论文分割的结果大概是哪个范围水平的，如果和加入了normal的结果差距太大，那还是不要加上NORMAL了
+					  collapsed:: true
 					  :LOGBOOK:
-					  CLOCK: [2024-01-11 Thu 21:23:05]
-					  CLOCK: [2024-01-11 Thu 21:23:45]
-					  CLOCK: [2024-01-11 Thu 21:25:55]--[2024-01-17 Wed 19:27:18] =>  142:01:23
+					  CLOCK: [2024-01-17 Wed 19:28:01]--[2024-01-17 Wed 19:30:11] =>  00:02:10
 					  :END:
-						- 迭代25次的结果
-						  collapsed:: true
-							- train + val
-								- ![image.png](../assets/image_1705483908478_0.png)
-							- test
-								- ![image.png](../assets/image_1705484479898_0.png)
-								-
-						- 迭代50次的结果
-						  collapsed:: true
-							- train + val (44)
-							  collapsed:: true
-								- ![image.png](../assets/image_1705488971391_0.png)
-								- ![image.png](../assets/image_1705488994788_0.png)
-								-
-							- test
-								-
-						- 问了一下GPT是否要加入normal类的图片
-						  collapsed:: true
-							- ![image.png](../assets/image_1705490005004_0.png)
-							- ![image.png](../assets/image_1705490073663_0.png)
-							- BUSI 中没有肿块的只有133张图片，在数据集中的比例是133 / 780 = 17.05%；
-							- ![image.png](../assets/image_1705490457189_0.png)
-							- 理论分析是：如果加入没有肿块的数据，可以提高模型对于正常组织的泛化能力，但会降低区分良恶性肿块的能力。但是，一方面这里没有肿块的数据比例只有17.05%，对模型的性能不会产生显著影响；另一方面本论文使用的分割模型较为复杂，模型可能能自动学习如何区分非肿块和肿块。
-							- 实验结果：添加了normal和没有normal的对比实验表明，加上了normal后泛化能力的提高不足以抵消区分良恶性肿块性能的下降，这个tradeoff并不划算
-						- DONE 看下MICCAI上使用BUSI论文分割的结果大概是哪个范围水平的，如果和加入了normal的结果差距太大，那还是不要加上NORMAL了
+						- ![image.png](../assets/image_1705490960494_0.png)
+						- 迭代25次的结果在test上是59.83%，远远低于这里的70.10
+						- 但是迭代50次在test上的结果是 70.71%
+					- DONE 使用第一批数据来对比加不加normal的情况
+					  collapsed:: true
+					  :LOGBOOK:
+					  CLOCK: [2024-01-21 Sun 20:31:45]--[2024-01-21 Sun 20:32:34] =>  00:00:49
+					  :END:
+						- DONE normal + no processing  + 6:2:2
 						  collapsed:: true
 						  :LOGBOOK:
-						  CLOCK: [2024-01-17 Wed 19:28:01]--[2024-01-17 Wed 19:30:11] =>  00:02:10
+						  CLOCK: [2024-01-11 Thu 21:23:05]
+						  CLOCK: [2024-01-11 Thu 21:23:45]
+						  CLOCK: [2024-01-11 Thu 21:25:55]--[2024-01-17 Wed 19:27:18] =>  142:01:23
 						  :END:
-							- ![image.png](../assets/image_1705490960494_0.png)
-							- 迭代25次的结果在test上是59.83%，远远低于这里的70.10
-					- DOING  no normal  +  no processing  + 6:2:2
+							- 迭代25次的结果
+							  collapsed:: true
+								- train + val
+									- ![image.png](../assets/image_1705483908478_0.png)
+								- test
+									- ![image.png](../assets/image_1705484479898_0.png)
+									-
+							- 迭代50次的结果
+							  collapsed:: true
+								- train + val (44次迭代时val结果最好)
+								  collapsed:: true
+									- ![image.png](../assets/image_1705494074575_0.png){:height 69, :width 594}
+									- ![image.png](../assets/image_1705494115315_0.png)
+								- test
+									- ![image.png](../assets/image_1705494801669_0.png)
+									-
+							- 问了一下GPT是否要加入normal类的图片
+							  collapsed:: true
+								- ![image.png](../assets/image_1705490005004_0.png)
+								- ![image.png](../assets/image_1705490073663_0.png)
+								- BUSI 中没有肿块的只有133张图片，在数据集中的比例是133 / 780 = 17.05%；
+								- ![image.png](../assets/image_1705490457189_0.png)
+								- 理论分析是：如果加入没有肿块的数据，可以提高模型对于正常组织的泛化能力，但会降低区分良恶性肿块的能力。但是，一方面这里没有肿块的数据比例只有17.05%，对模型的性能不会产生显著影响；另一方面本论文使用的分割模型较为复杂，模型可能能自动学习如何区分非肿块和肿块。
+								- 实验结果：添加了normal和没有normal的对比实验表明，加上了normal后泛化能力的提高不足以抵消区分良恶性肿块性能的下降，这个tradeoff并不划算
+						- DONE  no normal  +  no processing  + 6:2:2
+						  collapsed:: true
+						  :LOGBOOK:
+						  CLOCK: [2024-01-11 Thu 21:26:20]--[2024-01-17 Wed 23:35:00] =>  146:08:40
+						  :END:
+							- train + val （50次迭代，batch大小设置为10）
+							  collapsed:: true
+								- ![image.png](../assets/image_1705504575594_0.png)
+								- ![image.png](../assets/image_1705504607108_0.png)
+							- test
+								- ![image.png](../assets/image_1705505622810_0.png)
+								-
+						- 这里是加上normal的结果更好
+					- DONE  使用第二批数据来对比加不加normal的情况
+					  collapsed:: true
 					  :LOGBOOK:
-					  CLOCK: [2024-01-11 Thu 21:26:20]
+					  CLOCK: [2024-01-17 Wed 23:46:49]
+					  CLOCK: [2024-01-17 Wed 23:46:50]--[2024-01-21 Sun 02:50:41] =>  75:03:51
 					  :END:
-					-
+						- DONE 第二批数据划分
+						  :LOGBOOK:
+						  CLOCK: [2024-01-17 Wed 23:47:29]
+						  CLOCK: [2024-01-17 Wed 23:47:32]--[2024-01-18 Thu 00:52:56] =>  01:05:24
+						  :END:
+						- DONE 加上normal数据的
+						  :LOGBOOK:
+						  CLOCK: [2024-01-18 Thu 00:53:16]
+						  CLOCK: [2024-01-18 Thu 00:53:23]
+						  CLOCK: [2024-01-18 Thu 00:54:05]--[2024-01-18 Thu 01:08:16] =>  00:14:11
+						  :END:
+							- train + val
+							  collapsed:: true
+								- ![image.png](../assets/image_1705510463009_0.png){:height 70, :width 532}
+								- ![image.png](../assets/image_1705510641383_0.png)
+								-
+							- test
+								- ![image.png](../assets/image_1705512698504_0.png){:height 235, :width 532}
+						- DONE 不带normal数据的
+						  collapsed:: true
+						  :LOGBOOK:
+						  CLOCK: [2024-01-18 Thu 01:08:29]
+						  CLOCK: [2024-01-18 Thu 01:08:31]--[2024-01-21 Sun 02:44:45] =>  73:36:14
+						  :END:
+							- train + val
+							  collapsed:: true
+								- ![image.png](../assets/image_1705591172858_0.png)
+								- ![image.png](../assets/image_1705591220815_0.png)
+							- test
+							  collapsed:: true
+								- ![image.png](../assets/image_1705776235441_0.png)
+								-
+						- 此例中不带normal数据比带normal要更好，而且好得多，不带normal的dsc是0.8258，带上normal的dsc是0.7287
+					- DONE 使用第三批数据来对比加不加normal的情况
+					  collapsed:: true
+					  :LOGBOOK:
+					  CLOCK: [2024-01-21 Sun 02:51:57]
+					  CLOCK: [2024-01-21 Sun 02:52:00]--[2024-01-21 Sun 20:24:48] =>  17:32:48
+					  :END:
+						- DONE 第三批数据划分
+						  :LOGBOOK:
+						  CLOCK: [2024-01-21 Sun 02:54:50]
+						  CLOCK: [2024-01-21 Sun 02:54:52]--[2024-01-21 Sun 04:04:17] =>  01:09:25
+						  :END:
+						- DONE 加上normal数据的
+						  collapsed:: true
+						  :LOGBOOK:
+						  CLOCK: [2024-01-21 Sun 02:54:59]
+						  CLOCK: [2024-01-21 Sun 02:55:00]--[2024-01-21 Sun 04:14:53] =>  01:19:53
+						  :END:
+							- train + val
+							  collapsed:: true
+								- ![image.png](../assets/image_1705781070026_0.png)
+								- ![image.png](../assets/image_1705781106552_0.png)
+							- test
+								- ![image.png](../assets/image_1705781686058_0.png)
+						- DONE 不带normal数据的
+						  collapsed:: true
+						  :LOGBOOK:
+						  CLOCK: [2024-01-21 Sun 02:55:05]
+						  CLOCK: [2024-01-21 Sun 02:55:06]--[2024-01-21 Sun 20:23:53] =>  17:28:47
+						  :END:
+							- train + val
+							  collapsed:: true
+								- ![image.png](../assets/image_1705839569141_0.png)
+								- ![image.png](../assets/image_1705839631156_0.png)
+							- test
+								- ![image.png](../assets/image_1705839821362_0.png)
+						- 这个数据划分不带normal是0.7536, 带上normal是0.7596
+						- 这个数据划分下加上normal的要更好
+					- DONE 选定最终批次的数据
+					  collapsed:: true
+					  :LOGBOOK:
+					  CLOCK: [2024-01-21 Sun 20:39:47]
+					  CLOCK: [2024-01-21 Sun 20:39:48]--[2024-01-21 Sun 20:40:00] =>  00:00:12
+					  :END:
+						- 选定第二批
 					- DOING 数据预处理要怎么处理？
 					  :LOGBOOK:
 					  CLOCK: [2024-01-11 Thu 21:27:00]
@@ -3056,9 +3156,8 @@ collapsed:: true
 					  CLOCK: [2024-01-11 Thu 22:31:01]
 					  :END:
 					- :LOGBOOK:
-					  CLOCK: [2024-01-17 Wed 18:37:11]
-					  CLOCK: [2024-01-17 Wed 18:37:13]
-					  CLOCK: [2024-01-17 Wed 18:38:28]
+					  CLOCK: [2024-01-21 Sun 02:52:18]
+					  CLOCK: [2024-01-21 Sun 02:52:20]
 					  :END:
 				- DOING 查看论文使用的几个基线网络，用于对比的
 				  collapsed:: true
@@ -3086,6 +3185,34 @@ collapsed:: true
 				  :END:
 				-
 			- TODO 怎么修改rethink模型的主干网络，使得其具有相当效果
+				- DOING 阅读rethink中的几个主要对比模型
+				  collapsed:: true
+				  :LOGBOOK:
+				  CLOCK: [2024-01-17 Wed 22:10:59]
+				  CLOCK: [2024-01-17 Wed 22:11:00]
+				  :END:
+					- DOING 阅读AAU-net
+					  :LOGBOOK:
+					  CLOCK: [2024-01-17 Wed 22:11:49]
+					  CLOCK: [2024-01-17 Wed 22:11:52]
+					  :END:
+						- [[AAU-net: An Adaptive Attention U-net for Breast Lesions Segmentation in Ultrasound Images]] [[PaperInsight]]
+							- 因为乳腺肿瘤的形态各异，所以通过捕获各种感受野下的特征能够获得形态在尺度上的鲁棒性，通过同时捕获空间和通道上的特征能够获得形态在不规则上的鲁棒性
+							-
+				- DOING 修改模型的损失函数做一些实验
+				  :LOGBOOK:
+				  CLOCK: [2024-01-19 Fri 00:21:29]
+				  CLOCK: [2024-01-19 Fri 00:21:30]
+				  :END:
+				- DOING 修改新主干网络的模块的一些新参数
+				  :LOGBOOK:
+				  CLOCK: [2024-01-21 Sun 02:53:19]
+				  CLOCK: [2024-01-21 Sun 02:53:21]
+				  :END:
+				- DOING 重新加diffusionUnit的实验
+				  :LOGBOOK:
+				  CLOCK: [2024-01-21 Sun 02:52:51]
+				  :END:
 			- TODO 怎么修改uncertainty map那块，使得其有效果
 			- TODO 用一个端到端的网络来顺带完成乳腺肿块的分类
 			-
@@ -3158,6 +3285,7 @@ collapsed:: true
 		  :END:
 			- https://www.yojiang.cn/pc/lesson/117
 			  id:: 65a7c288-d097-4656-b0e7-08a1ac4e717b
+			- https://zhannicholas.github.io/library/%E8%B6%85%E7%BA%A7%E6%90%9C%E7%B4%A2%E6%9C%AF/
 		- TODO 自己开发一款信息整理工具
 		  :LOGBOOK:
 		  CLOCK: [2024-01-17 Wed 20:06:47]
