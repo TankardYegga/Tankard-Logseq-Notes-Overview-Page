@@ -3144,16 +3144,30 @@ collapsed:: true
 					  CLOCK: [2024-01-21 Sun 20:39:48]--[2024-01-21 Sun 20:40:00] =>  00:00:12
 					  :END:
 						- 选择第三批数据，添加了normal和没有normal的对比实验表明，加上了normal图片后泛化能力只提高了很小一部分，说明BUSI数据集中normal数据对于区分肿块和非肿块的作用非常有限，几乎可以忽略不计。同时，论文《Rethinking the Unpretentious U-net for Medical Ultrasound Image Segmentation》的代码部分 和《Breast mass segmentation in ultrasound with selective kernel U-Net convolutional neural network》的实验数据部分也都只使用了benign和malignant这两类肿块。故，本文不添加normal数据。
-					- DOING 数据预处理要怎么处理？
+					- DOING 数据增强操作要怎么处理？
 					  :LOGBOOK:
 					  CLOCK: [2024-01-11 Thu 21:27:00]
 					  CLOCK: [2024-01-11 Thu 22:30:56]
 					  CLOCK: [2024-01-11 Thu 22:31:01]
 					  :END:
-					- :LOGBOOK:
-					  CLOCK: [2024-01-21 Sun 02:52:18]
-					  CLOCK: [2024-01-21 Sun 02:52:20]
-					  :END:
+						- 不采用弹性形变
+						  collapsed:: true
+						  :LOGBOOK:
+						  CLOCK: [2024-01-21 Sun 02:52:18]
+						  CLOCK: [2024-01-21 Sun 02:52:20]
+						  :END:
+							- 弹性形变可以引入局部的形状变化，可能导致 mask 边缘出现不规则锯齿
+							- ![image.png](../assets/image_1705932160199_0.png)
+						- 关于gamma对比度变换，是否要采用？不采用
+						  collapsed:: true
+							- ![image.png](../assets/image_1705931604398_0.png)
+							- ![image.png](../assets/image_1705932226907_0.png)
+							- https://blog.csdn.net/Roaddd/article/details/112374289
+							- 不采纳gamma变换的原因：乳腺超声图像中肿块区域几乎是全黑的，而乳腺组织等其他部分则是灰黑为主夹杂一小部分亮白。如果采用gamma < 1的对比度变换，那么肿块区域的灰度将会被拉升至很高，会和图像内其他的白色部分接近，这样就无法区分清肿块和非肿块了；如果采用gamma > 1的对比度变换，由于超声图像大部分像素都处于低灰度区间，那么非肿块区域的灰度会被大幅度地压缩，也就会与肿块区域更接近而难以区分。所以，这里不采用任何的gamma变换
+							-
+						- 不采用旋转  或者  只采用很低角度的旋转
+							- 因为过高角度的旋转会带来一部分的全黑像素，会被错误分割为肿块的一部分了；也有可能把肿块区域给旋转出正方形的像素空间；同时，原图像中除了非肿块区域存在一部分全黑的空余空间，这部分空间旋转后可能也会被认为是肿块
+						-
 				- DOING 查看论文使用的几个基线网络，用于对比的
 				  collapsed:: true
 				  :LOGBOOK:
@@ -3310,10 +3324,36 @@ collapsed:: true
 		  CLOCK: [2024-01-17 Wed 20:06:48]--[2024-01-17 Wed 20:07:26] =>  00:00:38
 		  :END:
 		-
-	- DOING 去拿快递，因为有可能是比亚迪的材料
+	- DONE 去拿快递，因为有可能是比亚迪的材料
 	  :LOGBOOK:
 	  CLOCK: [2024-01-21 Sun 22:50:54]
-	  CLOCK: [2024-01-21 Sun 22:50:56]
+	  CLOCK: [2024-01-21 Sun 22:50:56]--[2024-01-22 Mon 22:08:05] =>  23:17:09
+	  CLOCK: [2024-01-22 Mon 22:08:42]--[2024-01-22 Mon 22:08:44] =>  00:00:02
+	  :END:
+		- DOING 记得四月份提交相关的三方，里面还有需要教务盖章的部分可能需要提前弄
+		  :LOGBOOK:
+		  CLOCK: [2024-01-22 Mon 22:08:50]
+		  CLOCK: [2024-01-22 Mon 22:08:51]
+		  :END:
+	- DOING 成年人的第九步是严谨：列举生活中不严谨的诸多案例、在什么样的地方才需要严谨
+	  :LOGBOOK:
+	  CLOCK: [2024-01-22 Mon 22:09:18]
+	  CLOCK: [2024-01-22 Mon 22:09:20]
+	  :END:
+	- DOING 成年人的第十步是处理矛盾的方法：错位结构法
+	  :LOGBOOK:
+	  CLOCK: [2024-01-22 Mon 22:09:36]
+	  CLOCK: [2024-01-22 Mon 22:09:39]
+	  :END:
+	- DOING 成年人的第十一步是如何获得稀缺的资源
+	  :LOGBOOK:
+	  CLOCK: [2024-01-22 Mon 22:11:14]
+	  CLOCK: [2024-01-22 Mon 22:11:17]
+	  :END:
+	- DOING 成年人的第十二步是实际利用理工科思维的实战系列
+	  :LOGBOOK:
+	  CLOCK: [2024-01-22 Mon 22:27:11]
+	  CLOCK: [2024-01-22 Mon 22:27:13]
 	  :END:
 	-
 - ## DistractionTracing
