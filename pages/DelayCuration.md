@@ -2980,7 +2980,12 @@ collapsed:: true
 			  :LOGBOOK:
 			  CLOCK: [2024-01-17 Wed 18:44:41]--[2024-01-17 Wed 18:44:42] =>  00:00:01
 			  :END:
-			- TODO 完成基本的baseline实验
+			- DONE 完成实验数据相关的问题
+			  collapsed:: true
+			  :LOGBOOK:
+			  CLOCK: [2024-01-22 Mon 23:55:09]--[2024-01-23 Tue 00:44:15] =>  00:49:06
+			  CLOCK: [2024-01-23 Tue 00:44:33]--[2024-01-23 Tue 00:44:35] =>  00:00:02
+			  :END:
 				- DONE 分析数据方面的问题
 				  collapsed:: true
 				  :LOGBOOK:
@@ -2989,9 +2994,10 @@ collapsed:: true
 					- 一个是没有把normal数据放进去
 					- 第二个是数据划分比例的问题，应该将8:1:1改成6:2:2
 					- 第三个是没有进行数据的预处理
-				- DOING 完成关于数据问题setting的组合实验
+				- DONE 完成关于数据问题setting的组合实验
+				  collapsed:: true
 				  :LOGBOOK:
-				  CLOCK: [2024-01-11 Thu 21:03:31]
+				  CLOCK: [2024-01-11 Thu 21:03:31]--[2024-01-23 Tue 00:43:56] =>  267:40:25
 				  :END:
 					- DONE no normal + no processing + 8:1:1
 					  collapsed:: true
@@ -3079,6 +3085,7 @@ collapsed:: true
 								- ![image.png](../assets/image_1705510641383_0.png)
 								-
 							- test
+							  collapsed:: true
 								- ![image.png](../assets/image_1705512698504_0.png){:height 235, :width 532}
 						- DONE 不带normal数据的
 						  collapsed:: true
@@ -3096,7 +3103,6 @@ collapsed:: true
 								-
 						- 此例中不带normal数据比带normal要更好，而且好得多，不带normal的dsc是0.8258，带上normal的dsc是0.7287
 					- DONE 使用第三批数据来对比加不加normal的情况
-					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-01-21 Sun 02:51:57]
 					  CLOCK: [2024-01-21 Sun 02:52:00]--[2024-01-21 Sun 20:24:48] =>  17:32:48
@@ -3119,7 +3125,6 @@ collapsed:: true
 							- test
 								- ![image.png](../assets/image_1705781686058_0.png)
 						- DONE 不带normal数据的
-						  collapsed:: true
 						  :LOGBOOK:
 						  CLOCK: [2024-01-21 Sun 02:55:05]
 						  CLOCK: [2024-01-21 Sun 02:55:06]--[2024-01-21 Sun 20:23:53] =>  17:28:47
@@ -3133,22 +3138,24 @@ collapsed:: true
 						- 这个数据划分不带normal是0.7536, 带上normal是0.7596
 						- 这个数据划分下加上normal的要更好
 					- 问了一下GPT是否要加入normal类的图片
+					  collapsed:: true
 						- ![image.png](../assets/image_1705490005004_0.png)
 						- ![image.png](../assets/image_1705490073663_0.png)
 						- BUSI 中没有肿块的只有133张图片，在数据集中的比例是133 / 780 = 17.05%；
 						- ![image.png](../assets/image_1705490457189_0.png)
 						- 理论分析是：如果加入没有肿块的数据，可以提高模型对于正常组织的泛化能力，但会降低区分良恶性肿块的能力。但是，一方面这里没有肿块的数据比例只有17.05%，对模型的性能不会产生显著影响；另一方面本论文使用的分割模型较为复杂，模型可能能自动学习如何区分非肿块和肿块。
 					- DONE 选定最终批次的数据
+					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-01-21 Sun 20:39:47]
 					  CLOCK: [2024-01-21 Sun 20:39:48]--[2024-01-21 Sun 20:40:00] =>  00:00:12
 					  :END:
 						- 选择第三批数据，添加了normal和没有normal的对比实验表明，加上了normal图片后泛化能力只提高了很小一部分，说明BUSI数据集中normal数据对于区分肿块和非肿块的作用非常有限，几乎可以忽略不计。同时，论文《Rethinking the Unpretentious U-net for Medical Ultrasound Image Segmentation》的代码部分 和《Breast mass segmentation in ultrasound with selective kernel U-Net convolutional neural network》的实验数据部分也都只使用了benign和malignant这两类肿块。故，本文不添加normal数据。
-					- DOING 数据增强操作要怎么处理？
+					- DONE 数据增强操作要怎么处理？
 					  :LOGBOOK:
 					  CLOCK: [2024-01-11 Thu 21:27:00]
 					  CLOCK: [2024-01-11 Thu 22:30:56]
-					  CLOCK: [2024-01-11 Thu 22:31:01]
+					  CLOCK: [2024-01-11 Thu 22:31:01]--[2024-01-23 Tue 00:43:24] =>  266:12:23
 					  :END:
 						- 不采用弹性形变
 						  collapsed:: true
@@ -3166,14 +3173,58 @@ collapsed:: true
 							- 不采纳gamma变换的原因：乳腺超声图像中肿块区域几乎是全黑的，而乳腺组织等其他部分则是灰黑为主夹杂一小部分亮白。如果采用gamma < 1的对比度变换，那么肿块区域的灰度将会被拉升至很高，会和图像内其他的白色部分接近，这样就无法区分清肿块和非肿块了；如果采用gamma > 1的对比度变换，由于超声图像大部分像素都处于低灰度区间，那么非肿块区域的灰度会被大幅度地压缩，也就会与肿块区域更接近而难以区分。所以，这里不采用任何的gamma变换
 							-
 						- 不采用旋转  或者  只采用很低角度的旋转
+						  collapsed:: true
 							- 因为过高角度的旋转会带来一部分的全黑像素，会被错误分割为肿块的一部分了；也有可能把肿块区域给旋转出正方形的像素空间；同时，原图像中除了非肿块区域存在一部分全黑的空余空间，这部分空间旋转后可能也会被认为是肿块
-						-
-				- DOING 查看论文使用的几个基线网络，用于对比的
+							- ![image.png](../assets/image_1705935837087_0.png)
+						- 是否要加噪音？
+						  collapsed:: true
+							- 需要的，因为实际超声图片中可能会存在不少的噪音
+						- 是否要进行模糊变换？
+						  collapsed:: true
+							- 需要
+							  collapsed:: true
+								- ![image.png](../assets/image_1705934374846_0.png)
+						- 实际进行了五类操作：
+						  collapsed:: true
+							- ![image.png](../assets/image_1705935872051_0.png)
+							-
+						- DONE 测试一下在第三批数据上Unet（388:129:130 = 647 ）的测试结果
+						  collapsed:: true
+						  :LOGBOOK:
+						  CLOCK: [2024-01-22 Mon 23:04:41]
+						  CLOCK: [2024-01-22 Mon 23:04:42]--[2024-01-23 Tue 00:41:53] =>  01:37:11
+						  :END:
+							- train + val
+							  collapsed:: true
+								- ![image.png](../assets/image_1705941269077_0.png)
+								  id:: 65ae8f18-e93f-4995-bd31-59fc0f873a16
+								- ![image.png](../assets/image_1705941305378_0.png)
+							- test
+							  collapsed:: true
+								- ![image.png](../assets/image_1705941706855_0.png)
+								- 和没有数据增强的结果完全一样
+			- DOING 完成常见对比模型的实验
+			  :LOGBOOK:
+			  CLOCK: [2024-01-24 Wed 02:25:02]
+			  CLOCK: [2024-01-24 Wed 02:25:03]
+			  :END:
+				- DOING Unet++
+				  :LOGBOOK:
+				  CLOCK: [2024-01-24 Wed 02:25:14]
+				  CLOCK: [2024-01-24 Wed 02:25:16]
+				  :END:
+				- DOING AttUnet
+				  :LOGBOOK:
+				  CLOCK: [2024-01-24 Wed 02:25:20]
+				  CLOCK: [2024-01-24 Wed 02:25:21]
+				  :END:
+			- TODO 怎么修改rethink模型的主干网络，使得其具有相当效果
+				- DONE 查看论文使用的几个基线网络，用于对比的
 				  collapsed:: true
 				  :LOGBOOK:
 				  CLOCK: [2024-01-17 Wed 14:21:20]
 				  CLOCK: [2024-01-17 Wed 14:21:27]
-				  CLOCK: [2024-01-17 Wed 14:21:33]
+				  CLOCK: [2024-01-17 Wed 14:21:33]--[2024-01-22 Mon 23:55:51] =>  129:34:18
 				  :END:
 					- rethinking论文里面的
 						- ![image.png](../assets/image_1705473643037_0.png)
@@ -3192,22 +3243,62 @@ collapsed:: true
 				  CLOCK: [2024-01-17 Wed 18:40:50]
 				  CLOCK: [2024-01-17 Wed 18:40:54]--[2024-01-17 Wed 18:41:36] =>  00:00:42
 				  :END:
-				-
-			- TODO 怎么修改rethink模型的主干网络，使得其具有相当效果
 				- DOING 阅读rethink中的几个主要对比模型
-				  collapsed:: true
 				  :LOGBOOK:
 				  CLOCK: [2024-01-17 Wed 22:10:59]
 				  CLOCK: [2024-01-17 Wed 22:11:00]
 				  :END:
-					- DOING 阅读AAU-net
+					- DONE 阅读AAU-net
+					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-01-17 Wed 22:11:49]
-					  CLOCK: [2024-01-17 Wed 22:11:52]
+					  CLOCK: [2024-01-17 Wed 22:11:52]--[2024-01-24 Wed 01:04:59] =>  146:53:07
+					  CLOCK: [2024-01-24 Wed 01:05:01]--[2024-01-24 Wed 01:05:02] =>  00:00:01
 					  :END:
 						- [[AAU-net: An Adaptive Attention U-net for Breast Lesions Segmentation in Ultrasound Images]] [[PaperInsight]]
 							- 因为乳腺肿瘤的形态各异，所以通过捕获各种感受野下的特征能够获得形态在尺度上的鲁棒性，通过同时捕获空间和通道上的特征能够获得形态在不规则上的鲁棒性
 							-
+					- DOING 思考如何合并AAU-net、SKU等的优点
+					  :LOGBOOK:
+					  CLOCK: [2024-01-24 Wed 01:05:09]
+					  CLOCK: [2024-01-24 Wed 01:05:10]
+					  :END:
+						- 为什么空间注意力机制和通道注意力机制必须得分开来完成？这样的话参数量不是太大了吗？而且我觉得后面两者结果的结合也是线性的，不是吗？
+						- 如果要结合之前的Diffusion-Unet，可以把encoder部分用AAU-net或者SKU的思想，而把decoder部分使用Diffusion-unit（这个unit可以继续简化）
+						- SKU中使用了dilated conv和普通conv结合的思想、通道注意力的思想，然后里面有两个有趣的设置：一是只让encoder部分把conv全部替换成SK-Block，还是说encoder和decoder部分都进行替换（halfnet参数）；二是skip attention改成了基于注意力的残差连接，但是注意力的计算方式和通道注意力思想类似
+					- DOING BASNET当中也用到了两个Unet组合而成的结构 （Coarse to Fine Deep Methods）
+					  :LOGBOOK:
+					  CLOCK: [2024-01-24 Wed 01:45:19]
+					  CLOCK: [2024-01-24 Wed 01:45:20]
+					  :END:
+						- DOING 学习一下“Saining Xie and Zhuowen Tu. Holistically-nested edge detection. In Proceedings of the IEEE international conference on computer vision, pages 1395–1403, 2015.” HED
+						  :LOGBOOK:
+						  CLOCK: [2024-01-24 Wed 02:26:19]
+						  CLOCK: [2024-01-24 Wed 02:27:19]
+						  CLOCK: [2024-01-24 Wed 02:27:41]
+						  :END:
+						-
+					- DOING 总结rethink论文提出的模型NUnet在主干网络上的设计思路
+					  :LOGBOOK:
+					  CLOCK: [2024-01-24 Wed 01:50:15]
+					  CLOCK: [2024-01-24 Wed 01:50:17]
+					  :END:
+						- 乳腺超声图像的复杂性体现在：
+							- low-quality, variable morphology, similar surrounding tissue and blurred boundary
+						- MOU（multi-out U-nets）模块：
+							- 通过发现 encoder层的细化特征 和 decoder层的语义特征之间的correlation，然后利用这个correlation很好地细化了encoder层的输出特征；
+							- 一共有6个unet来做完同尺度的encoder和decoder之间的bone，这些就是论文所说的嵌套的unet；
+								- ![image.png](../assets/image_1706089627013_0.png)
+						- Deeper Unet Backbone:
+							- 现有的Unet只有9层或者更少层，因而不能提取出复杂超声乳腺超声图像的空间和位置信息，所以需要增加深度来提高网络的泛化性和鲁棒性；这里是15层，encoder有8层，而decoder有7层
+							- 当网络太深可能会出现network degration的问题，通常使用short-connection来将细粒度的特征引射到high-level的特征上来解决，但是通常残差连接的对象是相同尺度或者相似尺度的特征图，而这通过不够弥补长距离的信息损失。所以，提出了基于multi-step down-sampling (MDSC) 的short-connection，其是用来提高encoder层上长距离信息的相关性的（提高encoder层特征上两个长距离像素点的特征相关性）。在下图中可以看到，这里的multi-step实际上指代2步；而且在实际代码里面并不是图示（c）MDSC 的“两个特征图相加”，而是“两个特征图先在通道维度上连接，再通过一层卷积”，这说明一般视这两个计算过程是等价的；MDSC（Ours）中右侧的 4 *4 pooling 和 MOU 模块最开始的 4 *4 pooling是共用的，只是 后面的conv操作不是共用的，因为MDSC(ours) 中是固定的卷积核为32的卷积，而 MOU模块中卷积核的核数 = 4 * 4 pooling后的特征图的通道数。
+								- ![image.png](../assets/image_1706089234696_0.png)
+					- DOING 学习一下SegNet这个网络
+					  :LOGBOOK:
+					  CLOCK: [2024-01-24 Wed 02:24:38]
+					  CLOCK: [2024-01-24 Wed 02:24:42]
+					  :END:
+					-
 				- DOING 修改模型的损失函数做一些实验
 				  :LOGBOOK:
 				  CLOCK: [2024-01-19 Fri 00:21:29]
@@ -3218,11 +3309,8 @@ collapsed:: true
 				  CLOCK: [2024-01-21 Sun 02:53:19]
 				  CLOCK: [2024-01-21 Sun 02:53:21]
 				  :END:
-				- DOING 重新加diffusionUnit的实验
-				  :LOGBOOK:
-				  CLOCK: [2024-01-21 Sun 02:52:51]
-				  :END:
-			- TODO 怎么修改uncertainty map那块，使得其有效果
+			- TODO 怎么修改uncertainty map那块，使得其有效果；最好结合上边缘的相关知识
+				- TODO 选择性阅读后面所有关于uncertainty的论文
 			- TODO 用一个端到端的网络来顺带完成乳腺肿块的分类
 			-
 			-
@@ -3250,6 +3338,26 @@ collapsed:: true
 			  CLOCK: [2024-01-21 Sun 20:45:06]--[2024-01-21 Sun 20:46:05] =>  00:00:59
 			  :END:
 			- TODO 划定章节的标题，然后估计下每章大概要写多少页
+			-
+		- [[注意力固定的solution：增强注意力切换的弹性]]
+		  collapsed:: true
+			- DONE 注意力固定或者上瘾
+			  collapsed:: true
+			  :LOGBOOK:
+			  CLOCK: [2024-01-24 Wed 16:40:55]
+			  CLOCK: [2024-01-24 Wed 16:40:56]--[2024-01-24 Wed 16:41:11] =>  00:00:15
+			  CLOCK: [2024-01-24 Wed 16:41:13]--[2024-01-24 Wed 16:41:14] =>  00:00:01
+			  :END:
+				- ![image.png](../assets/image_1706085662044_0.png){:height 759, :width 656}
+			- DONE 原因分析
+			  collapsed:: true
+			  :LOGBOOK:
+			  CLOCK: [2024-01-24 Wed 16:41:21]
+			  CLOCK: [2024-01-24 Wed 16:41:22]--[2024-01-24 Wed 16:42:02] =>  00:00:40
+			  :END:
+				- 之前的多巴胺很高，回想的过程都能让人感到快乐
+				- 对于高多巴胺感受的沉溺，必须要确定的信念是：“平静或者说平淡是生活的常态，高甜或者高燃或者高光时刻本身就不是持久的；要学会享受平静”
+				- “活力过剩”导致无法消耗掉
 			-
 - ## CountDownPlans
 	- NOW CountDown100
@@ -3354,6 +3462,11 @@ collapsed:: true
 	  :LOGBOOK:
 	  CLOCK: [2024-01-22 Mon 22:27:11]
 	  CLOCK: [2024-01-22 Mon 22:27:13]
+	  :END:
+	- DOING 过年时把需要的朋友全部转微信上
+	  :LOGBOOK:
+	  CLOCK: [2024-01-22 Mon 22:40:34]
+	  CLOCK: [2024-01-22 Mon 22:40:35]
 	  :END:
 	-
 - ## DistractionTracing
