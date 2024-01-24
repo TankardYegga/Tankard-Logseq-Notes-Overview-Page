@@ -3248,20 +3248,35 @@ collapsed:: true
 				  CLOCK: [2024-01-17 Wed 22:10:59]
 				  CLOCK: [2024-01-17 Wed 22:11:00]
 				  :END:
-					- DONE 阅读AAU-net
-					  collapsed:: true
+					- DONE 阅读并总结下 AAU-net
 					  :LOGBOOK:
 					  CLOCK: [2024-01-17 Wed 22:11:49]
 					  CLOCK: [2024-01-17 Wed 22:11:52]--[2024-01-24 Wed 01:04:59] =>  146:53:07
 					  CLOCK: [2024-01-24 Wed 01:05:01]--[2024-01-24 Wed 01:05:02] =>  00:00:01
 					  :END:
-						- [[AAU-net: An Adaptive Attention U-net for Breast Lesions Segmentation in Ultrasound Images]] [[PaperInsight]]
-							- 因为乳腺肿瘤的形态各异，所以通过捕获各种感受野下的特征能够获得形态在尺度上的鲁棒性，通过同时捕获空间和通道上的特征能够获得形态在不规则上的鲁棒性
-							-
-					- DOING 思考如何合并AAU-net、SKU等的优点
+						- 因为乳腺肿瘤的形态各异，所以通过捕获各种感受野下的特征能够获得形态在尺度上的鲁棒性，通过同时捕获空间和通道上的特征能够获得形态在不规则上的鲁棒性
+						- ![image.png](../assets/image_1706091812438_0.png)
+					- DONE 阅读并总结下SKU
+					  :LOGBOOK:
+					  CLOCK: [2024-01-24 Wed 18:22:27]
+					  CLOCK: [2024-01-24 Wed 18:22:38]
+					  CLOCK: [2024-01-24 Wed 18:22:41]--[2024-01-24 Wed 18:29:26] =>  00:06:45
+					  :END:
+						- SKU是AAU-net的一种简化：
+							- 只使用了AAU-net中通道注意力的部分，但有具体设置上的区别：
+							  collapsed:: true
+								- 空洞卷积（ｒａｔｅ＝２）和普通卷积使用的是同样大小的3 *３的卷积核大小，而不像ＡＡＵ－ｎｅｔ中使用的是５×５的普通卷积和３×３的空洞卷积（ｒａｔｅ＝３）
+								- ＡＡＵ－ｎｅｔ图中有四处画的都是“＋”号，但是实际上除了第三个“＋”是ａｄｄ，其余的“＋”在代码中对应的都是ｃｏｎｃａｔｅｎａｔｅ操作；而ＳＫＵ－ｂｌｏｃｋ中的两个“＋”号都是ａｄｄ
+							- 只在ｅｎｃｏｄｅｒ层部分强制将所有ｃｏｎｖ替换成ＳＫ－ｂｌｏｃｋ，而ｄｅｃｏｄｅｒ层部分可以指定保持原有的ｃｏｎｖ或者也全部替换成ＳＫ－ｂｌｏｃｋ
+							- 增加了ａｔｔｅｎ－Ｕｎｅｔ方向的注意力机制，但是注意力的实现方式则类似于ＡＡＵ－ｎｅｔ中的空间注意力方式，但是只有一个关于ｅｎｃｏｄｅｒ层特征图的注意力权重矩阵，所以也没有ＡＡＵ－ｎｅｔ中的第二步ａｄｄ操作
+							  collapsed:: true
+								- ![image.png](../assets/image_1706092538876_0.png)
+								-
+						- ![image.png](../assets/image_1706091939655_0.png)
+					- DONE 思考如何合并AAU-net、SKU等的优点
 					  :LOGBOOK:
 					  CLOCK: [2024-01-24 Wed 01:05:09]
-					  CLOCK: [2024-01-24 Wed 01:05:10]
+					  CLOCK: [2024-01-24 Wed 01:05:10]--[2024-01-24 Wed 18:14:27] =>  17:09:17
 					  :END:
 						- 为什么空间注意力机制和通道注意力机制必须得分开来完成？这样的话参数量不是太大了吗？而且我觉得后面两者结果的结合也是线性的，不是吗？
 						- 如果要结合之前的Diffusion-Unet，可以把encoder部分用AAU-net或者SKU的思想，而把decoder部分使用Diffusion-unit（这个unit可以继续简化）
@@ -3277,25 +3292,28 @@ collapsed:: true
 						  CLOCK: [2024-01-24 Wed 02:27:19]
 						  CLOCK: [2024-01-24 Wed 02:27:41]
 						  :END:
-						-
 					- DONE 总结rethink论文提出的模型NUnet在主干网络上的设计思路
 					  :LOGBOOK:
 					  CLOCK: [2024-01-24 Wed 01:50:15]
 					  CLOCK: [2024-01-24 Wed 01:50:17]--[2024-01-24 Wed 18:11:02] =>  16:20:45
 					  :END:
 						- 乳腺超声图像的复杂性体现在：
+						  collapsed:: true
 							- low-quality, variable morphology, similar surrounding tissue and blurred boundary
 						- MOU（multi-out U-nets）模块：
+						  collapsed:: true
 							- 本身就是一个Unet结构，通过发现 encoder层的细化特征 和 decoder层的语义特征之间的correlation，然后利用这个correlation很好地细化了encoder层的输出特征；
 								- ![image.png](../assets/image_1706089627013_0.png)
 							- 一共有6个unet来做为同尺度的encoder和decoder之间的bone，这些就是论文所说的嵌套的unet：
 								- 从MOU1到MOU6，其encoder的层数依次是5、4、3、2、1、0 （5层连续的2*2的下采样、4层连续的2*2的下采样、...）；
 								- 因为MOU1到MOU6的输入特征图的尺寸是逐级减半的，(384, 384, 64) 的特征图经过MOU1 【一层4 * 4 的pooling + conv (64) + 5层2*2的downsampling】得到的特征图大小是384 / 4 / 2^5 = 384 / 2^7,  （384/2 = 192, 192, 64）经过MOU2得到的特征图大小是 384/2/4/2^4 = 384 / 2^7‘；[[$red]]==以此类推，MOU1到MOU6的U型最底层的输出特征图都是等大的，所以后面MOU1到MOU6的最底层输出可以在通道方向上直接连接起来组成一个大的特征图==
 						- Deeper Unet Backbone:
+						  collapsed:: true
 							- 现有的Unet只有9层或者更少层，因而不能提取出复杂超声乳腺超声图像的空间和位置信息，所以需要增加深度来提高网络的泛化性和鲁棒性；这里是15层，encoder有8层，而decoder有7层
 							- 当网络太深可能会出现network degration的问题，通常使用short-connection来将细粒度的特征引射到high-level的特征上来解决，但是通常残差连接的对象是相同尺度或者相似尺度的特征图，而这通过不够弥补长距离的信息损失。所以怎么办呢？
 								- ![image.png](../assets/image_1706089234696_0.png){:height 737, :width 594}
 								- 所以，提出了基于multi-step down-sampling (MDSC) 的short-connection，其是用来提高encoder层上长距离信息的相关性的（提高encoder层特征上两个长距离像素点的特征相关性）。在上图中可以看到，[[$red]]==这里的multi-step实际上指代2步；而且在实际代码里面并不是图示（c）MDSC 的“两个特征图相加”，而是“两个特征图先在通道维度上连接，再通过一层卷积”，==这说明一般视这两个计算过程是等价的；[[#green]]==MDSC（Ours）中右侧的 4 *4 pooling 和 MOU 模块最开始的 4 *4 pooling是共用的，只是 后面的conv操作不是共用的==，因为MDSC(ours) 中是固定的卷积核为32的卷积，而 MOU模块中卷积核的核数 = 4 * 4 pooling后的特征图的通道数。
+						- 论文核心解决的问题：消除了乳腺肿块的shape和scale对分割结果的干扰
 					- DOING 学习一下SegNet这个网络
 					  :LOGBOOK:
 					  CLOCK: [2024-01-24 Wed 02:24:38]
