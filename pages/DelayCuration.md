@@ -2944,7 +2944,7 @@ collapsed:: true
 			  CLOCK: [2023-11-18 Sat 13:56:43]
 			  CLOCK: [2023-11-18 Sat 13:56:44]
 			  :END:
-		- [[完成超声AI毕设]]
+		- [[完成超声AI毕设]] [[研究生]] [[东南大学]]
 			- TODO 日常简单查阅如何撰写毕业论文设计
 			  collapsed:: true
 				- TODO 如何在撰写时就避免重复
@@ -3278,21 +3278,24 @@ collapsed:: true
 						  CLOCK: [2024-01-24 Wed 02:27:41]
 						  :END:
 						-
-					- DOING 总结rethink论文提出的模型NUnet在主干网络上的设计思路
+					- DONE 总结rethink论文提出的模型NUnet在主干网络上的设计思路
 					  :LOGBOOK:
 					  CLOCK: [2024-01-24 Wed 01:50:15]
-					  CLOCK: [2024-01-24 Wed 01:50:17]
+					  CLOCK: [2024-01-24 Wed 01:50:17]--[2024-01-24 Wed 18:11:02] =>  16:20:45
 					  :END:
 						- 乳腺超声图像的复杂性体现在：
 							- low-quality, variable morphology, similar surrounding tissue and blurred boundary
 						- MOU（multi-out U-nets）模块：
-							- 通过发现 encoder层的细化特征 和 decoder层的语义特征之间的correlation，然后利用这个correlation很好地细化了encoder层的输出特征；
-							- 一共有6个unet来做完同尺度的encoder和decoder之间的bone，这些就是论文所说的嵌套的unet；
+							- 本身就是一个Unet结构，通过发现 encoder层的细化特征 和 decoder层的语义特征之间的correlation，然后利用这个correlation很好地细化了encoder层的输出特征；
 								- ![image.png](../assets/image_1706089627013_0.png)
+							- 一共有6个unet来做为同尺度的encoder和decoder之间的bone，这些就是论文所说的嵌套的unet：
+								- 从MOU1到MOU6，其encoder的层数依次是5、4、3、2、1、0 （5层连续的2*2的下采样、4层连续的2*2的下采样、...）；
+								- 因为MOU1到MOU6的输入特征图的尺寸是逐级减半的，(384, 384, 64) 的特征图经过MOU1 【一层4 * 4 的pooling + conv (64) + 5层2*2的downsampling】得到的特征图大小是384 / 4 / 2^5 = 384 / 2^7,  （384/2 = 192, 192, 64）经过MOU2得到的特征图大小是 384/2/4/2^4 = 384 / 2^7‘；[[$red]]==以此类推，MOU1到MOU6的U型最底层的输出特征图都是等大的，所以后面MOU1到MOU6的最底层输出可以在通道方向上直接连接起来组成一个大的特征图==
 						- Deeper Unet Backbone:
 							- 现有的Unet只有9层或者更少层，因而不能提取出复杂超声乳腺超声图像的空间和位置信息，所以需要增加深度来提高网络的泛化性和鲁棒性；这里是15层，encoder有8层，而decoder有7层
-							- 当网络太深可能会出现network degration的问题，通常使用short-connection来将细粒度的特征引射到high-level的特征上来解决，但是通常残差连接的对象是相同尺度或者相似尺度的特征图，而这通过不够弥补长距离的信息损失。所以，提出了基于multi-step down-sampling (MDSC) 的short-connection，其是用来提高encoder层上长距离信息的相关性的（提高encoder层特征上两个长距离像素点的特征相关性）。在下图中可以看到，这里的multi-step实际上指代2步；而且在实际代码里面并不是图示（c）MDSC 的“两个特征图相加”，而是“两个特征图先在通道维度上连接，再通过一层卷积”，这说明一般视这两个计算过程是等价的；MDSC（Ours）中右侧的 4 *4 pooling 和 MOU 模块最开始的 4 *4 pooling是共用的，只是 后面的conv操作不是共用的，因为MDSC(ours) 中是固定的卷积核为32的卷积，而 MOU模块中卷积核的核数 = 4 * 4 pooling后的特征图的通道数。
-								- ![image.png](../assets/image_1706089234696_0.png)
+							- 当网络太深可能会出现network degration的问题，通常使用short-connection来将细粒度的特征引射到high-level的特征上来解决，但是通常残差连接的对象是相同尺度或者相似尺度的特征图，而这通过不够弥补长距离的信息损失。所以怎么办呢？
+								- ![image.png](../assets/image_1706089234696_0.png){:height 737, :width 594}
+								- 所以，提出了基于multi-step down-sampling (MDSC) 的short-connection，其是用来提高encoder层上长距离信息的相关性的（提高encoder层特征上两个长距离像素点的特征相关性）。在上图中可以看到，[[$red]]==这里的multi-step实际上指代2步；而且在实际代码里面并不是图示（c）MDSC 的“两个特征图相加”，而是“两个特征图先在通道维度上连接，再通过一层卷积”，==这说明一般视这两个计算过程是等价的；[[#green]]==MDSC（Ours）中右侧的 4 *4 pooling 和 MOU 模块最开始的 4 *4 pooling是共用的，只是 后面的conv操作不是共用的==，因为MDSC(ours) 中是固定的卷积核为32的卷积，而 MOU模块中卷积核的核数 = 4 * 4 pooling后的特征图的通道数。
 					- DOING 学习一下SegNet这个网络
 					  :LOGBOOK:
 					  CLOCK: [2024-01-24 Wed 02:24:38]
