@@ -3249,6 +3249,7 @@ collapsed:: true
 				  CLOCK: [2024-01-17 Wed 22:11:00]
 				  :END:
 					- DONE 阅读并总结下 AAU-net
+					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-01-17 Wed 22:11:49]
 					  CLOCK: [2024-01-17 Wed 22:11:52]--[2024-01-24 Wed 01:04:59] =>  146:53:07
@@ -3257,6 +3258,7 @@ collapsed:: true
 						- 因为乳腺肿瘤的形态各异，所以通过捕获各种感受野下的特征能够获得形态在尺度上的鲁棒性，通过同时捕获空间和通道上的特征能够获得形态在不规则上的鲁棒性
 						- ![image.png](../assets/image_1706091812438_0.png)
 					- DONE 阅读并总结下SKU
+					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-01-24 Wed 18:22:27]
 					  CLOCK: [2024-01-24 Wed 18:22:38]
@@ -3274,13 +3276,13 @@ collapsed:: true
 								-
 						- ![image.png](../assets/image_1706091939655_0.png)
 					- DONE 思考如何合并AAU-net、SKU等的优点
+					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-01-24 Wed 01:05:09]
 					  CLOCK: [2024-01-24 Wed 01:05:10]--[2024-01-24 Wed 18:14:27] =>  17:09:17
 					  :END:
 						- 为什么空间注意力机制和通道注意力机制必须得分开来完成？这样的话参数量不是太大了吗？而且我觉得后面两者结果的结合也是线性的，不是吗？
 						- 如果要结合之前的Diffusion-Unet，可以把encoder部分用AAU-net或者SKU的思想，而把decoder部分使用Diffusion-unit（这个unit可以继续简化）
-						- SKU中使用了dilated conv和普通conv结合的思想、通道注意力的思想，然后里面有两个有趣的设置：一是只让encoder部分把conv全部替换成SK-Block，还是说encoder和decoder部分都进行替换（halfnet参数）；二是skip attention改成了基于注意力的残差连接，但是注意力的计算方式和通道注意力思想类似
 					- DOING BASNET当中也用到了两个Unet组合而成的结构 （Coarse to Fine Deep Methods）
 					  :LOGBOOK:
 					  CLOCK: [2024-01-24 Wed 01:45:19]
@@ -3292,7 +3294,15 @@ collapsed:: true
 						  CLOCK: [2024-01-24 Wed 02:27:19]
 						  CLOCK: [2024-01-24 Wed 02:27:41]
 						  :END:
+						- 残差优化模块细化了初始的saliency map
+						  collapsed:: true
+							- ![image.png](../assets/image_1706105480594_0.png)
+							-
+						- 非重叠的最大池化
+						  collapsed:: true
+							- ![image.png](../assets/image_1706110817731_0.png)
 					- DONE 总结rethink论文提出的模型NUnet在主干网络上的设计思路
+					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-01-24 Wed 01:50:15]
 					  CLOCK: [2024-01-24 Wed 01:50:17]--[2024-01-24 Wed 18:11:02] =>  16:20:45
@@ -3317,9 +3327,31 @@ collapsed:: true
 					- DOING 学习一下SegNet这个网络
 					  :LOGBOOK:
 					  CLOCK: [2024-01-24 Wed 02:24:38]
-					  CLOCK: [2024-01-24 Wed 02:24:42]
+					  CLOCK: [2024-01-24 Wed 02:24:42]--[2024-01-24 Wed 18:48:13] =>  16:23:31
+					  CLOCK: [2024-01-24 Wed 18:48:27]
 					  :END:
-					-
+					- TODO 思考一下AAU-net如何和NUet的思想进行合并
+					- DOING 思考长方形对乳腺形状和尺度的影响
+					  collapsed:: true
+					  :LOGBOOK:
+					  CLOCK: [2024-01-24 Wed 22:19:34]
+					  :END:
+						- 需要将正方形的分割结果还原成长方形吗？可以在论文中不提及
+					- DONE 思考下图像的高频低频特征
+					  collapsed:: true
+					  :LOGBOOK:
+					  CLOCK: [2024-01-24 Wed 22:27:38]
+					  CLOCK: [2024-01-24 Wed 22:27:39]--[2024-01-24 Wed 22:27:57] =>  00:00:18
+					  :END:
+						- ![image.png](../assets/image_1706106472072_0.png)
+						-
+					- DOING 学习一下RAGCM模型
+					  :LOGBOOK:
+					  CLOCK: [2024-01-24 Wed 23:38:01]
+					  CLOCK: [2024-01-24 Wed 23:38:04]
+					  :END:
+						- Region-aware Global Context Modeling for Automatic Nerve Segmentation from Ultrasound Images
+						-
 				- DOING 修改模型的损失函数做一些实验
 				  :LOGBOOK:
 				  CLOCK: [2024-01-19 Fri 00:21:29]
@@ -3459,37 +3491,37 @@ collapsed:: true
 	  CLOCK: [2024-01-21 Sun 22:50:56]--[2024-01-22 Mon 22:08:05] =>  23:17:09
 	  CLOCK: [2024-01-22 Mon 22:08:42]--[2024-01-22 Mon 22:08:44] =>  00:00:02
 	  :END:
-		- DOING 记得四月份提交相关的三方，里面还有需要教务盖章的部分可能需要提前弄
+		- TODO 记得四月份提交相关的三方，里面还有需要教务盖章的部分可能需要提前弄
 		  :LOGBOOK:
 		  CLOCK: [2024-01-22 Mon 22:08:50]
-		  CLOCK: [2024-01-22 Mon 22:08:51]
+		  CLOCK: [2024-01-22 Mon 22:08:51]--[2024-01-25 Thu 03:10:21] =>  53:01:30
 		  :END:
-	- DOING 成年人的第九步是严谨：列举生活中不严谨的诸多案例、在什么样的地方才需要严谨
+		- TODO 打听在系统里面撤销三方的方法，因为比亚迪那边貌似是纸质的三方，这个要和hr协商沟通一下
+	- TODO 成年人的第九步是严谨：列举生活中不严谨的诸多案例、在什么样的地方才需要严谨
 	  :LOGBOOK:
 	  CLOCK: [2024-01-22 Mon 22:09:18]
-	  CLOCK: [2024-01-22 Mon 22:09:20]
+	  CLOCK: [2024-01-22 Mon 22:09:20]--[2024-01-25 Thu 03:10:15] =>  53:00:55
 	  :END:
-	- DOING 成年人的第十步是处理矛盾的方法：错位结构法
+	- TODO 成年人的第十步是处理矛盾的方法：错位结构法
 	  :LOGBOOK:
 	  CLOCK: [2024-01-22 Mon 22:09:36]
-	  CLOCK: [2024-01-22 Mon 22:09:39]
+	  CLOCK: [2024-01-22 Mon 22:09:39]--[2024-01-25 Thu 03:10:16] =>  53:00:37
 	  :END:
-	- DOING 成年人的第十一步是如何获得稀缺的资源
+	- TODO 成年人的第十一步是如何获得稀缺的资源
 	  :LOGBOOK:
 	  CLOCK: [2024-01-22 Mon 22:11:14]
-	  CLOCK: [2024-01-22 Mon 22:11:17]
+	  CLOCK: [2024-01-22 Mon 22:11:17]--[2024-01-25 Thu 03:10:16] =>  52:58:59
 	  :END:
-	- DOING 成年人的第十二步是实际利用理工科思维的实战系列
+	- TODO 成年人的第十二步是实际利用理工科思维的实战系列
 	  :LOGBOOK:
 	  CLOCK: [2024-01-22 Mon 22:27:11]
-	  CLOCK: [2024-01-22 Mon 22:27:13]
+	  CLOCK: [2024-01-22 Mon 22:27:13]--[2024-01-25 Thu 03:10:18] =>  52:43:05
 	  :END:
-	- DOING 过年时把需要的朋友全部转微信上
+	- TODO 过年时把需要的朋友全部转微信上
 	  :LOGBOOK:
 	  CLOCK: [2024-01-22 Mon 22:40:34]
-	  CLOCK: [2024-01-22 Mon 22:40:35]
+	  CLOCK: [2024-01-22 Mon 22:40:35]--[2024-01-25 Thu 03:10:18] =>  52:29:43
 	  :END:
-	-
 - ## DistractionTracing
 	-
 	-
