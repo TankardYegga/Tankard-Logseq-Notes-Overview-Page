@@ -3373,15 +3373,16 @@ collapsed:: true
 								  collapsed:: true
 									- ![image.png](../assets/image_1707670477222_0.png)
 								- 在本论文中 用来捕获长距离的 更为有效的区域上下文建模方法分为三个步骤：
+								  collapsed:: true
 									- 区域上下文信息提取（Regional Context Extraction）
 										- 使用了 3 * 3、7 * 7 以及 11 * 11的三个自适应平均池化层，从原始的特征图得到三个尺寸分别为 3 * 3、7 * 7和11 * 11的输出特征图；然后，三个特征图分别使用1 * 1的卷积将特征图的通道数降低为原来的1/4；最后都进行双线性上采样采样到和最初输入特征图一样的尺寸；
 										- 最后得到的就是三个regional feature map
 									- 自注意力编码（Self-attention Encoding）
-										- 将每个regional feature map都经过两个1 * 1的卷积得到了两个特征图，通道数和尺寸都不发生改变，这两个特征图一个作为query，一个作为key，通过向量内积得到每个像素位置和其他像素位置的内积值，再通过softmax就得到了weight map；原始的输入特征图经过一层1 * 1的卷积后作为value，然后weight map和value相乘得到经过丰富上下文信息编码后的特征
+										- 将每个regional feature map都经过两个1 * 1的卷积得到了两个特征图，通道数和尺寸都不发生改变，这两个特征图一个作为query，一个作为key，通过向量内积得到每个像素位置和其他像素位置的内积值，再通过softmax就得到了weight map；原始的输入特征图经过一层1 * 1的卷积后作为value，然后weight map和value相乘得到经过丰富上下文信息编码后的特征图，这个特征图的通道数依旧是 C/4
 									- 金字塔聚合（Pyramid Aggregation）
-										-
+										- 将三个上下文编码后的regional feature map都reshape到C * H * W （我没有理解通道数为什么可以不通过卷径而直接变成原来的4倍），然后和最初的输入特征图在通道上进行连接，来作为最终输出
 							- 为了实现更有效的多层次的金字塔特征融合，我们引入了一个APF(Adaptive Pyramid Fusion Module）自适应金字塔特征融合模块：利用有效的通道注意力机制来动态地选择和融合占据主导性的输出特征
-							-
+								-
 				- DOING 修改模型的损失函数做一些实验
 				  :LOGBOOK:
 				  CLOCK: [2024-01-19 Fri 00:21:29]
