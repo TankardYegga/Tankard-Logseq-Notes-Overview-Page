@@ -3369,6 +3369,14 @@ collapsed:: true
 						- 模型的核心结构：
 							- 为了确保模型compact yet precise, 使用移除了平均池化层和全连接层的预训练的resnet34来作为主干网络
 							- 为了捕获多尺度的上下文信息，我们提出了RPA (Region-aware Pyramid Aggregation Module) 模块：利用自注意力机制一是基于金字塔池化采样策略来对region-wise的特征进行编码，二是获得更有分辨性的区域（region-wise）特征
+								- 捕获长距离依赖可以克服“尺度变化性高”和“存在大量斑点噪音”的两个挑战，但是现有基于单个像素点之间相关性的全局上下文信息建模方法一是计算量大，二是不可避免地在特征图中引入更多的背景噪音，这会降低模型分割的准确性
+								  collapsed:: true
+									- ![image.png](../assets/image_1707670477222_0.png)
+								- 在本论文中 用来捕获长距离的 更为有效的区域上下文建模方法分为三个步骤：
+									- 区域上下文信息提取（Regional Context Extraction）
+									- 自注意力编码（Self-attention Encoding）
+									- 金字塔聚合（Pyramid Aggregation）
+									-
 							- 为了实现更有效的多层次的金字塔特征融合，我们引入了一个APF(Adaptive Pyramid Fusion Module）自适应金字塔特征融合模块：利用有效的通道注意力机制来动态地选择和融合占据主导性的输出特征
 							-
 				- DOING 修改模型的损失函数做一些实验
@@ -3384,16 +3392,14 @@ collapsed:: true
 			- TODO 怎么修改uncertainty map那块，使得其有效果；最好结合上边缘的相关知识
 				- TODO 选择性阅读后面所有关于uncertainty的论文
 			- TODO 用一个端到端的网络来顺带完成乳腺肿块的分类
-			- DOING 完成空间注意力中自注意力机制相关的修改
-			  id:: 65b0ccf0-4203-40ab-a35f-a4364f2f79a5
-			  collapsed:: true
+			- id:: 65b0ccf0-4203-40ab-a35f-a4364f2f79a5
 			  :LOGBOOK:
 			  CLOCK: [2024-02-12 Mon 00:52:05]
 			  CLOCK: [2024-02-12 Mon 00:52:10]
 			  CLOCK: [2024-02-12 Mon 00:54:15]
 			  CLOCK: [2024-02-12 Mon 00:54:16]
 			  :END:
-				- ![image.png](../assets/image_1707670477222_0.png)
+				-
 				-
 			-
 			-
