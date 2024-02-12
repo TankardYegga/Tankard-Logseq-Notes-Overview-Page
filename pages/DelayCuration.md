@@ -3244,6 +3244,7 @@ collapsed:: true
 				  CLOCK: [2024-01-17 Wed 18:40:54]--[2024-01-17 Wed 18:41:36] =>  00:00:42
 				  :END:
 				- DOING 阅读rethink中的几个主要对比模型
+				  collapsed:: true
 				  :LOGBOOK:
 				  CLOCK: [2024-01-17 Wed 22:10:59]
 				  CLOCK: [2024-01-17 Wed 22:11:00]
@@ -3347,10 +3348,11 @@ collapsed:: true
 					  :END:
 						- ![image.png](../assets/image_1706106472072_0.png)
 						- Unet的decoder部分是high-level的特征，encoder应该是low-level的特征；但是encoder应该是高频的特征，decoder应该是低频的特征
-					- DOING 学习一下RAGCM模型
+					- DONE 学习一下RAGCM模型
+					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-01-24 Wed 23:38:01]
-					  CLOCK: [2024-01-24 Wed 23:38:04]
+					  CLOCK: [2024-01-24 Wed 23:38:04]--[2024-02-13 Tue 03:02:19] =>  459:24:15
 					  :END:
 						- Region-aware Global Context Modeling for Automatic Nerve Segmentation from Ultrasound Images
 						- DONE 代码中output_padding参数的知识
@@ -3382,19 +3384,45 @@ collapsed:: true
 									- 金字塔聚合（Pyramid Aggregation）
 										- 将三个上下文编码后的regional feature map都reshape到C * H * W （我没有理解通道数为什么可以不通过卷径而直接变成原来的4倍），然后和最初的输入特征图在通道上进行连接，来作为最终输出
 							- 为了实现更有效的多层次的金字塔特征融合，我们引入了一个APF(Adaptive Pyramid Fusion Module）自适应金字塔特征融合模块：利用有效的通道注意力机制来动态地选择和融合占据主导性的输出特征
-								-
-				- DOING 修改模型的损失函数做一些实验
+								- 残差链接可以获得更好的一些位置的信息，但是一些空间的细节信息可能会丢失，这会导致在decoder的密集预测阶段产生误导信息
+								- ![image.png](../assets/image_1707764335021_0.png)
+								- 先将D0 D1 D2全部上采样到同样的分辨率 并且 对齐通道数（C * H * W），然后在通道方向上进行连接，最后通过1 * 1的卷积将通道数从3C又重新变回C；通过GAP获得每个通道方向上的初始权重，通过两次1 * 1的卷积来获得最终权重；权重后的特征图和原始特征图进行相加，相加后再次使用1 * 1的卷积来进行融合
+					- DONE 思考一下乳腺超声图像中乳腺肿块的位置是否固定呢?
+					  collapsed:: true
+					  :LOGBOOK:
+					  CLOCK: [2024-02-13 Tue 01:00:32]
+					  CLOCK: [2024-02-13 Tue 01:00:33]--[2024-02-13 Tue 02:58:22] =>  01:57:49
+					  :END:
+						- 不固定，有右上角的、左上角的、中上方的、中心的
+				- DOING 思考10种可能的新的模型构造，找到其中最有用的，然后围绕最有用的设计更多的实验
 				  :LOGBOOK:
-				  CLOCK: [2024-01-19 Fri 00:21:29]
-				  CLOCK: [2024-01-19 Fri 00:21:30]
+				  CLOCK: [2024-02-13 Tue 03:02:56]
+				  CLOCK: [2024-02-13 Tue 03:03:05]
 				  :END:
-				- DOING 修改新主干网络的模块的一些新参数
+					- TODO 各种新模型的构造思路
+					  :LOGBOOK:
+					  CLOCK: [2024-02-13 Tue 03:04:08]
+					  CLOCK: [2024-02-13 Tue 03:04:10]
+					  CLOCK: [2024-02-13 Tue 03:04:13]--[2024-02-13 Tue 03:04:19] =>  00:00:06
+					  :END:
+					- TODO 修改模型的损失函数做一些实验
+					  :LOGBOOK:
+					  CLOCK: [2024-01-19 Fri 00:21:29]
+					  CLOCK: [2024-01-19 Fri 00:21:30]--[2024-02-13 Tue 03:04:20] =>  602:42:50
+					  :END:
+					- TODO 修改新主干网络的模块的一些新参数
+					  :LOGBOOK:
+					  CLOCK: [2024-01-21 Sun 02:53:19]
+					  CLOCK: [2024-01-21 Sun 02:53:21]--[2024-02-13 Tue 03:04:21] =>  552:11:00
+					  :END:
+			- DOING 怎么修改uncertainty map那块，使得其有效果；最好结合上边缘的相关知识
+			  :LOGBOOK:
+			  CLOCK: [2024-02-13 Tue 03:04:34]
+			  :END:
+				- DOING 选择性阅读后面所有关于uncertainty的论文
 				  :LOGBOOK:
-				  CLOCK: [2024-01-21 Sun 02:53:19]
-				  CLOCK: [2024-01-21 Sun 02:53:21]
+				  CLOCK: [2024-02-13 Tue 03:04:31]
 				  :END:
-			- TODO 怎么修改uncertainty map那块，使得其有效果；最好结合上边缘的相关知识
-				- TODO 选择性阅读后面所有关于uncertainty的论文
 			- TODO 用一个端到端的网络来顺带完成乳腺肿块的分类
 			- id:: 65b0ccf0-4203-40ab-a35f-a4364f2f79a5
 			  :LOGBOOK:
