@@ -3249,6 +3249,7 @@ collapsed:: true
 				  CLOCK: [2024-01-17 Wed 22:11:00]
 				  :END:
 					- DONE 阅读并总结下 AAU-net
+					  id:: 65b0ccf0-2196-453a-bfbc-c6fe4c55836d
 					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-01-17 Wed 22:11:49]
@@ -3284,6 +3285,7 @@ collapsed:: true
 						- 为什么空间注意力机制和通道注意力机制必须得分开来完成？这样的话参数量不是太大了吗？而且我觉得后面两者结果的结合也是线性的，不是吗？
 						- 如果要结合之前的Diffusion-Unet，可以把encoder部分用AAU-net或者SKU的思想，而把decoder部分使用Diffusion-unit（这个unit可以继续简化）
 					- DOING BASNET当中也用到了两个Unet组合而成的结构 （Coarse to Fine Deep Methods）
+					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-01-24 Wed 01:45:19]
 					  CLOCK: [2024-01-24 Wed 01:45:20]
@@ -3331,10 +3333,10 @@ collapsed:: true
 					  CLOCK: [2024-01-24 Wed 18:48:27]
 					  :END:
 					- TODO 思考一下AAU-net如何和NUet的思想进行合并
-					- DOING 思考长方形对乳腺形状和尺度的影响
+					- DONE 思考长方形对乳腺形状和尺度的影响
 					  collapsed:: true
 					  :LOGBOOK:
-					  CLOCK: [2024-01-24 Wed 22:19:34]
+					  CLOCK: [2024-01-24 Wed 22:19:34]--[2024-02-12 Mon 00:51:42] =>  434:32:08
 					  :END:
 						- 需要将正方形的分割结果还原成长方形吗？可以在论文中不提及
 					- DONE 思考下图像的高频低频特征
@@ -3344,14 +3346,31 @@ collapsed:: true
 					  CLOCK: [2024-01-24 Wed 22:27:39]--[2024-01-24 Wed 22:27:57] =>  00:00:18
 					  :END:
 						- ![image.png](../assets/image_1706106472072_0.png)
-						-
+						- Unet的decoder部分是high-level的特征，encoder应该是low-level的特征；但是encoder应该是高频的特征，decoder应该是低频的特征
 					- DOING 学习一下RAGCM模型
 					  :LOGBOOK:
 					  CLOCK: [2024-01-24 Wed 23:38:01]
 					  CLOCK: [2024-01-24 Wed 23:38:04]
 					  :END:
 						- Region-aware Global Context Modeling for Automatic Nerve Segmentation from Ultrasound Images
-						-
+						- DONE 代码中output_padding参数的知识
+						  collapsed:: true
+						  :LOGBOOK:
+						  CLOCK: [2024-01-26 Fri 07:16:40]--[2024-01-26 Fri 07:17:16] =>  00:00:36
+						  :END:
+							- ![image.png](../assets/image_1706224621306_0.png)
+							- ![image.png](../assets/image_1706224631828_0.png)
+							-
+						- RAGCM模型中各个模块输出的shape:
+						  collapsed:: true
+							- ![image.png](../assets/image_1706229722604_0.png)
+							- ![image.png](../assets/image_1706238532699_0.png)
+							-
+						- 模型的核心结构：
+							- 为了确保模型compact yet precise, 使用移除了平均池化层和全连接层的预训练的resnet34来作为主干网络
+							- 为了捕获多尺度的上下文信息，我们提出了RPA (Region-aware Pyramid Aggregation Module) 模块：利用自注意力机制一是基于金字塔池化采样策略来对region-wise的特征进行编码，二是获得更有分辨性的区域（region-wise）特征
+							- 为了实现更有效的多层次的金字塔特征融合，我们引入了一个APF(Adaptive Pyramid Fusion Module）自适应金字塔特征融合模块：利用有效的通道注意力机制来动态地选择和融合占据主导性的输出特征
+							-
 				- DOING 修改模型的损失函数做一些实验
 				  :LOGBOOK:
 				  CLOCK: [2024-01-19 Fri 00:21:29]
@@ -3365,7 +3384,17 @@ collapsed:: true
 			- TODO 怎么修改uncertainty map那块，使得其有效果；最好结合上边缘的相关知识
 				- TODO 选择性阅读后面所有关于uncertainty的论文
 			- TODO 用一个端到端的网络来顺带完成乳腺肿块的分类
-			-
+			- DOING 完成空间注意力中自注意力机制相关的修改
+			  id:: 65b0ccf0-4203-40ab-a35f-a4364f2f79a5
+			  collapsed:: true
+			  :LOGBOOK:
+			  CLOCK: [2024-02-12 Mon 00:52:05]
+			  CLOCK: [2024-02-12 Mon 00:52:10]
+			  CLOCK: [2024-02-12 Mon 00:54:15]
+			  CLOCK: [2024-02-12 Mon 00:54:16]
+			  :END:
+				- ![image.png](../assets/image_1707670477222_0.png)
+				-
 			-
 			-
 			-
@@ -3522,6 +3551,12 @@ collapsed:: true
 	  CLOCK: [2024-01-22 Mon 22:40:34]
 	  CLOCK: [2024-01-22 Mon 22:40:35]--[2024-01-25 Thu 03:10:18] =>  52:29:43
 	  :END:
+	- DOING 所有小说的一个弱点就是：没有写清楚一个人是怎么真正变强的，而是写了一堆外力和情绪的作用；要写就写一部真正能够教人变强的作品
+	  :LOGBOOK:
+	  CLOCK: [2024-01-27 Sat 01:51:01]
+	  CLOCK: [2024-01-27 Sat 01:51:04]
+	  :END:
+	-
 - ## DistractionTracing
 	-
 	-
