@@ -3553,6 +3553,7 @@ collapsed:: true
 		  :END:
 		-
 	- DONE 去拿快递，因为有可能是比亚迪的材料
+	  collapsed:: true
 	  :LOGBOOK:
 	  CLOCK: [2024-01-21 Sun 22:50:54]
 	  CLOCK: [2024-01-21 Sun 22:50:56]--[2024-01-22 Mon 22:08:05] =>  23:17:09
@@ -3594,7 +3595,33 @@ collapsed:: true
 	  CLOCK: [2024-01-27 Sat 01:51:01]
 	  CLOCK: [2024-01-27 Sat 01:51:04]
 	  :END:
-	-
+	- DOING 完成科研成果的提交证明
+	  collapsed:: true
+	  :LOGBOOK:
+	  CLOCK: [2024-02-18 Sun 21:30:22]
+	  CLOCK: [2024-02-18 Sun 21:30:23]
+	  :END:
+		- A Multi-group similarity-decoding-based method for deep model ensembling applied in the microcalcification classification on digital mammograms
+		- [https://doi.org/10.1016/j.bspc.2023.105896](https://doi.org/10.1016/j.bspc.2023.105896) 对应的DOI号是 "10.1016/j.bspc.2023.105896"。
+		- **Biomedical Signal Processing and Control ，** ISSN：1746-8094 E-ISSN：1746-8108，2006年创刊，由出版社Elsevier BV以季刊的形式出版发行
+		- https://www.letpub.com.cn/index.php?journalid=1175&page=journalapp&view=detail
+		- [Volume 91](https://www.sciencedirect.com/journal/biomedical-signal-processing-and-control/vol/91/suppl/C)
+		- https://www.sciencedirect.com/journal/biomedical-signal-processing-and-control/issues
+		  collapsed:: true
+			- ![image.png](../assets/image_1708265116224_0.png)
+			-
+		- [Volume 91](https://www.sciencedirect.com/journal/biomedical-signal-processing-and-control/vol/91/suppl/C), May 2024, 105896
+		- [105896-105907](https://www.sciencedirect.com/science/article/pii/S1746809423013290) （1-11）
+		- The Laboratory of Image Science and Technology, Southeast University, Nanjing, Jiangsu, China
+		- 使用了连续出版的方式，不将论文分配到特定的期号中
+		- Volume 91 (In Progress)
+		- https://www.sciencedirect.com/science/article/pii/S1746809423013290
+		- The Laboratory of Image Science and Technology，Southeast University, Nanjing, Jiangsu, China； The  First  Affiliated  Hospital  of  Nanjing  Medical  University,  Nanjing,  Jiangsu,  China
+		- Hui Tang；Yanni Jiang
+		- Liuwen Zou, Jiarui Sun, Jingyu Li, Hui Tang, Guangquan Zhou, Gouenou Coatrieux,
+		  Jean-Louis Coatrieux, Yang Chen, Yanni Jiang
+		- ![image.png](../assets/image_1708266560663_0.png)
+		-
 - ## DistractionTracing
 	-
 	-
