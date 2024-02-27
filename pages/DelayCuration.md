@@ -2609,6 +2609,7 @@ collapsed:: true
 				- ![image.png](../assets/image_1700057860638_0.png)
 				-
 			- DONE 开启第六次实验，将数据集切换为数据量二倍增强后的，结果如下
+			  collapsed:: true
 			  :LOGBOOK:
 			  CLOCK: [2023-11-15 Wed 22:23:29]
 			  CLOCK: [2023-11-15 Wed 22:23:30]--[2023-11-16 Thu 00:22:12] =>  01:58:42
@@ -2981,7 +2982,6 @@ collapsed:: true
 			  CLOCK: [2024-01-17 Wed 18:44:41]--[2024-01-17 Wed 18:44:42] =>  00:00:01
 			  :END:
 			- DONE 完成实验数据相关的问题
-			  collapsed:: true
 			  :LOGBOOK:
 			  CLOCK: [2024-01-22 Mon 23:55:09]--[2024-01-23 Tue 00:44:15] =>  00:49:06
 			  CLOCK: [2024-01-23 Tue 00:44:33]--[2024-01-23 Tue 00:44:35] =>  00:00:02
@@ -2995,7 +2995,6 @@ collapsed:: true
 					- 第二个是数据划分比例的问题，应该将8:1:1改成6:2:2
 					- 第三个是没有进行数据的预处理
 				- DONE 完成关于数据问题setting的组合实验
-				  collapsed:: true
 				  :LOGBOOK:
 				  CLOCK: [2024-01-11 Thu 21:03:31]--[2024-01-23 Tue 00:43:56] =>  267:40:25
 				  :END:
@@ -3125,6 +3124,7 @@ collapsed:: true
 							- test
 								- ![image.png](../assets/image_1705781686058_0.png)
 						- DONE 不带normal数据的
+						  collapsed:: true
 						  :LOGBOOK:
 						  CLOCK: [2024-01-21 Sun 02:55:05]
 						  CLOCK: [2024-01-21 Sun 02:55:06]--[2024-01-21 Sun 20:23:53] =>  17:28:47
@@ -3189,7 +3189,6 @@ collapsed:: true
 							- ![image.png](../assets/image_1705935872051_0.png)
 							-
 						- DONE 测试一下在第三批数据上Unet（388:129:130 = 647 ）的测试结果
-						  collapsed:: true
 						  :LOGBOOK:
 						  CLOCK: [2024-01-22 Mon 23:04:41]
 						  CLOCK: [2024-01-22 Mon 23:04:42]--[2024-01-23 Tue 00:41:53] =>  01:37:11
@@ -3201,24 +3200,59 @@ collapsed:: true
 								- ![image.png](../assets/image_1705941305378_0.png)
 							- test
 							  collapsed:: true
-								- ![image.png](../assets/image_1705941706855_0.png)
+								- ![image.png](../assets/image_1705941706855_0.png){:height 234, :width 532}
 								- 和没有数据增强的结果完全一样
+							- test纠正后的结果，原先的test跑在了含有normal数据的测试上
+								- ![image.png](../assets/image_1708525539555_0.png)
+								-
 			- DOING 完成常见对比模型的实验
 			  :LOGBOOK:
 			  CLOCK: [2024-01-24 Wed 02:25:02]
 			  CLOCK: [2024-01-24 Wed 02:25:03]
 			  :END:
-				- DOING Unet++
+				- DONE Unet++
+				  collapsed:: true
 				  :LOGBOOK:
 				  CLOCK: [2024-01-24 Wed 02:25:14]
-				  CLOCK: [2024-01-24 Wed 02:25:16]
+				  CLOCK: [2024-01-24 Wed 02:25:16]--[2024-02-22 Thu 00:59:15] =>  694:33:59
 				  :END:
-				- DOING AttUnet
+					- train + val
+					  collapsed:: true
+						- ![image.png](../assets/image_1708534508794_0.png)
+						- ![image.png](../assets/image_1708534645221_0.png)
+					- test
+						- ![image.png](../assets/image_1708534739894_0.png)
+				- DONE AttUnet
+				  collapsed:: true
 				  :LOGBOOK:
 				  CLOCK: [2024-01-24 Wed 02:25:20]
-				  CLOCK: [2024-01-24 Wed 02:25:21]
+				  CLOCK: [2024-01-24 Wed 02:25:21]--[2024-02-21 Wed 23:48:15] =>  693:22:54
 				  :END:
-			- TODO 怎么修改rethink模型的主干网络，使得其具有相当效果
+					- train + val
+						- 42
+						  collapsed:: true
+							- ![image.png](../assets/image_1708529702577_0.png)
+						- 26
+						  collapsed:: true
+							- ![image.png](../assets/image_1708529785084_0.png)
+					- test
+						- 26
+						  collapsed:: true
+							- ![image.png](../assets/image_1708530437262_0.png)
+				- TODO 添加通道注意力的模块
+					- DOING 编写SKU-net的版本
+					  :LOGBOOK:
+					  CLOCK: [2024-02-22 Thu 15:08:01]
+					  :END:
+					- TODO 编写SKU-net + 多一个空洞卷积的版本
+					-
+				- TODO 在正数第二层（尺寸大）使用1 * 1卷积的方式来计算encoder层特征的注意力权重
+				- TODO 在倒数第二层（尺寸小）使用自注意力的方式来计算encoder层特征的注意力权重
+				-
+			- DOING 怎么修改rethink模型的主干网络，使得其具有相当效果
+			  :LOGBOOK:
+			  CLOCK: [2024-02-22 Thu 16:43:12]
+			  :END:
 				- DONE 查看论文使用的几个基线网络，用于对比的
 				  collapsed:: true
 				  :LOGBOOK:
@@ -3244,7 +3278,6 @@ collapsed:: true
 				  CLOCK: [2024-01-17 Wed 18:40:54]--[2024-01-17 Wed 18:41:36] =>  00:00:42
 				  :END:
 				- DOING 阅读rethink中的几个主要对比模型
-				  collapsed:: true
 				  :LOGBOOK:
 				  CLOCK: [2024-01-17 Wed 22:10:59]
 				  CLOCK: [2024-01-17 Wed 22:11:00]
@@ -3368,6 +3401,8 @@ collapsed:: true
 							- ![image.png](../assets/image_1706229722604_0.png)
 							- ![image.png](../assets/image_1706238532699_0.png)
 							-
+						- 模型核心结构图：
+							- ![image.png](../assets/image_1708357387820_0.png)
 						- 模型的核心结构：
 							- 为了确保模型compact yet precise, 使用移除了平均池化层和全连接层的预训练的resnet34来作为主干网络
 							- 为了捕获多尺度的上下文信息，我们提出了RPA (Region-aware Pyramid Aggregation Module) 模块：利用自注意力机制一是基于金字塔池化采样策略来对region-wise的特征进行编码，二是获得更有分辨性的区域（region-wise）特征
@@ -3375,7 +3410,6 @@ collapsed:: true
 								  collapsed:: true
 									- ![image.png](../assets/image_1707670477222_0.png)
 								- 在本论文中 用来捕获长距离的 更为有效的区域上下文建模方法分为三个步骤：
-								  collapsed:: true
 									- 区域上下文信息提取（Regional Context Extraction）
 										- 使用了 3 * 3、7 * 7 以及 11 * 11的三个自适应平均池化层，从原始的特征图得到三个尺寸分别为 3 * 3、7 * 7和11 * 11的输出特征图；然后，三个特征图分别使用1 * 1的卷积将特征图的通道数降低为原来的1/4；最后都进行双线性上采样采样到和最初输入特征图一样的尺寸；
 										- 最后得到的就是三个regional feature map
@@ -3419,37 +3453,84 @@ collapsed:: true
 			  :LOGBOOK:
 			  CLOCK: [2024-02-13 Tue 03:04:34]
 			  :END:
-				- DOING 选择性阅读后面所有关于uncertainty的论文
+				- DOING 选择性阅读2篇关于uncertainty的论文
 				  :LOGBOOK:
 				  CLOCK: [2024-02-13 Tue 03:04:31]
 				  :END:
 			- TODO 用一个端到端的网络来顺带完成乳腺肿块的分类
-			- id:: 65b0ccf0-4203-40ab-a35f-a4364f2f79a5
+			- TODO 叠加ground truth和预测结果的分割图的代码
+			  id:: 65b0ccf0-4203-40ab-a35f-a4364f2f79a5
 			  :LOGBOOK:
 			  CLOCK: [2024-02-12 Mon 00:52:05]
 			  CLOCK: [2024-02-12 Mon 00:52:10]
 			  CLOCK: [2024-02-12 Mon 00:54:15]
 			  CLOCK: [2024-02-12 Mon 00:54:16]
 			  :END:
-				-
-				-
-			-
-			-
-			-
+			- DOING 实验注意事项总结
+			  :LOGBOOK:
+			  CLOCK: [2024-02-22 Thu 15:05:42]
+			  :END:
+				- 每个模型都直接加上torch.sigmoid
+				- 我在思考利用“1*1卷积 - 池化 - 减去池化”得到边缘分割图的方式，和利用uncertainty_map来得到边缘分割图 + 一部分分割不准确的周边组织的方式，怎么结合起来呢？
+					- 2019 年的Attentive feedback network for boundary-aware salient object detection. In: Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition论文有没有对应的代码？
+					- ![image.png](../assets/image_1708728725804_0.png)
+					-
 		- [[开始撰写毕设大论文]]
-		  collapsed:: true
 			- TODO 先确定三章每一章具体针对的问题是什么
 			  :LOGBOOK:
 			  CLOCK: [2024-01-21 Sun 20:43:45]
 			  CLOCK: [2024-01-21 Sun 20:43:48]
 			  CLOCK: [2024-01-21 Sun 20:44:03]--[2024-01-21 Sun 20:46:05] =>  00:02:02
 			  :END:
-			- TODO 先开始撰写第三章
+			- DOING 先开始撰写第三章
 			  :LOGBOOK:
 			  CLOCK: [2024-01-21 Sun 20:44:25]
 			  CLOCK: [2024-01-21 Sun 20:44:43]
 			  CLOCK: [2024-01-21 Sun 20:44:44]--[2024-01-21 Sun 20:46:04] =>  00:01:20
+			  CLOCK: [2024-02-19 Mon 21:46:17]
 			  :END:
+				- 乳腺超声图像中肿块的位置比较多样化：
+				  collapsed:: true
+					- 空间注意力可以更好地捕获长距离的依赖，可以
+				- 乳腺超声图像中肿块的形状也比较多样化
+				  collapsed:: true
+					-
+				- 肿块的位置和形状都受到肿块本身的尺度多样性的影响：
+				  collapsed:: true
+					- 将编码器的细节特征和解码器的宏观特征结合方式的多种优化，可以更好地融合同一个形状的，也是为了更好地获得一个整体性的受到尺度影响更小的综合性特征图
+				- TODO 画完模型结构图，写完模型的具体内容
+				- TODO 实验结果部分
+					- TODO 写完数据集说明
+					- TODO 写完评估指标
+					- TODO 写完模型超参数和模型训练过程的说明
+					- DOING 实验结果
+					  :LOGBOOK:
+					  CLOCK: [2024-02-27 Tue 18:02:33]
+					  :END:
+						- DONE 论文通道注意力结果: 全部encoder都进行了替换
+						  :LOGBOOK:
+						  CLOCK: [2024-02-27 Tue 18:02:59]--[2024-02-27 Tue 20:44:17] =>  02:41:18
+						  :END:
+							- train + val
+							  collapsed:: true
+								- ![image.png](../assets/image_1709030287484_0.png)
+								- ![image.png](../assets/image_1709030341280_0.png)
+							- test
+							  collapsed:: true
+								- ![image.png](../assets/image_1709030638439_0.png)
+						- DONE AAU论文的方法
+						  :LOGBOOK:
+						  CLOCK: [2024-02-27 Tue 20:44:35]
+						  CLOCK: [2024-02-27 Tue 20:44:38]--[2024-02-27 Tue 20:47:56] =>  00:03:18
+						  :END:
+							- train + val
+							  collapsed:: true
+								- ![image.png](../assets/image_1709037887081_0.png){:height 76, :width 563}
+								- ![image.png](../assets/image_1709037939927_0.png)
+								-
+							- test
+							  collapsed:: true
+								- ![image.png](../assets/image_1709038055039_0.png)
 			- TODO 在跑实验或者没有进度的时候开始写前两章
 			  :LOGBOOK:
 			  CLOCK: [2024-01-21 Sun 20:44:50]
@@ -3458,6 +3539,9 @@ collapsed:: true
 			  CLOCK: [2024-01-21 Sun 20:45:06]--[2024-01-21 Sun 20:46:05] =>  00:00:59
 			  :END:
 			- TODO 划定章节的标题，然后估计下每章大概要写多少页
+			- TODO 完成第一章背景
+			- TODO 去中心化的加权池化
+			- TODO 写完三章的三段问题描述
 			-
 		- [[注意力固定的solution：增强注意力切换的弹性]]
 		  collapsed:: true
@@ -3480,13 +3564,13 @@ collapsed:: true
 				- “活力过剩”导致无法消耗掉
 			-
 - ## CountDownPlans
-	- NOW CountDown100
+	- DONE CountDown100
 	  collapsed:: true
 	  :LOGBOOK:
 	  CLOCK: [2023-10-26 Thu 09:50:56]
 	  CLOCK: [2023-10-26 Thu 09:50:57]--[2023-11-08 Wed 19:16:23] =>  321:25:26
 	  CLOCK: [2023-11-08 Wed 19:16:28]--[2023-11-08 Wed 19:16:29] =>  00:00:01
-	  CLOCK: [2023-11-08 Wed 19:16:30]
+	  CLOCK: [2023-11-08 Wed 19:16:30]--[2024-02-19 Mon 20:29:36] =>  2473:13:06
 	  :END:
 		- DONE coundown93 + countdown92
 		  :LOGBOOK:
@@ -3585,16 +3669,23 @@ collapsed:: true
 	  CLOCK: [2024-01-22 Mon 22:27:11]
 	  CLOCK: [2024-01-22 Mon 22:27:13]--[2024-01-25 Thu 03:10:18] =>  52:43:05
 	  :END:
+	- TODO 成年人的第十三步是如何形成有价值的想法或者说如何对想法进行筛选
+	- TODO 成年人的第十四步就是信誉的价值
+	- TODO 成年人的第十五步就是理解低级模仿、高级模仿、低级创新、高级创新的区别
 	- TODO 过年时把需要的朋友全部转微信上
 	  :LOGBOOK:
 	  CLOCK: [2024-01-22 Mon 22:40:34]
 	  CLOCK: [2024-01-22 Mon 22:40:35]--[2024-01-25 Thu 03:10:18] =>  52:29:43
 	  :END:
+	- TODO 对于事的注意力要尽量集中，对于人的注意力要尽可能分散
+	- TODO 等价物：钱是商品价值的最一般等价物，而数字是如今人类智慧的最一般等价物
+	-
 	- DOING 所有小说的一个弱点就是：没有写清楚一个人是怎么真正变强的，而是写了一堆外力和情绪的作用；要写就写一部真正能够教人变强的作品
 	  :LOGBOOK:
 	  CLOCK: [2024-01-27 Sat 01:51:01]
 	  CLOCK: [2024-01-27 Sat 01:51:04]
 	  :END:
+	- TODO 没有挑战性才会觉得无聊
 	- DOING 完成科研成果的提交证明
 	  collapsed:: true
 	  :LOGBOOK:
@@ -3622,9 +3713,82 @@ collapsed:: true
 		  Jean-Louis Coatrieux, Yang Chen, Yanni Jiang
 		- ![image.png](../assets/image_1708266560663_0.png)
 		-
-- ## DistractionTracing
+	- DONE 把自己行动力不足以及容易分神涣散的原因给真正找到
+	  collapsed:: true
+	  :LOGBOOK:
+	  CLOCK: [2024-02-19 Mon 18:14:09]
+	  CLOCK: [2024-02-19 Mon 18:14:28]--[2024-02-19 Mon 18:24:30] =>  00:10:02
+	  :END:
+		- 好像只有外界的环境可以逼迫我来主动做事了，如果是完全财富自由的环境下，我就会一整天躺在床上看手机玩电脑，甚至不下床。这种生活状态的形成原因到底是什么呢？
+		  collapsed:: true
+			- 我发现了在完全没有监管的情况下，就没有形成那种真正的约束感，而约束感其实是一种有效的动力（情绪不是第一驱动力，但是感受和感觉的确是第一驱动力。比如你感觉不舒服，就会去做摆脱不舒服的事；比如你感觉时间还来得及或者拖到最晚不会引起严重的后果，你就会继续拖延到最晚的那个时间点；比如你感觉到写论文这件事将会变得很累，你就不会想要下床马上去写论文。[[$red]]==这种感觉除了生理性的当前的状态，更多的是来自以前的记忆，所以要忘掉这件事之前带给的感觉，从没有任何感觉地去启动一件事，在做事过程中重新形成一种感觉，每次做事都可以形成崭新的感觉）。当不想主动做事时，问问自己对这件事的感觉是什么，然后假设这种感觉的对立面，重新做事。==
+		- 因为不运动，没有使用到身体的其他器官或者功能，导致这些器官长时间处于静态的休息态，时间一长就会钝化，导致肢体处于麻木状态。
+		  collapsed:: true
+			- [[$red]]==如果只是躺在床上，使用的基本就只有自己的双手和大脑这两个部位；而且时间久了，就会发现大脑对其他器官的控制功能减弱，大脑想控制某个部位动起来，但身体就是不听使唤地不动。==  所以，每天必须要把：四肢、眼睛耳朵嘴巴等活动起来，最好是给自己多安排一些活动而不是无聊地使用；改变每天只躺在床上或者坐在桌子旁的生活吧
+		- [[$red]]==第三个就是要多切换环境吧，==单一的封闭式环境待久了就会出现一些烦躁压抑的心理感受：从室内走到室外，从线上环境切换到线下，从图书馆到咖啡厅
+		- 第四就是经常把时间线拉长来看问题，拉长后行动力就会自动浮现：我非常容易陷入到任何一个让我感到不愉快的点上
+		- 第五就是想要的太多了，却又无法做出取舍，最后在多个目标中自我折磨
+		- 第六点就是说腹部肥胖导致起床困难，也导致行动时会有更多的疲劳感
+		  collapsed:: true
+			- ![image.png](../assets/image_1708393898128_0.png)
+	- DONE 反思一下自己沉迷社交媒体无法自拔的原因
+	  collapsed:: true
+	  :LOGBOOK:
+	  CLOCK: [2024-02-19 Mon 18:49:45]
+	  CLOCK: [2024-02-19 Mon 18:49:46]
+	  CLOCK: [2024-02-19 Mon 18:49:49]--[2024-02-19 Mon 20:10:40] =>  01:20:51
+	  :END:
+		- 社交媒体热闹，而我在实际生活中比较孤单
+			- 找具体社会场合下的具体的人，哪怕是去公园看看陌生人
+		- 对当前做的事情不耐烦，想要逃避当下的痛苦
+			- 可能没有那么烦人，只是没想到那个点，多问问别人怎么思考的来及时跳出自己的想法
+		- 有一种环境切换感吧，从当前狭窄的工作环境通到一个更大的无限空间的感觉
+			- 切换户外环境下吧
+			- 听安静的让人放松的音乐，减少吵闹歌声
+			- 慢下来，就可以立马从快环境切换到慢环境
+			- 关闭表达或者减少表达，就可以从输出环境切换到倾听为主的输入环境
+			- 从数字化生活方式 切换到  原始一点的生活环境
+			- 从自媒体的信息输入环境  切换到  纪录片的输入环境吧
+		- 好奇心一直在涌动，互联网就像一个巨大的肺，把头脑中的好奇心不断吹起来涨大起来但是不会破
+			- 好奇心无法变成真正有用的知识，只可能会刺激到更多的欲望，带来更多的烦恼
+			- 提高好奇心的质量吧
+	- DONE 把之前的快递拿回来吧
+	  :LOGBOOK:
+	  CLOCK: [2024-02-19 Mon 18:50:14]
+	  CLOCK: [2024-02-19 Mon 18:50:15]--[2024-02-19 Mon 19:33:45] =>  00:43:30
+	  :END:
+	- DONE 完成年付ladder:leensa [[存单系统]]
+	  collapsed:: true
+	  :LOGBOOK:
+	  CLOCK: [2024-02-26 Mon 13:21:06]
+	  CLOCK: [2024-02-26 Mon 13:21:13]--[2024-02-27 Tue 18:02:12] =>  28:40:59
+	  :END:
+		- ![image.png](../assets/image_1708924881243_0.png){:height 281, :width 718}
+		-
+- ## TwoBigRealityGoals
+	- TODO 润德国 （最重要的目标）
+	  collapsed:: true
+	  :LOGBOOK:
+	  CLOCK: [2024-02-19 Mon 20:21:00]
+	  CLOCK: [2024-02-19 Mon 20:21:03]--[2024-02-19 Mon 20:21:06] =>  00:00:03
+	  :END:
+		- TODO 看德国的一些纪录片吧
+		  collapsed:: true
+			- ![image.png](../assets/image_1708345758105_0.png)
+	- TODO 练习写作，写出优质作品 （第二大目标）
+	- TODO 结识更好的人，构建更好的社交活动圈 （全线目标：改变生存环境）
+	  collapsed:: true
+		- TODO help others in need
+			- TODO 为什么mental分裂的人的文字会出现逻辑不通的现象
+- ## TwoBigMentalGoals
+  collapsed:: true
+	- TODO 学会摄影
+	  :LOGBOOK:
+	  CLOCK: [2024-02-19 Mon 20:32:25]--[2024-02-19 Mon 20:32:26] =>  00:00:01
+	  :END:
+	- TODO 学会游泳和羽毛球
 	-
-	-
+-
 -
 -
 -
