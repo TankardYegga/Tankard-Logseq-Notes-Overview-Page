@@ -2946,11 +2946,6 @@ collapsed:: true
 			  CLOCK: [2023-11-18 Sat 13:56:44]
 			  :END:
 		- [[完成超声AI毕设]] [[研究生]] [[东南大学]]
-			- TODO 日常简单查阅如何撰写毕业论文设计
-			  collapsed:: true
-				- TODO 如何在撰写时就避免重复
-				- TODO 如何增加工程量：比如实验结果多样化
-				- TODO 思考论文中可能会被judge的点
 			- DONE  确认basic settings
 			  collapsed:: true
 			  :LOGBOOK:
@@ -3009,7 +3004,6 @@ collapsed:: true
 							- ![47028933fe7df44ff4a95729570b27f.png](../assets/47028933fe7df44ff4a95729570b27f_1704979202839_0.png)
 							-
 						- test
-						  collapsed:: true
 							- ![0b3a9d7a012e88f32108e5f07b77f80.png](../assets/0b3a9d7a012e88f32108e5f07b77f80_1704979358913_0.png)
 							-
 						-
@@ -3040,9 +3034,7 @@ collapsed:: true
 									- ![image.png](../assets/image_1705484479898_0.png)
 									-
 							- 迭代50次的结果
-							  collapsed:: true
 								- train + val (44次迭代时val结果最好)
-								  collapsed:: true
 									- ![image.png](../assets/image_1705494074575_0.png){:height 69, :width 594}
 									- ![image.png](../assets/image_1705494115315_0.png)
 								- test
@@ -3084,7 +3076,6 @@ collapsed:: true
 								- ![image.png](../assets/image_1705510641383_0.png)
 								-
 							- test
-							  collapsed:: true
 								- ![image.png](../assets/image_1705512698504_0.png){:height 235, :width 532}
 						- DONE 不带normal数据的
 						  collapsed:: true
@@ -3102,6 +3093,7 @@ collapsed:: true
 								-
 						- 此例中不带normal数据比带normal要更好，而且好得多，不带normal的dsc是0.8258，带上normal的dsc是0.7287
 					- DONE 使用第三批数据来对比加不加normal的情况
+					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-01-21 Sun 02:51:57]
 					  CLOCK: [2024-01-21 Sun 02:52:00]--[2024-01-21 Sun 20:24:48] =>  17:32:48
@@ -3124,7 +3116,6 @@ collapsed:: true
 							- test
 								- ![image.png](../assets/image_1705781686058_0.png)
 						- DONE 不带normal数据的
-						  collapsed:: true
 						  :LOGBOOK:
 						  CLOCK: [2024-01-21 Sun 02:55:05]
 						  CLOCK: [2024-01-21 Sun 02:55:06]--[2024-01-21 Sun 20:23:53] =>  17:28:47
@@ -3182,19 +3173,18 @@ collapsed:: true
 						- 是否要进行模糊变换？
 						  collapsed:: true
 							- 需要
-							  collapsed:: true
 								- ![image.png](../assets/image_1705934374846_0.png)
 						- 实际进行了五类操作：
 						  collapsed:: true
 							- ![image.png](../assets/image_1705935872051_0.png)
 							-
 						- DONE 测试一下在第三批数据上Unet（388:129:130 = 647 ）的测试结果
+						  collapsed:: true
 						  :LOGBOOK:
 						  CLOCK: [2024-01-22 Mon 23:04:41]
 						  CLOCK: [2024-01-22 Mon 23:04:42]--[2024-01-23 Tue 00:41:53] =>  01:37:11
 						  :END:
 							- train + val
-							  collapsed:: true
 								- ![image.png](../assets/image_1705941269077_0.png)
 								  id:: 65ae8f18-e93f-4995-bd31-59fc0f873a16
 								- ![image.png](../assets/image_1705941305378_0.png)
@@ -3206,6 +3196,7 @@ collapsed:: true
 								- ![image.png](../assets/image_1708525539555_0.png)
 								-
 			- DOING 完成常见对比模型的实验
+			  collapsed:: true
 			  :LOGBOOK:
 			  CLOCK: [2024-01-24 Wed 02:25:02]
 			  CLOCK: [2024-01-24 Wed 02:25:03]
@@ -3217,7 +3208,6 @@ collapsed:: true
 				  CLOCK: [2024-01-24 Wed 02:25:16]--[2024-02-22 Thu 00:59:15] =>  694:33:59
 				  :END:
 					- train + val
-					  collapsed:: true
 						- ![image.png](../assets/image_1708534508794_0.png)
 						- ![image.png](../assets/image_1708534645221_0.png)
 					- test
@@ -3230,16 +3220,15 @@ collapsed:: true
 				  :END:
 					- train + val
 						- 42
-						  collapsed:: true
 							- ![image.png](../assets/image_1708529702577_0.png)
 						- 26
 						  collapsed:: true
 							- ![image.png](../assets/image_1708529785084_0.png)
 					- test
 						- 26
-						  collapsed:: true
 							- ![image.png](../assets/image_1708530437262_0.png)
 				- TODO 添加通道注意力的模块
+				  collapsed:: true
 					- DOING 编写SKU-net的版本
 					  :LOGBOOK:
 					  CLOCK: [2024-02-22 Thu 15:08:01]
@@ -3250,6 +3239,7 @@ collapsed:: true
 				- TODO 在倒数第二层（尺寸小）使用自注意力的方式来计算encoder层特征的注意力权重
 				-
 			- DOING 怎么修改rethink模型的主干网络，使得其具有相当效果
+			  collapsed:: true
 			  :LOGBOOK:
 			  CLOCK: [2024-02-22 Thu 16:43:12]
 			  :END:
@@ -3261,6 +3251,7 @@ collapsed:: true
 				  CLOCK: [2024-01-17 Wed 14:21:33]--[2024-01-22 Mon 23:55:51] =>  129:34:18
 				  :END:
 					- rethinking论文里面的
+					  collapsed:: true
 						- ![image.png](../assets/image_1705473643037_0.png)
 						  id:: 65a7722a-1ec4-42d5-8624-ac8a6244fa6c
 					- 残差回馈网络论文里面的对比模型
@@ -3277,10 +3268,10 @@ collapsed:: true
 				  CLOCK: [2024-01-17 Wed 18:40:50]
 				  CLOCK: [2024-01-17 Wed 18:40:54]--[2024-01-17 Wed 18:41:36] =>  00:00:42
 				  :END:
-				- DOING 阅读rethink中的几个主要对比模型
+				- DONE 阅读rethink中的几个主要对比模型
 				  :LOGBOOK:
 				  CLOCK: [2024-01-17 Wed 22:10:59]
-				  CLOCK: [2024-01-17 Wed 22:11:00]
+				  CLOCK: [2024-01-17 Wed 22:11:00]--[2024-02-27 Tue 23:47:41] =>  985:36:41
 				  :END:
 					- DONE 阅读并总结下 AAU-net
 					  id:: 65b0ccf0-2196-453a-bfbc-c6fe4c55836d
@@ -3335,7 +3326,6 @@ collapsed:: true
 							- ![image.png](../assets/image_1706105480594_0.png)
 							-
 						- 非重叠的最大池化
-						  collapsed:: true
 							- ![image.png](../assets/image_1706110817731_0.png)
 					- DONE 总结rethink论文提出的模型NUnet在主干网络上的设计思路
 					  collapsed:: true
@@ -3344,7 +3334,6 @@ collapsed:: true
 					  CLOCK: [2024-01-24 Wed 01:50:17]--[2024-01-24 Wed 18:11:02] =>  16:20:45
 					  :END:
 						- 乳腺超声图像的复杂性体现在：
-						  collapsed:: true
 							- low-quality, variable morphology, similar surrounding tissue and blurred boundary
 						- MOU（multi-out U-nets）模块：
 						  collapsed:: true
@@ -3407,7 +3396,6 @@ collapsed:: true
 							- 为了确保模型compact yet precise, 使用移除了平均池化层和全连接层的预训练的resnet34来作为主干网络
 							- 为了捕获多尺度的上下文信息，我们提出了RPA (Region-aware Pyramid Aggregation Module) 模块：利用自注意力机制一是基于金字塔池化采样策略来对region-wise的特征进行编码，二是获得更有分辨性的区域（region-wise）特征
 								- 捕获长距离依赖可以克服“尺度变化性高”和“存在大量斑点噪音”的两个挑战，但是现有基于单个像素点之间相关性的全局上下文信息建模方法一是计算量大，二是不可避免地在特征图中引入更多的背景噪音，这会降低模型分割的准确性
-								  collapsed:: true
 									- ![image.png](../assets/image_1707670477222_0.png)
 								- 在本论文中 用来捕获长距离的 更为有效的区域上下文建模方法分为三个步骤：
 									- 区域上下文信息提取（Regional Context Extraction）
@@ -3422,7 +3410,6 @@ collapsed:: true
 								- ![image.png](../assets/image_1707764335021_0.png)
 								- 先将D0 D1 D2全部上采样到同样的分辨率 并且 对齐通道数（C * H * W），然后在通道方向上进行连接，最后通过1 * 1的卷积将通道数从3C又重新变回C；通过GAP获得每个通道方向上的初始权重，通过两次1 * 1的卷积来获得最终权重；权重后的特征图和原始特征图进行相加，相加后再次使用1 * 1的卷积来进行融合
 					- DONE 思考一下乳腺超声图像中乳腺肿块的位置是否固定呢?
-					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-02-13 Tue 01:00:32]
 					  CLOCK: [2024-02-13 Tue 01:00:33]--[2024-02-13 Tue 02:58:22] =>  01:57:49
@@ -3449,15 +3436,19 @@ collapsed:: true
 					  CLOCK: [2024-01-21 Sun 02:53:19]
 					  CLOCK: [2024-01-21 Sun 02:53:21]--[2024-02-13 Tue 03:04:21] =>  552:11:00
 					  :END:
-			- DOING 怎么修改uncertainty map那块，使得其有效果；最好结合上边缘的相关知识
+			- DONE 怎么修改uncertainty map那块，使得其有效果；最好结合上边缘的相关知识
+			  collapsed:: true
 			  :LOGBOOK:
-			  CLOCK: [2024-02-13 Tue 03:04:34]
+			  CLOCK: [2024-02-13 Tue 03:04:34]--[2024-03-02 Sat 20:18:25] =>  449:13:51
 			  :END:
 				- DOING 选择性阅读2篇关于uncertainty的论文
 				  :LOGBOOK:
 				  CLOCK: [2024-02-13 Tue 03:04:31]
 				  :END:
-			- TODO 用一个端到端的网络来顺带完成乳腺肿块的分类
+			- LATER 用一个端到端的网络来顺带完成乳腺肿块的分类
+			  :LOGBOOK:
+			  CLOCK: [2024-03-02 Sat 20:18:27]--[2024-03-02 Sat 20:18:28] =>  00:00:01
+			  :END:
 			- TODO 叠加ground truth和预测结果的分割图的代码
 			  id:: 65b0ccf0-4203-40ab-a35f-a4364f2f79a5
 			  :LOGBOOK:
@@ -3465,16 +3456,262 @@ collapsed:: true
 			  CLOCK: [2024-02-12 Mon 00:52:10]
 			  CLOCK: [2024-02-12 Mon 00:54:15]
 			  CLOCK: [2024-02-12 Mon 00:54:16]
+			  CLOCK: [2024-03-02 Sat 20:18:33]--[2024-03-02 Sat 20:18:34] =>  00:00:01
+			  CLOCK: [2024-03-02 Sat 20:18:35]--[2024-03-02 Sat 20:18:36] =>  00:00:01
+			  CLOCK: [2024-03-02 Sat 20:18:37]--[2024-03-02 Sat 20:18:39] =>  00:00:02
 			  :END:
-			- DOING 实验注意事项总结
+			- DONE 实验注意事项总结
+			  collapsed:: true
 			  :LOGBOOK:
-			  CLOCK: [2024-02-22 Thu 15:05:42]
+			  CLOCK: [2024-02-22 Thu 15:05:42]--[2024-02-27 Tue 23:47:35] =>  128:41:53
 			  :END:
 				- 每个模型都直接加上torch.sigmoid
 				- 我在思考利用“1*1卷积 - 池化 - 减去池化”得到边缘分割图的方式，和利用uncertainty_map来得到边缘分割图 + 一部分分割不准确的周边组织的方式，怎么结合起来呢？
+				  collapsed:: true
 					- 2019 年的Attentive feedback network for boundary-aware salient object detection. In: Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition论文有没有对应的代码？
 					- ![image.png](../assets/image_1708728725804_0.png)
 					-
+			- NOW 实验结果分析与改进
+			  collapsed:: true
+			  :LOGBOOK:
+			  CLOCK: [2024-03-02 Sat 20:18:51]
+			  CLOCK: [2024-03-02 Sat 20:18:53]--[2024-03-03 Sun 12:16:32] =>  15:57:39
+			  CLOCK: [2024-03-03 Sun 12:16:34]
+			  :END:
+				- DONE 按照7:1:2的比例进行划分
+				  collapsed:: true
+				  :LOGBOOK:
+				  CLOCK: [2024-03-02 Sat 20:21:08]
+				  CLOCK: [2024-03-02 Sat 20:21:10]--[2024-03-02 Sat 22:26:09] =>  02:04:59
+				  :END:
+					- ![image.png](../assets/image_1709382459144_0.png)
+					- train + val
+						- ![image.png](../assets/image_1709388965029_0.png)
+					- test
+						- ![image.png](../assets/image_1709389536378_0.png){:height 230, :width 687}
+						-
+				- DONE 按照7.5: 0.5: 2的比例进行划分
+				  collapsed:: true
+				  :LOGBOOK:
+				  CLOCK: [2024-03-02 Sat 20:22:54]
+				  CLOCK: [2024-03-02 Sat 20:22:55]--[2024-03-02 Sat 23:59:24] =>  03:36:29
+				  :END:
+					- ![image.png](../assets/image_1709382522168_0.png){:height 233, :width 718}
+					- train + val
+						- ![image.png](../assets/image_1709394936953_0.png)
+						- ![image.png](../assets/image_1709395114148_0.png)
+					- test
+						- ![image.png](../assets/image_1709395080750_0.png)
+						-
+				- DONE 按照8:1:1的比例进行划分
+				  collapsed:: true
+				  :LOGBOOK:
+				  CLOCK: [2024-03-02 Sat 20:23:24]
+				  CLOCK: [2024-03-02 Sat 20:23:25]--[2024-03-03 Sun 12:06:16] =>  15:42:51
+				  :END:
+					- ![image.png](../assets/image_1709382590700_0.png)
+					- train + val
+					  collapsed:: true
+						- ![image.png](../assets/image_1709435603422_0.png)
+						- ![image.png](../assets/image_1709435952326_0.png)
+						-
+					- test
+						- ![image.png](../assets/image_1709438682314_0.png)
+						  id:: 65e3f6a5-bc72-48a0-8f51-94dcae2c8ea6
+						-
+				- DOING 将第二组比例划分的数据进行diffusion Unet的实验，观察下实验结果如何
+				  :LOGBOOK:
+				  CLOCK: [2024-03-03 Sun 12:16:41]
+				  CLOCK: [2024-03-03 Sun 12:16:42]
+				  :END:
+				- DONE UNet_W_ATT_SK2 混合注意力方式的在新数据上的结果
+				  collapsed:: true
+				  :LOGBOOK:
+				  CLOCK: [2024-03-05 Tue 20:48:56]
+				  CLOCK: [2024-03-05 Tue 20:49:11]--[2024-03-05 Tue 21:04:07] =>  00:14:56
+				  :END:
+					- train + val
+					  collapsed:: true
+						- ![image.png](../assets/image_1709643086517_0.png)
+						- ![image.png](../assets/image_1709643131806_0.png)
+					- test
+						- ![image.png](../assets/image_1709643837868_0.png)
+				- DONE UNet++的在新数据上的结果
+				  :LOGBOOK:
+				  CLOCK: [2024-03-05 Tue 21:05:47]
+				  CLOCK: [2024-03-05 Tue 21:05:48]--[2024-03-05 Tue 22:39:11] =>  01:33:23
+				  :END:
+					- train + val
+					  collapsed:: true
+						- ![image.png](../assets/image_1709649171871_0.png)
+						- ![image.png](../assets/image_1709649268385_0.png)
+					- test
+					  collapsed:: true
+						- ![image.png](../assets/image_1709649538454_0.png)
+				- DOING Att-Unet的在新数据上的结果
+				  :LOGBOOK:
+				  CLOCK: [2024-03-05 Tue 21:08:20]
+				  CLOCK: [2024-03-05 Tue 21:08:23]
+				  :END:
+					- train + val
+						-
+					- test
+				- DOING Att-Unet + diffusion-unit在新数据上的结果
+				  :LOGBOOK:
+				  CLOCK: [2024-03-07 Thu 14:03:04]
+				  :END:
+				-
+				- DOING 改进diffusion-Unit的参数量，加快其运行过程，减少所需的GPU
+				  :LOGBOOK:
+				  CLOCK: [2024-03-05 Tue 21:08:37]
+				  CLOCK: [2024-03-05 Tue 21:08:38]
+				  :END:
+					- DONE 只让diffusion-Unit放在第一个decoder模块
+					  collapsed:: true
+					  :LOGBOOK:
+					  CLOCK: [2024-03-07 Thu 01:23:53]
+					  CLOCK: [2024-03-07 Thu 01:23:55]--[2024-03-07 Thu 03:19:24] =>  01:55:29
+					  :END:
+						- ![image.png](../assets/image_1709752759777_0.png)
+						- ![image.png](../assets/image_1709752690868_0.png){:height 207, :width 718}
+					- DONE Unet++ with_diffusion
+					  collapsed:: true
+					  :LOGBOOK:
+					  CLOCK: [2024-03-07 Thu 04:31:03]
+					  CLOCK: [2024-03-07 Thu 04:31:04]--[2024-03-07 Thu 04:35:49] =>  00:04:45
+					  :END:
+						- train
+						  id:: 65e8d31b-1dea-4c1e-896c-d7ddb193dadd
+							- ![image.png](../assets/image_1709757314715_0.png)
+							  id:: 65e8d327-e0ed-470c-b86d-cd632ad97c59
+						- test
+							- ![image.png](../assets/image_1709757220729_0.png)
+					- DONE Unet++ with_diffusion + 从30跑到40
+					  collapsed:: true
+					  :LOGBOOK:
+					  CLOCK: [2024-03-07 Thu 10:54:12]--[2024-03-07 Thu 10:54:14] =>  00:00:02
+					  :END:
+						- train + val
+							- ![image.png](../assets/image_1709780017350_0.png)
+						- test
+							- ![image.png](../assets/image_1709780046945_0.png)
+					- DONE unet++with_diffusion调整一下参数: 只迭代一次
+					  collapsed:: true
+					  :LOGBOOK:
+					  CLOCK: [2024-03-07 Thu 11:15:37]
+					  CLOCK: [2024-03-07 Thu 11:15:40]--[2024-03-07 Thu 13:32:10] =>  02:16:30
+					  :END:
+						- train + val
+							- ![image.png](../assets/image_1709789185301_0.png)
+							- ![image.png](../assets/image_1709789244977_0.png)
+						- test
+							- ![image.png](../assets/image_1709789519897_0.png)
+					- LATER unet++with_diffusion调整一下参数: 只迭代二次，但使用同样的权重
+						- train + val
+						- test
+						-
+					- LATER unet++with_diffusion调整一下参数: 只迭代三次，使用不同的权重
+					- DONE 只让diffusion-Unit放在第一个decoder模块，但是先放置，后才上采样
+					  :LOGBOOK:
+					  CLOCK: [2024-03-07 Thu 01:24:12]
+					  CLOCK: [2024-03-07 Thu 01:24:22]--[2024-03-07 Thu 09:46:48] =>  08:22:26
+					  :END:
+						- train + val
+						  collapsed:: true
+							- ![image.png](../assets/image_1709776006715_0.png)
+						- test
+						  collapsed:: true
+							- ![image.png](../assets/image_1709775947728_0.png)
+				- DOING 优化一下UNet_W_ATT_SK2 混合注意力方式，再重新跑实验结果
+				  :LOGBOOK:
+				  CLOCK: [2024-03-05 Tue 21:09:10]
+				  CLOCK: [2024-03-05 Tue 21:10:59]
+				  :END:
+					- DONE 改正权重计算代码错误，重跑结果   + 对比混合注意力结果
+					  collapsed:: true
+					  :LOGBOOK:
+					  CLOCK: [2024-03-05 Tue 21:11:49]
+					  CLOCK: [2024-03-05 Tue 21:11:52]
+					  CLOCK: [2024-03-05 Tue 22:03:26]
+					  CLOCK: [2024-03-05 Tue 22:03:30]--[2024-03-06 Wed 11:56:27] =>  13:52:57
+					  :END:
+						- train + val
+							- ![image.png](../assets/image_1709653780866_0.png)
+							- ![image.png](../assets/image_1709653804826_0.png)
+						- test
+							- ![image.png](../assets/image_1709654068548_0.png)
+						- 对比
+						  collapsed:: true
+							- train + val
+							  collapsed:: true
+								- ![image.png](../assets/image_1709697335320_0.png)
+							- test
+								- ![image.png](../assets/image_1709697070266_0.png)
+					- DONE 换一下位置1
+					  collapsed:: true
+					  :LOGBOOK:
+					  CLOCK: [2024-03-05 Tue 22:03:52]
+					  CLOCK: [2024-03-05 Tue 22:03:54]--[2024-03-07 Thu 01:22:58] =>  27:19:04
+					  :END:
+						- train + val
+							- ![image.png](../assets/image_1709745771750_0.png)
+							- ![image.png](../assets/image_1709745752612_0.png)
+						- test
+						  collapsed:: true
+							- ![image.png](../assets/image_1709745706677_0.png)
+					- DONE 换一下位置2
+					  collapsed:: true
+					  :LOGBOOK:
+					  CLOCK: [2024-03-05 Tue 22:04:01]
+					  CLOCK: [2024-03-05 Tue 22:04:02]--[2024-03-07 Thu 11:56:27] =>  37:52:25
+					  :END:
+						- test
+							- ![image.png](../assets/image_1709783702803_0.png)
+						- train
+						  collapsed:: true
+							- ![image.png](../assets/image_1709783778545_0.png)
+					- DONE 换一下位置3
+					  collapsed:: true
+					  :LOGBOOK:
+					  CLOCK: [2024-03-05 Tue 22:04:08]--[2024-03-07 Thu 13:35:01] =>  39:30:53
+					  :END:
+						- test
+						  collapsed:: true
+							- ![image.png](../assets/image_1709789655616_0.png)
+						- train
+							- ![image.png](../assets/image_1709788179345_0.png)
+							- ![image.png](../assets/image_1709788222308_0.png)
+							-
+				- DOING 重新跑通道注意力
+				  :LOGBOOK:
+				  CLOCK: [2024-03-05 Tue 22:10:51]
+				  CLOCK: [2024-03-05 Tue 22:10:52]
+				  :END:
+					- DOING  自己的方法
+					  :LOGBOOK:
+					  CLOCK: [2024-03-07 Thu 00:24:20]
+					  CLOCK: [2024-03-07 Thu 00:24:23]
+					  :END:
+						-
+					- DOING 自己设计方法的参数调整1
+					  :LOGBOOK:
+					  CLOCK: [2024-03-07 Thu 00:24:26]
+					  CLOCK: [2024-03-07 Thu 00:24:27]
+					  :END:
+					- DOING 自己设计方法的参数调整2
+					  :LOGBOOK:
+					  CLOCK: [2024-03-07 Thu 00:24:41]
+					  :END:
+					- DOING 再次改进自己设计的方法
+					  :LOGBOOK:
+					  CLOCK: [2024-03-07 Thu 00:25:52]
+					  CLOCK: [2024-03-07 Thu 00:25:53]
+					  :END:
+				-
+				-
+				-
+			-
+			-
 		- [[开始撰写毕设大论文]]
 			- TODO 先确定三章每一章具体针对的问题是什么
 			  :LOGBOOK:
@@ -3499,11 +3736,15 @@ collapsed:: true
 				  collapsed:: true
 					- 将编码器的细节特征和解码器的宏观特征结合方式的多种优化，可以更好地融合同一个形状的，也是为了更好地获得一个整体性的受到尺度影响更小的综合性特征图
 				- TODO 画完模型结构图，写完模型的具体内容
-				- TODO 实验结果部分
+				- DOING 实验结果部分
+				  :LOGBOOK:
+				  CLOCK: [2024-03-05 Tue 17:24:45]
+				  :END:
 					- TODO 写完数据集说明
 					- TODO 写完评估指标
 					- TODO 写完模型超参数和模型训练过程的说明
-					- DOING 实验结果
+					- DOING  通道注意力的实验结果
+					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-02-27 Tue 18:02:33]
 					  :END:
@@ -3512,25 +3753,59 @@ collapsed:: true
 						  CLOCK: [2024-02-27 Tue 18:02:59]--[2024-02-27 Tue 20:44:17] =>  02:41:18
 						  :END:
 							- train + val
-							  collapsed:: true
 								- ![image.png](../assets/image_1709030287484_0.png)
 								- ![image.png](../assets/image_1709030341280_0.png)
 							- test
-							  collapsed:: true
 								- ![image.png](../assets/image_1709030638439_0.png)
+						- DONE 论文通道注意力，但是只使用部分encoder替换
+						  :LOGBOOK:
+						  CLOCK: [2024-02-27 Tue 23:45:04]
+						  CLOCK: [2024-02-27 Tue 23:45:06]--[2024-02-27 Tue 23:46:35] =>  00:01:29
+						  :END:
+							- train + val
+								- ![image.png](../assets/image_1709048751545_0.png)
+								- ![image.png](../assets/image_1709048775745_0.png)
+							- test
+								- ![image.png](../assets/image_1709048729107_0.png)
 						- DONE AAU论文的方法
 						  :LOGBOOK:
 						  CLOCK: [2024-02-27 Tue 20:44:35]
 						  CLOCK: [2024-02-27 Tue 20:44:38]--[2024-02-27 Tue 20:47:56] =>  00:03:18
 						  :END:
 							- train + val
-							  collapsed:: true
 								- ![image.png](../assets/image_1709037887081_0.png){:height 76, :width 563}
 								- ![image.png](../assets/image_1709037939927_0.png)
 								-
 							- test
-							  collapsed:: true
 								- ![image.png](../assets/image_1709038055039_0.png)
+						-
+					- DOING 空间注意力的实验结果
+					  collapsed:: true
+					  :LOGBOOK:
+					  CLOCK: [2024-02-27 Tue 23:55:03]
+					  CLOCK: [2024-02-27 Tue 23:55:13]
+					  :END:
+						- DOING 混合注意力方式
+						  :LOGBOOK:
+						  CLOCK: [2024-02-28 Wed 00:09:14]
+						  CLOCK: [2024-02-28 Wed 00:09:16]
+						  :END:
+							- train + val
+								- ![image.png](../assets/image_1709380934857_0.png)
+								- ![image.png](../assets/image_1709381076993_0.png)
+							- test
+								- ![image.png](../assets/image_1709631443351_0.png)
+						- DONE 混合注意力的结果
+						  :LOGBOOK:
+						  CLOCK: [2024-02-28 Wed 00:09:23]
+						  CLOCK: [2024-02-28 Wed 00:09:25]--[2024-03-02 Sat 02:07:50] =>  73:58:25
+						  :END:
+							- train + val
+								- ![image.png](../assets/image_1709315873954_0.png)
+								- ![image.png](../assets/image_1709315932447_0.png)
+								-
+							- test
+								- ![image.png](../assets/image_1709316461539_0.png)
 			- TODO 在跑实验或者没有进度的时候开始写前两章
 			  :LOGBOOK:
 			  CLOCK: [2024-01-21 Sun 20:44:50]
@@ -3562,6 +3837,34 @@ collapsed:: true
 				- 之前的多巴胺很高，回想的过程都能让人感到快乐
 				- 对于高多巴胺感受的沉溺，必须要确定的信念是：“平静或者说平淡是生活的常态，高甜或者高燃或者高光时刻本身就不是持久的；要学会享受平静”
 				- “活力过剩”导致无法消耗掉
+			-
+		- [[比亚迪规划院]]
+		  collapsed:: true
+			- ![image.png](../assets/image_1709104506326_0.png)
+			- ![image.png](../assets/image_1709104556900_0.png)
+			- ![image.png](../assets/image_1709104728825_0.png)
+			- ![image.png](../assets/image_1709104790977_0.png)
+			- ![image.png](../assets/image_1709104956914_0.png)
+			- ![image.png](../assets/image_1709105022528_0.png)
+			- ![image.png](../assets/image_1709105218785_0.png)
+			- ![image.png](../assets/image_1709105359372_0.png)
+			- ![image.png](../assets/image_1709105649450_0.png)
+			- ![image.png](../assets/image_1709105759659_0.png)
+			- ![image.png](../assets/image_1709105796910_0.png)
+			- ![image.png](../assets/image_1709105969635_0.png)
+			- ![image.png](../assets/image_1709105992445_0.png)
+			- ![image.png](../assets/image_1709106298118_0.png)
+			- ![image.png](../assets/image_1709106360890_0.png)
+		- [[比亚迪职场规划]]
+		  collapsed:: true
+			- ![image.png](../assets/image_1709106578056_0.png)
+			- ![image.png](../assets/image_1709106692236_0.png)
+			- ![image.png](../assets/image_1709106774858_0.png)
+			- ![image.png](../assets/image_1709106819929_0.png)
+			- ![image.png](../assets/image_1709106849010_0.png)
+			- ![image.png](../assets/image_1709106974426_0.png)
+			- ![image.png](../assets/image_1709107484770_0.png)
+			- ![image.png](../assets/image_1709107601433_0.png)
 			-
 - ## CountDownPlans
 	- DONE CountDown100
@@ -3766,6 +4069,7 @@ collapsed:: true
 		- ![image.png](../assets/image_1708924881243_0.png){:height 281, :width 718}
 		-
 - ## TwoBigRealityGoals
+  collapsed:: true
 	- TODO 润德国 （最重要的目标）
 	  collapsed:: true
 	  :LOGBOOK:
@@ -3780,6 +4084,8 @@ collapsed:: true
 	  collapsed:: true
 		- TODO help others in need
 			- TODO 为什么mental分裂的人的文字会出现逻辑不通的现象
+	- TODO 体力提升计划
+	-
 - ## TwoBigMentalGoals
   collapsed:: true
 	- TODO 学会摄影
