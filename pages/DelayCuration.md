@@ -3548,19 +3548,23 @@ collapsed:: true
 					- test
 					  collapsed:: true
 						- ![image.png](../assets/image_1709649538454_0.png)
-				- DOING Att-Unet的在新数据上的结果
+				- DONE Att-Unet的在新数据上的结果
 				  :LOGBOOK:
 				  CLOCK: [2024-03-05 Tue 21:08:20]
-				  CLOCK: [2024-03-05 Tue 21:08:23]
+				  CLOCK: [2024-03-05 Tue 21:08:23]--[2024-03-07 Thu 17:54:22] =>  44:45:59
 				  :END:
 					- train + val
-						-
+					  collapsed:: true
+						- ![image.png](../assets/image_1709805252030_0.png)
 					- test
+						- ![image.png](../assets/image_1709805209677_0.png)
 				- DOING Att-Unet + diffusion-unit在新数据上的结果
 				  :LOGBOOK:
 				  CLOCK: [2024-03-07 Thu 14:03:04]
 				  :END:
-				-
+					- train + val
+					- test
+					-
 				- DOING 改进diffusion-Unit的参数量，加快其运行过程，减少所需的GPU
 				  :LOGBOOK:
 				  CLOCK: [2024-03-05 Tue 21:08:37]
@@ -3606,10 +3610,14 @@ collapsed:: true
 							- ![image.png](../assets/image_1709789244977_0.png)
 						- test
 							- ![image.png](../assets/image_1709789519897_0.png)
-					- LATER unet++with_diffusion调整一下参数: 只迭代二次，但使用同样的权重
+					- DONE unet++with_diffusion调整一下参数: 只迭代二次，但使用同样的权重
+					  collapsed:: true
 						- train + val
+							- ![image.png](../assets/image_1709800859228_0.png)
+							- ![image.png](../assets/image_1709800884706_0.png)
 						- test
-						-
+						  collapsed:: true
+							- ![image.png](../assets/image_1709800836367_0.png)
 					- LATER unet++with_diffusion调整一下参数: 只迭代三次，使用不同的权重
 					- DONE 只让diffusion-Unit放在第一个decoder模块，但是先放置，后才上采样
 					  :LOGBOOK:
@@ -3622,10 +3630,10 @@ collapsed:: true
 						- test
 						  collapsed:: true
 							- ![image.png](../assets/image_1709775947728_0.png)
-				- DOING 优化一下UNet_W_ATT_SK2 混合注意力方式，再重新跑实验结果
+				- DONE 优化一下UNet_W_ATT_SK2 混合注意力方式，再重新跑实验结果
 				  :LOGBOOK:
 				  CLOCK: [2024-03-05 Tue 21:09:10]
-				  CLOCK: [2024-03-05 Tue 21:10:59]
+				  CLOCK: [2024-03-05 Tue 21:10:59]--[2024-03-07 Thu 19:12:02] =>  46:01:03
 				  :END:
 					- DONE 改正权重计算代码错误，重跑结果   + 对比混合注意力结果
 					  collapsed:: true
@@ -3679,9 +3687,41 @@ collapsed:: true
 						  collapsed:: true
 							- ![image.png](../assets/image_1709789655616_0.png)
 						- train
+						  collapsed:: true
 							- ![image.png](../assets/image_1709788179345_0.png)
 							- ![image.png](../assets/image_1709788222308_0.png)
 							-
+					- DONE 换用论文那种1*1卷积获取权重方式
+					  collapsed:: true
+					  :LOGBOOK:
+					  CLOCK: [2024-03-07 Thu 16:42:29]
+					  CLOCK: [2024-03-07 Thu 16:42:31]--[2024-03-07 Thu 16:49:41] =>  00:07:10
+					  :END:
+						- train + val
+						  collapsed:: true
+							- ![image.png](../assets/image_1709801348217_0.png)
+						- test
+						  collapsed:: true
+							- ![image.png](../assets/image_1709801325206_0.png)
+					- DONE 换用纯粹自注意力方式
+					  collapsed:: true
+					  :LOGBOOK:
+					  CLOCK: [2024-03-07 Thu 16:48:07]
+					  CLOCK: [2024-03-07 Thu 16:48:09]--[2024-03-07 Thu 17:52:44] =>  01:04:35
+					  :END:
+						- train + val
+						  collapsed:: true
+							- ![image.png](../assets/image_1709805157356_0.png)
+						- test
+						  collapsed:: true
+							- ![image.png](../assets/image_1709805119637_0.png)
+					- 换用纯粹自注意力方式，但是位置放在最下面的一层残差连接处
+					  collapsed:: true
+						- train + val
+						  collapsed:: true
+							- ![image.png](../assets/image_1709809828802_0.png)
+						- test
+							- ![image.png](../assets/image_1709809734673_0.png)
 				- DOING 重新跑通道注意力
 				  :LOGBOOK:
 				  CLOCK: [2024-03-05 Tue 22:10:51]
