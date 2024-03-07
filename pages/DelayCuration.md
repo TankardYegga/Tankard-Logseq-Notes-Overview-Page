@@ -3519,11 +3519,6 @@ collapsed:: true
 						- ![image.png](../assets/image_1709438682314_0.png)
 						  id:: 65e3f6a5-bc72-48a0-8f51-94dcae2c8ea6
 						-
-				- DOING 将第二组比例划分的数据进行diffusion Unet的实验，观察下实验结果如何
-				  :LOGBOOK:
-				  CLOCK: [2024-03-03 Sun 12:16:41]
-				  CLOCK: [2024-03-03 Sun 12:16:42]
-				  :END:
 				- DONE UNet_W_ATT_SK2 混合注意力方式的在新数据上的结果
 				  collapsed:: true
 				  :LOGBOOK:
@@ -3537,6 +3532,7 @@ collapsed:: true
 					- test
 						- ![image.png](../assets/image_1709643837868_0.png)
 				- DONE UNet++的在新数据上的结果
+				  collapsed:: true
 				  :LOGBOOK:
 				  CLOCK: [2024-03-05 Tue 21:05:47]
 				  CLOCK: [2024-03-05 Tue 21:05:48]--[2024-03-05 Tue 22:39:11] =>  01:33:23
@@ -3549,6 +3545,7 @@ collapsed:: true
 					  collapsed:: true
 						- ![image.png](../assets/image_1709649538454_0.png)
 				- DONE Att-Unet的在新数据上的结果
+				  collapsed:: true
 				  :LOGBOOK:
 				  CLOCK: [2024-03-05 Tue 21:08:20]
 				  CLOCK: [2024-03-05 Tue 21:08:23]--[2024-03-07 Thu 17:54:22] =>  44:45:59
@@ -3558,17 +3555,20 @@ collapsed:: true
 						- ![image.png](../assets/image_1709805252030_0.png)
 					- test
 						- ![image.png](../assets/image_1709805209677_0.png)
-				- DOING Att-Unet + diffusion-unit在新数据上的结果
+				- DONE Att-Unet + diffusion-unit在新数据上的结果
+				  collapsed:: true
 				  :LOGBOOK:
-				  CLOCK: [2024-03-07 Thu 14:03:04]
+				  CLOCK: [2024-03-07 Thu 14:03:04]--[2024-03-07 Thu 19:17:40] =>  05:14:36
 				  :END:
 					- train + val
+					  collapsed:: true
+						- ![image.png](../assets/image_1709810231253_0.png)
 					- test
-					-
-				- DOING 改进diffusion-Unit的参数量，加快其运行过程，减少所需的GPU
+						- ![image.png](../assets/image_1709810197320_0.png)
+				- DONE 改进diffusion-Unit的参数量，加快其运行过程，减少所需的GPU
 				  :LOGBOOK:
 				  CLOCK: [2024-03-05 Tue 21:08:37]
-				  CLOCK: [2024-03-05 Tue 21:08:38]
+				  CLOCK: [2024-03-05 Tue 21:08:38]--[2024-03-08 Fri 01:18:04] =>  52:09:26
 				  :END:
 					- DONE 只让diffusion-Unit放在第一个decoder模块
 					  collapsed:: true
@@ -3618,8 +3618,20 @@ collapsed:: true
 						- test
 						  collapsed:: true
 							- ![image.png](../assets/image_1709800836367_0.png)
-					- LATER unet++with_diffusion调整一下参数: 只迭代三次，使用不同的权重
+					- DONE unet++with_diffusion调整一下参数: 只迭代三次，使用不同的权重
+					  :LOGBOOK:
+					  CLOCK: [2024-03-08 Fri 01:14:21]--[2024-03-08 Fri 01:14:21] =>  00:00:00
+					  CLOCK: [2024-03-08 Fri 01:14:22]--[2024-03-08 Fri 01:14:23] =>  00:00:01
+					  :END:
+						- test
+						  collapsed:: true
+							- ![image.png](../assets/image_1709830545802_0.png)
+							-
+						- train + val
+						  collapsed:: true
+							- ![image.png](../assets/image_1709831657425_0.png)
 					- DONE 只让diffusion-Unit放在第一个decoder模块，但是先放置，后才上采样
+					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-03-07 Thu 01:24:12]
 					  CLOCK: [2024-03-07 Thu 01:24:22]--[2024-03-07 Thu 09:46:48] =>  08:22:26
@@ -3727,23 +3739,35 @@ collapsed:: true
 				  CLOCK: [2024-03-05 Tue 22:10:51]
 				  CLOCK: [2024-03-05 Tue 22:10:52]
 				  :END:
-					- DOING  自己的方法
+					- DONE  自己的方法
+					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-03-07 Thu 00:24:20]
-					  CLOCK: [2024-03-07 Thu 00:24:23]
+					  CLOCK: [2024-03-07 Thu 00:24:23]--[2024-03-07 Thu 23:19:39] =>  22:55:16
 					  :END:
-						-
-					- DOING 自己设计方法的参数调整1
+						- train + val
+						  collapsed:: true
+							- ![image.png](../assets/image_1709824770422_0.png)
+						- test
+							- ![image.png](../assets/image_1709824686499_0.png)
+					- DONE 自己设计方法的参数调整1
+					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-03-07 Thu 00:24:26]
-					  CLOCK: [2024-03-07 Thu 00:24:27]
+					  CLOCK: [2024-03-07 Thu 00:24:27]--[2024-03-07 Thu 21:19:54] =>  20:55:27
 					  :END:
+						- train + val
+						  collapsed:: true
+							- ![image.png](../assets/image_1709817246046_0.png)
+						- test
+						  collapsed:: true
+							- ![image.png](../assets/image_1709817219665_0.png)
+							- ![image.png](../assets/image_1709817564013_0.png)
 					- DOING 自己设计方法的参数调整2
 					  :LOGBOOK:
 					  CLOCK: [2024-03-07 Thu 00:24:41]
 					  :END:
-					- DOING 再次改进自己设计的方法
-					  :LOGBOOK:
+					- :LOGBOOK:
 					  CLOCK: [2024-03-07 Thu 00:25:52]
 					  CLOCK: [2024-03-07 Thu 00:25:53]
 					  :END:
