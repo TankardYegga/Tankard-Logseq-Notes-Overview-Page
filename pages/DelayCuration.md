@@ -2209,13 +2209,11 @@ collapsed:: true
 			- TODO 机械制图、电子电工原理
 			-
 		- [[准备日企面试]]
-		  collapsed:: true
 			- DONE 安装zoom
 			  :LOGBOOK:
 			  CLOCK: [2023-10-26 Thu 10:00:23]--[2023-10-26 Thu 10:00:24] =>  00:00:01
 			  :END:
 			- DONE 准备对应的面试题
-			  collapsed:: true
 			  :LOGBOOK:
 			  CLOCK: [2023-10-24 Tue 09:36:03]--[2023-10-26 Thu 10:00:32] =>  48:24:29
 			  :END:
@@ -2327,7 +2325,6 @@ collapsed:: true
 			  :LOGBOOK:
 			  CLOCK: [2023-10-27 Fri 17:16:00]--[2023-10-27 Fri 17:16:01] =>  00:00:01
 			  :END:
-			- TODO 学期末把开题封面给刑老师
 		- [[平复情绪或者平复脑压练习]]
 		  collapsed:: true
 			- TODO 脑压大时尝试冥想5min
@@ -3472,7 +3469,6 @@ collapsed:: true
 					- ![image.png](../assets/image_1708728725804_0.png)
 					-
 			- NOW 实验结果分析与改进
-			  collapsed:: true
 			  :LOGBOOK:
 			  CLOCK: [2024-03-02 Sat 20:18:51]
 			  CLOCK: [2024-03-02 Sat 20:18:53]--[2024-03-03 Sun 12:16:32] =>  15:57:39
@@ -3491,16 +3487,17 @@ collapsed:: true
 						- ![image.png](../assets/image_1709389536378_0.png){:height 230, :width 687}
 						-
 				- DONE 按照7.5: 0.5: 2的比例进行划分
-				  collapsed:: true
 				  :LOGBOOK:
 				  CLOCK: [2024-03-02 Sat 20:22:54]
 				  CLOCK: [2024-03-02 Sat 20:22:55]--[2024-03-02 Sat 23:59:24] =>  03:36:29
 				  :END:
 					- ![image.png](../assets/image_1709382522168_0.png){:height 233, :width 718}
 					- train + val
+					  collapsed:: true
 						- ![image.png](../assets/image_1709394936953_0.png)
 						- ![image.png](../assets/image_1709395114148_0.png)
 					- test
+					  collapsed:: true
 						- ![image.png](../assets/image_1709395080750_0.png)
 						-
 				- DONE 按照8:1:1的比例进行划分
@@ -3556,7 +3553,6 @@ collapsed:: true
 					- test
 						- ![image.png](../assets/image_1709805209677_0.png)
 				- DONE Att-Unet + diffusion-unit在新数据上的结果
-				  collapsed:: true
 				  :LOGBOOK:
 				  CLOCK: [2024-03-07 Thu 14:03:04]--[2024-03-07 Thu 19:17:40] =>  05:14:36
 				  :END:
@@ -3566,6 +3562,7 @@ collapsed:: true
 					- test
 						- ![image.png](../assets/image_1709810197320_0.png)
 				- DONE 改进diffusion-Unit的参数量，加快其运行过程，减少所需的GPU
+				  collapsed:: true
 				  :LOGBOOK:
 				  CLOCK: [2024-03-05 Tue 21:08:37]
 				  CLOCK: [2024-03-05 Tue 21:08:38]--[2024-03-08 Fri 01:18:04] =>  52:09:26
@@ -3579,23 +3576,23 @@ collapsed:: true
 						- ![image.png](../assets/image_1709752759777_0.png)
 						- ![image.png](../assets/image_1709752690868_0.png){:height 207, :width 718}
 					- DONE Unet++ with_diffusion
-					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-03-07 Thu 04:31:03]
 					  CLOCK: [2024-03-07 Thu 04:31:04]--[2024-03-07 Thu 04:35:49] =>  00:04:45
 					  :END:
 						- train
 						  id:: 65e8d31b-1dea-4c1e-896c-d7ddb193dadd
+						  collapsed:: true
 							- ![image.png](../assets/image_1709757314715_0.png)
 							  id:: 65e8d327-e0ed-470c-b86d-cd632ad97c59
 						- test
 							- ![image.png](../assets/image_1709757220729_0.png)
 					- DONE Unet++ with_diffusion + 从30跑到40
-					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-03-07 Thu 10:54:12]--[2024-03-07 Thu 10:54:14] =>  00:00:02
 					  :END:
 						- train + val
+						  collapsed:: true
 							- ![image.png](../assets/image_1709780017350_0.png)
 						- test
 							- ![image.png](../assets/image_1709780046945_0.png)
@@ -3619,6 +3616,7 @@ collapsed:: true
 						  collapsed:: true
 							- ![image.png](../assets/image_1709800836367_0.png)
 					- DONE unet++with_diffusion调整一下参数: 只迭代三次，使用不同的权重
+					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-03-08 Fri 01:14:21]--[2024-03-08 Fri 01:14:21] =>  00:00:00
 					  CLOCK: [2024-03-08 Fri 01:14:22]--[2024-03-08 Fri 01:14:23] =>  00:00:01
@@ -3767,10 +3765,30 @@ collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-03-07 Thu 00:24:41]
 					  :END:
-					- :LOGBOOK:
-					  CLOCK: [2024-03-07 Thu 00:25:52]
-					  CLOCK: [2024-03-07 Thu 00:25:53]
-					  :END:
+				- DONE 使用uncertainty的基本方法1
+				  collapsed:: true
+				  :LOGBOOK:
+				  CLOCK: [2024-03-07 Thu 00:25:52]
+				  CLOCK: [2024-03-07 Thu 00:25:53]
+				  CLOCK: [2024-03-08 Fri 23:18:16]
+				  CLOCK: [2024-03-08 Fri 23:18:18]--[2024-03-08 Fri 23:37:43] =>  00:19:25
+				  :END:
+					- train + val
+					  collapsed:: true
+						- ![image.png](../assets/image_1709911127087_0.png)
+						- ![image.png](../assets/image_1709911162851_0.png)
+					- test
+						- ![image.png](../assets/image_1709912258164_0.png)
+				- DOING 使用uncertainty的基本方法1 + 对粗分割和精细化分割都增加一个损失
+				  :LOGBOOK:
+				  CLOCK: [2024-03-08 Fri 23:18:27]
+				  CLOCK: [2024-03-08 Fri 23:18:28]
+				  :END:
+					- test
+						- ![image.png](../assets/image_1709915631661_0.png)
+					- train + val
+					  collapsed:: true
+						- ![image.png](../assets/image_1709915691091_0.png)
 				-
 				-
 				-
