@@ -3529,7 +3529,6 @@ collapsed:: true
 					- test
 						- ![image.png](../assets/image_1709643837868_0.png)
 				- DONE UNet++的在新数据上的结果
-				  collapsed:: true
 				  :LOGBOOK:
 				  CLOCK: [2024-03-05 Tue 21:05:47]
 				  CLOCK: [2024-03-05 Tue 21:05:48]--[2024-03-05 Tue 22:39:11] =>  01:33:23
@@ -3779,18 +3778,63 @@ collapsed:: true
 						- ![image.png](../assets/image_1709911162851_0.png)
 					- test
 						- ![image.png](../assets/image_1709912258164_0.png)
-				- DOING 使用uncertainty的基本方法1 + 对粗分割和精细化分割都增加一个损失
+				- DONE 使用uncertainty的基本方法1 + 对粗分割和精细化分割都增加一个损失
+				  collapsed:: true
 				  :LOGBOOK:
 				  CLOCK: [2024-03-08 Fri 23:18:27]
-				  CLOCK: [2024-03-08 Fri 23:18:28]
+				  CLOCK: [2024-03-08 Fri 23:18:28]--[2024-03-09 Sat 00:35:26] =>  01:16:58
 				  :END:
 					- test
 						- ![image.png](../assets/image_1709915631661_0.png)
 					- train + val
-					  collapsed:: true
 						- ![image.png](../assets/image_1709915691091_0.png)
-				-
-				-
+				- LATER 使用uncertainty的基本方法1 + 对粗分割和精细化分割都增加一个损失 + 计算uncertainty_mask的方法使用的是sigmoid之后的数据
+					- train + val
+						-
+					- test
+						-
+				- DONE 使用uncertainty的基本方法1 + 对粗分割和精细化分割都增加一个损失 + 改动细化特征的来源为编码器而不是解码器
+				  collapsed:: true
+				  :LOGBOOK:
+				  CLOCK: [2024-03-09 Sat 00:36:31]--[2024-03-09 Sat 01:26:28] =>  00:49:57
+				  :END:
+					- test
+						- ![image.png](../assets/image_1709918726881_0.png)
+					- train + val
+						- ![image.png](../assets/image_1709918759303_0.png)
+				- DONE 使用uncertainty的基本方法2 + 对粗分割和精细化分割都增加一个损失
+				  collapsed:: true
+					- train + val
+					  collapsed:: true
+						- ![image.png](../assets/image_1709967077890_0.png)
+					- test
+					  collapsed:: true
+						- ![image.png](../assets/image_1709967051012_0.png)
+				- DONE 使用uncertainty的基本方法2的改进版本1（将获得boundary_mask的方式变成扩张和腐蚀的平均，也加上利用uncertainty_map直接计算的不确定部分） + 对粗分割和精细化分割都增加一个损失
+				  collapsed:: true
+					- train + val
+					  collapsed:: true
+						- ![image.png](../assets/image_1709980489936_0.png)
+					- test
+						- ![image.png](../assets/image_1709980460780_0.png)
+				- DONE 使用uncertainty的基本方法2的改进版本2（将获得boundary_mask的方式变成扩张和腐蚀的平均，不加上利用uncertainty_map直接计算的不确定部分） + 对粗分割和精细化分割都增加一个损失
+					- train + val
+					  collapsed:: true
+						- ![image.png](../assets/image_1709985110329_0.png)
+					- test
+					  collapsed:: true
+						- ![image.png](../assets/image_1709985078615_0.png)
+				- DONE 使用uncertainty的基本方法2的改进版本3（将获得boundary_mask的方式的池化相减的顺序对调，也加上利用uncertainty_map直接计算的不确定部分） + 对粗分割和精细化分割都增加一个损失
+				  collapsed:: true
+					- train + val
+						- ![image.png](../assets/image_1709983932589_0.png)
+					- test
+						- ![image.png](../assets/image_1709983903483_0.png)
+				- LATER 使用uncertainty的基本方法2的改进版本3（将获得boundary_mask的方式的池化相减的顺序对调，不加上利用uncertainty_map直接计算的不确定部分） + 对粗分割和精细化分割都增加一个损失
+					- train + val
+					- test
+						-
+					-
 				-
 			-
 			-
