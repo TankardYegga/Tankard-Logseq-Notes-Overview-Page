@@ -2214,6 +2214,7 @@ collapsed:: true
 			  CLOCK: [2023-10-26 Thu 10:00:23]--[2023-10-26 Thu 10:00:24] =>  00:00:01
 			  :END:
 			- DONE 准备对应的面试题
+			  collapsed:: true
 			  :LOGBOOK:
 			  CLOCK: [2023-10-24 Tue 09:36:03]--[2023-10-26 Thu 10:00:32] =>  48:24:29
 			  :END:
@@ -3468,11 +3469,12 @@ collapsed:: true
 					- 2019 年的Attentive feedback network for boundary-aware salient object detection. In: Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition论文有没有对应的代码？
 					- ![image.png](../assets/image_1708728725804_0.png)
 					-
-			- NOW 实验结果分析与改进
+			- DONE 实验结果分析与改进
+			  collapsed:: true
 			  :LOGBOOK:
 			  CLOCK: [2024-03-02 Sat 20:18:51]
 			  CLOCK: [2024-03-02 Sat 20:18:53]--[2024-03-03 Sun 12:16:32] =>  15:57:39
-			  CLOCK: [2024-03-03 Sun 12:16:34]
+			  CLOCK: [2024-03-03 Sun 12:16:34]--[2024-03-10 Sun 00:03:48] =>  155:47:14
 			  :END:
 				- DONE 按照7:1:2的比例进行划分
 				  collapsed:: true
@@ -3731,10 +3733,10 @@ collapsed:: true
 							- ![image.png](../assets/image_1709809828802_0.png)
 						- test
 							- ![image.png](../assets/image_1709809734673_0.png)
-				- DOING 重新跑通道注意力
+				- DONE 重新跑通道注意力
 				  :LOGBOOK:
 				  CLOCK: [2024-03-05 Tue 22:10:51]
-				  CLOCK: [2024-03-05 Tue 22:10:52]
+				  CLOCK: [2024-03-05 Tue 22:10:52]--[2024-03-10 Sun 00:03:54] =>  97:53:02
 				  :END:
 					- DONE  自己的方法
 					  collapsed:: true
@@ -3793,16 +3795,28 @@ collapsed:: true
 					- test
 					  collapsed:: true
 						- ![image.png](../assets/image_1709987396823_0.png)
-				-
+					- DONE 修改了一下uncertainty的计算方法
+					  collapsed:: true
+					  :LOGBOOK:
+					  CLOCK: [2024-03-10 Sun 00:04:42]
+					  CLOCK: [2024-03-10 Sun 00:04:53]--[2024-03-10 Sun 00:05:40] =>  00:00:47
+					  :END:
+						- train + val
+						  collapsed:: true
+							- ![image.png](../assets/image_1710000335537_0.png)
+						- test
+						  collapsed:: true
+							- ![image.png](../assets/image_1710000309370_0.png)
 				-
 				- DONE 使用uncertainty的基本方法1 + 对粗分割和精细化分割都增加一个损失 + 改动细化特征的来源为编码器而不是解码器
-				  collapsed:: true
 				  :LOGBOOK:
 				  CLOCK: [2024-03-09 Sat 00:36:31]--[2024-03-09 Sat 01:26:28] =>  00:49:57
 				  :END:
 					- test
+					  collapsed:: true
 						- ![image.png](../assets/image_1709918726881_0.png)
 					- train + val
+					  collapsed:: true
 						- ![image.png](../assets/image_1709918759303_0.png)
 				-
 				-
@@ -3854,20 +3868,23 @@ collapsed:: true
 							- ![image.png](../assets/image_1709988935001_0.png)
 						- test
 							- ![image.png](../assets/image_1709988904995_0.png)
-					- DOING 尝试对uncertainty map的计算方式进行改进, 加上sigmoid
+					- DONE 尝试对uncertainty map的计算方式进行改进, 加上sigmoid
+					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-03-09 Sat 21:13:55]
-					  CLOCK: [2024-03-09 Sat 21:13:57]
+					  CLOCK: [2024-03-09 Sat 21:13:57]--[2024-03-10 Sun 00:06:38] =>  02:52:41
 					  :END:
 						- train + val
+							- ![image.png](../assets/image_1710000390860_0.png)
 						- test
-						-
+							- ![image.png](../assets/image_1710000360907_0.png)
 				- DONE 使用uncertainty的基本方法2的改进版本3（将获得boundary_mask的方式的池化相减的顺序对调，不加上利用uncertainty_map直接计算的不确定部分） + 对粗分割和精细化分割都增加一个损失
 				  collapsed:: true
 					- train + val
 						- ![image.png](../assets/image_1709985110329_0.png)
 					- test
 						- ![image.png](../assets/image_1709985078615_0.png)
+				-
 				-
 			-
 			-
@@ -3879,6 +3896,7 @@ collapsed:: true
 			  CLOCK: [2024-01-21 Sun 20:44:03]--[2024-01-21 Sun 20:46:05] =>  00:02:02
 			  :END:
 			- DOING 先开始撰写第三章
+			  collapsed:: true
 			  :LOGBOOK:
 			  CLOCK: [2024-01-21 Sun 20:44:25]
 			  CLOCK: [2024-01-21 Sun 20:44:43]
