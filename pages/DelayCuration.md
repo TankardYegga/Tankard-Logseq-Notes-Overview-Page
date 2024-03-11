@@ -2975,6 +2975,7 @@ collapsed:: true
 			  CLOCK: [2024-01-17 Wed 18:44:41]--[2024-01-17 Wed 18:44:42] =>  00:00:01
 			  :END:
 			- DONE 完成实验数据相关的问题
+			  collapsed:: true
 			  :LOGBOOK:
 			  CLOCK: [2024-01-22 Mon 23:55:09]--[2024-01-23 Tue 00:44:15] =>  00:49:06
 			  CLOCK: [2024-01-23 Tue 00:44:33]--[2024-01-23 Tue 00:44:35] =>  00:00:02
@@ -2988,6 +2989,7 @@ collapsed:: true
 					- 第二个是数据划分比例的问题，应该将8:1:1改成6:2:2
 					- 第三个是没有进行数据的预处理
 				- DONE 完成关于数据问题setting的组合实验
+				  collapsed:: true
 				  :LOGBOOK:
 				  CLOCK: [2024-01-11 Thu 21:03:31]--[2024-01-23 Tue 00:43:56] =>  267:40:25
 				  :END:
@@ -3193,11 +3195,11 @@ collapsed:: true
 							- test纠正后的结果，原先的test跑在了含有normal数据的测试上
 								- ![image.png](../assets/image_1708525539555_0.png)
 								-
-			- DOING 完成常见对比模型的实验
+			- DONE 完成常见对比模型的实验
 			  collapsed:: true
 			  :LOGBOOK:
 			  CLOCK: [2024-01-24 Wed 02:25:02]
-			  CLOCK: [2024-01-24 Wed 02:25:03]
+			  CLOCK: [2024-01-24 Wed 02:25:03]--[2024-03-11 Mon 06:59:58] =>  1132:34:55
 			  :END:
 				- DONE Unet++
 				  collapsed:: true
@@ -3236,10 +3238,10 @@ collapsed:: true
 				- TODO 在正数第二层（尺寸大）使用1 * 1卷积的方式来计算encoder层特征的注意力权重
 				- TODO 在倒数第二层（尺寸小）使用自注意力的方式来计算encoder层特征的注意力权重
 				-
-			- DOING 怎么修改rethink模型的主干网络，使得其具有相当效果
+			- DONE 怎么修改rethink模型的主干网络，使得其具有相当效果
 			  collapsed:: true
 			  :LOGBOOK:
-			  CLOCK: [2024-02-22 Thu 16:43:12]
+			  CLOCK: [2024-02-22 Thu 16:43:12]--[2024-03-11 Mon 06:59:59] =>  422:16:47
 			  :END:
 				- DONE 查看论文使用的几个基线网络，用于对比的
 				  collapsed:: true
@@ -3443,7 +3445,7 @@ collapsed:: true
 				  :LOGBOOK:
 				  CLOCK: [2024-02-13 Tue 03:04:31]
 				  :END:
-			- LATER 用一个端到端的网络来顺带完成乳腺肿块的分类
+			- DONE 用一个端到端的网络来顺带完成乳腺肿块的分类
 			  :LOGBOOK:
 			  CLOCK: [2024-03-02 Sat 20:18:27]--[2024-03-02 Sat 20:18:28] =>  00:00:01
 			  :END:
@@ -3484,6 +3486,7 @@ collapsed:: true
 				  :END:
 					- ![image.png](../assets/image_1709382459144_0.png)
 					- train + val
+					  collapsed:: true
 						- ![image.png](../assets/image_1709388965029_0.png)
 					- test
 						- ![image.png](../assets/image_1709389536378_0.png){:height 230, :width 687}
@@ -3499,7 +3502,6 @@ collapsed:: true
 						- ![image.png](../assets/image_1709394936953_0.png)
 						- ![image.png](../assets/image_1709395114148_0.png)
 					- test
-					  collapsed:: true
 						- ![image.png](../assets/image_1709395080750_0.png)
 						-
 				- DONE 按照8:1:1的比例进行划分
@@ -3519,7 +3521,6 @@ collapsed:: true
 						  id:: 65e3f6a5-bc72-48a0-8f51-94dcae2c8ea6
 						-
 				- DONE UNet_W_ATT_SK2 混合注意力方式的在新数据上的结果
-				  collapsed:: true
 				  :LOGBOOK:
 				  CLOCK: [2024-03-05 Tue 20:48:56]
 				  CLOCK: [2024-03-05 Tue 20:49:11]--[2024-03-05 Tue 21:04:07] =>  00:14:56
@@ -3540,10 +3541,8 @@ collapsed:: true
 						- ![image.png](../assets/image_1709649171871_0.png)
 						- ![image.png](../assets/image_1709649268385_0.png)
 					- test
-					  collapsed:: true
 						- ![image.png](../assets/image_1709649538454_0.png)
 				- DONE Att-Unet的在新数据上的结果
-				  collapsed:: true
 				  :LOGBOOK:
 				  CLOCK: [2024-03-05 Tue 21:08:20]
 				  CLOCK: [2024-03-05 Tue 21:08:23]--[2024-03-07 Thu 17:54:22] =>  44:45:59
@@ -3563,19 +3562,21 @@ collapsed:: true
 					- test
 						- ![image.png](../assets/image_1709810197320_0.png)
 				- DONE 改进diffusion-Unit的参数量，加快其运行过程，减少所需的GPU
-				  collapsed:: true
 				  :LOGBOOK:
 				  CLOCK: [2024-03-05 Tue 21:08:37]
 				  CLOCK: [2024-03-05 Tue 21:08:38]--[2024-03-08 Fri 01:18:04] =>  52:09:26
 				  :END:
 					- DONE 只让diffusion-Unit放在第一个decoder模块
-					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-03-07 Thu 01:23:53]
 					  CLOCK: [2024-03-07 Thu 01:23:55]--[2024-03-07 Thu 03:19:24] =>  01:55:29
 					  :END:
-						- ![image.png](../assets/image_1709752759777_0.png)
-						- ![image.png](../assets/image_1709752690868_0.png){:height 207, :width 718}
+						- train + val
+						  collapsed:: true
+							- ![image.png](../assets/image_1709752759777_0.png)
+							-
+						- test
+							- ![image.png](../assets/image_1709752690868_0.png){:height 207, :width 718}
 					- DONE Unet++ with_diffusion
 					  :LOGBOOK:
 					  CLOCK: [2024-03-07 Thu 04:31:03]
@@ -3598,39 +3599,35 @@ collapsed:: true
 						- test
 							- ![image.png](../assets/image_1709780046945_0.png)
 					- DONE unet++with_diffusion调整一下参数: 只迭代一次
-					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-03-07 Thu 11:15:37]
 					  CLOCK: [2024-03-07 Thu 11:15:40]--[2024-03-07 Thu 13:32:10] =>  02:16:30
 					  :END:
 						- train + val
+						  collapsed:: true
 							- ![image.png](../assets/image_1709789185301_0.png)
 							- ![image.png](../assets/image_1709789244977_0.png)
 						- test
 							- ![image.png](../assets/image_1709789519897_0.png)
 					- DONE unet++with_diffusion调整一下参数: 只迭代二次，但使用同样的权重
-					  collapsed:: true
 						- train + val
+						  collapsed:: true
 							- ![image.png](../assets/image_1709800859228_0.png)
 							- ![image.png](../assets/image_1709800884706_0.png)
 						- test
-						  collapsed:: true
 							- ![image.png](../assets/image_1709800836367_0.png)
 					- DONE unet++with_diffusion调整一下参数: 只迭代三次，使用不同的权重
-					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-03-08 Fri 01:14:21]--[2024-03-08 Fri 01:14:21] =>  00:00:00
 					  CLOCK: [2024-03-08 Fri 01:14:22]--[2024-03-08 Fri 01:14:23] =>  00:00:01
 					  :END:
 						- test
-						  collapsed:: true
 							- ![image.png](../assets/image_1709830545802_0.png)
 							-
 						- train + val
 						  collapsed:: true
 							- ![image.png](../assets/image_1709831657425_0.png)
 					- DONE 只让diffusion-Unit放在第一个decoder模块，但是先放置，后才上采样
-					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-03-07 Thu 01:24:12]
 					  CLOCK: [2024-03-07 Thu 01:24:22]--[2024-03-07 Thu 09:46:48] =>  08:22:26
@@ -3639,15 +3636,13 @@ collapsed:: true
 						  collapsed:: true
 							- ![image.png](../assets/image_1709776006715_0.png)
 						- test
-						  collapsed:: true
 							- ![image.png](../assets/image_1709775947728_0.png)
 				- DONE 优化一下UNet_W_ATT_SK2 混合注意力方式，再重新跑实验结果
 				  :LOGBOOK:
 				  CLOCK: [2024-03-05 Tue 21:09:10]
 				  CLOCK: [2024-03-05 Tue 21:10:59]--[2024-03-07 Thu 19:12:02] =>  46:01:03
 				  :END:
-					- DONE 改正权重计算代码错误，重跑结果   + 对比混合注意力结果
-					  collapsed:: true
+					- DONE 改正权重计算代码错误，重跑结果   + 对比混合注意力结果(默认也是从下到上的第二层）
 					  :LOGBOOK:
 					  CLOCK: [2024-03-05 Tue 21:11:49]
 					  CLOCK: [2024-03-05 Tue 21:11:52]
@@ -3655,6 +3650,7 @@ collapsed:: true
 					  CLOCK: [2024-03-05 Tue 22:03:30]--[2024-03-06 Wed 11:56:27] =>  13:52:57
 					  :END:
 						- train + val
+						  collapsed:: true
 							- ![image.png](../assets/image_1709653780866_0.png)
 							- ![image.png](../assets/image_1709653804826_0.png)
 						- test
@@ -3673,10 +3669,10 @@ collapsed:: true
 					  CLOCK: [2024-03-05 Tue 22:03:54]--[2024-03-07 Thu 01:22:58] =>  27:19:04
 					  :END:
 						- train + val
+						  collapsed:: true
 							- ![image.png](../assets/image_1709745771750_0.png)
 							- ![image.png](../assets/image_1709745752612_0.png)
 						- test
-						  collapsed:: true
 							- ![image.png](../assets/image_1709745706677_0.png)
 					- DONE 换一下位置2
 					  collapsed:: true
@@ -3695,14 +3691,35 @@ collapsed:: true
 					  CLOCK: [2024-03-05 Tue 22:04:08]--[2024-03-07 Thu 13:35:01] =>  39:30:53
 					  :END:
 						- test
-						  collapsed:: true
 							- ![image.png](../assets/image_1709789655616_0.png)
 						- train
 						  collapsed:: true
 							- ![image.png](../assets/image_1709788179345_0.png)
 							- ![image.png](../assets/image_1709788222308_0.png)
 							-
-					- DONE 换用论文那种1*1卷积获取权重方式
+					-
+					-
+					- DOING 混合注意力结果(从下到上的第一层）
+					  :LOGBOOK:
+					  CLOCK: [2024-03-11 Mon 11:47:50]
+					  :END:
+						- train + val
+						- test
+					- DOING 混合注意力结果(从下到上的第三层）
+					  :LOGBOOK:
+					  CLOCK: [2024-03-11 Mon 11:48:18]
+					  :END:
+						- train + val
+						- test
+					- DOING 混合注意力结果(从下到上的第四层）
+					  :LOGBOOK:
+					  CLOCK: [2024-03-11 Mon 11:48:24]
+					  :END:
+						- train + val
+						- test
+					-
+					-
+					- DONE 换用论文那种1*1卷积获取权重方式（默认是从下到上的第二层）
 					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-03-07 Thu 16:42:29]
@@ -3712,8 +3729,38 @@ collapsed:: true
 						  collapsed:: true
 							- ![image.png](../assets/image_1709801348217_0.png)
 						- test
-						  collapsed:: true
 							- ![image.png](../assets/image_1709801325206_0.png)
+					- DONE 换用论文那种1*1卷积获取权重方式（从下到上的第一层）
+					  collapsed:: true
+					  :LOGBOOK:
+					  CLOCK: [2024-03-11 Mon 11:44:59]--[2024-03-11 Mon 13:22:15] =>  01:37:16
+					  :END:
+						- train + val
+						  collapsed:: true
+							- ![image.png](../assets/image_1710134530782_0.png)
+						- test
+							- ![image.png](../assets/image_1710134490695_0.png)
+					- DONE 换用论文那种1*1卷积获取权重方式（从下到上的第三层）
+					  :LOGBOOK:
+					  CLOCK: [2024-03-11 Mon 11:45:22]--[2024-03-11 Mon 14:13:30] =>  02:28:08
+					  :END:
+						- train + val
+						  collapsed:: true
+							- ![image.png](../assets/image_1710137607678_0.png)
+						- test
+							- ![image.png](../assets/image_1710137565355_0.png)
+					- DONE 换用论文那种1*1卷积获取权重方式（从下到上的第四层）
+					  collapsed:: true
+					  :LOGBOOK:
+					  CLOCK: [2024-03-11 Mon 11:45:25]--[2024-03-11 Mon 14:15:33] =>  02:30:08
+					  :END:
+						- train + val
+						  collapsed:: true
+							- ![image.png](../assets/image_1710137727839_0.png)
+						- test
+							- ![image.png](../assets/image_1710137687996_0.png)
+					-
+					-
 					- DONE 换用纯粹自注意力方式
 					  collapsed:: true
 					  :LOGBOOK:
@@ -3727,19 +3774,44 @@ collapsed:: true
 						  collapsed:: true
 							- ![image.png](../assets/image_1709805119637_0.png)
 					- 换用纯粹自注意力方式，但是位置放在最下面的一层残差连接处
-					  collapsed:: true
 						- train + val
 						  collapsed:: true
 							- ![image.png](../assets/image_1709809828802_0.png)
 						- test
 							- ![image.png](../assets/image_1709809734673_0.png)
+					- 换用纯粹自注意力方式，但是位置从下往上的第三个残差连接处
+					  collapsed:: true
+						- train + val
+						  collapsed:: true
+							- ![image.png](../assets/image_1710134428292_0.png)
+						- test
+							- ![image.png](../assets/image_1710134407438_0.png)
+					- 换用纯粹自注意力方式，但是位置从下往上的第四个残差连接处
+					  collapsed:: true
+						- train + val
+						- test
+						  collapsed:: true
+							- ![image.png](../assets/image_1710145643269_0.png)
+						- 参数量太大，无法运行
+				-
+					- DONE 结合：将自注意力方式放在从下往上的第一个残差连接处，将1 * 1卷积获取方式放在从下往上的第三个残差连接处
+					  :LOGBOOK:
+					  CLOCK: [2024-03-11 Mon 16:28:59]
+					  CLOCK: [2024-03-11 Mon 16:29:00]
+					  CLOCK: [2024-03-11 Mon 16:29:08]--[2024-03-11 Mon 17:15:05] =>  00:45:57
+					  :END:
+						- train + val
+						  collapsed:: true
+							- ![image.png](../assets/image_1710148499044_0.png)
+						- test
+							- ![image.png](../assets/image_1710148481916_0.png)
+				-
 				- DONE 重新跑通道注意力
 				  :LOGBOOK:
 				  CLOCK: [2024-03-05 Tue 22:10:51]
 				  CLOCK: [2024-03-05 Tue 22:10:52]--[2024-03-10 Sun 00:03:54] =>  97:53:02
 				  :END:
 					- DONE  自己的方法
-					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-03-07 Thu 00:24:20]
 					  CLOCK: [2024-03-07 Thu 00:24:23]--[2024-03-07 Thu 23:19:39] =>  22:55:16
@@ -3750,7 +3822,6 @@ collapsed:: true
 						- test
 							- ![image.png](../assets/image_1709824686499_0.png)
 					- DONE 自己设计方法的参数调整1
-					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-03-07 Thu 00:24:26]
 					  CLOCK: [2024-03-07 Thu 00:24:27]--[2024-03-07 Thu 21:19:54] =>  20:55:27
@@ -3762,10 +3833,46 @@ collapsed:: true
 						  collapsed:: true
 							- ![image.png](../assets/image_1709817219665_0.png)
 							- ![image.png](../assets/image_1709817564013_0.png)
+						- DOING 在交错位置添加的结果
+						  :LOGBOOK:
+						  CLOCK: [2024-03-11 Mon 16:58:21]
+						  :END:
+							- train + val
+							- test
+							-
+						- DOING 尝试只在一个位置来添加模块
+						  :LOGBOOK:
+						  CLOCK: [2024-03-11 Mon 13:39:51]
+						  CLOCK: [2024-03-11 Mon 13:40:39]
+						  :END:
+							- DONE 从上到下的第一个位置
+							  :LOGBOOK:
+							  CLOCK: [2024-03-11 Mon 16:57:19]
+							  CLOCK: [2024-03-11 Mon 16:57:20]--[2024-03-11 Mon 18:05:17] =>  01:07:57
+							  :END:
+								- test
+									- ![image.png](../assets/image_1710151453336_0.png)
+								- train + val
+								  collapsed:: true
+									- ![image.png](../assets/image_1710151511366_0.png)
+							- DONE 从下到上的最后一个位置
+							  :LOGBOOK:
+							  CLOCK: [2024-03-11 Mon 16:57:28]
+							  CLOCK: [2024-03-11 Mon 16:57:29]--[2024-03-11 Mon 18:19:24] =>  01:21:55
+							  :END:
+								- test
+									- ![image.png](../assets/image_1710152289752_0.png)
+								- train + val
+								  collapsed:: true
+									- ![image.png](../assets/image_1710152349158_0.png)
+					- :LOGBOOK:
+					  CLOCK: [2024-03-11 Mon 13:39:24]
+					  CLOCK: [2024-03-11 Mon 13:39:25]
+					  :END:
+					-
 				-
 				-
 				- DONE 使用uncertainty的基本方法1
-				  collapsed:: true
 				  :LOGBOOK:
 				  CLOCK: [2024-03-07 Thu 00:25:52]
 				  CLOCK: [2024-03-07 Thu 00:25:53]
@@ -3779,7 +3886,6 @@ collapsed:: true
 					- test
 						- ![image.png](../assets/image_1709912258164_0.png)
 				- DONE 使用uncertainty的基本方法1 + 对粗分割和精细化分割都增加一个损失
-				  collapsed:: true
 				  :LOGBOOK:
 				  CLOCK: [2024-03-08 Fri 23:18:27]
 				  CLOCK: [2024-03-08 Fri 23:18:28]--[2024-03-09 Sat 00:35:26] =>  01:16:58
@@ -3787,13 +3893,13 @@ collapsed:: true
 					- test
 						- ![image.png](../assets/image_1709915631661_0.png)
 					- train + val
+					  collapsed:: true
 						- ![image.png](../assets/image_1709915691091_0.png)
 				- DONE 使用uncertainty的基本方法1 + 对粗分割和精细化分割都增加一个损失 + 计算uncertainty_mask的方法使用的是sigmoid之后的数据
 					- train + val
 					  collapsed:: true
 						- ![image.png](../assets/image_1709987416445_0.png)
 					- test
-					  collapsed:: true
 						- ![image.png](../assets/image_1709987396823_0.png)
 					- DONE 修改了一下uncertainty的计算方法
 					  collapsed:: true
@@ -3813,7 +3919,6 @@ collapsed:: true
 				  CLOCK: [2024-03-09 Sat 00:36:31]--[2024-03-09 Sat 01:26:28] =>  00:49:57
 				  :END:
 					- test
-					  collapsed:: true
 						- ![image.png](../assets/image_1709918726881_0.png)
 					- train + val
 					  collapsed:: true
@@ -3821,15 +3926,12 @@ collapsed:: true
 				-
 				-
 				- DONE 使用uncertainty的基本方法2 + 对粗分割和精细化分割都增加一个损失
-				  collapsed:: true
 					- train + val
 					  collapsed:: true
 						- ![image.png](../assets/image_1709967077890_0.png)
 					- test
-					  collapsed:: true
 						- ![image.png](../assets/image_1709967051012_0.png)
 				- DONE 使用uncertainty的基本方法2的改进版本1（将获得boundary_mask的方式变成扩张和腐蚀的平均，也加上利用uncertainty_map直接计算的不确定部分） + 对粗分割和精细化分割都增加一个损失
-				  collapsed:: true
 					- train + val
 					  collapsed:: true
 						- ![image.png](../assets/image_1709980489936_0.png)
@@ -3840,15 +3942,14 @@ collapsed:: true
 					  collapsed:: true
 						- ![image.png](../assets/image_1709985535804_0.png)
 					- test
-					  collapsed:: true
 						- ![image.png](../assets/image_1709985386625_0.png)
 					- DONE 修改扩张和腐蚀部分的代码，这部分不用加上sigmoid后再阈值化而是直接阈值化
-					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-03-09 Sat 20:39:37]
 					  CLOCK: [2024-03-09 Sat 20:39:39]--[2024-03-09 Sat 21:32:27] =>  00:52:48
 					  :END:
 						- train + val
+						  collapsed:: true
 							- ![image.png](../assets/image_1709991142109_0.png)
 						- test
 							- ![image.png](../assets/image_1709991071932_0.png)
@@ -3859,31 +3960,50 @@ collapsed:: true
 					  collapsed:: true
 						- ![image.png](../assets/image_1709983932589_0.png)
 					- test
-					  collapsed:: true
 						- ![image.png](../assets/image_1709983903483_0.png)
 					- 把boundary_mask的阈值改成0.7，再重新跑一次
-					  collapsed:: true
 						- train + val
 						  collapsed:: true
 							- ![image.png](../assets/image_1709988935001_0.png)
 						- test
 							- ![image.png](../assets/image_1709988904995_0.png)
 					- DONE 尝试对uncertainty map的计算方式进行改进, 加上sigmoid
-					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-03-09 Sat 21:13:55]
 					  CLOCK: [2024-03-09 Sat 21:13:57]--[2024-03-10 Sun 00:06:38] =>  02:52:41
 					  :END:
 						- train + val
+						  collapsed:: true
 							- ![image.png](../assets/image_1710000390860_0.png)
 						- test
 							- ![image.png](../assets/image_1710000360907_0.png)
 				- DONE 使用uncertainty的基本方法2的改进版本3（将获得boundary_mask的方式的池化相减的顺序对调，不加上利用uncertainty_map直接计算的不确定部分） + 对粗分割和精细化分割都增加一个损失
-				  collapsed:: true
 					- train + val
+					  collapsed:: true
 						- ![image.png](../assets/image_1709985110329_0.png)
 					- test
 						- ![image.png](../assets/image_1709985078615_0.png)
+				- DONE  对Unet++使用上一个DONE事项的方法
+				  :LOGBOOK:
+				  CLOCK: [2024-03-10 Sun 15:52:08]
+				  CLOCK: [2024-03-10 Sun 15:52:10]--[2024-03-10 Sun 22:09:05] =>  06:16:55
+				  :END:
+					- train + val
+					  collapsed:: true
+						- ![image.png](../assets/image_1710079742287_0.png)
+					- test
+						- ![image.png](../assets/image_1710079720749_0.png)
+				- DONE 对AttUnet使用上一个DONE事项的方法
+				  :LOGBOOK:
+				  CLOCK: [2024-03-10 Sun 15:52:36]
+				  CLOCK: [2024-03-10 Sun 15:54:14]--[2024-03-10 Sun 22:10:12] =>  06:15:58
+				  :END:
+					- train + val
+					  collapsed:: true
+						- ![image.png](../assets/image_1710079807888_0.png)
+					- test
+						- ![image.png](../assets/image_1710079776958_0.png)
+						-
 				-
 				-
 			-
