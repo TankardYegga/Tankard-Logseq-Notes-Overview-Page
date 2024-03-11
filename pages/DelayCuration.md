@@ -3795,25 +3795,25 @@ collapsed:: true
 						- 参数量太大，无法运行
 				-
 					- DONE 结合：将自注意力方式放在从下往上的第一个残差连接处，将1 * 1卷积获取方式放在从下往上的第三个残差连接处
-					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-03-11 Mon 16:28:59]
 					  CLOCK: [2024-03-11 Mon 16:29:00]
 					  CLOCK: [2024-03-11 Mon 16:29:08]--[2024-03-11 Mon 17:15:05] =>  00:45:57
 					  :END:
 						- train + val
-						  collapsed:: true
 							- ![image.png](../assets/image_1710148499044_0.png)
 						- test
 							- ![image.png](../assets/image_1710148481916_0.png)
-					- DOING 结合自注意力机制（放在从下往上的第一个残差连接处） + 多尺度的通道注意力：
+					- DONE 结合自注意力机制（放在从下往上的第一个残差连接处） + 多尺度的通道注意力：
 					  :LOGBOOK:
 					  CLOCK: [2024-03-11 Mon 18:43:53]
-					  CLOCK: [2024-03-11 Mon 18:43:58]
+					  CLOCK: [2024-03-11 Mon 18:43:58]--[2024-03-11 Mon 20:09:49] =>  01:25:51
 					  :END:
 						- train + val
+						  collapsed:: true
+							- ![image.png](../assets/image_1710158656636_0.png)
 						- test
-						-
+							- ![image.png](../assets/image_1710158619147_0.png)
 				-
 				- DONE 重新跑通道注意力
 				  :LOGBOOK:
@@ -3839,7 +3839,6 @@ collapsed:: true
 						  collapsed:: true
 							- ![image.png](../assets/image_1709817246046_0.png)
 						- test
-						  collapsed:: true
 							- ![image.png](../assets/image_1709817219665_0.png)
 							- ![image.png](../assets/image_1709817564013_0.png)
 						- DONE 在交错位置添加的结果
@@ -3857,7 +3856,6 @@ collapsed:: true
 						  CLOCK: [2024-03-11 Mon 13:40:39]--[2024-03-11 Mon 19:35:20] =>  05:54:41
 						  :END:
 							- DONE 从上到下的第一个位置 （1）
-							  collapsed:: true
 							  :LOGBOOK:
 							  CLOCK: [2024-03-11 Mon 16:57:19]
 							  CLOCK: [2024-03-11 Mon 16:57:20]--[2024-03-11 Mon 18:05:17] =>  01:07:57
@@ -3868,7 +3866,6 @@ collapsed:: true
 								  collapsed:: true
 									- ![image.png](../assets/image_1710151511366_0.png)
 							- DONE 从上到下最后一个位置 （5）
-							  collapsed:: true
 							  :LOGBOOK:
 							  CLOCK: [2024-03-11 Mon 16:57:28]
 							  CLOCK: [2024-03-11 Mon 16:57:29]--[2024-03-11 Mon 18:19:24] =>  01:21:55
@@ -3898,10 +3895,8 @@ collapsed:: true
 								  collapsed:: true
 									- ![image.png](../assets/image_1710155609706_0.png)
 								- test
-								  collapsed:: true
 									- ![image.png](../assets/image_1710155567971_0.png)
 							- DONE 从上到下的第二个位置 （2）
-							  collapsed:: true
 							  :LOGBOOK:
 							  CLOCK: [2024-03-11 Mon 18:25:40]--[2024-03-11 Mon 19:16:52] =>  00:51:12
 							  :END:
@@ -3948,7 +3943,6 @@ collapsed:: true
 					- test
 						- ![image.png](../assets/image_1709987396823_0.png)
 					- DONE 修改了一下uncertainty的计算方法
-					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-03-10 Sun 00:04:42]
 					  CLOCK: [2024-03-10 Sun 00:04:53]--[2024-03-10 Sun 00:05:40] =>  00:00:47
@@ -3972,17 +3966,33 @@ collapsed:: true
 				-
 				-
 				- DONE 使用uncertainty的基本方法2 + 对粗分割和精细化分割都增加一个损失
+				  collapsed:: true
 					- train + val
 					  collapsed:: true
 						- ![image.png](../assets/image_1709967077890_0.png)
 					- test
 						- ![image.png](../assets/image_1709967051012_0.png)
+				-
+				-
 				- DONE 使用uncertainty的基本方法2的改进版本1（将获得boundary_mask的方式变成扩张和腐蚀的平均，也加上利用uncertainty_map直接计算的不确定部分） + 对粗分割和精细化分割都增加一个损失
 					- train + val
 					  collapsed:: true
 						- ![image.png](../assets/image_1709980489936_0.png)
 					- test
+					  collapsed:: true
 						- ![image.png](../assets/image_1709980460780_0.png)
+					- DONE 去掉sigmoid后阈值化，直接使用阈值化的操作
+					  :LOGBOOK:
+					  CLOCK: [2024-03-11 Mon 19:49:10]
+					  CLOCK: [2024-03-11 Mon 19:49:11]--[2024-03-11 Mon 20:34:02] =>  00:44:51
+					  :END:
+						- train + val
+						  collapsed:: true
+							- ![image.png](../assets/image_1710160438023_0.png)
+						- test
+							- ![image.png](../assets/image_1710160405048_0.png)
+				-
+				-
 				- DONE 使用uncertainty的基本方法2的改进版本2（将获得boundary_mask的方式变成扩张和腐蚀的平均，不加上利用uncertainty_map直接计算的不确定部分） + 对粗分割和精细化分割都增加一个损失
 					- train + val
 					  collapsed:: true
@@ -3999,7 +4009,12 @@ collapsed:: true
 							- ![image.png](../assets/image_1709991142109_0.png)
 						- test
 							- ![image.png](../assets/image_1709991071932_0.png)
-				-
+					- DOING 将扩张腐蚀的kernel从5改成3
+					  :LOGBOOK:
+					  CLOCK: [2024-03-11 Mon 20:43:09]
+					  CLOCK: [2024-03-11 Mon 20:43:10]
+					  :END:
+					-
 				-
 				- DONE 使用uncertainty的基本方法2的改进版本3（将获得boundary_mask的方式的池化相减的顺序对调，也加上利用uncertainty_map直接计算的不确定部分） + 对粗分割和精细化分割都增加一个损失
 					- train + val
@@ -4008,12 +4023,14 @@ collapsed:: true
 					- test
 						- ![image.png](../assets/image_1709983903483_0.png)
 					- 把boundary_mask的阈值改成0.7，再重新跑一次
+					  collapsed:: true
 						- train + val
 						  collapsed:: true
 							- ![image.png](../assets/image_1709988935001_0.png)
 						- test
 							- ![image.png](../assets/image_1709988904995_0.png)
 					- DONE 尝试对uncertainty map的计算方式进行改进, 加上sigmoid
+					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-03-09 Sat 21:13:55]
 					  CLOCK: [2024-03-09 Sat 21:13:57]--[2024-03-10 Sun 00:06:38] =>  02:52:41
@@ -4023,6 +4040,14 @@ collapsed:: true
 							- ![image.png](../assets/image_1710000390860_0.png)
 						- test
 							- ![image.png](../assets/image_1710000360907_0.png)
+					- DOING 重新跑下uncertainty_map和boundary_mask进行合并的结果
+					  :LOGBOOK:
+					  CLOCK: [2024-03-11 Mon 19:54:05]
+					  CLOCK: [2024-03-11 Mon 19:54:06]
+					  :END:
+						- train + val
+						- test
+						-
 				- DONE 使用uncertainty的基本方法2的改进版本3（将获得boundary_mask的方式的池化相减的顺序对调，不加上利用uncertainty_map直接计算的不确定部分） + 对粗分割和精细化分割都增加一个损失
 					- train + val
 					  collapsed:: true
@@ -4050,6 +4075,27 @@ collapsed:: true
 					- test
 						- ![image.png](../assets/image_1710079776958_0.png)
 						-
+				- DONE 把boundary_mask的两种方式进行合并
+				  :LOGBOOK:
+				  CLOCK: [2024-03-11 Mon 20:36:40]
+				  CLOCK: [2024-03-11 Mon 20:36:49]--[2024-03-11 Mon 21:26:27] =>  00:49:38
+				  :END:
+					- train + val
+					  collapsed:: true
+						- ![image.png](../assets/image_1710163575618_0.png)
+					- test
+					  collapsed:: true
+						- ![image.png](../assets/image_1710163537542_0.png)
+					- DONE 使用同一个最大池化的结果
+					  collapsed:: true
+					  :LOGBOOK:
+					  CLOCK: [2024-03-11 Mon 21:28:27]
+					  CLOCK: [2024-03-11 Mon 21:28:29]--[2024-03-11 Mon 22:09:35] =>  00:41:06
+					  :END:
+						- train + val
+							- ![image.png](../assets/image_1710166172630_0.png)
+						- test
+							- ![image.png](../assets/image_1710166134385_0.png)
 				-
 				-
 			-
