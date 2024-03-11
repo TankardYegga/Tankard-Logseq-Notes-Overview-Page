@@ -3795,6 +3795,7 @@ collapsed:: true
 						- 参数量太大，无法运行
 				-
 					- DONE 结合：将自注意力方式放在从下往上的第一个残差连接处，将1 * 1卷积获取方式放在从下往上的第三个残差连接处
+					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-03-11 Mon 16:28:59]
 					  CLOCK: [2024-03-11 Mon 16:29:00]
@@ -3805,6 +3806,14 @@ collapsed:: true
 							- ![image.png](../assets/image_1710148499044_0.png)
 						- test
 							- ![image.png](../assets/image_1710148481916_0.png)
+					- DOING 结合自注意力机制（放在从下往上的第一个残差连接处） + 多尺度的通道注意力：
+					  :LOGBOOK:
+					  CLOCK: [2024-03-11 Mon 18:43:53]
+					  CLOCK: [2024-03-11 Mon 18:43:58]
+					  :END:
+						- train + val
+						- test
+						-
 				-
 				- DONE 重新跑通道注意力
 				  :LOGBOOK:
@@ -3833,19 +3842,22 @@ collapsed:: true
 						  collapsed:: true
 							- ![image.png](../assets/image_1709817219665_0.png)
 							- ![image.png](../assets/image_1709817564013_0.png)
-						- DOING 在交错位置添加的结果
+						- DONE 在交错位置添加的结果
 						  :LOGBOOK:
-						  CLOCK: [2024-03-11 Mon 16:58:21]
+						  CLOCK: [2024-03-11 Mon 16:58:21]--[2024-03-11 Mon 19:35:53] =>  02:37:32
 						  :END:
 							- train + val
+							  collapsed:: true
+								- ![image.png](../assets/image_1710156949034_0.png)
 							- test
-							-
-						- DOING 尝试只在一个位置来添加模块
+								- ![image.png](../assets/image_1710156919277_0.png)
+						- DONE 尝试只在一个位置来添加模块
 						  :LOGBOOK:
 						  CLOCK: [2024-03-11 Mon 13:39:51]
-						  CLOCK: [2024-03-11 Mon 13:40:39]
+						  CLOCK: [2024-03-11 Mon 13:40:39]--[2024-03-11 Mon 19:35:20] =>  05:54:41
 						  :END:
-							- DONE 从上到下的第一个位置
+							- DONE 从上到下的第一个位置 （1）
+							  collapsed:: true
 							  :LOGBOOK:
 							  CLOCK: [2024-03-11 Mon 16:57:19]
 							  CLOCK: [2024-03-11 Mon 16:57:20]--[2024-03-11 Mon 18:05:17] =>  01:07:57
@@ -3855,7 +3867,8 @@ collapsed:: true
 								- train + val
 								  collapsed:: true
 									- ![image.png](../assets/image_1710151511366_0.png)
-							- DONE 从下到上的最后一个位置
+							- DONE 从上到下最后一个位置 （5）
+							  collapsed:: true
 							  :LOGBOOK:
 							  CLOCK: [2024-03-11 Mon 16:57:28]
 							  CLOCK: [2024-03-11 Mon 16:57:29]--[2024-03-11 Mon 18:19:24] =>  01:21:55
@@ -3865,6 +3878,39 @@ collapsed:: true
 								- train + val
 								  collapsed:: true
 									- ![image.png](../assets/image_1710152349158_0.png)
+							- DONE 从上到下的倒数第二个位置 （4）
+							  :LOGBOOK:
+							  CLOCK: [2024-03-11 Mon 18:21:53]
+							  CLOCK: [2024-03-11 Mon 18:21:54]
+							  CLOCK: [2024-03-11 Mon 18:22:06]--[2024-03-11 Mon 18:23:07] =>  00:01:01
+							  :END:
+								- train + val
+								  collapsed:: true
+									- ![image.png](../assets/image_1710152582249_0.png)
+								- test
+									- ![image.png](../assets/image_1710152542288_0.png)
+							- DONE 从上到下的第三个位置 （3）
+							  :LOGBOOK:
+							  CLOCK: [2024-03-11 Mon 18:23:35]
+							  CLOCK: [2024-03-11 Mon 18:23:38]--[2024-03-11 Mon 19:13:34] =>  00:49:56
+							  :END:
+								- train + val
+								  collapsed:: true
+									- ![image.png](../assets/image_1710155609706_0.png)
+								- test
+								  collapsed:: true
+									- ![image.png](../assets/image_1710155567971_0.png)
+							- DONE 从上到下的第二个位置 （2）
+							  collapsed:: true
+							  :LOGBOOK:
+							  CLOCK: [2024-03-11 Mon 18:25:40]--[2024-03-11 Mon 19:16:52] =>  00:51:12
+							  :END:
+								- train + val
+								  collapsed:: true
+									- ![image.png](../assets/image_1710155808036_0.png)
+								- test
+									- ![image.png](../assets/image_1710155787669_0.png)
+							-
 					- :LOGBOOK:
 					  CLOCK: [2024-03-11 Mon 13:39:24]
 					  CLOCK: [2024-03-11 Mon 13:39:25]
