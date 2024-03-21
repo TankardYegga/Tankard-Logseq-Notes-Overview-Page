@@ -3491,7 +3491,7 @@ collapsed:: true
 					- test
 						- ![image.png](../assets/image_1709389536378_0.png){:height 230, :width 687}
 						-
-				- DONE 按照7.5: 0.5: 2的比例进行划分
+				- DONE 按照7.5: 0.5: 2的比例进行划分 (new Unet++)
 				  :LOGBOOK:
 				  CLOCK: [2024-03-02 Sat 20:22:54]
 				  CLOCK: [2024-03-02 Sat 20:22:55]--[2024-03-02 Sat 23:59:24] =>  03:36:29
@@ -3502,7 +3502,7 @@ collapsed:: true
 						- ![image.png](../assets/image_1709394936953_0.png)
 						- ![image.png](../assets/image_1709395114148_0.png)
 					- test
-						- ![image.png](../assets/image_1709395080750_0.png)
+						- ![image.png](../assets/image_1709395080750_0.png){:height 324, :width 687}
 						-
 				- DONE 按照8:1:1的比例进行划分
 				  collapsed:: true
@@ -3576,7 +3576,7 @@ collapsed:: true
 							- ![image.png](../assets/image_1709752759777_0.png)
 							-
 						- test
-							- ![image.png](../assets/image_1709752690868_0.png){:height 207, :width 718}
+							- ![image.png](../assets/image_1709752690868_0.png){:height 194, :width 665}
 					- DONE Unet++ with_diffusion
 					  :LOGBOOK:
 					  CLOCK: [2024-03-07 Thu 04:31:03]
@@ -3656,14 +3656,12 @@ collapsed:: true
 						- test
 							- ![image.png](../assets/image_1709654068548_0.png)
 						- 对比
-						  collapsed:: true
 							- train + val
 							  collapsed:: true
 								- ![image.png](../assets/image_1709697335320_0.png)
 							- test
 								- ![image.png](../assets/image_1709697070266_0.png)
 					- DONE 换一下位置1
-					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-03-05 Tue 22:03:52]
 					  CLOCK: [2024-03-05 Tue 22:03:54]--[2024-03-07 Thu 01:22:58] =>  27:19:04
@@ -3675,7 +3673,6 @@ collapsed:: true
 						- test
 							- ![image.png](../assets/image_1709745706677_0.png)
 					- DONE 换一下位置2
-					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-03-05 Tue 22:04:01]
 					  CLOCK: [2024-03-05 Tue 22:04:02]--[2024-03-07 Thu 11:56:27] =>  37:52:25
@@ -3686,7 +3683,6 @@ collapsed:: true
 						  collapsed:: true
 							- ![image.png](../assets/image_1709783778545_0.png)
 					- DONE 换一下位置3
-					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-03-05 Tue 22:04:08]--[2024-03-07 Thu 13:35:01] =>  39:30:53
 					  :END:
@@ -3740,7 +3736,7 @@ collapsed:: true
 							- ![image.png](../assets/image_1710134530782_0.png)
 						- test
 							- ![image.png](../assets/image_1710134490695_0.png)
-					- DONE 换用论文那种1*1卷积获取权重方式（从下到上的第三层）
+					- DONE 换用论文那种1*1卷积获取权重方式（从下到上的第三层） (new U-net + MS_ChannelAtt + SA_SpatialAtt)
 					  :LOGBOOK:
 					  CLOCK: [2024-03-11 Mon 11:45:22]--[2024-03-11 Mon 14:13:30] =>  02:28:08
 					  :END:
@@ -3773,7 +3769,7 @@ collapsed:: true
 						- test
 						  collapsed:: true
 							- ![image.png](../assets/image_1709805119637_0.png)
-					- 换用纯粹自注意力方式，但是位置放在最下面的一层残差连接处
+					- 换用纯粹自注意力方式，但是位置放在最下面的一层残差连接处 (new U-net + SA_SpatialAtt)
 						- train + val
 						  collapsed:: true
 							- ![image.png](../assets/image_1709809828802_0.png)
@@ -3801,6 +3797,7 @@ collapsed:: true
 					  CLOCK: [2024-03-11 Mon 16:29:08]--[2024-03-11 Mon 17:15:05] =>  00:45:57
 					  :END:
 						- train + val
+						  collapsed:: true
 							- ![image.png](../assets/image_1710148499044_0.png)
 						- test
 							- ![image.png](../assets/image_1710148481916_0.png)
@@ -3875,7 +3872,7 @@ collapsed:: true
 								- train + val
 								  collapsed:: true
 									- ![image.png](../assets/image_1710152349158_0.png)
-							- DONE 从上到下的倒数第二个位置 （4）
+							- DONE 从上到下的倒数第二个位置 （4） (new U-net + MS_ChannelAtt)
 							  :LOGBOOK:
 							  CLOCK: [2024-03-11 Mon 18:21:53]
 							  CLOCK: [2024-03-11 Mon 18:21:54]
@@ -3885,7 +3882,7 @@ collapsed:: true
 								  collapsed:: true
 									- ![image.png](../assets/image_1710152582249_0.png)
 								- test
-									- ![image.png](../assets/image_1710152542288_0.png)
+									- ![image.png](../assets/image_1710152542288_0.png){:height 255, :width 594}
 							- DONE 从上到下的第三个位置 （3）
 							  :LOGBOOK:
 							  CLOCK: [2024-03-11 Mon 18:23:35]
@@ -3913,7 +3910,7 @@ collapsed:: true
 					-
 				-
 				-
-				- DONE 使用uncertainty的基本方法1
+				- DONE 使用uncertainty的基本方法1 (new Unet)
 				  :LOGBOOK:
 				  CLOCK: [2024-03-07 Thu 00:25:52]
 				  CLOCK: [2024-03-07 Thu 00:25:53]
@@ -3932,7 +3929,7 @@ collapsed:: true
 				  CLOCK: [2024-03-08 Fri 23:18:28]--[2024-03-09 Sat 00:35:26] =>  01:16:58
 				  :END:
 					- test
-						- ![image.png](../assets/image_1709915631661_0.png)
+						- ![image.png](../assets/image_1709915631661_0.png){:height 291, :width 687}
 					- train + val
 					  collapsed:: true
 						- ![image.png](../assets/image_1709915691091_0.png)
@@ -3951,7 +3948,6 @@ collapsed:: true
 						  collapsed:: true
 							- ![image.png](../assets/image_1710000335537_0.png)
 						- test
-						  collapsed:: true
 							- ![image.png](../assets/image_1710000309370_0.png)
 				-
 				- DONE 使用uncertainty的基本方法1 + 对粗分割和精细化分割都增加一个损失 + 改动细化特征的来源为编码器而不是解码器
@@ -3979,9 +3975,8 @@ collapsed:: true
 					  collapsed:: true
 						- ![image.png](../assets/image_1709980489936_0.png)
 					- test
-					  collapsed:: true
 						- ![image.png](../assets/image_1709980460780_0.png)
-					- DONE 去掉sigmoid后阈值化，直接使用阈值化的操作
+					- DONE 去掉sigmoid后阈值化，直接使用阈值化的操作 (U-net + uncertainty_formula + dilation_and_erosion)
 					  :LOGBOOK:
 					  CLOCK: [2024-03-11 Mon 19:49:10]
 					  CLOCK: [2024-03-11 Mon 19:49:11]--[2024-03-11 Mon 20:34:02] =>  00:44:51
@@ -3991,9 +3986,25 @@ collapsed:: true
 							- ![image.png](../assets/image_1710160438023_0.png)
 						- test
 							- ![image.png](../assets/image_1710160405048_0.png)
+					- uncertainty计算时加上sigmoid
+						- train + val
+						  collapsed:: true
+							- ![image.png](../assets/image_1710205101718_0.png)
+						- test
+							- ![image.png](../assets/image_1710205073239_0.png)
+					- DONE  使用两个卷积, 不加上sigmoid
+					  :LOGBOOK:
+					  CLOCK: [2024-03-12 Tue 12:54:21]
+					  CLOCK: [2024-03-12 Tue 12:54:24]--[2024-03-12 Tue 14:51:26] =>  01:57:02
+					  :END:
+						- train + val
+						  collapsed:: true
+							-
+						- test
+							- ![image.png](../assets/image_1710226108134_0.png)
 				-
 				-
-				- DONE 使用uncertainty的基本方法2的改进版本2（将获得boundary_mask的方式变成扩张和腐蚀的平均，不加上利用uncertainty_map直接计算的不确定部分） + 对粗分割和精细化分割都增加一个损失
+				- DONE [[$red]]==[[#red]]使用uncertainty的基本方法2的改进版本2（将获得boundarymask的方式变成扩张和腐蚀的平均，不加上利用uncertaintymap直接计算的不确定部分） + 对粗分割和精细化分割都增加一个损失==
 					- train + val
 					  collapsed:: true
 						- ![image.png](../assets/image_1709985535804_0.png)
@@ -4009,12 +4020,69 @@ collapsed:: true
 							- ![image.png](../assets/image_1709991142109_0.png)
 						- test
 							- ![image.png](../assets/image_1709991071932_0.png)
-					- DOING 将扩张腐蚀的kernel从5改成3
+					- DONE 将扩张腐蚀的kernel从5改成3
+					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-03-11 Mon 20:43:09]
-					  CLOCK: [2024-03-11 Mon 20:43:10]
+					  CLOCK: [2024-03-11 Mon 20:43:10]--[2024-03-12 Tue 11:39:15] =>  14:56:05
 					  :END:
-					-
+						- train + val
+						- test
+							- ![image.png](../assets/image_1710211932315_0.png)
+						- :LOGBOOK:
+						  CLOCK: [2024-03-12 Tue 10:52:25]
+						  CLOCK: [2024-03-12 Tue 10:52:29]
+						  :END:
+							-
+								-
+					- DONE 将扩张腐蚀的kernel从5改成7
+						- train + val
+						  collapsed:: true
+							- ![image.png](../assets/image_1710217951019_0.png)
+						- test
+							- ![image.png](../assets/image_1710217922828_0.png)
+						- DONE  使用两次的conv
+						  collapsed:: true
+						  :LOGBOOK:
+						  CLOCK: [2024-03-12 Tue 12:39:37]
+						  CLOCK: [2024-03-12 Tue 12:39:39]--[2024-03-12 Tue 13:36:39] =>  00:57:00
+						  :END:
+							- train + val
+							  collapsed:: true
+								- ![image.png](../assets/image_1710221785586_0.png)
+							- test
+								- ![image.png](../assets/image_1710221750844_0.png)
+						- DONE 改用连接方式1
+						  :LOGBOOK:
+						  CLOCK: [2024-03-12 Tue 18:24:29]
+						  CLOCK: [2024-03-12 Tue 18:24:37]--[2024-03-12 Tue 18:25:56] =>  00:01:19
+						  :END:
+							- test
+							  collapsed:: true
+								- ![image.png](../assets/image_1710239086733_0.png)
+								-
+							- train + val
+							  collapsed:: true
+								- ![image.png](../assets/image_1710239143464_0.png)
+						- DONE 改用连接方式2
+						  collapsed:: true
+						  :LOGBOOK:
+						  CLOCK: [2024-03-12 Tue 18:26:04]
+						  CLOCK: [2024-03-12 Tue 18:26:07]--[2024-03-12 Tue 18:27:47] =>  00:01:40
+						  :END:
+							- test
+								- ![image.png](../assets/image_1710239219154_0.png)
+							- train + val
+								- ![image.png](../assets/image_1710239261185_0.png)
+						- DOING refined_feature来源
+						  :LOGBOOK:
+						  CLOCK: [2024-03-12 Tue 18:42:09]
+						  CLOCK: [2024-03-12 Tue 18:42:25]
+						  :END:
+							- TODO 来源1 （表格第二行）
+							- TODO 来源2
+							- TODO 来源3
+							- TODO 来源4
 				-
 				- DONE 使用uncertainty的基本方法2的改进版本3（将获得boundary_mask的方式的池化相减的顺序对调，也加上利用uncertainty_map直接计算的不确定部分） + 对粗分割和精细化分割都增加一个损失
 					- train + val
@@ -4040,20 +4108,46 @@ collapsed:: true
 							- ![image.png](../assets/image_1710000390860_0.png)
 						- test
 							- ![image.png](../assets/image_1710000360907_0.png)
-					- DOING 重新跑下uncertainty_map和boundary_mask进行合并的结果
+					- DONE 重新跑下uncertainty_map和boundary_mask进行合并的结果 (在计算uncertainty_map时加上sigmoid)
 					  :LOGBOOK:
 					  CLOCK: [2024-03-11 Mon 19:54:05]
-					  CLOCK: [2024-03-11 Mon 19:54:06]
+					  CLOCK: [2024-03-11 Mon 19:54:06]--[2024-03-12 Tue 02:37:38] =>  06:43:32
 					  :END:
 						- train + val
+						  collapsed:: true
+							- ![image.png](../assets/image_1710182256688_0.png)
 						- test
-						-
+							- ![image.png](../assets/image_1710182224594_0.png){:height 157, :width 656}
+						- DONE 加上两次conv
+						  :LOGBOOK:
+						  CLOCK: [2024-03-12 Tue 13:02:16]
+						  CLOCK: [2024-03-12 Tue 13:02:22]
+						  CLOCK: [2024-03-12 Tue 13:24:55]
+						  CLOCK: [2024-03-12 Tue 13:24:59]--[2024-03-12 Tue 14:54:23] =>  01:29:24
+						  :END:
+							- UNet_W_MSFGFF3_Sigmoid_Improved
+							- train + val
+							  collapsed:: true
+								- ![image.png](../assets/image_1710226458450_0.png)
+							- test
+								- ![image.png](../assets/image_1710226424723_0.png)
 				- DONE 使用uncertainty的基本方法2的改进版本3（将获得boundary_mask的方式的池化相减的顺序对调，不加上利用uncertainty_map直接计算的不确定部分） + 对粗分割和精细化分割都增加一个损失
 					- train + val
 					  collapsed:: true
 						- ![image.png](../assets/image_1709985110329_0.png)
 					- test
-						- ![image.png](../assets/image_1709985078615_0.png)
+						- ![image.png](../assets/image_1709985078615_0.png){:height 290, :width 687}
+					- DONE 将kernel从3改成5
+					  :LOGBOOK:
+					  CLOCK: [2024-03-12 Tue 00:35:43]
+					  CLOCK: [2024-03-12 Tue 00:35:44]--[2024-03-12 Tue 02:34:10] =>  01:58:26
+					  :END:
+						- train + val
+						  collapsed:: true
+							- ![image.png](../assets/image_1710182047058_0.png)
+						- test
+							- ![image.png](../assets/image_1710182009082_0.png)
+						-
 				- DONE  对Unet++使用上一个DONE事项的方法
 				  :LOGBOOK:
 				  CLOCK: [2024-03-10 Sun 15:52:08]
@@ -4084,7 +4178,6 @@ collapsed:: true
 					  collapsed:: true
 						- ![image.png](../assets/image_1710163575618_0.png)
 					- test
-					  collapsed:: true
 						- ![image.png](../assets/image_1710163537542_0.png)
 					- DONE 使用同一个最大池化的结果
 					  collapsed:: true
@@ -4096,6 +4189,16 @@ collapsed:: true
 							- ![image.png](../assets/image_1710166172630_0.png)
 						- test
 							- ![image.png](../assets/image_1710166134385_0.png)
+					- DONE 前后使用不同的卷积
+					  :LOGBOOK:
+					  CLOCK: [2024-03-12 Tue 12:28:15]
+					  CLOCK: [2024-03-12 Tue 12:28:18]--[2024-03-12 Tue 12:29:54] =>  00:01:36
+					  :END:
+						- train + val
+						  collapsed:: true
+							- ![image.png](../assets/image_1710217753947_0.png)
+						- test
+							- ![image.png](../assets/image_1710217735438_0.png)
 				-
 				-
 			-
