@@ -4021,7 +4021,6 @@ collapsed:: true
 						- test
 							- ![image.png](../assets/image_1709991071932_0.png)
 					- DONE 将扩张腐蚀的kernel从5改成3
-					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-03-11 Mon 20:43:09]
 					  CLOCK: [2024-03-11 Mon 20:43:10]--[2024-03-12 Tue 11:39:15] =>  14:56:05
