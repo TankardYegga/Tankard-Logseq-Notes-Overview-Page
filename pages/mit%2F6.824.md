@@ -127,6 +127,7 @@ title:: mit/6.824
 				- 因为当多线程的数量超过1000时，管理线程的开销就开始变大，包括维持每个线程的状态、决定下次该执行哪一个线程
 		- 进程是由操作系统来控制的，与具体使用什么语言无关
 	- 当一个context发生切换时，所有的线程都发生了对应的切换吗？
+	  collapsed:: true
 		- 假如你有一台单核的机器，你在上面运行了多个进程，OS会给不同的进程time slicing来进行来回切换，所以当硬件计时结束时，CPU从一个进程拿走，被放置到另外一个进程之上；context切换时只有操作系统知道的线程会进行切换
 		- go cleverly multiplex as many go routines on top of single operating system threads to reduce overhead
 			- 这句话的意思是，在单个操作系统线程上巧妙地多路复用多个Go协程，以减少开销。
@@ -189,6 +190,7 @@ title:: mit/6.824
 			- 序列化和反序列化的方法可能有所不同，但通常采用比较常见的方式，比如 JSON、XML、Protobuf、MessagePack 等
 			- 这些stub使得远程过程调用和regular/local procedure call的效果差异不大，并且这些stub通常都是自动生成的
 	- RPC的failures有哪些可能的语义呢？
+	  collapsed:: true
 		- ![image.png](../assets/image_1687914194519_0.png)
 			- 至少一次：
 				- 如果server fail了，那么client应该做什么呢？此时当client第一次向crashed的server发送请求时，必然得不到响应，所以会time out，然后client就会自动进行重试，直到server的函数调用至少执行了一次
@@ -201,6 +203,7 @@ title:: mit/6.824
 				- 因为这是normal情况下的procedure call会展现的
 				- 但这通常非常难去进行管理或者说安排arrange,  要求你不得不维持磁盘上的状态, 这个维持操作是昂贵的。在实践中，只有很少的RPC系统是exactly once的
 	- Go语言中的rpc的failures的语义是哪一种呢？
+	  collapsed:: true
 		- 是at most once
 		- 通过tcp channel来发起调用，tcp channel将会保证没有duplicates。应用程序可能会进行重试，但将是应用程序的责任来处理duplication和failed message的问题
 		- rpc和pc的区别是通过failure时的goal来体现的
@@ -231,6 +234,7 @@ title:: mit/6.824
 		- 一是一致性问题
 		  collapsed:: true
 			- 什么是ideal consistency？
+			  collapsed:: true
 				- 通过一个具体的执行案例，明确合理的值是什么、不合理的值是什么来定义什么是consistency
 					- ![image.png](../assets/image_1687940308288_0.png)
 						- C3读取的结果可能是1或者2，这取决于C1和C2并发执行的相对顺序
@@ -399,19 +403,24 @@ title:: mit/6.824
 						- 指的是在一块硬件的基础上使其成为电脑的end pieces（硬件系统的末端设备或者组件，通常直接与外部环境交互或者与其他系统进行连接）
 						- 我们可以在x86 box（Hardware，图示中最底下的矩形）的上层运行一个virtual machine monitor，而在这个monitor上层通常是多个virtual machine，在论文中该vm monitor上层只有一个linux系统和相关的应用
 						- vm monitor也被称作Hypervisor（虚拟机监控器），这里也就是论文中的vmft（vm with fault tolerance）
+						  collapsed:: true
 							- 是一种虚拟化技术，它允许在一台物理计算机上运行多个虚拟机操作系统。Hypervisor 可以将计算机的物理资源（如 CPU、内存、存储空间等）划分为多个虚拟机，每个虚拟机都可以独立运行不同的操作系统和应用程序。Hypervisor 可以提高计算机资源的利用率，同时也可以提供更好的安全性和可管理性。
 						- 当最底层发生了Hardware interrupt，整个系统会怎么做？
 							- 这个中断会先通过vm monitor，然后再由这个monitor将这个中断deliver给linux系统
 							- 实际上，任何的external event，都会首先被hypervisor所捕获到，然后才会被vm捕获到
 							- 如果有一个external interrupt，我们要怎么replicate this？
+							  collapsed:: true
 								- hypervisor实际上控制了interrupt的转发，所以replicate也与hypervisor有关。实际上，hypervisor是一个强有力的工具，能够使得指令变得deterministic
 								- 如果有一个中断发生，不管是网络中断还是硬件中断（比如timer interrupt），vmft会做两件事：
+								  collapsed:: true
 									- 把这个中断给deliver给linux文件系统的application
 									- 通过一个logging channel把这个中断发送给backup
 									- 例子图示：
 										- Client通过网络向Hardware发送一个packet，造成一个中断（下图中最底层的横线表示same network）
+										  collapsed:: true
 											- ![image.png](../assets/image_1688532422734_0.png)
 										- linux系统接收到monitor传送过来的中断后，按照正常应对中断的方式进行处理，然后把想要发送的packet传送给monitor，linux系统会以为自己正在通过实际的网卡（network interface card）写入数据，但是实际上它是通过由monitor所仿真的（emulated）virtual network interface card来写入数据；当linux系统向virtual card写入一系列的指令时，它实际上正在通过monitor来进行写入；monitor通过对硬件编程（programming the real hardware）来代表os发送packet, 然后the real hardware将真正的响应返回给客户端
+										  collapsed:: true
 											- ![image.png](../assets/image_1688532840884_0.png)
 										- 如果primary和backup初始时处于相同的state，如果它们同时接受同样的中断请求，monitor可以控制中断在同一时刻被delivered，且中断对应完全一样的指令；由于发送的中断需要通过logging channel才能传递到backup，所以中断在primary的monitor处会先在buffer一段时间，直到中断也已经到达backup的monitor了
 										- backup上linux返回的packet不会send到网络上
@@ -419,14 +428,18 @@ title:: mit/6.824
 										-
 						- 还存在额外的component需要注意的吗？
 							- 有，是在同一个网络上的Storage Server
+							  collapsed:: true
 								- ![image.png](../assets/image_1688534805884_0.png)
 							- 它可以看作是primary和backup上两个virtual machine的hard disk：
+							  collapsed:: true
 								- 当一个应用试图给一个文件里写入数据，文件系统就会mount上linux系统（下图中green arrow表示了相关的控制流程）
 									- ![image.png](../assets/image_1688562571800_0.png)
 								- 有时候是客户端发起存储相关的communication，有时则是storage server主动发起存储相关的communication
 							- storage server扮演了除了存储服务器以外的其他的额外的角色：arbitration server
+							  collapsed:: true
 								- 在storage server内部会有一个block用作flag，来arbitrate（make a formal judgment or make an official decision）当发生failure将成为primary的那台机器是哪一个
 								- 主要原因是当primary和backup中某一个crash或者network fail时，无法区分是哪一种情况，但此时两者和storage server内部的这个flag block都是可以进行通信的；
+								  collapsed:: true
 									- 为什么这样做能够区分crash或者network fail呢?
 										- 当crash时，其实只有一台仍旧alive的机器会进行 test and set操作，crash的那台无法与存储服务器通信，自然也没有机会成为primary
 										- 而当network fail时，两台机器都会进行test and set 操作，两台机器中与存储服务器通信速度更快的将成为primary
@@ -435,16 +448,20 @@ title:: mit/6.824
 								- 于是，primary和backup都是尝试往这个flag block里面写入1，谁先写入1谁就就是primary：假如backup比primary率先抢到了1，server就会给backup返回0；那么当primary读取这个flag block时就会发现它已经是1了，server就会返回给它1；这种操作被称作 test and set （先进行读取测试，然后依据测试结果进行相应的set），其中返回结果得到0的machine将会处理client发送的请求，而返回结果为1的machine将会terminate and done
 							- arbitration server避免了split brain syndrome
 						- vmft中的repair plan是什么？repair的意思是说当primary宕机了，现在就只剩下一台backup机器了，但是这台backup的机器也有可能进一步宕机，所以必须需要再有一台replica
+						  collapsed:: true
 							- vmft中的repair plan是手动的，就是 ：
 								- 人通过monitor software会notice到这一点
 								- 然后会主动创建一个新的replica，或者 基于第一台机器的镜像来创建：注意在这个复制或者说克隆期间，primary是不会处理来自客户端的请求的
 								- 一旦second backup被创建成功，logging channel就会重新启动，如果我们follow the protocol, 这个flag就会被重设为0：这些操作是为了保证secondary backup和primary保持同步的状态
+								  collapsed:: true
 									- ![image.png](../assets/image_1688527000155_0.png)
 								- 整个系统恢复对客户端的服务
 						- 如果 logging channel或者the channel to the sever broke了，那我们就得不到响应了，所以怎么办呢？
+						  collapsed:: true
 							- sytem将直接stop，直到故障被repair，没有其他的补救措施
 							- 且之后的所有客户端请求都不会再被接受处理，因为我们并不清楚当前的state是什么
 						- 你认为disaster failures是什么？
+						  collapsed:: true
 							- 所有的网络电缆都断了
 							- primary和backup同时都宕机了
 							-
@@ -483,6 +500,7 @@ title:: mit/6.824
 				- 然后，当linux实际去执行non-deterministic instructions时，它将控制权转交给hypervisor（hypervisor会把自动地识别到这条指令将cause a trap），hypervisor会对这个指令emulate(仿真），也就是知道这个指令将会产生的所有effects但只记录这些effects所产生的results，比如说执行指令“go into a0”，它会把a0的值记录下来并传递给backup
 				- 最后，backup的vm monitor会使用同样的a0的值，将a0存入对应的需要更新数值的寄存器中，而不会重新执行指令
 			- primary和backup执行的速度谁快谁慢呢?
+			  collapsed:: true
 				- 在几乎一样的硬件条件下，如果要执行的instructions完全没有中断的话，那么primary和backup的运行速度几乎是完全一样的；但是实际上总是不可避免地会有一些中断，比如定时中断，而处理中断时backup必然是lag behind primary one message 的，也就是primary会比backup要运行得可能快一点，但是两者的运行速度不会差距太多，一方面是因为中断不会特别频繁，另一方面如果运行速度差太多会影响后面failure时backup取代primary提供服务时的性能
 			- 关于failover的更多场景，能给出一些解读吗？
 				- 场景1：
@@ -515,6 +533,7 @@ title:: mit/6.824
 				- 是的，它使得这种replication变得transparent
 				- 整个系统的设计目的就是：fault-tolerantly replicated
 			- 在Output Rule下，客户端是否会两次看到同样的response呢？
+			  collapsed:: true
 				- 是，因为网络的fault-tolerant model总是assume：网络无论如何都可以duplicate message，而像tcp这样的协议在用来duplicate message方面已经可以说是完全设计好了, 无论应用使用什么样的replication或者duplication策略都是这样
 				-
 			- 论文中如果出现了多个backup，那么对应的storage server除了arbitration还有其他的功能吗？
@@ -523,7 +542,7 @@ title:: mit/6.824
 			- 论文中说logging channel使用udp是为了传输的performance（延迟低），那么当primary通过这个channel发送packet但是没有收到acknowledgement时，是不是就会认为backup fail了，并且也不会重新再次传送（retransmit）?
 				- No，比如说timer interrupt每隔开10毫秒就产生一次，如果primary发送的heartbeats返回，那么系统就会继续做一些timer interrupt，直到放弃
 				- 这个heartbeats sort of来说是由timer发送的，但是由于每隔10毫秒就会发送一次interrupt message,所以会产生一些间接的副作用
-	-
+	- collapsed:: true
 - Fault Tolerance: Raft (1)
   collapsed:: true
 	- 主要讲什么？
@@ -1148,7 +1167,6 @@ title:: mit/6.824
 			- 使用weaker consistency这种trick，将能够导致high performace，以及在出现network partition时能够继续运行
 			-
 - Chain Replication:
-  collapsed:: true
 	- 这节课大概讲些什么呢？
 	  collapsed:: true
 		- ![image.png](../assets/image_1691979401228_0.png)

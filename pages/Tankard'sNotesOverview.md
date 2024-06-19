@@ -21,8 +21,10 @@ id:: 64f1abb1-973c-4af1-8496-d7df6bb490d2
 - [[Writing]]
 	- [[MyEssays]]
 	- [[WritingTutorial]]
+	- [[DailyNotes]]
 - [[MaterialsCollected]]
 	- [[FormatTemplate]]
+	-
 - id:: 64f1abb1-e1ad-4815-8573-cb0f18c0ac62
 - id:: 64f1abb1-c145-4d87-ac8e-5a9a75494f63
 -

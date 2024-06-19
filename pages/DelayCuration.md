@@ -42,6 +42,7 @@ collapsed:: true
 	- 与别人的交流对话中，没有搞懂的还是装自己搞懂了，同时也拖延很久才去解决这个疑问
 	- 收藏公众号推文或者聊天记录之后，拖延打标签
 - ## Actions
+  collapsed:: true
 	- [[Jan]][[2023]]
 	  collapsed:: true
 		- [[Jan 3rd, 2023]]
@@ -1426,6 +1427,7 @@ collapsed:: true
 				- 刷题还是比我想象得要久，即便是看答案，回顾时也需要不少时间
 				-
 	- [[April]][[2023]]
+	  collapsed:: true
 		- [[拿到Offer]]
 		  collapsed:: true
 			- DOING 刷完华为的笔试题列表
@@ -1525,14 +1527,12 @@ collapsed:: true
 			- TODO 准备好morgan的英文面试
 		- [[毕业设计]]
 		  collapsed:: true
-			- TODO 尝试对diffusion那个创新点完成优化
 			- DONE 再次检查下开题报告中是否存在错误，然后打印
 			  :LOGBOOK:
 			  CLOCK: [2023-05-01 Mon 14:27:28]
 			  CLOCK: [2023-05-01 Mon 14:27:29]--[2023-05-01 Mon 14:57:27] =>  00:29:58
 			  :END:
 			- DONE 完成小论文的修改和投稿
-			  collapsed:: true
 			  :LOGBOOK:
 			  CLOCK: [2023-04-07 Fri 16:22:38]--[2023-04-07 Fri 16:22:40] =>  00:00:02
 			  :END:
@@ -1632,7 +1632,6 @@ collapsed:: true
 					  :END:
 				- TODO 对文献引用是否存在错误进行一遍全面的检查
 			- DONE 完成开题报告的修改和答辩
-			  collapsed:: true
 			  :LOGBOOK:
 			  CLOCK: [2023-04-29 Sat 19:15:44]--[2023-04-29 Sat 19:15:45] =>  00:00:01
 			  :END:
@@ -1649,7 +1648,6 @@ collapsed:: true
 				  CLOCK: [2023-04-29 Sat 19:15:40]--[2023-04-29 Sat 19:15:41] =>  00:00:01
 				  :END:
 			- DONE 完成小论文第二版的修改
-			  collapsed:: true
 			  :LOGBOOK:
 			  CLOCK: [2023-04-24 Mon 11:01:10]--[2023-04-29 Sat 19:15:31] =>  128:14:21
 			  :END:
@@ -1686,7 +1684,6 @@ collapsed:: true
 			  :END:
 			- TODO 练习一次：随机拿一本英文书中的英文片段进行朗读
 			- DONE 完成第5套阅读试卷
-			  collapsed:: true
 			  :LOGBOOK:
 			  CLOCK: [2023-06-01 Thu 18:33:08]--[2023-06-01 Thu 18:33:10] =>  00:00:02
 			  :END:
@@ -1763,7 +1760,6 @@ collapsed:: true
 				- [[EvaluationMySystemStateByJottingDailyWorkAndFeelings]]
 			- TODO 整理回想之前看过的yt的一些有用观点，并提出一些有用的问题来思考
 			- DONE 重新build一套系统 [[CurrentIssues]]
-			  collapsed:: true
 			  :LOGBOOK:
 			  CLOCK: [2023-06-01 Thu 16:44:02]
 			  CLOCK: [2023-06-01 Thu 16:44:06]--[2023-06-01 Thu 17:49:48] =>  01:05:42
@@ -1771,12 +1767,9 @@ collapsed:: true
 				- 人这个系统的复杂性是由于社会系统的复杂性、头脑系统的复杂性所综合而成的结构，其实这个系统非常脆弱，因为它非常容易陷入熵增和混乱不堪的状态。社会系统可以看作是外部系统，而头脑系统是内部系统，内部系统所起到的作用更大，因为内部系统的运转方式决定了怎么对外界系统进行输入和输出。
 				- 我觉得自己不应该用非常官方或者术语式的方式来应用书中的模型和理论，因为这说明你并没有理解其中的关键点，最好的方法就是忘了它，针对自己解决的问题自动地去调用这些知识。
 				- 按照不同的维度，我为自己构造的新的system如下（相对有序、充满活力热情和创造力、充满改变的乐趣），意识到自己处于哪个系统中，就能更好地把握自己的行为：
-				  collapsed:: true
 					- 睡眠系统 + 吃饭系统：
-					  collapsed:: true
 						- 依据自己每天的睡眠状况，为今天的自己明确午休的时长 + 吃饭的次数和时长
 					- 工作系统：该系统的任务是指你不得不完成的工作，这些工作通常是外部的评价体系要求的有明确deadline和质量要求的产出物，比如必须完成的毕设算法模型的创新和论文工作的撰写、老板交给你的闲杂任务、教务老师的一些活动安排等，如果这些任务无法完成，人生的进度就无法进一步向下推进，所以必须要在这些事情上保持高度的专注、清醒、理智：
-					  collapsed:: true
 						- 为今天的自己明确一个固定的工作系统时长：每天花在工作系统上的时间最低为连续的8h，最长为14.5h
 						- 按照不同的主题将工作系统划分为主工作系统、次级工作系统。比如我现在的主题有三个：雅思考试工作系统（主）、Go语言学习系统（次）、leetcode刷题系统（次），每天固定在主工作系统投入事80%~95%的时间，剩下的工作系统时间配额从两个次级系统中进行选择
 					- 重要场合系统：
@@ -1786,7 +1779,6 @@ collapsed:: true
 							- 准备出国前的一周内
 							- 与重要的朋友进行聚餐
 					- Mental Effort系统：
-					  collapsed:: true
 						- 人的大脑总是忍不住地随性思考，并且会上瘾，但是很多时候这些思维活动反而扰乱正常生活，所以要觉察到自己当前正在进行什么类型的活动，通过为这个思维活动确立一个相对明确的目标，将使得思维活动充满价值
 						- 我对自己的[[思维活动]]进行了以下几种分类：
 							- 主动类型的[[思维活动]]：
@@ -1805,7 +1797,6 @@ collapsed:: true
 							- 有些思维活动是有益处的，但是有些没有。关键在于你能不能为这个思维活动找到一个不得不的目的和目标，如果不能，就应该果断摈弃相关的思维活动
 							- 思维活动要想有价值，就必须通过输出进行重整合和再加工
 					- 放松系统：让自己的大脑和身体自然地得到休息和放松
-					  collapsed:: true
 						- 身体：
 							- 散步或小跑 10min
 							- 跑步或者骑单车10min
@@ -1820,19 +1811,16 @@ collapsed:: true
 							- 参观博物馆、艺术馆、书店、公园等
 							- 胡乱书写10分钟
 					- 个人成长系统：工作系统以外可以按照自己的愿意决定做或者不做、可以延迟做的内容。我觉得不要把过多时间放在这个上面，因为会因为缺乏明确的目标和行动，导致只有头脑上的成长而没有实际的行动和结果增长；最近使用这个系统的时刻是当出现严重困惑的成长问题、暂时没有工作任务、工作完成后的总结阶段，要限制这个成长系统的单次时长为半天或者一天，除非特别大的难题可以用三天或者一周；尽量将这个成长系统分散到做每件事的总结、每天的工作总结等，也就是说每次成长系统的粒度应该是非常具体且细小的
-					  collapsed:: true
 						- 看书系统
 						- 看纪录片系统
 						- 写作系统
 					- 娱乐系统或者多巴胺缺乏系统：当觉得无聊或者懒惰或者没有心力做事时的系统
-					  collapsed:: true
 						- 看影视剧和娱乐内容
 						- 渴望亲密关系和body contact和have 6
 						- 疯狂找人聊天或者说话
 						- 做一些疯狂的举动
 					- 困惑系统：遇到巨大的困难而感到压力倍增时的系统
 					- 本我系统：
-					  collapsed:: true
 						- 任何符合自己潜意识的、难以控制的本能行为和情绪都指向一个更清晰的本我
 							- 比如相比于在图书馆座位上呆坐一天，我总想找点乐子，这说明我的本我是非常外向活泼、好动、好奇的、耐不住性子的；
 							-
@@ -2047,7 +2035,6 @@ collapsed:: true
 			- TODO 完成极客时间的金融分布式架构课程学习
 			- TODO 完成极客时间的分布式数据库30讲
 			- TODO 完成王益的分布式机器学习讲座课程的学习
-			  collapsed:: true
 				- {{video https://www.youtube.com/watch?v=dqE50moCwno&list=PLFze15KrfxbH2rGxJqcpFAgKp-iZv5uW0}}
 				-
 			- TODO 完成Go的小型数据库项目
@@ -2098,7 +2085,6 @@ collapsed:: true
 				- 很想着结交自己能够很幸运地凭借着运气或者外貌或者学识结交到自己所不能够接触的领域。因为你有一次这样的经验的，就很再通过这种廉价或者相对容易的方式再来获取资源
 				- 你的内心深处的不安全感是很强的，只是现实还没有刺痛你，迟早会再次被暴露
 			- TODO 各种欲望的牛鬼蛇神
-			  collapsed:: true
 				- TODO uncle addiction
 				- TODO food addiction and beverage addiction
 				- TODO collecting books and read without thinkings
@@ -2209,12 +2195,12 @@ collapsed:: true
 			- TODO 机械制图、电子电工原理
 			-
 		- [[准备日企面试]]
+		  collapsed:: true
 			- DONE 安装zoom
 			  :LOGBOOK:
 			  CLOCK: [2023-10-26 Thu 10:00:23]--[2023-10-26 Thu 10:00:24] =>  00:00:01
 			  :END:
 			- DONE 准备对应的面试题
-			  collapsed:: true
 			  :LOGBOOK:
 			  CLOCK: [2023-10-24 Tue 09:36:03]--[2023-10-26 Thu 10:00:32] =>  48:24:29
 			  :END:
@@ -2247,7 +2233,6 @@ collapsed:: true
 							- 有时候在有些问题上过度思考了，有时候会把简单的问题复杂化 =》比如某个特别重要的程序模块，我会把相关模块的代码看得比较细致，但是有时候是不用的，只用抓住关键部分，剩下的通过程序测试就能够快速定位潜在代码缺陷了=》不过我现在一直在学习结构化思考的这种思维方式，就是画各种思维导图、流程图之类的，确实对我有很大的改进
 							- 有一点完美主义，有时候会陷入到细节里 =》比如某个程序模块，可能相关的模块只用简单看一下就可以了，但是我有时候会看得特别细致，后面发现有些部分是不用阅读的 =》我对自己缺点的改进就是通过结构性的思考，也就是《金字塔原理》那本书里面所提倡的自上而下表达  自下而上思考的思考方式
 						- 兴趣爱好：
-						  collapsed:: true
 							- 我喜欢写作，主要是通过写作来思考，我有csdn这个技术账号，来进行技术的纠错；也在自己的个人公众号上写一些文章之类的
 							- 也比较喜欢和不同的人进行交流，主要是每次都能有新的收获
 					- 4、高考成绩
@@ -2263,9 +2248,7 @@ collapsed:: true
 						- 公司的工作时间安排是固定的还是得按照客户的需求来决定呢?
 						- 能够支持几年的工作签证呢？
 					- 8、你的几个荣誉奖项分别讲讲？
-					  collapsed:: true
 						- 模拟国际会议 是东南大学外国语学院举办的研究生英语比赛，我们小组一共六个同学设计了一个主题为人工智能前沿科技与应用的学术会议，我主要负责的角色是学术专家，负责该学术会议的开场白和结束致辞：
-						  collapsed:: true
 							- 我在开场白中用了三个例子来说明了目前AI的不可靠性：汽车不停地绕圈旋转是因为算法避免一切碰撞、游戏程序得出只要在俄罗斯方块中暂停就不会输的奇怪结论、翻译程序的一些搞笑翻译等，然后引出了目前在很多子领域需要进一步探索解决方案，最后欢迎大家来南京；
 							- 结束致辞主要是对各位小组同学所扮演的“各大学者”学术报告的总结，以及欢迎大家后续于各位学者进行私下交流
 							-
@@ -2278,7 +2261,6 @@ collapsed:: true
 			  CLOCK: [2023-10-23 Mon 20:15:24]--[2023-10-23 Mon 20:15:25] =>  00:00:01
 			  :END:
 			- DONE 学会基本的日语礼貌用语和自我介绍
-			  collapsed:: true
 			  :LOGBOOK:
 			  CLOCK: [2023-10-23 Mon 21:17:39]--[2023-10-26 Thu 10:00:37] =>  60:42:58
 			  :END:
@@ -2350,7 +2332,6 @@ collapsed:: true
 			  CLOCK: [2023-10-27 Fri 09:12:12]--[2023-10-27 Fri 17:07:22] =>  07:55:10
 			  :END:
 			- DONE 完成北森云计算的测评
-			  collapsed:: true
 			  :LOGBOOK:
 			  CLOCK: [2023-10-27 Fri 09:12:05]--[2023-10-27 Fri 09:12:10] =>  00:00:05
 			  :END:
@@ -2361,7 +2342,6 @@ collapsed:: true
 				- 笔试链接：[https://exam.nowcoder.com/cts/17304177/summary?id=247DC0A68393367E5D2B1AAD67C4DCC3](https://exam.nowcoder.com/cts/17304177/summary?id=247DC0A68393367E5D2B1AAD67C4DCC3)（笔试链接为你的私人专属地址，请勿转发。如无法直接打开，请拷贝完整链接并粘贴至浏览器地址栏，建议提前15分钟打开链接进行考试信息核对、调试设备等考前准备工作）
 				-
 			- DONE 完成太极国企的面试
-			  collapsed:: true
 			  :LOGBOOK:
 			  CLOCK: [2023-11-06 Mon 18:52:48]--[2023-11-06 Mon 18:52:48] =>  00:00:00
 			  :END:
@@ -2379,7 +2359,6 @@ collapsed:: true
 				  联系电话：13522277644
 				  以上面试信息，如有时间变动请及时与我们沟通，谢谢！
 			- DONE 完成保险的管培生面试
-			  collapsed:: true
 			  :LOGBOOK:
 			  CLOCK: [2023-11-03 Fri 09:33:18]--[2023-11-06 Mon 18:52:47] =>  81:19:29
 			  :END:
@@ -2389,7 +2368,6 @@ collapsed:: true
 				-
 				- 面试地点:腾讯会议978 460 027
 			- DONE 参加阅文集团的笔试
-			  collapsed:: true
 			  :LOGBOOK:
 			  CLOCK: [2023-11-06 Mon 18:52:44]--[2023-11-06 Mon 18:52:45] =>  00:00:01
 			  :END:
@@ -2399,7 +2377,6 @@ collapsed:: true
 				- 考试时长：90分钟
 				- 考试地址：[https://exam.nowcoder.com/cts/17304909/summary?id=185A15F7F74405C65D2B1AAD67C4DCC3](https://exam.nowcoder.com/cts/17304909/summary?id=185A15F7F74405C65D2B1AAD67C4DCC3) （考试地址为你的私人专属地址，请勿转发。如无法直接打开，请拷贝完整链接并粘贴至浏览器地址栏，建议提前15分钟打开链接进行考试信息核对、调试设备等考前准备工作）
 			- DONE 参加杭州微策略的笔试
-			  collapsed:: true
 			  :LOGBOOK:
 			  CLOCK: [2023-11-02 Thu 10:18:47]--[2023-11-06 Mon 18:52:56] =>  104:34:09
 			  :END:
@@ -2435,12 +2412,10 @@ collapsed:: true
 				  CLOCK: [2023-11-13 Mon 19:18:10]--[2023-11-13 Mon 19:18:10] =>  00:00:00
 				  :END:
 			- DONE 完成英文简历
-			  collapsed:: true
 			  :LOGBOOK:
 			  CLOCK: [2023-11-07 Tue 15:42:48]--[2023-11-13 Mon 09:35:32] =>  137:52:44
 			  :END:
 				- DONE 小红书上查找英文简历模板，总结下核心要点
-				  collapsed:: true
 				  :LOGBOOK:
 				  CLOCK: [2023-11-07 Tue 15:42:43]--[2023-11-07 Tue 15:42:44] =>  00:00:01
 				  :END:
@@ -2473,7 +2448,6 @@ collapsed:: true
 				  CLOCK: [2023-11-13 Mon 23:10:26]--[2023-11-13 Mon 23:10:27] =>  00:00:01
 				  :END:
 			- DONE 调参到可以与论文结果相匹配，或者说差距不大
-			  collapsed:: true
 			  :LOGBOOK:
 			  CLOCK: [2023-11-14 Tue 00:58:53]--[2023-11-14 Tue 00:58:54] =>  00:00:01
 			  :END:
@@ -2486,7 +2460,6 @@ collapsed:: true
 				- ![image.png](../assets/image_1699889147045_0.png)
 				-
 			- DONE 完成最后一次paper model的SGD的调参：也就是第五次实验结果
-			  collapsed:: true
 			  :LOGBOOK:
 			  CLOCK: [2023-11-14 Tue 20:43:31]--[2023-11-14 Tue 21:32:54] =>  00:49:23
 			  :END:
@@ -2500,7 +2473,6 @@ collapsed:: true
 			  CLOCK: [2023-11-14 Tue 20:45:28]--[2023-11-14 Tue 23:39:18] =>  02:53:50
 			  :END:
 			- DONE 看看增强后的数据里train目录下的topo_mask需不需要
-			  collapsed:: true
 			  :LOGBOOK:
 			  CLOCK: [2023-11-14 Tue 20:46:00]
 			  CLOCK: [2023-11-14 Tue 20:46:02]--[2023-11-14 Tue 22:20:20] =>  01:34:18
@@ -2509,19 +2481,16 @@ collapsed:: true
 				- 因为模型里面并不需要用到topo_mask这个数据，但是原先的数据库返回接口里面保留了这个返回值，需要修改其返回任意一个tensor就行了
 			-
 			- DONE 计算传统机器学习里面的三种模型的结果
-			  collapsed:: true
 			  :LOGBOOK:
 			  CLOCK: [2023-11-14 Tue 23:28:25]
 			  CLOCK: [2023-11-14 Tue 23:28:26]--[2023-11-15 Wed 22:10:56] =>  22:42:30
 			  :END:
 				- DONE 计算SVM
-				  collapsed:: true
 				  :LOGBOOK:
 				  CLOCK: [2023-11-14 Tue 23:28:41]
 				  CLOCK: [2023-11-14 Tue 23:28:45]--[2023-11-15 Wed 16:35:14] =>  17:06:29
 				  :END:
 					- DONE 计算class_weight为0.3: 0.7
-					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2023-11-15 Wed 16:22:44]
 					  CLOCK: [2023-11-15 Wed 16:22:45]--[2023-11-15 Wed 16:34:53] =>  00:12:08
@@ -2530,7 +2499,6 @@ collapsed:: true
 						- ![image.png](../assets/image_1700040576203_0.png)
 						-
 					- DONE 计算class_weight 为 0.4: 0.6
-					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2023-11-15 Wed 16:24:13]
 					  CLOCK: [2023-11-15 Wed 16:24:14]--[2023-11-15 Wed 16:34:55] =>  00:10:41
@@ -2540,7 +2508,6 @@ collapsed:: true
 						-
 					- 第二种更好
 				- DONE 计算KNN
-				  collapsed:: true
 				  :LOGBOOK:
 				  CLOCK: [2023-11-14 Tue 23:28:47]
 				  CLOCK: [2023-11-14 Tue 23:28:49]--[2023-11-15 Wed 16:11:04] =>  16:42:15
@@ -2549,7 +2516,6 @@ collapsed:: true
 					- ![image.png](../assets/image_1700040806171_0.png)
 					-
 				- DONE 把权重改为{0.4,0.6}后重新运行KNN后的结构
-				  collapsed:: true
 				  :LOGBOOK:
 				  CLOCK: [2023-11-15 Wed 16:11:10]
 				  CLOCK: [2023-11-15 Wed 16:11:12]--[2023-11-15 Wed 16:22:32] =>  00:11:20
@@ -2557,27 +2523,23 @@ collapsed:: true
 					- 原本的权重设置是{0.3, 0.7}，这与其他深度学习模型都是{0.4，0.6}的设置不同
 					- 后来发现KNN模型并不需要class_weight这个参数项
 				- DONE 计算随机森林
-				  collapsed:: true
 				  :LOGBOOK:
 				  CLOCK: [2023-11-14 Tue 23:28:52]
 				  CLOCK: [2023-11-14 Tue 23:28:54]--[2023-11-15 Wed 18:57:44] =>  19:28:50
 				  :END:
 					- DONE {0.4, 0.6}的结果
-					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2023-11-15 Wed 17:46:20]
 					  CLOCK: [2023-11-15 Wed 17:46:21]--[2023-11-15 Wed 17:46:52] =>  00:00:31
 					  :END:
 						- ![image.png](../assets/image_1700041604938_0.png)
 					- DONE {0.3，0.7}的结果
-					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2023-11-15 Wed 17:46:58]--[2023-11-15 Wed 17:49:34] =>  00:02:36
 					  :END:
 						- ![image.png](../assets/image_1700041755058_0.png)
 						- ![image.png](../assets/image_1700041770617_0.png)
 				- DONE 随机森林和论文模型对不上，找到对应的模型保存文件尝试了一下 =》成功
-				  collapsed:: true
 				  :LOGBOOK:
 				  CLOCK: [2023-11-15 Wed 21:24:52]
 				  CLOCK: [2023-11-15 Wed 21:24:53]--[2023-11-15 Wed 21:26:53] =>  00:02:00
@@ -2591,7 +2553,6 @@ collapsed:: true
 				  CLOCK: [2023-11-15 Wed 16:37:25]--[2023-11-15 Wed 17:38:57] =>  01:01:32
 				  :END:
 			- DONE 重新跑论文模型的val数据集部分的结果
-			  collapsed:: true
 			  :LOGBOOK:
 			  CLOCK: [2023-11-15 Wed 22:12:09]
 			  CLOCK: [2023-11-15 Wed 22:12:10]--[2023-11-15 Wed 22:17:32] =>  00:05:22
@@ -2599,7 +2560,6 @@ collapsed:: true
 				- ![image.png](../assets/image_1700057661437_0.png)
 				-
 			- DONE 重新跑论文模型的test数据集部分的结果
-			  collapsed:: true
 			  :LOGBOOK:
 			  CLOCK: [2023-11-15 Wed 22:12:28]
 			  CLOCK: [2023-11-15 Wed 22:12:29]--[2023-11-15 Wed 22:21:21] =>  00:08:52
@@ -2607,13 +2567,11 @@ collapsed:: true
 				- ![image.png](../assets/image_1700057860638_0.png)
 				-
 			- DONE 开启第六次实验，将数据集切换为数据量二倍增强后的，结果如下
-			  collapsed:: true
 			  :LOGBOOK:
 			  CLOCK: [2023-11-15 Wed 22:23:29]
 			  CLOCK: [2023-11-15 Wed 22:23:30]--[2023-11-16 Thu 00:22:12] =>  01:58:42
 			  :END:
 				- DONE 模型训练得到的模型
-				  collapsed:: true
 				  :LOGBOOK:
 				  CLOCK: [2023-11-15 Wed 22:23:45]
 				  CLOCK: [2023-11-15 Wed 22:23:46]--[2023-11-16 Thu 00:11:02] =>  01:47:16
@@ -2629,7 +2587,6 @@ collapsed:: true
 					- ![image.png](../assets/image_1700065071546_0.png)
 					-
 				- DONE 模型在val数据集部分的结果
-				  collapsed:: true
 				  :LOGBOOK:
 				  CLOCK: [2023-11-16 Thu 00:21:14]
 				  CLOCK: [2023-11-16 Thu 00:21:15]--[2023-11-16 Thu 00:22:08] =>  00:00:53
@@ -2647,7 +2604,6 @@ collapsed:: true
 			  CLOCK: [2023-11-15 Wed 21:16:11]
 			  :END:
 			- DONE 重新跑resnet18的模型，因为pkl文件和论文貌似对不上
-			  collapsed:: true
 			  :LOGBOOK:
 			  CLOCK: [2023-11-16 Thu 15:15:25]
 			  CLOCK: [2023-11-16 Thu 15:15:26]--[2023-11-16 Thu 15:53:20] =>  00:37:54
@@ -2656,13 +2612,11 @@ collapsed:: true
 				- ![image.png](../assets/image_1700122075296_0.png)
 				- 但是结果不如原先对应的resnet18模型检查点文件，所以启用此训练结果
 			- DONE 找到了resnet18对应的模型检查点文件
-			  collapsed:: true
 			  :LOGBOOK:
 			  CLOCK: [2023-11-16 Thu 15:53:25]
 			  CLOCK: [2023-11-16 Thu 15:53:27]--[2023-11-16 Thu 16:25:28] =>  00:32:01
 			  :END:
 				- DONE 测试数据集上的结果
-				  collapsed:: true
 				  :LOGBOOK:
 				  CLOCK: [2023-11-16 Thu 15:57:40]
 				  CLOCK: [2023-11-16 Thu 15:57:41]--[2023-11-16 Thu 16:12:31] =>  00:14:50
@@ -2676,7 +2630,6 @@ collapsed:: true
 					- ![image.png](../assets/image_1700122322488_0.png)
 					-
 			- DONE 找到了densenet121的模型检查点文件
-			  collapsed:: true
 			  :LOGBOOK:
 			  CLOCK: [2023-11-16 Thu 16:25:35]
 			  CLOCK: [2023-11-16 Thu 16:25:38]--[2023-11-16 Thu 16:57:03] =>  00:31:25
@@ -2689,7 +2642,6 @@ collapsed:: true
 				  :END:
 					- ![image.png](../assets/image_1700124627326_0.png)
 				- DONE val数据集部分
-				  collapsed:: true
 				  :LOGBOOK:
 				  CLOCK: [2023-11-16 Thu 16:27:30]
 				  CLOCK: [2023-11-16 Thu 16:27:32]--[2023-11-16 Thu 16:57:01] =>  00:29:29
@@ -2697,14 +2649,12 @@ collapsed:: true
 					- ![image.png](../assets/image_1700125003972_0.png)
 					-
 			- DONE 找到了 proposed without multi-out的模型检查点文件
-			  collapsed:: true
 			  :LOGBOOK:
 			  CLOCK: [2023-11-16 Thu 16:26:12]
 			  CLOCK: [2023-11-16 Thu 16:26:13]
 			  CLOCK: [2023-11-16 Thu 16:26:16]--[2023-11-16 Thu 17:53:38] =>  01:27:22
 			  :END:
 				- DONE 测试数据部分
-				  collapsed:: true
 				  :LOGBOOK:
 				  CLOCK: [2023-11-16 Thu 16:27:20]
 				  CLOCK: [2023-11-16 Thu 16:27:22]--[2023-11-16 Thu 16:28:43] =>  00:01:21
@@ -2712,7 +2662,6 @@ collapsed:: true
 				  :END:
 					- ![image.png](../assets/image_1700128142818_0.png)
 				- DONE val数据集部分
-				  collapsed:: true
 				  :LOGBOOK:
 				  CLOCK: [2023-11-16 Thu 16:27:30]
 				  CLOCK: [2023-11-16 Thu 16:27:32]--[2023-11-16 Thu 17:53:36] =>  01:26:04
@@ -2720,7 +2669,6 @@ collapsed:: true
 					- ![image.png](../assets/image_1700128326133_0.png)
 					-
 			- DONE 找到了proposed w concat fusion的模型检查点文件
-			  collapsed:: true
 			  :LOGBOOK:
 			  CLOCK: [2023-11-16 Thu 17:53:56]
 			  CLOCK: [2023-11-16 Thu 17:59:01]--[2023-11-16 Thu 18:05:52] =>  00:06:51
@@ -2732,14 +2680,12 @@ collapsed:: true
 				  :END:
 					- ![image.png](../assets/image_1700128788962_0.png)
 				- DONE 找打了验证数据集上的部分
-				  collapsed:: true
 				  :LOGBOOK:
 				  CLOCK: [2023-11-16 Thu 17:59:35]
 				  CLOCK: [2023-11-16 Thu 17:59:37]--[2023-11-16 Thu 18:04:35] =>  00:04:58
 				  :END:
 					- ![image.png](../assets/image_1700128963497_0.png)
 			- DONE 找到了FDFFE的模型检查文件
-			  collapsed:: true
 			  :LOGBOOK:
 			  CLOCK: [2023-11-16 Thu 18:21:12]
 			  CLOCK: [2023-11-16 Thu 18:21:14]--[2023-11-16 Thu 18:32:48] =>  00:11:34
@@ -2751,7 +2697,6 @@ collapsed:: true
 				  :END:
 					- ![image.png](../assets/image_1700130097118_0.png)
 				- DONE val数据集
-				  collapsed:: true
 				  :LOGBOOK:
 				  CLOCK: [2023-11-16 Thu 18:21:30]
 				  CLOCK: [2023-11-16 Thu 18:21:32]--[2023-11-16 Thu 18:32:46] =>  00:11:14
@@ -2759,7 +2704,6 @@ collapsed:: true
 					- ![image.png](../assets/image_1700130209531_0.png)
 					-
 			- DONE vgg11
-			  collapsed:: true
 			  :LOGBOOK:
 			  CLOCK: [2023-11-16 Thu 18:32:55]
 			  CLOCK: [2023-11-16 Thu 18:32:57]--[2023-11-16 Thu 18:39:15] =>  00:06:18
@@ -2771,7 +2715,6 @@ collapsed:: true
 				  :END:
 					- ![image.png](../assets/image_1700130865007_0.png)
 				- DONE val
-				  collapsed:: true
 				  :LOGBOOK:
 				  CLOCK: [2023-11-16 Thu 18:33:06]
 				  CLOCK: [2023-11-16 Thu 18:33:07]--[2023-11-16 Thu 18:38:35] =>  00:05:28
@@ -2779,24 +2722,20 @@ collapsed:: true
 					- ![image.png](../assets/image_1700131056587_0.png)
 					-
 			- DONE vgg16
-			  collapsed:: true
 			  :LOGBOOK:
 			  CLOCK: [2023-11-16 Thu 18:39:28]--[2023-11-16 Thu 19:14:47] =>  00:35:19
 			  :END:
 				- DONE test
-				  collapsed:: true
 				  :LOGBOOK:
 				  CLOCK: [2023-11-16 Thu 18:40:29]--[2023-11-16 Thu 19:11:47] =>  00:31:18
 				  :END:
 					- ![image.png](../assets/image_1700133104324_0.png)
 				- DONE val
-				  collapsed:: true
 				  :LOGBOOK:
 				  CLOCK: [2023-11-16 Thu 18:40:32]--[2023-11-16 Thu 19:14:46] =>  00:34:14
 				  :END:
 					- ![image.png](../assets/image_1700133283600_0.png)
 			- DONE efficient-net
-			  collapsed:: true
 			  :LOGBOOK:
 			  CLOCK: [2023-11-16 Thu 18:39:32]
 			  CLOCK: [2023-11-16 Thu 18:39:39]--[2023-11-16 Thu 19:22:37] =>  00:42:58
@@ -2807,65 +2746,54 @@ collapsed:: true
 				  :END:
 					- ![image.png](../assets/image_1700133592256_0.png)
 				- DONE val
-				  collapsed:: true
 				  :LOGBOOK:
 				  CLOCK: [2023-11-16 Thu 18:40:45]--[2023-11-16 Thu 19:22:33] =>  00:41:48
 				  :END:
 					- ![image.png](../assets/image_1700133748654_0.png)
 			- DONE alexnet
-			  collapsed:: true
 			  :LOGBOOK:
 			  CLOCK: [2023-11-16 Thu 18:39:47]--[2023-11-16 Thu 19:43:33] =>  01:03:46
 			  :END:
 				- DONE test
-				  collapsed:: true
 				  :LOGBOOK:
 				  CLOCK: [2023-11-16 Thu 18:40:39]--[2023-11-16 Thu 19:43:31] =>  01:02:52
 				  :END:
 					- ![image.png](../assets/image_1700135008235_0.png)
 				- DONE val
-				  collapsed:: true
 				  :LOGBOOK:
 				  CLOCK: [2023-11-16 Thu 18:40:45]--[2023-11-16 Thu 19:30:34] =>  00:49:49
 				  :END:
 					- ![image.png](../assets/image_1700134230347_0.png)
 			- DONE resnet18 + weighted_pooling
-			  collapsed:: true
 			  :LOGBOOK:
 			  CLOCK: [2023-11-16 Thu 18:39:49]
 			  CLOCK: [2023-11-16 Thu 18:39:57]--[2023-11-16 Thu 20:02:24] =>  01:22:27
 			  :END:
 				- DONE test
-				  collapsed:: true
 				  :LOGBOOK:
 				  CLOCK: [2023-11-16 Thu 18:40:39]--[2023-11-16 Thu 19:57:31] =>  01:16:52
 				  :END:
 					- ![image.png](../assets/image_1700135848086_0.png)
 				- DONE val
-				  collapsed:: true
 				  :LOGBOOK:
 				  CLOCK: [2023-11-16 Thu 18:40:45]--[2023-11-16 Thu 20:02:23] =>  01:21:38
 				  :END:
 					- ![image.png](../assets/image_1700136139708_0.png)
 			- DONE  densenet121 + weighed_pooling
-			  collapsed:: true
 			  :LOGBOOK:
 			  CLOCK: [2023-11-16 Thu 18:40:10]--[2023-11-16 Thu 20:09:42] =>  01:29:32
 			  :END:
 				- DONE test
-				  collapsed:: true
 				  :LOGBOOK:
 				  CLOCK: [2023-11-16 Thu 18:40:39]--[2023-11-16 Thu 20:09:35] =>  01:28:56
 				  :END:
 					- ![image.png](../assets/image_1700136574664_0.png)
 				- DONE val
-				  collapsed:: true
 				  :LOGBOOK:
 				  CLOCK: [2023-11-16 Thu 18:40:45]--[2023-11-16 Thu 20:09:40] =>  01:28:55
 				  :END:
 					- ![image.png](../assets/image_1700136368337_0.png)
 			- DONE 确认CM大小
-			  collapsed:: true
 			  :LOGBOOK:
 			  CLOCK: [2023-11-16 Thu 22:23:49]
 			  CLOCK: [2023-11-16 Thu 22:23:55]
@@ -2876,7 +2804,6 @@ collapsed:: true
 				- ![image.png](../assets/image_1700145024092_0.png){:height 482, :width 825}
 				-
 			- DONE 确定CM代码存在的问题
-			  collapsed:: true
 			  :LOGBOOK:
 			  CLOCK: [2023-11-17 Fri 12:15:47]
 			  CLOCK: [2023-11-17 Fri 12:15:51]--[2023-11-17 Fri 12:17:56] =>  00:02:05
@@ -2888,7 +2815,6 @@ collapsed:: true
 			- TODO 关于理性方面的书籍
 				- TODO 《The art of love》
 			- TODO 知乎提问:
-			  collapsed:: true
 				- INTP为什么没有敬畏感？或者说如何培养自己的敬畏感？
 				- 如何培养对于小的事实片段和小的逻辑推断的记忆力？
 				- 日本的敬畏感、西方人的敬畏感是不是都是通过严谨来体现的？中国人在什么领域会体现出这种敬畏感呢？
@@ -2938,14 +2864,12 @@ collapsed:: true
 			- TODO 投名状、其他各种状
 			- TODO 我的目标就是没有目标，率性而为，当时当地什么最适合我、什么对我最友好、我最想做什么，我就选择什么，比如如果我想去北美或者欧洲读cs phd，那么我就一定需要出来找计算机的工业界或者教职吗 =》并不一定，我读了之后想找什么类型的工作都可以，很多地方给了phd更多的职业选择 =》因为phd最重要的是思维的锻炼，而不是那些功利性的结果 =》要是抱着功利性的结果，去读phd，迟早会把自己限定在欲望的牢笼里面，也会被这个世界上各种各样的随机性和不确定性所困住 =》就像丁元英关于佛性和成佛的论述一样
 			- DOING 写一个时事类型的题目的回答：比如openAI这个人的，可以先看别人怎么写的，然后自己找新角度 =》反复修改 =》先让自己在某种类型的时事分析上得到一定程度的锻炼吧
-			  collapsed:: true
 			  :LOGBOOK:
 			  CLOCK: [2023-11-18 Sat 13:56:43]
 			  CLOCK: [2023-11-18 Sat 13:56:44]
 			  :END:
 		- [[完成超声AI毕设]] [[研究生]] [[东南大学]]
 			- DONE  确认basic settings
-			  collapsed:: true
 			  :LOGBOOK:
 			  CLOCK: [2024-01-17 Wed 19:55:16]--[2024-01-17 Wed 20:15:18] =>  00:20:02
 			  :END:
@@ -2960,14 +2884,12 @@ collapsed:: true
 					- 这会影响到损失函数如何计算 + 指标的计算
 					- 查看了下之前的代码，都是没有torch.sigmoid, 因为sigmoid之后就不方便绘制heatmap了；也就说尽量把一切的后处理都放在模型后，这样将来能够利用更多的原始数据
 			- DONE 思考可视化对比不同模型的分割结果
-			  collapsed:: true
 			  :LOGBOOK:
 			  CLOCK: [2024-01-17 Wed 19:42:09]--[2024-01-17 Wed 19:42:12] =>  00:00:03
 			  :END:
 				- 保留在preds子文件夹了
 				- 所有的绘图的代码其实只需要在测试部分写就可以了
 				- 一般的loss这样与训练相关的图其实没有特别大的意义，除非这个模型本身很难训练
-				  collapsed:: true
 					- ![image.png](../assets/image_1705492217295_0.png)
 					-
 			- DONE 总结一下师兄毕设中实验设计的思路和技巧
@@ -2981,7 +2903,6 @@ collapsed:: true
 			  CLOCK: [2024-01-23 Tue 00:44:33]--[2024-01-23 Tue 00:44:35] =>  00:00:02
 			  :END:
 				- DONE 分析数据方面的问题
-				  collapsed:: true
 				  :LOGBOOK:
 				  CLOCK: [2024-01-11 Thu 20:59:57]--[2024-01-11 Thu 20:59:58] =>  00:00:01
 				  :END:
@@ -2989,17 +2910,14 @@ collapsed:: true
 					- 第二个是数据划分比例的问题，应该将8:1:1改成6:2:2
 					- 第三个是没有进行数据的预处理
 				- DONE 完成关于数据问题setting的组合实验
-				  collapsed:: true
 				  :LOGBOOK:
 				  CLOCK: [2024-01-11 Thu 21:03:31]--[2024-01-23 Tue 00:43:56] =>  267:40:25
 				  :END:
 					- DONE no normal + no processing + 8:1:1
-					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-01-11 Thu 21:22:43]--[2024-01-11 Thu 21:22:44] =>  00:00:01
 					  :END:
 						- train + val
-						  collapsed:: true
 							- ![1e31c0c10450f4545c928ea9b410d4a.png](../assets/1e31c0c10450f4545c928ea9b410d4a_1704979155113_0.png)
 							- ![47028933fe7df44ff4a95729570b27f.png](../assets/47028933fe7df44ff4a95729570b27f_1704979202839_0.png)
 							-
@@ -3008,7 +2926,6 @@ collapsed:: true
 							-
 						-
 					- DONE 看下MICCAI上使用BUSI论文分割的结果大概是哪个范围水平的，如果和加入了normal的结果差距太大，那还是不要加上NORMAL了
-					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-01-17 Wed 19:28:01]--[2024-01-17 Wed 19:30:11] =>  00:02:10
 					  :END:
@@ -3016,7 +2933,6 @@ collapsed:: true
 						- 迭代25次的结果在test上是59.83%，远远低于这里的70.10
 						- 但是迭代50次在test上的结果是 70.71%
 					- DONE 使用第一批数据来对比加不加normal的情况
-					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-01-21 Sun 20:31:45]--[2024-01-21 Sun 20:32:34] =>  00:00:49
 					  :END:
@@ -3027,7 +2943,6 @@ collapsed:: true
 						  CLOCK: [2024-01-11 Thu 21:25:55]--[2024-01-17 Wed 19:27:18] =>  142:01:23
 						  :END:
 							- 迭代25次的结果
-							  collapsed:: true
 								- train + val
 									- ![image.png](../assets/image_1705483908478_0.png)
 								- test
@@ -3045,7 +2960,6 @@ collapsed:: true
 						  CLOCK: [2024-01-11 Thu 21:26:20]--[2024-01-17 Wed 23:35:00] =>  146:08:40
 						  :END:
 							- train + val （50次迭代，batch大小设置为10）
-							  collapsed:: true
 								- ![image.png](../assets/image_1705504575594_0.png)
 								- ![image.png](../assets/image_1705504607108_0.png)
 							- test
@@ -3053,7 +2967,6 @@ collapsed:: true
 								-
 						- 这里是加上normal的结果更好
 					- DONE  使用第二批数据来对比加不加normal的情况
-					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-01-17 Wed 23:46:49]
 					  CLOCK: [2024-01-17 Wed 23:46:50]--[2024-01-21 Sun 02:50:41] =>  75:03:51
@@ -3064,36 +2977,30 @@ collapsed:: true
 						  CLOCK: [2024-01-17 Wed 23:47:32]--[2024-01-18 Thu 00:52:56] =>  01:05:24
 						  :END:
 						- DONE 加上normal数据的
-						  collapsed:: true
 						  :LOGBOOK:
 						  CLOCK: [2024-01-18 Thu 00:53:16]
 						  CLOCK: [2024-01-18 Thu 00:53:23]
 						  CLOCK: [2024-01-18 Thu 00:54:05]--[2024-01-18 Thu 01:08:16] =>  00:14:11
 						  :END:
 							- train + val
-							  collapsed:: true
 								- ![image.png](../assets/image_1705510463009_0.png){:height 70, :width 532}
 								- ![image.png](../assets/image_1705510641383_0.png)
 								-
 							- test
 								- ![image.png](../assets/image_1705512698504_0.png){:height 235, :width 532}
 						- DONE 不带normal数据的
-						  collapsed:: true
 						  :LOGBOOK:
 						  CLOCK: [2024-01-18 Thu 01:08:29]
 						  CLOCK: [2024-01-18 Thu 01:08:31]--[2024-01-21 Sun 02:44:45] =>  73:36:14
 						  :END:
 							- train + val
-							  collapsed:: true
 								- ![image.png](../assets/image_1705591172858_0.png)
 								- ![image.png](../assets/image_1705591220815_0.png)
 							- test
-							  collapsed:: true
 								- ![image.png](../assets/image_1705776235441_0.png)
 								-
 						- 此例中不带normal数据比带normal要更好，而且好得多，不带normal的dsc是0.8258，带上normal的dsc是0.7287
 					- DONE 使用第三批数据来对比加不加normal的情况
-					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-01-21 Sun 02:51:57]
 					  CLOCK: [2024-01-21 Sun 02:52:00]--[2024-01-21 Sun 20:24:48] =>  17:32:48
@@ -3104,13 +3011,11 @@ collapsed:: true
 						  CLOCK: [2024-01-21 Sun 02:54:52]--[2024-01-21 Sun 04:04:17] =>  01:09:25
 						  :END:
 						- DONE 加上normal数据的
-						  collapsed:: true
 						  :LOGBOOK:
 						  CLOCK: [2024-01-21 Sun 02:54:59]
 						  CLOCK: [2024-01-21 Sun 02:55:00]--[2024-01-21 Sun 04:14:53] =>  01:19:53
 						  :END:
 							- train + val
-							  collapsed:: true
 								- ![image.png](../assets/image_1705781070026_0.png)
 								- ![image.png](../assets/image_1705781106552_0.png)
 							- test
@@ -3121,7 +3026,6 @@ collapsed:: true
 						  CLOCK: [2024-01-21 Sun 02:55:06]--[2024-01-21 Sun 20:23:53] =>  17:28:47
 						  :END:
 							- train + val
-							  collapsed:: true
 								- ![image.png](../assets/image_1705839569141_0.png)
 								- ![image.png](../assets/image_1705839631156_0.png)
 							- test
@@ -3129,14 +3033,12 @@ collapsed:: true
 						- 这个数据划分不带normal是0.7536, 带上normal是0.7596
 						- 这个数据划分下加上normal的要更好
 					- 问了一下GPT是否要加入normal类的图片
-					  collapsed:: true
 						- ![image.png](../assets/image_1705490005004_0.png)
 						- ![image.png](../assets/image_1705490073663_0.png)
 						- BUSI 中没有肿块的只有133张图片，在数据集中的比例是133 / 780 = 17.05%；
 						- ![image.png](../assets/image_1705490457189_0.png)
 						- 理论分析是：如果加入没有肿块的数据，可以提高模型对于正常组织的泛化能力，但会降低区分良恶性肿块的能力。但是，一方面这里没有肿块的数据比例只有17.05%，对模型的性能不会产生显著影响；另一方面本论文使用的分割模型较为复杂，模型可能能自动学习如何区分非肿块和肿块。
 					- DONE 选定最终批次的数据
-					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-01-21 Sun 20:39:47]
 					  CLOCK: [2024-01-21 Sun 20:39:48]--[2024-01-21 Sun 20:40:00] =>  00:00:12
@@ -3149,7 +3051,6 @@ collapsed:: true
 					  CLOCK: [2024-01-11 Thu 22:31:01]--[2024-01-23 Tue 00:43:24] =>  266:12:23
 					  :END:
 						- 不采用弹性形变
-						  collapsed:: true
 						  :LOGBOOK:
 						  CLOCK: [2024-01-21 Sun 02:52:18]
 						  CLOCK: [2024-01-21 Sun 02:52:20]
@@ -3157,29 +3058,23 @@ collapsed:: true
 							- 弹性形变可以引入局部的形状变化，可能导致 mask 边缘出现不规则锯齿
 							- ![image.png](../assets/image_1705932160199_0.png)
 						- 关于gamma对比度变换，是否要采用？不采用
-						  collapsed:: true
 							- ![image.png](../assets/image_1705931604398_0.png)
 							- ![image.png](../assets/image_1705932226907_0.png)
 							- https://blog.csdn.net/Roaddd/article/details/112374289
 							- 不采纳gamma变换的原因：乳腺超声图像中肿块区域几乎是全黑的，而乳腺组织等其他部分则是灰黑为主夹杂一小部分亮白。如果采用gamma < 1的对比度变换，那么肿块区域的灰度将会被拉升至很高，会和图像内其他的白色部分接近，这样就无法区分清肿块和非肿块了；如果采用gamma > 1的对比度变换，由于超声图像大部分像素都处于低灰度区间，那么非肿块区域的灰度会被大幅度地压缩，也就会与肿块区域更接近而难以区分。所以，这里不采用任何的gamma变换
 							-
 						- 不采用旋转  或者  只采用很低角度的旋转
-						  collapsed:: true
 							- 因为过高角度的旋转会带来一部分的全黑像素，会被错误分割为肿块的一部分了；也有可能把肿块区域给旋转出正方形的像素空间；同时，原图像中除了非肿块区域存在一部分全黑的空余空间，这部分空间旋转后可能也会被认为是肿块
 							- ![image.png](../assets/image_1705935837087_0.png)
 						- 是否要加噪音？
-						  collapsed:: true
 							- 需要的，因为实际超声图片中可能会存在不少的噪音
 						- 是否要进行模糊变换？
-						  collapsed:: true
 							- 需要
 								- ![image.png](../assets/image_1705934374846_0.png)
 						- 实际进行了五类操作：
-						  collapsed:: true
 							- ![image.png](../assets/image_1705935872051_0.png)
 							-
 						- DONE 测试一下在第三批数据上Unet（388:129:130 = 647 ）的测试结果
-						  collapsed:: true
 						  :LOGBOOK:
 						  CLOCK: [2024-01-22 Mon 23:04:41]
 						  CLOCK: [2024-01-22 Mon 23:04:42]--[2024-01-23 Tue 00:41:53] =>  01:37:11
@@ -3189,7 +3084,6 @@ collapsed:: true
 								  id:: 65ae8f18-e93f-4995-bd31-59fc0f873a16
 								- ![image.png](../assets/image_1705941305378_0.png)
 							- test
-							  collapsed:: true
 								- ![image.png](../assets/image_1705941706855_0.png){:height 234, :width 532}
 								- 和没有数据增强的结果完全一样
 							- test纠正后的结果，原先的test跑在了含有normal数据的测试上
@@ -3202,7 +3096,6 @@ collapsed:: true
 			  CLOCK: [2024-01-24 Wed 02:25:03]--[2024-03-11 Mon 06:59:58] =>  1132:34:55
 			  :END:
 				- DONE Unet++
-				  collapsed:: true
 				  :LOGBOOK:
 				  CLOCK: [2024-01-24 Wed 02:25:14]
 				  CLOCK: [2024-01-24 Wed 02:25:16]--[2024-02-22 Thu 00:59:15] =>  694:33:59
@@ -3213,7 +3106,6 @@ collapsed:: true
 					- test
 						- ![image.png](../assets/image_1708534739894_0.png)
 				- DONE AttUnet
-				  collapsed:: true
 				  :LOGBOOK:
 				  CLOCK: [2024-01-24 Wed 02:25:20]
 				  CLOCK: [2024-01-24 Wed 02:25:21]--[2024-02-21 Wed 23:48:15] =>  693:22:54
@@ -3222,13 +3114,11 @@ collapsed:: true
 						- 42
 							- ![image.png](../assets/image_1708529702577_0.png)
 						- 26
-						  collapsed:: true
 							- ![image.png](../assets/image_1708529785084_0.png)
 					- test
 						- 26
 							- ![image.png](../assets/image_1708530437262_0.png)
 				- TODO 添加通道注意力的模块
-				  collapsed:: true
 					- DOING 编写SKU-net的版本
 					  :LOGBOOK:
 					  CLOCK: [2024-02-22 Thu 15:08:01]
@@ -3244,22 +3134,18 @@ collapsed:: true
 			  CLOCK: [2024-02-22 Thu 16:43:12]--[2024-03-11 Mon 06:59:59] =>  422:16:47
 			  :END:
 				- DONE 查看论文使用的几个基线网络，用于对比的
-				  collapsed:: true
 				  :LOGBOOK:
 				  CLOCK: [2024-01-17 Wed 14:21:20]
 				  CLOCK: [2024-01-17 Wed 14:21:27]
 				  CLOCK: [2024-01-17 Wed 14:21:33]--[2024-01-22 Mon 23:55:51] =>  129:34:18
 				  :END:
 					- rethinking论文里面的
-					  collapsed:: true
 						- ![image.png](../assets/image_1705473643037_0.png)
 						  id:: 65a7722a-1ec4-42d5-8624-ac8a6244fa6c
 					- 残差回馈网络论文里面的对比模型
-					  collapsed:: true
 						- ![image.png](../assets/image_1705472938889_0.png)
 						-
 					- 师兄论文里面的对比模型
-					  collapsed:: true
 						- ![image.png](../assets/image_1705473137339_0.png)
 						-
 					-
@@ -3275,7 +3161,6 @@ collapsed:: true
 				  :END:
 					- DONE 阅读并总结下 AAU-net
 					  id:: 65b0ccf0-2196-453a-bfbc-c6fe4c55836d
-					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-01-17 Wed 22:11:49]
 					  CLOCK: [2024-01-17 Wed 22:11:52]--[2024-01-24 Wed 01:04:59] =>  146:53:07
@@ -3284,7 +3169,6 @@ collapsed:: true
 						- 因为乳腺肿瘤的形态各异，所以通过捕获各种感受野下的特征能够获得形态在尺度上的鲁棒性，通过同时捕获空间和通道上的特征能够获得形态在不规则上的鲁棒性
 						- ![image.png](../assets/image_1706091812438_0.png)
 					- DONE 阅读并总结下SKU
-					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-01-24 Wed 18:22:27]
 					  CLOCK: [2024-01-24 Wed 18:22:38]
@@ -3292,17 +3176,14 @@ collapsed:: true
 					  :END:
 						- SKU是AAU-net的一种简化：
 							- 只使用了AAU-net中通道注意力的部分，但有具体设置上的区别：
-							  collapsed:: true
 								- 空洞卷积（ｒａｔｅ＝２）和普通卷积使用的是同样大小的3 *３的卷积核大小，而不像ＡＡＵ－ｎｅｔ中使用的是５×５的普通卷积和３×３的空洞卷积（ｒａｔｅ＝３）
 								- ＡＡＵ－ｎｅｔ图中有四处画的都是“＋”号，但是实际上除了第三个“＋”是ａｄｄ，其余的“＋”在代码中对应的都是ｃｏｎｃａｔｅｎａｔｅ操作；而ＳＫＵ－ｂｌｏｃｋ中的两个“＋”号都是ａｄｄ
 							- 只在ｅｎｃｏｄｅｒ层部分强制将所有ｃｏｎｖ替换成ＳＫ－ｂｌｏｃｋ，而ｄｅｃｏｄｅｒ层部分可以指定保持原有的ｃｏｎｖ或者也全部替换成ＳＫ－ｂｌｏｃｋ
 							- 增加了ａｔｔｅｎ－Ｕｎｅｔ方向的注意力机制，但是注意力的实现方式则类似于ＡＡＵ－ｎｅｔ中的空间注意力方式，但是只有一个关于ｅｎｃｏｄｅｒ层特征图的注意力权重矩阵，所以也没有ＡＡＵ－ｎｅｔ中的第二步ａｄｄ操作
-							  collapsed:: true
 								- ![image.png](../assets/image_1706092538876_0.png)
 								-
 						- ![image.png](../assets/image_1706091939655_0.png)
 					- DONE 思考如何合并AAU-net、SKU等的优点
-					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-01-24 Wed 01:05:09]
 					  CLOCK: [2024-01-24 Wed 01:05:10]--[2024-01-24 Wed 18:14:27] =>  17:09:17
@@ -3310,7 +3191,6 @@ collapsed:: true
 						- 为什么空间注意力机制和通道注意力机制必须得分开来完成？这样的话参数量不是太大了吗？而且我觉得后面两者结果的结合也是线性的，不是吗？
 						- 如果要结合之前的Diffusion-Unet，可以把encoder部分用AAU-net或者SKU的思想，而把decoder部分使用Diffusion-unit（这个unit可以继续简化）
 					- DOING BASNET当中也用到了两个Unet组合而成的结构 （Coarse to Fine Deep Methods）
-					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-01-24 Wed 01:45:19]
 					  CLOCK: [2024-01-24 Wed 01:45:20]
@@ -3322,13 +3202,11 @@ collapsed:: true
 						  CLOCK: [2024-01-24 Wed 02:27:41]
 						  :END:
 						- 残差优化模块细化了初始的saliency map
-						  collapsed:: true
 							- ![image.png](../assets/image_1706105480594_0.png)
 							-
 						- 非重叠的最大池化
 							- ![image.png](../assets/image_1706110817731_0.png)
 					- DONE 总结rethink论文提出的模型NUnet在主干网络上的设计思路
-					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-01-24 Wed 01:50:15]
 					  CLOCK: [2024-01-24 Wed 01:50:17]--[2024-01-24 Wed 18:11:02] =>  16:20:45
@@ -3336,14 +3214,12 @@ collapsed:: true
 						- 乳腺超声图像的复杂性体现在：
 							- low-quality, variable morphology, similar surrounding tissue and blurred boundary
 						- MOU（multi-out U-nets）模块：
-						  collapsed:: true
 							- 本身就是一个Unet结构，通过发现 encoder层的细化特征 和 decoder层的语义特征之间的correlation，然后利用这个correlation很好地细化了encoder层的输出特征；
 								- ![image.png](../assets/image_1706089627013_0.png)
 							- 一共有6个unet来做为同尺度的encoder和decoder之间的bone，这些就是论文所说的嵌套的unet：
 								- 从MOU1到MOU6，其encoder的层数依次是5、4、3、2、1、0 （5层连续的2*2的下采样、4层连续的2*2的下采样、...）；
 								- 因为MOU1到MOU6的输入特征图的尺寸是逐级减半的，(384, 384, 64) 的特征图经过MOU1 【一层4 * 4 的pooling + conv (64) + 5层2*2的downsampling】得到的特征图大小是384 / 4 / 2^5 = 384 / 2^7,  （384/2 = 192, 192, 64）经过MOU2得到的特征图大小是 384/2/4/2^4 = 384 / 2^7‘；[[$red]]==以此类推，MOU1到MOU6的U型最底层的输出特征图都是等大的，所以后面MOU1到MOU6的最底层输出可以在通道方向上直接连接起来组成一个大的特征图==
 						- Deeper Unet Backbone:
-						  collapsed:: true
 							- 现有的Unet只有9层或者更少层，因而不能提取出复杂超声乳腺超声图像的空间和位置信息，所以需要增加深度来提高网络的泛化性和鲁棒性；这里是15层，encoder有8层，而decoder有7层
 							- 当网络太深可能会出现network degration的问题，通常使用short-connection来将细粒度的特征引射到high-level的特征上来解决，但是通常残差连接的对象是相同尺度或者相似尺度的特征图，而这通过不够弥补长距离的信息损失。所以怎么办呢？
 								- ![image.png](../assets/image_1706089234696_0.png){:height 737, :width 594}
@@ -3357,13 +3233,11 @@ collapsed:: true
 					  :END:
 					- TODO 思考一下AAU-net如何和NUet的思想进行合并
 					- DONE 思考长方形对乳腺形状和尺度的影响
-					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-01-24 Wed 22:19:34]--[2024-02-12 Mon 00:51:42] =>  434:32:08
 					  :END:
 						- 需要将正方形的分割结果还原成长方形吗？可以在论文中不提及
 					- DONE 思考下图像的高频低频特征
-					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-01-24 Wed 22:27:38]
 					  CLOCK: [2024-01-24 Wed 22:27:39]--[2024-01-24 Wed 22:27:57] =>  00:00:18
@@ -3371,14 +3245,12 @@ collapsed:: true
 						- ![image.png](../assets/image_1706106472072_0.png)
 						- Unet的decoder部分是high-level的特征，encoder应该是low-level的特征；但是encoder应该是高频的特征，decoder应该是低频的特征
 					- DONE 学习一下RAGCM模型
-					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-01-24 Wed 23:38:01]
 					  CLOCK: [2024-01-24 Wed 23:38:04]--[2024-02-13 Tue 03:02:19] =>  459:24:15
 					  :END:
 						- Region-aware Global Context Modeling for Automatic Nerve Segmentation from Ultrasound Images
 						- DONE 代码中output_padding参数的知识
-						  collapsed:: true
 						  :LOGBOOK:
 						  CLOCK: [2024-01-26 Fri 07:16:40]--[2024-01-26 Fri 07:17:16] =>  00:00:36
 						  :END:
@@ -3386,7 +3258,6 @@ collapsed:: true
 							- ![image.png](../assets/image_1706224631828_0.png)
 							-
 						- RAGCM模型中各个模块输出的shape:
-						  collapsed:: true
 							- ![image.png](../assets/image_1706229722604_0.png)
 							- ![image.png](../assets/image_1706238532699_0.png)
 							-
@@ -3449,17 +3320,6 @@ collapsed:: true
 			  :LOGBOOK:
 			  CLOCK: [2024-03-02 Sat 20:18:27]--[2024-03-02 Sat 20:18:28] =>  00:00:01
 			  :END:
-			- TODO 叠加ground truth和预测结果的分割图的代码
-			  id:: 65b0ccf0-4203-40ab-a35f-a4364f2f79a5
-			  :LOGBOOK:
-			  CLOCK: [2024-02-12 Mon 00:52:05]
-			  CLOCK: [2024-02-12 Mon 00:52:10]
-			  CLOCK: [2024-02-12 Mon 00:54:15]
-			  CLOCK: [2024-02-12 Mon 00:54:16]
-			  CLOCK: [2024-03-02 Sat 20:18:33]--[2024-03-02 Sat 20:18:34] =>  00:00:01
-			  CLOCK: [2024-03-02 Sat 20:18:35]--[2024-03-02 Sat 20:18:36] =>  00:00:01
-			  CLOCK: [2024-03-02 Sat 20:18:37]--[2024-03-02 Sat 20:18:39] =>  00:00:02
-			  :END:
 			- DONE 实验注意事项总结
 			  collapsed:: true
 			  :LOGBOOK:
@@ -3467,12 +3327,10 @@ collapsed:: true
 			  :END:
 				- 每个模型都直接加上torch.sigmoid
 				- 我在思考利用“1*1卷积 - 池化 - 减去池化”得到边缘分割图的方式，和利用uncertainty_map来得到边缘分割图 + 一部分分割不准确的周边组织的方式，怎么结合起来呢？
-				  collapsed:: true
 					- 2019 年的Attentive feedback network for boundary-aware salient object detection. In: Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition论文有没有对应的代码？
 					- ![image.png](../assets/image_1708728725804_0.png)
 					-
 			- DONE 实验结果分析与改进
-			  collapsed:: true
 			  :LOGBOOK:
 			  CLOCK: [2024-03-02 Sat 20:18:51]
 			  CLOCK: [2024-03-02 Sat 20:18:53]--[2024-03-03 Sun 12:16:32] =>  15:57:39
@@ -3486,19 +3344,18 @@ collapsed:: true
 				  :END:
 					- ![image.png](../assets/image_1709382459144_0.png)
 					- train + val
-					  collapsed:: true
 						- ![image.png](../assets/image_1709388965029_0.png)
 					- test
 						- ![image.png](../assets/image_1709389536378_0.png){:height 230, :width 687}
 						-
 				- DONE 按照7.5: 0.5: 2的比例进行划分 (new Unet++)
+				  collapsed:: true
 				  :LOGBOOK:
 				  CLOCK: [2024-03-02 Sat 20:22:54]
 				  CLOCK: [2024-03-02 Sat 20:22:55]--[2024-03-02 Sat 23:59:24] =>  03:36:29
 				  :END:
 					- ![image.png](../assets/image_1709382522168_0.png){:height 233, :width 718}
 					- train + val
-					  collapsed:: true
 						- ![image.png](../assets/image_1709394936953_0.png)
 						- ![image.png](../assets/image_1709395114148_0.png)
 					- test
@@ -3512,7 +3369,6 @@ collapsed:: true
 				  :END:
 					- ![image.png](../assets/image_1709382590700_0.png)
 					- train + val
-					  collapsed:: true
 						- ![image.png](../assets/image_1709435603422_0.png)
 						- ![image.png](../assets/image_1709435952326_0.png)
 						-
@@ -3521,12 +3377,12 @@ collapsed:: true
 						  id:: 65e3f6a5-bc72-48a0-8f51-94dcae2c8ea6
 						-
 				- DONE UNet_W_ATT_SK2 混合注意力方式的在新数据上的结果
+				  collapsed:: true
 				  :LOGBOOK:
 				  CLOCK: [2024-03-05 Tue 20:48:56]
 				  CLOCK: [2024-03-05 Tue 20:49:11]--[2024-03-05 Tue 21:04:07] =>  00:14:56
 				  :END:
 					- train + val
-					  collapsed:: true
 						- ![image.png](../assets/image_1709643086517_0.png)
 						- ![image.png](../assets/image_1709643131806_0.png)
 					- test
@@ -3537,7 +3393,6 @@ collapsed:: true
 				  CLOCK: [2024-03-05 Tue 21:05:48]--[2024-03-05 Tue 22:39:11] =>  01:33:23
 				  :END:
 					- train + val
-					  collapsed:: true
 						- ![image.png](../assets/image_1709649171871_0.png)
 						- ![image.png](../assets/image_1709649268385_0.png)
 					- test
@@ -3548,7 +3403,6 @@ collapsed:: true
 				  CLOCK: [2024-03-05 Tue 21:08:23]--[2024-03-07 Thu 17:54:22] =>  44:45:59
 				  :END:
 					- train + val
-					  collapsed:: true
 						- ![image.png](../assets/image_1709805252030_0.png)
 					- test
 						- ![image.png](../assets/image_1709805209677_0.png)
@@ -3557,7 +3411,6 @@ collapsed:: true
 				  CLOCK: [2024-03-07 Thu 14:03:04]--[2024-03-07 Thu 19:17:40] =>  05:14:36
 				  :END:
 					- train + val
-					  collapsed:: true
 						- ![image.png](../assets/image_1709810231253_0.png)
 					- test
 						- ![image.png](../assets/image_1709810197320_0.png)
@@ -3572,7 +3425,6 @@ collapsed:: true
 					  CLOCK: [2024-03-07 Thu 01:23:55]--[2024-03-07 Thu 03:19:24] =>  01:55:29
 					  :END:
 						- train + val
-						  collapsed:: true
 							- ![image.png](../assets/image_1709752759777_0.png)
 							-
 						- test
@@ -3584,7 +3436,6 @@ collapsed:: true
 					  :END:
 						- train
 						  id:: 65e8d31b-1dea-4c1e-896c-d7ddb193dadd
-						  collapsed:: true
 							- ![image.png](../assets/image_1709757314715_0.png)
 							  id:: 65e8d327-e0ed-470c-b86d-cd632ad97c59
 						- test
@@ -3594,7 +3445,6 @@ collapsed:: true
 					  CLOCK: [2024-03-07 Thu 10:54:12]--[2024-03-07 Thu 10:54:14] =>  00:00:02
 					  :END:
 						- train + val
-						  collapsed:: true
 							- ![image.png](../assets/image_1709780017350_0.png)
 						- test
 							- ![image.png](../assets/image_1709780046945_0.png)
@@ -3604,14 +3454,12 @@ collapsed:: true
 					  CLOCK: [2024-03-07 Thu 11:15:40]--[2024-03-07 Thu 13:32:10] =>  02:16:30
 					  :END:
 						- train + val
-						  collapsed:: true
 							- ![image.png](../assets/image_1709789185301_0.png)
 							- ![image.png](../assets/image_1709789244977_0.png)
 						- test
 							- ![image.png](../assets/image_1709789519897_0.png)
 					- DONE unet++with_diffusion调整一下参数: 只迭代二次，但使用同样的权重
 						- train + val
-						  collapsed:: true
 							- ![image.png](../assets/image_1709800859228_0.png)
 							- ![image.png](../assets/image_1709800884706_0.png)
 						- test
@@ -3625,7 +3473,6 @@ collapsed:: true
 							- ![image.png](../assets/image_1709830545802_0.png)
 							-
 						- train + val
-						  collapsed:: true
 							- ![image.png](../assets/image_1709831657425_0.png)
 					- DONE 只让diffusion-Unit放在第一个decoder模块，但是先放置，后才上采样
 					  :LOGBOOK:
@@ -3633,7 +3480,6 @@ collapsed:: true
 					  CLOCK: [2024-03-07 Thu 01:24:22]--[2024-03-07 Thu 09:46:48] =>  08:22:26
 					  :END:
 						- train + val
-						  collapsed:: true
 							- ![image.png](../assets/image_1709776006715_0.png)
 						- test
 							- ![image.png](../assets/image_1709775947728_0.png)
@@ -3650,14 +3496,12 @@ collapsed:: true
 					  CLOCK: [2024-03-05 Tue 22:03:30]--[2024-03-06 Wed 11:56:27] =>  13:52:57
 					  :END:
 						- train + val
-						  collapsed:: true
 							- ![image.png](../assets/image_1709653780866_0.png)
 							- ![image.png](../assets/image_1709653804826_0.png)
 						- test
 							- ![image.png](../assets/image_1709654068548_0.png)
 						- 对比
 							- train + val
-							  collapsed:: true
 								- ![image.png](../assets/image_1709697335320_0.png)
 							- test
 								- ![image.png](../assets/image_1709697070266_0.png)
@@ -3667,7 +3511,6 @@ collapsed:: true
 					  CLOCK: [2024-03-05 Tue 22:03:54]--[2024-03-07 Thu 01:22:58] =>  27:19:04
 					  :END:
 						- train + val
-						  collapsed:: true
 							- ![image.png](../assets/image_1709745771750_0.png)
 							- ![image.png](../assets/image_1709745752612_0.png)
 						- test
@@ -3680,7 +3523,6 @@ collapsed:: true
 						- test
 							- ![image.png](../assets/image_1709783702803_0.png)
 						- train
-						  collapsed:: true
 							- ![image.png](../assets/image_1709783778545_0.png)
 					- DONE 换一下位置3
 					  :LOGBOOK:
@@ -3689,12 +3531,9 @@ collapsed:: true
 						- test
 							- ![image.png](../assets/image_1709789655616_0.png)
 						- train
-						  collapsed:: true
 							- ![image.png](../assets/image_1709788179345_0.png)
 							- ![image.png](../assets/image_1709788222308_0.png)
 							-
-					-
-					-
 					- DOING 混合注意力结果(从下到上的第一层）
 					  :LOGBOOK:
 					  CLOCK: [2024-03-11 Mon 11:47:50]
@@ -3707,32 +3546,27 @@ collapsed:: true
 					  :END:
 						- train + val
 						- test
-					- DOING 混合注意力结果(从下到上的第四层）
+					- DOING 混合注意力结果(从下到上的第四层
 					  :LOGBOOK:
 					  CLOCK: [2024-03-11 Mon 11:48:24]
 					  :END:
 						- train + val
 						- test
 					-
-					-
 					- DONE 换用论文那种1*1卷积获取权重方式（默认是从下到上的第二层）
-					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-03-07 Thu 16:42:29]
 					  CLOCK: [2024-03-07 Thu 16:42:31]--[2024-03-07 Thu 16:49:41] =>  00:07:10
 					  :END:
 						- train + val
-						  collapsed:: true
 							- ![image.png](../assets/image_1709801348217_0.png)
 						- test
 							- ![image.png](../assets/image_1709801325206_0.png)
 					- DONE 换用论文那种1*1卷积获取权重方式（从下到上的第一层）
-					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-03-11 Mon 11:44:59]--[2024-03-11 Mon 13:22:15] =>  01:37:16
 					  :END:
 						- train + val
-						  collapsed:: true
 							- ![image.png](../assets/image_1710134530782_0.png)
 						- test
 							- ![image.png](../assets/image_1710134490695_0.png)
@@ -3741,55 +3575,42 @@ collapsed:: true
 					  CLOCK: [2024-03-11 Mon 11:45:22]--[2024-03-11 Mon 14:13:30] =>  02:28:08
 					  :END:
 						- train + val
-						  collapsed:: true
 							- ![image.png](../assets/image_1710137607678_0.png)
 						- test
 							- ![image.png](../assets/image_1710137565355_0.png)
 					- DONE 换用论文那种1*1卷积获取权重方式（从下到上的第四层）
-					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-03-11 Mon 11:45:25]--[2024-03-11 Mon 14:15:33] =>  02:30:08
 					  :END:
 						- train + val
-						  collapsed:: true
 							- ![image.png](../assets/image_1710137727839_0.png)
 						- test
 							- ![image.png](../assets/image_1710137687996_0.png)
 					-
-					-
 					- DONE 换用纯粹自注意力方式
-					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-03-07 Thu 16:48:07]
 					  CLOCK: [2024-03-07 Thu 16:48:09]--[2024-03-07 Thu 17:52:44] =>  01:04:35
 					  :END:
 						- train + val
-						  collapsed:: true
 							- ![image.png](../assets/image_1709805157356_0.png)
 						- test
-						  collapsed:: true
 							- ![image.png](../assets/image_1709805119637_0.png)
 					- 换用纯粹自注意力方式，但是位置放在最下面的一层残差连接处 (new U-net + SA_SpatialAtt)
 						- train + val
-						  collapsed:: true
 							- ![image.png](../assets/image_1709809828802_0.png)
 						- test
 							- ![image.png](../assets/image_1709809734673_0.png)
 					- 换用纯粹自注意力方式，但是位置从下往上的第三个残差连接处
-					  collapsed:: true
 						- train + val
-						  collapsed:: true
 							- ![image.png](../assets/image_1710134428292_0.png)
 						- test
 							- ![image.png](../assets/image_1710134407438_0.png)
 					- 换用纯粹自注意力方式，但是位置从下往上的第四个残差连接处
-					  collapsed:: true
 						- train + val
 						- test
-						  collapsed:: true
 							- ![image.png](../assets/image_1710145643269_0.png)
 						- 参数量太大，无法运行
-				-
 					- DONE 结合：将自注意力方式放在从下往上的第一个残差连接处，将1 * 1卷积获取方式放在从下往上的第三个残差连接处
 					  :LOGBOOK:
 					  CLOCK: [2024-03-11 Mon 16:28:59]
@@ -3797,7 +3618,6 @@ collapsed:: true
 					  CLOCK: [2024-03-11 Mon 16:29:08]--[2024-03-11 Mon 17:15:05] =>  00:45:57
 					  :END:
 						- train + val
-						  collapsed:: true
 							- ![image.png](../assets/image_1710148499044_0.png)
 						- test
 							- ![image.png](../assets/image_1710148481916_0.png)
@@ -3807,7 +3627,6 @@ collapsed:: true
 					  CLOCK: [2024-03-11 Mon 18:43:58]--[2024-03-11 Mon 20:09:49] =>  01:25:51
 					  :END:
 						- train + val
-						  collapsed:: true
 							- ![image.png](../assets/image_1710158656636_0.png)
 						- test
 							- ![image.png](../assets/image_1710158619147_0.png)
@@ -3823,7 +3642,6 @@ collapsed:: true
 					  CLOCK: [2024-03-07 Thu 00:24:23]--[2024-03-07 Thu 23:19:39] =>  22:55:16
 					  :END:
 						- train + val
-						  collapsed:: true
 							- ![image.png](../assets/image_1709824770422_0.png)
 						- test
 							- ![image.png](../assets/image_1709824686499_0.png)
@@ -3833,7 +3651,6 @@ collapsed:: true
 					  CLOCK: [2024-03-07 Thu 00:24:27]--[2024-03-07 Thu 21:19:54] =>  20:55:27
 					  :END:
 						- train + val
-						  collapsed:: true
 							- ![image.png](../assets/image_1709817246046_0.png)
 						- test
 							- ![image.png](../assets/image_1709817219665_0.png)
@@ -3843,7 +3660,6 @@ collapsed:: true
 						  CLOCK: [2024-03-11 Mon 16:58:21]--[2024-03-11 Mon 19:35:53] =>  02:37:32
 						  :END:
 							- train + val
-							  collapsed:: true
 								- ![image.png](../assets/image_1710156949034_0.png)
 							- test
 								- ![image.png](../assets/image_1710156919277_0.png)
@@ -3860,8 +3676,9 @@ collapsed:: true
 								- test
 									- ![image.png](../assets/image_1710151453336_0.png)
 								- train + val
-								  collapsed:: true
 									- ![image.png](../assets/image_1710151511366_0.png)
+								- 改动尺度为5后
+									- ![image.png](../assets/image_1712083391464_0.png)
 							- DONE 从上到下最后一个位置 （5）
 							  :LOGBOOK:
 							  CLOCK: [2024-03-11 Mon 16:57:28]
@@ -3870,7 +3687,6 @@ collapsed:: true
 								- test
 									- ![image.png](../assets/image_1710152289752_0.png)
 								- train + val
-								  collapsed:: true
 									- ![image.png](../assets/image_1710152349158_0.png)
 							- DONE 从上到下的倒数第二个位置 （4） (new U-net + MS_ChannelAtt)
 							  :LOGBOOK:
@@ -3879,7 +3695,6 @@ collapsed:: true
 							  CLOCK: [2024-03-11 Mon 18:22:06]--[2024-03-11 Mon 18:23:07] =>  00:01:01
 							  :END:
 								- train + val
-								  collapsed:: true
 									- ![image.png](../assets/image_1710152582249_0.png)
 								- test
 									- ![image.png](../assets/image_1710152542288_0.png){:height 255, :width 594}
@@ -3889,19 +3704,20 @@ collapsed:: true
 							  CLOCK: [2024-03-11 Mon 18:23:38]--[2024-03-11 Mon 19:13:34] =>  00:49:56
 							  :END:
 								- train + val
-								  collapsed:: true
 									- ![image.png](../assets/image_1710155609706_0.png)
 								- test
 									- ![image.png](../assets/image_1710155567971_0.png)
+								-
 							- DONE 从上到下的第二个位置 （2）
 							  :LOGBOOK:
 							  CLOCK: [2024-03-11 Mon 18:25:40]--[2024-03-11 Mon 19:16:52] =>  00:51:12
 							  :END:
 								- train + val
-								  collapsed:: true
 									- ![image.png](../assets/image_1710155808036_0.png)
 								- test
 									- ![image.png](../assets/image_1710155787669_0.png)
+								- 改动尺度
+									- ![image.png](../assets/image_1712083358905_0.png)
 							-
 					- :LOGBOOK:
 					  CLOCK: [2024-03-11 Mon 13:39:24]
@@ -3910,7 +3726,8 @@ collapsed:: true
 					-
 				-
 				-
-				- DONE 使用uncertainty的基本方法1 (new Unet)
+				- DONE 使用uncertainty的基本方法1
+				  collapsed:: true
 				  :LOGBOOK:
 				  CLOCK: [2024-03-07 Thu 00:25:52]
 				  CLOCK: [2024-03-07 Thu 00:25:53]
@@ -3934,42 +3751,39 @@ collapsed:: true
 					  collapsed:: true
 						- ![image.png](../assets/image_1709915691091_0.png)
 				- DONE 使用uncertainty的基本方法1 + 对粗分割和精细化分割都增加一个损失 + 计算uncertainty_mask的方法使用的是sigmoid之后的数据
+				  collapsed:: true
 					- train + val
 					  collapsed:: true
 						- ![image.png](../assets/image_1709987416445_0.png)
 					- test
+					  collapsed:: true
 						- ![image.png](../assets/image_1709987396823_0.png)
 					- DONE 修改了一下uncertainty的计算方法
+					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-03-10 Sun 00:04:42]
 					  CLOCK: [2024-03-10 Sun 00:04:53]--[2024-03-10 Sun 00:05:40] =>  00:00:47
 					  :END:
 						- train + val
-						  collapsed:: true
 							- ![image.png](../assets/image_1710000335537_0.png)
 						- test
-							- ![image.png](../assets/image_1710000309370_0.png)
+							- ![image.png](../assets/image_1710000309370_0.png){:height 293, :width 656}
 				-
 				- DONE 使用uncertainty的基本方法1 + 对粗分割和精细化分割都增加一个损失 + 改动细化特征的来源为编码器而不是解码器
+				  collapsed:: true
 				  :LOGBOOK:
 				  CLOCK: [2024-03-09 Sat 00:36:31]--[2024-03-09 Sat 01:26:28] =>  00:49:57
 				  :END:
 					- test
 						- ![image.png](../assets/image_1709918726881_0.png)
 					- train + val
-					  collapsed:: true
 						- ![image.png](../assets/image_1709918759303_0.png)
-				-
-				-
 				- DONE 使用uncertainty的基本方法2 + 对粗分割和精细化分割都增加一个损失
-				  collapsed:: true
 					- train + val
 					  collapsed:: true
 						- ![image.png](../assets/image_1709967077890_0.png)
 					- test
 						- ![image.png](../assets/image_1709967051012_0.png)
-				-
-				-
 				- DONE 使用uncertainty的基本方法2的改进版本1（将获得boundary_mask的方式变成扩张和腐蚀的平均，也加上利用uncertainty_map直接计算的不确定部分） + 对粗分割和精细化分割都增加一个损失
 					- train + val
 					  collapsed:: true
@@ -3977,38 +3791,38 @@ collapsed:: true
 					- test
 						- ![image.png](../assets/image_1709980460780_0.png)
 					- DONE 去掉sigmoid后阈值化，直接使用阈值化的操作 (U-net + uncertainty_formula + dilation_and_erosion)
+					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-03-11 Mon 19:49:10]
 					  CLOCK: [2024-03-11 Mon 19:49:11]--[2024-03-11 Mon 20:34:02] =>  00:44:51
 					  :END:
 						- train + val
-						  collapsed:: true
 							- ![image.png](../assets/image_1710160438023_0.png)
 						- test
 							- ![image.png](../assets/image_1710160405048_0.png)
 					- uncertainty计算时加上sigmoid
+					  collapsed:: true
 						- train + val
-						  collapsed:: true
 							- ![image.png](../assets/image_1710205101718_0.png)
 						- test
 							- ![image.png](../assets/image_1710205073239_0.png)
 					- DONE  使用两个卷积, 不加上sigmoid
+					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-03-12 Tue 12:54:21]
 					  CLOCK: [2024-03-12 Tue 12:54:24]--[2024-03-12 Tue 14:51:26] =>  01:57:02
 					  :END:
 						- train + val
-						  collapsed:: true
 							-
 						- test
 							- ![image.png](../assets/image_1710226108134_0.png)
-				-
 				-
 				- DONE [[$red]]==[[#red]]使用uncertainty的基本方法2的改进版本2（将获得boundarymask的方式变成扩张和腐蚀的平均，不加上利用uncertaintymap直接计算的不确定部分） + 对粗分割和精细化分割都增加一个损失==
 					- train + val
 					  collapsed:: true
 						- ![image.png](../assets/image_1709985535804_0.png)
 					- test
+					  collapsed:: true
 						- ![image.png](../assets/image_1709985386625_0.png)
 					- DONE 修改扩张和腐蚀部分的代码，这部分不用加上sigmoid后再阈值化而是直接阈值化
 					  :LOGBOOK:
@@ -4036,18 +3850,15 @@ collapsed:: true
 								-
 					- DONE 将扩张腐蚀的kernel从5改成7
 						- train + val
-						  collapsed:: true
 							- ![image.png](../assets/image_1710217951019_0.png)
 						- test
 							- ![image.png](../assets/image_1710217922828_0.png)
 						- DONE  使用两次的conv
-						  collapsed:: true
 						  :LOGBOOK:
 						  CLOCK: [2024-03-12 Tue 12:39:37]
 						  CLOCK: [2024-03-12 Tue 12:39:39]--[2024-03-12 Tue 13:36:39] =>  00:57:00
 						  :END:
 							- train + val
-							  collapsed:: true
 								- ![image.png](../assets/image_1710221785586_0.png)
 							- test
 								- ![image.png](../assets/image_1710221750844_0.png)
@@ -4057,14 +3868,11 @@ collapsed:: true
 						  CLOCK: [2024-03-12 Tue 18:24:37]--[2024-03-12 Tue 18:25:56] =>  00:01:19
 						  :END:
 							- test
-							  collapsed:: true
 								- ![image.png](../assets/image_1710239086733_0.png)
 								-
 							- train + val
-							  collapsed:: true
 								- ![image.png](../assets/image_1710239143464_0.png)
 						- DONE 改用连接方式2
-						  collapsed:: true
 						  :LOGBOOK:
 						  CLOCK: [2024-03-12 Tue 18:26:04]
 						  CLOCK: [2024-03-12 Tue 18:26:07]--[2024-03-12 Tue 18:27:47] =>  00:01:40
@@ -4084,26 +3892,22 @@ collapsed:: true
 							- TODO 来源4
 				-
 				- DONE 使用uncertainty的基本方法2的改进版本3（将获得boundary_mask的方式的池化相减的顺序对调，也加上利用uncertainty_map直接计算的不确定部分） + 对粗分割和精细化分割都增加一个损失
+				  collapsed:: true
 					- train + val
-					  collapsed:: true
 						- ![image.png](../assets/image_1709983932589_0.png)
 					- test
 						- ![image.png](../assets/image_1709983903483_0.png)
 					- 把boundary_mask的阈值改成0.7，再重新跑一次
-					  collapsed:: true
 						- train + val
-						  collapsed:: true
 							- ![image.png](../assets/image_1709988935001_0.png)
 						- test
 							- ![image.png](../assets/image_1709988904995_0.png)
 					- DONE 尝试对uncertainty map的计算方式进行改进, 加上sigmoid
-					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-03-09 Sat 21:13:55]
 					  CLOCK: [2024-03-09 Sat 21:13:57]--[2024-03-10 Sun 00:06:38] =>  02:52:41
 					  :END:
 						- train + val
-						  collapsed:: true
 							- ![image.png](../assets/image_1710000390860_0.png)
 						- test
 							- ![image.png](../assets/image_1710000360907_0.png)
@@ -4113,7 +3917,6 @@ collapsed:: true
 					  CLOCK: [2024-03-11 Mon 19:54:06]--[2024-03-12 Tue 02:37:38] =>  06:43:32
 					  :END:
 						- train + val
-						  collapsed:: true
 							- ![image.png](../assets/image_1710182256688_0.png)
 						- test
 							- ![image.png](../assets/image_1710182224594_0.png){:height 157, :width 656}
@@ -4126,13 +3929,12 @@ collapsed:: true
 						  :END:
 							- UNet_W_MSFGFF3_Sigmoid_Improved
 							- train + val
-							  collapsed:: true
 								- ![image.png](../assets/image_1710226458450_0.png)
 							- test
 								- ![image.png](../assets/image_1710226424723_0.png)
 				- DONE 使用uncertainty的基本方法2的改进版本3（将获得boundary_mask的方式的池化相减的顺序对调，不加上利用uncertainty_map直接计算的不确定部分） + 对粗分割和精细化分割都增加一个损失
+				  collapsed:: true
 					- train + val
-					  collapsed:: true
 						- ![image.png](../assets/image_1709985110329_0.png)
 					- test
 						- ![image.png](../assets/image_1709985078615_0.png){:height 290, :width 687}
@@ -4142,44 +3944,42 @@ collapsed:: true
 					  CLOCK: [2024-03-12 Tue 00:35:44]--[2024-03-12 Tue 02:34:10] =>  01:58:26
 					  :END:
 						- train + val
-						  collapsed:: true
 							- ![image.png](../assets/image_1710182047058_0.png)
 						- test
 							- ![image.png](../assets/image_1710182009082_0.png)
 						-
 				- DONE  对Unet++使用上一个DONE事项的方法
+				  collapsed:: true
 				  :LOGBOOK:
 				  CLOCK: [2024-03-10 Sun 15:52:08]
 				  CLOCK: [2024-03-10 Sun 15:52:10]--[2024-03-10 Sun 22:09:05] =>  06:16:55
 				  :END:
 					- train + val
-					  collapsed:: true
 						- ![image.png](../assets/image_1710079742287_0.png)
 					- test
 						- ![image.png](../assets/image_1710079720749_0.png)
 				- DONE 对AttUnet使用上一个DONE事项的方法
+				  collapsed:: true
 				  :LOGBOOK:
 				  CLOCK: [2024-03-10 Sun 15:52:36]
 				  CLOCK: [2024-03-10 Sun 15:54:14]--[2024-03-10 Sun 22:10:12] =>  06:15:58
 				  :END:
 					- train + val
-					  collapsed:: true
 						- ![image.png](../assets/image_1710079807888_0.png)
 					- test
 						- ![image.png](../assets/image_1710079776958_0.png)
 						-
 				- DONE 把boundary_mask的两种方式进行合并
+				  collapsed:: true
 				  :LOGBOOK:
 				  CLOCK: [2024-03-11 Mon 20:36:40]
 				  CLOCK: [2024-03-11 Mon 20:36:49]--[2024-03-11 Mon 21:26:27] =>  00:49:38
 				  :END:
 					- train + val
-					  collapsed:: true
 						- ![image.png](../assets/image_1710163575618_0.png)
 					- test
 						- ![image.png](../assets/image_1710163537542_0.png)
 					- DONE 使用同一个最大池化的结果
-					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-03-11 Mon 21:28:27]
 					  CLOCK: [2024-03-11 Mon 21:28:29]--[2024-03-11 Mon 22:09:35] =>  00:41:06
@@ -4194,7 +3994,6 @@ collapsed:: true
 					  CLOCK: [2024-03-12 Tue 12:28:18]--[2024-03-12 Tue 12:29:54] =>  00:01:36
 					  :END:
 						- train + val
-						  collapsed:: true
 							- ![image.png](../assets/image_1710217753947_0.png)
 						- test
 							- ![image.png](../assets/image_1710217735438_0.png)
@@ -4203,39 +4002,35 @@ collapsed:: true
 			-
 			-
 		- [[开始撰写毕设大论文]]
-			- TODO 先确定三章每一章具体针对的问题是什么
+		  collapsed:: true
+			- DONE 先确定三章每一章具体针对的问题是什么
 			  :LOGBOOK:
 			  CLOCK: [2024-01-21 Sun 20:43:45]
 			  CLOCK: [2024-01-21 Sun 20:43:48]
 			  CLOCK: [2024-01-21 Sun 20:44:03]--[2024-01-21 Sun 20:46:05] =>  00:02:02
 			  :END:
-			- DOING 先开始撰写第三章
-			  collapsed:: true
+			- DONE 先开始撰写第三章
 			  :LOGBOOK:
 			  CLOCK: [2024-01-21 Sun 20:44:25]
 			  CLOCK: [2024-01-21 Sun 20:44:43]
 			  CLOCK: [2024-01-21 Sun 20:44:44]--[2024-01-21 Sun 20:46:04] =>  00:01:20
-			  CLOCK: [2024-02-19 Mon 21:46:17]
+			  CLOCK: [2024-02-19 Mon 21:46:17]--[2024-04-14 Sun 16:45:16] =>  1314:58:59
 			  :END:
 				- 乳腺超声图像中肿块的位置比较多样化：
-				  collapsed:: true
 					- 空间注意力可以更好地捕获长距离的依赖，可以
 				- 乳腺超声图像中肿块的形状也比较多样化
-				  collapsed:: true
 					-
 				- 肿块的位置和形状都受到肿块本身的尺度多样性的影响：
-				  collapsed:: true
 					- 将编码器的细节特征和解码器的宏观特征结合方式的多种优化，可以更好地融合同一个形状的，也是为了更好地获得一个整体性的受到尺度影响更小的综合性特征图
-				- TODO 画完模型结构图，写完模型的具体内容
-				- DOING 实验结果部分
+				- DONE 画完模型结构图，写完模型的具体内容
+				- DONE 实验结果部分
 				  :LOGBOOK:
-				  CLOCK: [2024-03-05 Tue 17:24:45]
+				  CLOCK: [2024-03-05 Tue 17:24:45]--[2024-05-12 Sun 21:19:37] =>  1635:54:52
 				  :END:
 					- TODO 写完数据集说明
 					- TODO 写完评估指标
 					- TODO 写完模型超参数和模型训练过程的说明
 					- DOING  通道注意力的实验结果
-					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-02-27 Tue 18:02:33]
 					  :END:
@@ -4271,7 +4066,6 @@ collapsed:: true
 								- ![image.png](../assets/image_1709038055039_0.png)
 						-
 					- DOING 空间注意力的实验结果
-					  collapsed:: true
 					  :LOGBOOK:
 					  CLOCK: [2024-02-27 Tue 23:55:03]
 					  CLOCK: [2024-02-27 Tue 23:55:13]
@@ -4297,22 +4091,27 @@ collapsed:: true
 								-
 							- test
 								- ![image.png](../assets/image_1709316461539_0.png)
-			- TODO 在跑实验或者没有进度的时候开始写前两章
+			- DONE 在跑实验或者没有进度的时候开始写前两章
 			  :LOGBOOK:
 			  CLOCK: [2024-01-21 Sun 20:44:50]
 			  CLOCK: [2024-01-21 Sun 20:45:02]
 			  CLOCK: [2024-01-21 Sun 20:45:03]
 			  CLOCK: [2024-01-21 Sun 20:45:06]--[2024-01-21 Sun 20:46:05] =>  00:00:59
 			  :END:
-			- TODO 划定章节的标题，然后估计下每章大概要写多少页
-			- TODO 完成第一章背景
-			- TODO 去中心化的加权池化
-			- TODO 写完三章的三段问题描述
+			- DONE 划定章节的标题，然后估计下每章大概要写多少页
+			- DONE 完成第一章背景
+			- DONE 去中心化的加权池化
+			  :LOGBOOK:
+			  CLOCK: [2024-04-14 Sun 16:45:08]--[2024-04-14 Sun 16:45:09] =>  00:00:01
+			  :END:
+			- DONE 写完三章的三段问题描述
+			  :LOGBOOK:
+			  CLOCK: [2024-04-14 Sun 16:45:06]--[2024-04-14 Sun 16:45:07] =>  00:00:01
+			  :END:
 			-
 		- [[注意力固定的solution：增强注意力切换的弹性]]
 		  collapsed:: true
 			- DONE 注意力固定或者上瘾
-			  collapsed:: true
 			  :LOGBOOK:
 			  CLOCK: [2024-01-24 Wed 16:40:55]
 			  CLOCK: [2024-01-24 Wed 16:40:56]--[2024-01-24 Wed 16:41:11] =>  00:00:15
@@ -4320,7 +4119,6 @@ collapsed:: true
 			  :END:
 				- ![image.png](../assets/image_1706085662044_0.png){:height 759, :width 656}
 			- DONE 原因分析
-			  collapsed:: true
 			  :LOGBOOK:
 			  CLOCK: [2024-01-24 Wed 16:41:21]
 			  CLOCK: [2024-01-24 Wed 16:41:22]--[2024-01-24 Wed 16:42:02] =>  00:00:40
@@ -4357,7 +4155,93 @@ collapsed:: true
 			- ![image.png](../assets/image_1709107484770_0.png)
 			- ![image.png](../assets/image_1709107601433_0.png)
 			-
+		- [[UpgradeYourProfession]]
+		  collapsed:: true
+			- DOING 学完redis
+			  :LOGBOOK:
+			  CLOCK: [2024-05-06 Mon 18:37:31]
+			  CLOCK: [2024-05-06 Mon 18:37:32]
+			  :END:
+			- DOING 学完多线程的全部课程
+			  :LOGBOOK:
+			  CLOCK: [2024-05-06 Mon 18:37:40]
+			  CLOCK: [2024-05-06 Mon 18:37:41]
+			  :END:
+			- DOING 完成分布式系统的高级课程
+			  :LOGBOOK:
+			  CLOCK: [2024-05-06 Mon 18:38:11]
+			  CLOCK: [2024-05-06 Mon 18:38:12]
+			  :END:
+			- TODO 投递公司
+				-
+				- 岗位数很少 or 很少听闻的公司
+					- TODO 三星
+					- TODO 瑞幸咖啡
+					- DOING 4399游戏
+					  :LOGBOOK:
+					  CLOCK: [2024-05-12 Sun 18:16:24]
+					  :END:
+				-
+				- 有较大可能性录用
+					- TODO 南京小米
+					-
+					- DOING 深信服北京Golang
+					  :LOGBOOK:
+					  CLOCK: [2024-05-12 Sun 17:57:16]
+					  CLOCK: [2024-05-12 Sun 17:57:19]--[2024-05-12 Sun 17:57:41] =>  00:00:22
+					  CLOCK: [2024-05-12 Sun 17:57:59]--[2024-05-12 Sun 17:58:00] =>  00:00:01
+					  CLOCK: [2024-05-12 Sun 17:58:01]--[2024-05-12 Sun 17:58:01] =>  00:00:00
+					  :END:
+					- DOING 360GoLang北京
+					  :LOGBOOK:
+					  CLOCK: [2024-05-12 Sun 18:02:13]
+					  CLOCK: [2024-05-12 Sun 18:02:15]
+					  :END:
+					- DOING 科大讯飞春招补录合肥
+					  :LOGBOOK:
+					  CLOCK: [2024-05-12 Sun 18:05:26]
+					  :END:
+					-
+					- TODO 顺丰科技
+					  :LOGBOOK:
+					  CLOCK: [2024-05-12 Sun 17:57:35]
+					  CLOCK: [2024-05-12 Sun 17:57:46]--[2024-05-12 Sun 17:58:11] =>  00:00:25
+					  :END:
+					- TODO Embodied AI
+					  :LOGBOOK:
+					  CLOCK: [2024-05-12 Sun 17:59:18]--[2024-05-12 Sun 18:02:08] =>  00:02:50
+					  :END:
+					- TODO 华为云核
+					-
+				- 录用难度较大
+				  :LOGBOOK:
+				  CLOCK: [2024-05-12 Sun 17:59:47]
+				  :END:
+					- DOING 快手（说是可以无限复活）
+					  :LOGBOOK:
+					  CLOCK: [2024-05-12 Sun 18:01:29]
+					  CLOCK: [2024-05-12 Sun 18:01:31]
+					  :END:
+					- DOING shopee
+					  :LOGBOOK:
+					  CLOCK: [2024-05-12 Sun 17:57:49]
+					  CLOCK: [2024-05-12 Sun 17:57:51]
+					  :END:
+					- TODO 拼多多 （说是岗位比较多）
+					- TODO 美团
+					- DOING 帆软
+					  :LOGBOOK:
+					  CLOCK: [2024-05-12 Sun 18:00:22]
+					  :END:
+					- TODO 小红书
+			-
+				-
+			- TODO 对后续不同任务优先级和次序的考虑
+				- 现在几乎有五六条线并行，我现在完全混乱到不知道要怎么执行了。首先，毕设答辩最重要，有了学位后面的很多才有基础；然后，找工作很重要，能不去od还是别去od，这真的是致命伤，不管如何得先苟着。现在找工作这件事掺杂了太多子任务了，要补充java基础、要练习刷leetcode100和华为的题库、还要重新系统学习分布式系统的基础和项目、还有投递简历。
+				-
+		-
 - ## CountDownPlans
+  collapsed:: true
 	- DONE CountDown100
 	  collapsed:: true
 	  :LOGBOOK:
@@ -4562,7 +4446,6 @@ collapsed:: true
 - ## TwoBigRealityGoals
   collapsed:: true
 	- TODO 润德国 （最重要的目标）
-	  collapsed:: true
 	  :LOGBOOK:
 	  CLOCK: [2024-02-19 Mon 20:21:00]
 	  CLOCK: [2024-02-19 Mon 20:21:03]--[2024-02-19 Mon 20:21:06] =>  00:00:03
@@ -4575,8 +4458,6 @@ collapsed:: true
 	  collapsed:: true
 		- TODO help others in need
 			- TODO 为什么mental分裂的人的文字会出现逻辑不通的现象
-	- TODO 体力提升计划
-	-
 - ## TwoBigMentalGoals
   collapsed:: true
 	- TODO 学会摄影

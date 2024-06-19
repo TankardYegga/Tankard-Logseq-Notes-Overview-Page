@@ -1,5 +1,5 @@
-- # Chapter 1
-  collapsed:: true
+# Chapter 1
+collapsed:: true
 	- ![image.png](../assets/image_1653060862647_0.png) #card
 	  card-last-interval:: 4
 	  card-repeats:: 2

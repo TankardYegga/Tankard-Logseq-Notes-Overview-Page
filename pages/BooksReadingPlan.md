@@ -265,6 +265,7 @@
 	- [[我们为什么活得这么累]]
 	- [[哈佛Google行为科学家的脱单指南]]
 - 2024
+  collapsed:: true
 	- TODO [[精要主义(Essentialism)]]
 	- TODO [[轻松主义(Effortless)]]
 	- TODO [[元宇宙改变一切]]
@@ -273,7 +274,7 @@
 	- TODO [[艾伦图灵传]]
 	- TODO [[津巴布口述史]]
 	- TODO [[我缔造了新世界 影响人类历史进程的商业巨人亨利福特传]]
--
+- collapsed:: true
 	- TODO [[欲望的博弈]] [[冥想(Meditation)]]
 	- TODO [[冥想5分钟等于熟睡一小时]] [[冥想(Meditation)]]
 	- TODO [[生命之书：365天的静心冥想]] [[冥想(Meditation)]]
@@ -281,7 +282,7 @@
 	- TODO [[每一日的呼吸冥想练习]] [[冥想(Meditation)]]
 	- TODO [[每天练习照顾自己]]
 	- TODO [[消除压力从大脑开始]]
--
+- collapsed:: true
 	- [[博弈论与生活 ([英]兰·费雪) (Z-Library)]]
 	- [[博弈论的诡计：日常生活中的博弈策略]]
 	- [[妙趣横生博弈论 事业与人生的成功之道]]
