@@ -1,164 +1,5 @@
 public:: true
 
-- # Java Concurrency Basics
-  collapsed:: true
-	- 高可用、高性能、高并发
-	- 内存分析详解
-	  collapsed:: true
-		- ![image.png](../assets/image_1664697586653_0.png)
-			- 方法区在heap里面，所以本质java虚拟机就只有堆和栈；方法区的作用特殊
-			- 各种不同语言的底层也是互相抄的
-		- ![image.png](../assets/image_1664697744188_0.png)
-		- ![image.png](../assets/image_1664697940292_0.png)
-			- 堆里面存储的是对象，而不像栈是存储方法的
-			- new关键字就是在堆里创建了一个对象
-		- ![image.png](../assets/image_1664698176727_0.png)
-			- 类信息指的是什么？
-				- JAVA的类型信息可以通过反射或者RTTI（Run-Time Type Identification) 运行时类型识别来得到。类信息包括类的名称、类属性对应的变量、类的方法签名
-			- 因为对象是可以被销毁的，而堆存储对象，所以堆必然可以动态存储数据，但是方法区是堆中存储静态数据的地方
-		- ![image.png](../assets/image_1664701258304_0.png)
-			- 所说的三种内存结构都属于JVM管理范畴的，其中堆内内存可以和堆外内存一起协调发挥作用，堆内内存越大在GC回收时造成的影响就越大，堆外内存可以解决此问题
-		- ![image.png](../assets/image_1664699328622_0.png)
-			- 类一旦编写好，方法区中就已经存储好类信息，main方法中涉及的静态变量和字符串常量也算是属于这个类，main方法中执行new对象时会调用构造方法，给对象的字符串类型属性赋值时是直接将方法区中字符串的地址进行赋值
-			-
-	- 多线程
-	  collapsed:: true
-		- ![image.png](../assets/image_1665448965042_0.png)
-		- ![image.png](../assets/image_1665449075840_0.png)
-			- 线程对应的工作内存和主存不是同一个
-		- JVM停止时会等待用户线程执行完毕，但是不会等守护线程执行完毕。守护线程为用户线程服务。
-		- JNI Java native interface java的本地调用技术
-		- 创建线程的方法3种：
-		  collapsed:: true
-			- juc并发包下的Callable接口
-			- 继承Thread类
-			- 实现Runnable接口
-				- 实现该接口的类必须借助Thread类创建的对象，此对象是静态的代理对象。代理模式是装饰模型的一种，可以分为动态代理和静态代理，代理一般用于记录日志、增强服务。静态代理是这个类是写好的，可以直接拿来用，而动态代理是在运行过程中动态构建类，或者说临时构建出来的。
-		- 内部类只有在外部类的使用而加载，外部类不使用就不会加载，也不会编译。
-		  collapsed:: true
-			- 静态内部类使用static关键字，在main方法之外
-			- 局部内部类在main方法内部，不使用static声明
-			- 匿名内部类必须借助接口或者父类，必须带上线程的实现体
-				- ![image.png](../assets/image_1665632203418_0.png)
-				-
-		- ![image.png](../assets/image_1665714507539_0.png)
-		- ![image.png](../assets/image_1665715057832_0.png)
-		- ![image.png](../assets/image_1665715186400_0.png)
-		  collapsed:: true
-			- sleep是占据资源不让其他进程使用，也就算所谓的“抱着资源睡觉”
-			- wait是不占据资源，先让其他进程使用，相当于等红绿灯的过程
-			- ![image.png](../assets/image_1665715394373_0.png)
-				- stop和destroy不安全，不推荐使用
-			- ![image.png](../assets/image_1665715494160_0.png)
-			- ![image.png](../assets/image_1665728495919_0.png)
-			- 重写Runnable的run方法不能够向外抛出异常，所以只能在内部使用try catch
-				- throws异常叫做对外声明异常，而try catch属于捕获异常
-				- main方法可以使用对外声明异常
-			- ![image.png](../assets/image_1665731829126_0.png)
-			- ![image.png](../assets/image_1665733671459_0.png)
-				- sleep、yield都是Thread的静态方法，而join需要一个Thread对象来进行调用，join写在哪个线程体里面当前的线程就被阻塞了
-			- 进入阻塞的四种情况
-				- ![image.png](../assets/image_1665736485848_0.png)
-				- ![image.png](../assets/image_1665736737560_0.png)
-				- wait分为普通的wait和timewait两种，3和4都是Blocked状态
-				- yield不属于阻塞状态
-				- wait()和synchronized也属于阻塞
-				- 死亡状态是回不去的
-			- ![image.png](../assets/image_1665736889267_0.png)
-			- ![image.png](../assets/image_1665752312644_0.png)
-			-
-		- ![image.png](../assets/image_1665753508069_0.png)
-			- jvm必须等待所有的用户线程都执行完毕
-		- ![image.png](../assets/image_1665754460426_0.png)
-		-
-	- 线程同步
-	  collapsed:: true
-		- 需要提高准确性（线程安全性）以及性能
-		- ![image.png](../assets/image_1665845250402_0.png)
-		- ![image.png](../assets/image_1665845289729_0.png)
-		- ![image.png](../assets/image_1665845312261_0.png)
-		- ![image.png](../assets/image_1665845475861_0.png)
-		- ![image.png](../assets/image_1665845773718_0.png)
-			- 如果锁定的是成员方法方法，锁定的是this
-			- 如果锁定的是类的静态方法，锁定的是模子，也就是class
-			- 给定一个任意一个对象A，也可以进行锁定
-			- 锁住的对象包括方法和块，被称作同步方法和同步块
-			- ![image.png](../assets/image_1665846035079_0.png)
-			- 既要保证数据安全，也要保证性能
-			- ![image.png](../assets/image_1665881322979_0.png)
-			  collapsed:: true
-				- java中的块包含四种：
-					- 方法中的局部块
-					- 类中属性类似位置的块，跟构造方法的作用是一样的，都是用来初始化对象的信息的；而加上static关键字的静态块则是用来初始化类的信息的
-					  collapsed:: true
-						- ![image.png](../assets/image_1665882631821_0.png)
-						-
-					- 这里的同步块
-			- 线程安全里面的double-checking:
-			  collapsed:: true
-				- ![image.png](../assets/image_1665908248847_0.png)
-	- 任务定时调度
-	  collapsed:: true
-		- ![image.png](../assets/image_1665991563007_0.png)
-			- DSL可以理解为用简介的代码来解决特定的问题
-			- 遇到一个新的框架时看它的api、文档和使用手册
-	- happenbefore
-	  collapsed:: true
-		- ![image.png](../assets/image_1665993631260_0.png)
-			- ![image.png](../assets/image_1665993837927_0.png)
-			- ![image.png](../assets/image_1665993853736_0.png)
-			- ![image.png](../assets/image_1665993886920_0.png)
-			- 从内存里面获取指令；对指令进行解码或者说翻译；从寄存器中取数据，并执行操作；将运算后的数据重新写回寄存器中
-			- ![image.png](../assets/image_1665994247929_0.png)
-			- ![image.png](../assets/image_1665994520415_0.png)
-			-
-	- volatile
-	  collapsed:: true
-		- ![image.png](../assets/image_1665996166425_0.png)
-		- 工作内存的出现是为了避免主内存的并发量过高，从而影响性能
-		- 变量的读、操作、写回这三个操作并不能保证作为一个整体发生，也就是中间有可能被线程调度机制所打断，所以说不能保证原子性
-		- volatile又被称作是轻量级的synchronize机制，但是其只保证了同步机制中的数据可见
-		- 现在volatile不多见了，因为现在主内存与工作内存之间的load和save性能已经很好了，但是在面试中还是经常被提及
-		- 使用volatile可以避免指令重排
-		-
-	- dcl单例模式
-	  collapsed:: true
-		- ![image.png](../assets/image_1666008113610_0.png)
-		- 数据库的连接池、电脑的任务管理器都是单例模式
-		- 单例指的是对外只存在一个对象，即便是在多线程的情况下
-			- 构造器私有化，因为不能在外部使用new 构造器来创建一个对象
-			- 提供一个私有的静态属性，这个属性记录的是这个对象的地址。之所以需要是静态的，是因为没办法使用new创建对象，自然不能使得属性是对象的属性。如果初始时这个属性是直接用new 构造器赋值的，称作“饿汉式”，“饿了就要吃东西”；如果是空的，称作“懒汉式”
-			- 提供一个公共的静态方法，来获取该属性
-			- new一个对象的时候可能会发生指令重排，其原本会做三件事：开辟空间，初始化对象信息，将对象的地址返回给引用。当一个线程运行 instance = new A()时，若初始化对象信息的时间过长，则这个赋值引用的操作就可能先进行了，然后当前对类的模具进行解锁，另一个进程拿引用时，这个引用非常有可能是空的，这可以对instance这个属性添加volatile可见关键字进行解决
-			- DCL的全称是Doule Check Lock，即双重检查锁定
-			-
-		-
-	- ThreadLocal
-	  collapsed:: true
-		- ![image.png](../assets/image_1666012233349_0.png)
-		- ThreadLocal代表每个线程自身的存储的局部本地区域，有set/get/initialValue三个方法
-		-
-	- 可重入锁
-	  collapsed:: true
-		- ![image.png](../assets/image_1666019533566_0.png)
-		- 内置锁就是系统提供的
-		- 什么情况下需要可重入锁？
-			- 需要多次加锁的时候
-		-
-	- CAS原子锁
-	  collapsed:: true
-		- 按照不同的特点，锁可以有不同的划分方式。
-		- 按照可重入与否，可以划分为可重入锁和不可重入锁。可重入锁又可以划分为公平锁和不公平锁，公平锁指的是按照队列进行任务的调度，不公平锁指的是允许任务可以插队。感觉说的就是对于同一个进程加锁的两个不同的方法，而非是同一个方法里面的先后两次对同一进程加锁，可以运行后面使用该进程的方法先获得该锁，从而先运行。不可重入锁中同时需要锁的是多个不同的进程，先得到锁的那个进程不可能主动让出该锁，除非调度器显示抢占，因为必然是公平的。
-		- ![image.png](../assets/image_1666069483233_0.png)
-		  collapsed:: true
-			- 内存值反应的是变量最新的结果，而原值是变量所在存储区域的值。当内存值和原值A相等时，有两种可能的情况，一是在此期间没有任何进程对该变量进行修改，所以内存和原始变量的值保存一致，二是在此期间有线程对该变量修改的累计或者说最终结果是“变量值没有改变”，此时更新后的变量值可能写回操作已经完成了，也可能没有完成，**如果修改变量的这个线程后续没有其他操作了，则对最终原变量的修改是没有影响的，但是如果还有后续的操作，则实际会出现冲突，可以通过查看日志来解决**。CAS并不能够区分是哪种情况，但是都会认为当前是没有冲突的，所以会直接执行本来的赋值操作；而如果值不相等，必然能够说明有线程正在对该变量进行操作，操作的结果已经出现在内存里面，但是还没有写回原变量的地址处，所以必须等待其写回操作完成。**可以说，内存值 == 变量原始值 是 资源没被其他线程占用 的  不充分必要条件。**
-			- CAS中C是compare，即是判断 内存值 == 变量原始值；Swap交换，即是 依据条件 来进行变量赋值。
-			- CAS是CPU的硬件指令，所以效率高。也就是说其实现有可能是C或者c++语言，而java无法实现。
-			- juc即java util concurrent, 属于java并发中的高级内容。
-			-
-			-
-- # Java Webserver
-  collapsed:: true
 	- webserver
 	  collapsed:: true
 		- ![image.png](../assets/image_1666083597640_0.png)
@@ -191,10 +32,47 @@ public:: true
 - [[springboot]]
 - [[DataStructure]]
 - [[JavaScatteredKnowledge]]
+  collapsed:: true
 	- python中的模块是一个.py文件，而Java中的模块应该是一个包；python中一个模块子功能的实现是通过函数，而 java中的子功能是通过一个类。这样看上去python模块的大小要比java小，但是因为python的代码量低，所以不一定。
-	- JDK的动态代理：
 - [[DesignPattern(设计模式)]]
 - [[抽奖系统]]
 - [[八股文]]
--
--
+- [[Kafka]]
+  collapsed:: true
+	- kafka2.8.0以前必须要安装对应的zookeeper才能使用，2.8.0版本以后（包括3.0.0）可以不安装zookeeper就能独立地进行使用
+	- kafka的定义：
+	  collapsed:: true
+		- ![image.png](../assets/image_1723338392082_0.png)
+		  collapsed:: true
+			- 前端埋点通过接口将数据发送到日记服务器，日志服务器上使用文件存储来保存数据，Flume用于监测日志文件的数据变化（每增加一条日志文件都会被记录下来），Hadoop是用来进行大数据分析的。在日常情况下，日志服务器Flume的采集速度< Hadoop的上传速度, 所以Hadoop能够应付得过来；但是在双11期间，Flume的采集速度会大于200MB/s，这时只能使用Kafka集群来进行流量缓冲，Hadoop仍然保持自己的处理速度不变。Kafka集群里“浏览”、“点赞”、“收藏”的数据量本身不一样，因而发送给Hadoop的速度也会有差异，这样Hadoop端就不好调控自身的速度，故这里采用“订阅”模式
+			-
+			-
+	- kafka的功能：
+	  collapsed:: true
+		- 缓存/消峰
+		  collapsed:: true
+			- ![image.png](../assets/image_1723340472225_0.png)
+		- 解耦
+		  collapsed:: true
+			- ![image.png](../assets/image_1723340654593_0.png)
+			-
+		- 异步通信
+		  collapsed:: true
+			- ![image.png](../assets/image_1723340974655_0.png)
+	- 消息队列的两种工作模式：
+	  collapsed:: true
+		- ![image.png](../assets/image_1723341447890_0.png)
+		- 为什么一般来说生产者只有一个，而消费者会有多个呢？这个和制造业的情况很相似吧，比亚迪电动车生产者只有一个，但是消费比亚迪的顾客却很多，本质就是生产难度 > 消费难度
+		- 为什么发布/订阅模式里的消息从来都不删除呢？如果队列满了，也还是不删除吗？不同主题对应的消息量应该是不同的，比如一般浏览数据量 > 点赞数据量 > 评论数据量，那么为了保证消息队列的可用性，队列的长度岂不是要满足“最长木板原理”？如果是这样，那必然占用空间比点对点模式大得多？
+		-
+	-
+- [[Dubbo]]
+	- dubbo是面向接口代理的、高性能的RPC调用框架，它最重要的功能就是服务的自动注册和发现：能够支持多种注册中心服务，服务实例在注册中心上的上线和下线能实时感知
+	- dubbo架构图：
+		- provider建立在container启动的基础上，然后向registry进行register动作；同时，consumer从registry上进行subscribe，当registry上已经有相应的provider后就会notify给这个consumer；consumer调用provider；在整个过程中，会有monitor对consumer和provider的行为进行监控
+	- dubbo支持的注册中心：
+		- multicast注册中心
+		- zookeeper注册中心
+		- redis注册中心
+		- Simple注册中心
+		-

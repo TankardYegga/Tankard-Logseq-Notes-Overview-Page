@@ -21,7 +21,23 @@ public:: true
 - IDEA如何进行Junit4测试文件的编写？
 	- https://www.cnblogs.com/tangg/p/12670753.html
 - [[sourcecode]]
-	- 第四章
+  collapsed:: true
+	- 思考
+		- DefaultListableBeanFactory的几个方法分别是来自哪些接口或者类？
+			- registerBeanDefinition方法只实现自BeanDefinitionRegistry接口中定义的一个方法；
+			- getBeanDefinition方法来自三个地方: 一是对BeanDefinitionRegistry接口中定义的一个方法的实现，二是对AbstractBeanFactory中的一个抽象方法的实现，三是对ConfigurableListableBeanFactory中的一个方法的实现。三个地方的名字都是一样的；
+			- containsBeanDefinition方法也只是：BeanDefinitionRegistry接口中定义的一个方法的实现；
+			- getBeanDefinitionNames方法来自两个地方：一是对BeanDefinitionRegistry接口中定义的一个方法的实现，另一个是对ConfigurableListableBeanFactory接口所继承的ListableBeanFactory中的该方法的实现；两个地方的方法名都是一样的
+			- 所以：为何要把同一个功能在多个接口或者抽象类中进行定义呢？
+				- 拿getBeanDefinition来说：其必须在AbstractBeanFactory中定义成一个抽象方法，是因为其内的getBean方法在使用[[模板模式]]时中定义流程时，getBeanDefinition是一个必须的环节，其是实例化bean的方法createBean的重要参数；而将getBeanDefinition写在BeanDefinitionRegistry接口定义的方法中，是为了使得BeanDefinitionRegistry这个接口的含义更加完整：可以注册某个bean的定义信息，也可以获取某个bean已经注册好的bean定义信息；而ConfigurableListableBeanFactory接口应该是需要getBeanDefinition去实现其他特定的功能，但在第五章的代码里尚未明确
+		- 为何Idea的junit test代码附近没有执行run/debug的小按钮？为何无法运行？ [[ProjectIssues]]
+		  collapsed:: true
+			- ![image.png](../assets/image_1676104714042_0.png)
+		- 为何spring.xml的读取一直保错“[Fatal Error] :1:1: 前言中不允许有内容。”？ [[ProjectIssues]]
+			- ![image.png](../assets/image_1676104672463_0.png)
+			- 是这个“classpath: spring.xml”这个类文件的路径写错了，直接改成绝地路径是没有问题的。
+			- 那么如何写正确的类文件下的相对路径呢？
+	- 使用[[STAR法则]]进行总结：
 	  collapsed:: true
 		- 思考：
 		  collapsed:: true
@@ -35,24 +51,7 @@ public:: true
 			- 为什么接口中也要写上throws BeansException？为什么很多方法都要跑出BeansException这个异常？这个异常有什么特殊之处？
 			  collapsed:: true
 				- 在getBean这个方法中实际可能会跑出多种类型的异常，包括 实例化异常、非法获取异常，在代码中可以看到无论是属于这些类型中的哪一种，都重新抛出BeansException。我觉得就是把异常的类型给归并成一种了，用户只需要知道这些异常都与容器中bean相关的行为是息息相关的就行。
-	- 第五章：
-		- 思考：
-			- DefaultListableBeanFactory的几个方法分别是来自哪些接口或者类？
-				- registerBeanDefinition方法只实现自BeanDefinitionRegistry接口中定义的一个方法；
-				- getBeanDefinition方法来自三个地方: 一是对BeanDefinitionRegistry接口中定义的一个方法的实现，二是对AbstractBeanFactory中的一个抽象方法的实现，三是对ConfigurableListableBeanFactory中的一个方法的实现。三个地方的名字都是一样的；
-				- containsBeanDefinition方法也只是：BeanDefinitionRegistry接口中定义的一个方法的实现；
-				- getBeanDefinitionNames方法来自两个地方：一是对BeanDefinitionRegistry接口中定义的一个方法的实现，另一个是对ConfigurableListableBeanFactory接口所继承的ListableBeanFactory中的该方法的实现；两个地方的方法名都是一样的
-				- 所以：为何要把同一个功能在多个接口或者抽象类中进行定义呢？
-					- 拿getBeanDefinition来说：其必须在AbstractBeanFactory中定义成一个抽象方法，是因为其内的getBean方法在使用[[模板模式]]时中定义流程时，getBeanDefinition是一个必须的环节，其是实例化bean的方法createBean的重要参数；而将getBeanDefinition写在BeanDefinitionRegistry接口定义的方法中，是为了使得BeanDefinitionRegistry这个接口的含义更加完整：可以注册某个bean的定义信息，也可以获取某个bean已经注册好的bean定义信息；而ConfigurableListableBeanFactory接口应该是需要getBeanDefinition去实现其他特定的功能，但在第五章的代码里尚未明确
-			- 为何Idea的junit test代码附近没有执行run/debug的小按钮？为何无法运行？ [[ProjectIssues]]
-			  collapsed:: true
-				- ![image.png](../assets/image_1676104714042_0.png)
-			- 为何spring.xml的读取一直保错“[Fatal Error] :1:1: 前言中不允许有内容。”？ [[ProjectIssues]]
-				- ![image.png](../assets/image_1676104672463_0.png)
-				- 是这个“classpath: spring.xml”这个类文件的路径写错了，直接改成绝地路径是没有问题的。
-				- 那么如何写正确的类文件下的相对路径呢？
-		- 使用[[STAR法则]]进行总结：
-	- 第六章：
+	-
 		-
 		-
 -
