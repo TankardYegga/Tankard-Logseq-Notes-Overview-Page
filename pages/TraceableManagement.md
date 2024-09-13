@@ -28,7 +28,7 @@
 			- [[SimpleDiary]]
 			- [[WritingSkills]]
 			- [[故事(Story)]]
-			- [[Tankard's Wording ...]]
+			- [[Tankard'sWording]]
 			- [[MyWeChatFeeds]]
 			- [[WeChatFeedsRethink]]
 			- [[QuestionBlowing]]
