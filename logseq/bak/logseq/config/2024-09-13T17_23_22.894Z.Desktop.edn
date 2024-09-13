@@ -57,7 +57,7 @@
  ;; :default-home {:page "Jun 3rd, 2021"}
  ;; 3. Setup page "home" as home page with multiple pages in sidebar
  ;; :default-home {:page "home" :sidebar ["page a" "page b"]}
- :default-home {:page "Tankard'sBlogOverview"}
+ :default-home {:page "Tankard'sNotesOverview"}
  
  ;; Tell logseq to use a specific folder in the repo as a default location for notes
  ;; if not specified, notes are stored in `pages` directory
@@ -177,7 +177,7 @@
  :ref/default-open-blocks-level 2
 
  :ref/linked-references-collapsed-threshold 50
- :favorites ["JobSearching" "LiftAnusManager" "冥想(meditation)" "SolutionNotes" "MindsetManager" "BooksReadingPlan" "SocialMediaManager" "GoalMachine" "Leetcode01" "Innovation" "WalkingOutOfComfortZone" "DelayCuration" "TraceableManagement" "Taking notes on books"]
+ :favorites ["JobSearching" "冥想(meditation)" "SolutionNotes" "BooksReadingPlan" "SocialMediaManager" "GoalMachine" "Leetcode01" "Innovation" "WalkingOutOfComfortZone" "DelayCuration" "TraceableManagement" "Taking notes on books"]
  :editor/logical-outdenting? true
  :graph/settings {:builtin-pages? true, :journal? false, :orphan-pages? true}
  :editor/preferred-pasting-file? true
