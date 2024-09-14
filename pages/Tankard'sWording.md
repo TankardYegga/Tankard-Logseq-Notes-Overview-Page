@@ -3,7 +3,7 @@ public:: true
 id:: 64f1abb1-973c-4af1-8496-d7df6bb490d2
 
 -
-- Welcome to The Creation Yard, boys!
+- ~                                                                                      Welcome to The Creation Yard, boys!                                                                                         ![92c5bb5dca0b17e06d99fbdcafca5e0.jpg](../assets/92c5bb5dca0b17e06d99fbdcafca5e0_1726253110835_0.jpg)
 	-
 	- Y                                                    [[==Yearly Coder==]]
 		- Y1                                [[BasicProfessionalQualitiesHolder]]
